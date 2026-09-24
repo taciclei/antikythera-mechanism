@@ -1,0 +1,319 @@
+{
+ "meshes": [
+  {
+   "mesh": "b2~c1",
+   "type": "external",
+   "pitch_years": 0.015625,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "c2~d1",
+   "type": "external",
+   "pitch_years": 0.012369791666666668,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "d2~e2",
+   "type": "external",
+   "pitch_years": 0.0023375984251968506,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "b2~l1",
+   "type": "external",
+   "pitch_years": 0.015625,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "l2~m1",
+   "type": "external",
+   "pitch_years": 0.011202830188679246,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "m3~e3",
+   "type": "external",
+   "pitch_years": 0.039832285115303984,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "e5~k1",
+   "type": "external",
+   "pitch_years": 0.0015087688061960296,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "k2~e6",
+   "type": "external",
+   "pitch_years": 0.0015087688061960296,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "e1~b3",
+   "type": "external",
+   "pitch_years": 0.0023375984251968506,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "e4~f1",
+   "type": "external",
+   "pitch_years": 0.04724787011017441,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "f2~g1",
+   "type": "external",
+   "pitch_years": 0.08347123719464146,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "g2~h1",
+   "type": "external",
+   "pitch_years": 0.22537234042553192,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "h2~i1",
+   "type": "external",
+   "pitch_years": 0.9014893617021277,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "m2~n1",
+   "type": "external",
+   "pitch_years": 0.07169811320754717,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "n3~o1",
+   "type": "external",
+   "pitch_years": 0.06666666666666667,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "n2~p1",
+   "type": "external",
+   "pitch_years": 0.25333333333333335,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "p2~cal1",
+   "type": "external",
+   "pitch_years": 1.2666666666666666,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "fx49~nd62",
+   "type": "external",
+   "pitch_years": 0.02040816326530612,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "nd64~nd48",
+   "type": "external",
+   "pitch_years": 0.019770408163265307,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "fx51~vn44",
+   "type": "external",
+   "pitch_years": 0.0196078431372549,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "vn34~vn26",
+   "type": "external",
+   "pitch_years": 0.02537485582468281,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "vn26~r1",
+   "type": "external",
+   "pitch_years": 0.02537485582468281,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "fx51~me72",
+   "type": "external",
+   "pitch_years": 0.0196078431372549,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "me89~me40",
+   "type": "external",
+   "pitch_years": 0.015862524785194974,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "me40~me20",
+   "type": "external",
+   "pitch_years": 0.015862524785194978,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "fx56~cp52",
+   "type": "external",
+   "pitch_years": 0.017857142857142856,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "cp52~su56",
+   "type": "external",
+   "pitch_years": 0.017857142857142856,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "fx56~cp64",
+   "type": "external",
+   "pitch_years": 0.017857142857142856,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "sa61~sa40",
+   "type": "external",
+   "pitch_years": 0.01522248243559719,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "sa40~sa68",
+   "type": "external",
+   "pitch_years": 0.01522248243559719,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "sa86s~sa86o",
+   "type": "external",
+   "pitch_years": 0.012036381460704754,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "ju45~ju40",
+   "type": "external",
+   "pitch_years": 0.025396825396825397,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "ju40~ju43",
+   "type": "external",
+   "pitch_years": 0.025396825396825397,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "ju65s~ju65o",
+   "type": "external",
+   "pitch_years": 0.0168009768009768,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "ma38~ma40",
+   "type": "external",
+   "pitch_years": 0.03007518796992481,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "ma40~ma71",
+   "type": "external",
+   "pitch_years": 0.03007518796992481,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "ma80s~ma80o",
+   "type": "external",
+   "pitch_years": 0.02669172932330827,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "a1~b1",
+   "type": "crown",
+   "pitch_years": 0.004484304932735426,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  },
+  {
+   "mesh": "b0~q1",
+   "type": "crown",
+   "pitch_years": 0.004042553191489362,
+   "positions": 50,
+   "distinct_c": 50,
+   "overlaps": 0
+  }
+ ],
+ "total_overlaps": 0,
+ "seconds": 7.4711010456085205,
+ "ok": true
+}

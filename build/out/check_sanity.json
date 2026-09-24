@@ -1,0 +1,9 @@
+{
+ "detections": {
+  "phase_sphere_dark|q_arbor": 1,
+  "hub_me20|mercury_disk": 1,
+  "b2|c1": 0,
+  "c1 mis-phased|b2": 1
+ },
+ "ok": true
+}

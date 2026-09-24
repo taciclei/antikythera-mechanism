@@ -1,0 +1,28 @@
+# DECISIONS (one line each: decision — reason)
+
+- Spec loaded read-only from `spec/antikythera.json`; every constant read as float64 from it — the spec is the single source of truth.
+- Solver angles of linear bodies are reduced modulo 2π exactly with `Fraction(rate)*Fraction(t)` — avoids float drift for large t.
+- Target `a` = |w_b|·z_b1/z_a1 and `q@moon` = |w_b − w_moon|·z_b0/z_q1, computed from the two crown meshes — both are outside the linear system (§5.1).
+- Root fillet = 0.2·m reduced (down to 0.144·m for z ≥ 100) when two fillets would not fit in the narrow 30° root space — keeps a root arc; the fillet stays below rf + 0.2 m, never reached by the mating tip (rf + 0.25 m).
+- Lightening windows only when (rim − hub) ≥ 2 mm; count 4/5/6 for rim radius < 10 / < 15 / ≥ 15 mm; arms along local +x — simplest reading of `tooth.lightening` (fx56 has no window).
+- e3: 5 windows between 4 and 40 mm, K arm 9.0 mm wide at −38°, other arms 0.12·r — spec asks ≥ 8 for the K arm.
+- b1: rim (inner 53) + hub (9) + 4 spokes 15.5 wide; spoke features (flat, bearing OD, pierced block) not modelled because the studs/post are fused to b — cosmetic.
+- b1 hub/rivets modelled as an annulus r 3.2..9.0, z 6.65..7.85 — spec "hub and rivets to 7.85".
+- c and l get a hub r 1.25..2.5 joining their two wheels — the two wheels of one body must be connected.
+- Pillars: small dimension radial; tenons 2.4×3.0 (short) and 4.0×5.0 (long) through matching Strap/CP holes — spec gives only "tenon_to".
+- D-plate posts at 22 mm along the 161° line, ±8 mm across — clear of every other part between z 18.8 and 22.85.
+- Mean-Sun bar: collar r 3.4, bar 3 wide, end block r 2.2 at Dblock, post r 1.5 — dimensions not given.
+- Mercury/Venus/true-Sun levers: bar 3 mm wide, round end, hubs r 4.5 / 5.2 / 6.0 — slot geometry exactly per spec.
+- Mercury pin z 12.65..14.9 (`shafts.pins`) instead of 12.6 (`structure.mercury_disk.pin`) — ends inside the slot instead of flush with the lever face (no coplanar contact).
+- Moon pointer: hub r 3, bar 3 wide to 62 with pointed tip, window boss r 5.1 with window r 4.1; hangers 2.4 wide (v) — only length/width/window given.
+- Back pointers: hub r 2.5 (spirals) / 2.0 (subsidiary), width 2.0 / 1.5, pointed; spiral sliders: block 3.2×3.0 at z −18.35..−17.4 and pin r 0.5 up to z −15.6 (ends inside the groove).
+- Back dial marks (cells, rims r 71.2..71.7, subsidiary rings and sector lines) raised 0.3 mm (z −16.8..−16.5) outside the sweep of the pointers; subsidiary sector lines start 0.3 mm beyond the pointer tip.
+- Front dials: zodiac ring 0.1 mm raised at z 41.5, 360 ticks; calendar ring per spec with 365 ticks; front-plate hole circle 354 × Ø0.8; parapegma lines are 0.4 mm raised strips (placeholder text).
+- Cosmos rings: annulus from the tube inner radius to the ring outer radius (disc + annulus in one piece).
+- Case: 4 walls 5 mm (right wall with the Ø3.1 crank hole) + front/back covers hidden (viewport and render).
+- Collections: 69 gears and status-bearing mechanism parts in `AM_<status>`; plates, shafts, tubes, studs, hubs, pins and crank parts in `AM_STRUCTURE`; dials/pointers/markers/texts in `AM_DIALS`; case in `AM_CASE`; body empties, controller, cameras, lights in `AM_HELPERS`. Every object carries `status`.
+- Frame-child body empties are top-level objects (only children of b, e_table and moon are parented) — world = local for them.
+- Body drivers: default F-curve keys cleared (pass-through driver); non-linear bodies read other empties with SINGLE_PROP on `rotation_euler[i]`; linear sub-terms are inlined with exact integer fractions.
+- Volume check: contour area computed on the float32-rounded 2D contour (vertices are float32), exactly like the z range of §5.5.
+- Pre-filter follower rule applied to every object carried by b (b itself and its children), except coaxial tubes of b (plain radial test).
+- Text z-clearance rule interpreted per xy footprint: a moving part whose swept region overlaps the text footprint must be ≥ 0.1 mm away in z (the subsidiary pointers are only 0.1 mm from the plate, so a global reading is impossible).

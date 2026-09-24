@@ -1,0 +1,268 @@
+{
+ "kinematics": {
+  "unknowns": [
+   "b",
+   "moon",
+   "c",
+   "d",
+   "e_pipe",
+   "e_table",
+   "e_inner",
+   "k",
+   "kp",
+   "l",
+   "m",
+   "f",
+   "g",
+   "h",
+   "i",
+   "n",
+   "o",
+   "p",
+   "cal",
+   "spA",
+   "spB",
+   "spC",
+   "x_me40",
+   "x_me20",
+   "x_vn26",
+   "x_r1",
+   "t_nodes",
+   "x_cp52",
+   "x_cp64",
+   "x_su56",
+   "x_sa40",
+   "x_sa68",
+   "x_sa86s",
+   "x_ju40",
+   "x_ju43",
+   "x_ju65s",
+   "x_ma40",
+   "x_ma71",
+   "x_ma80s",
+   "t_saturn",
+   "t_jupiter",
+   "t_mars",
+   "t_mercury",
+   "t_venus",
+   "t_trueSun"
+  ],
+  "n_unknowns": 45,
+  "n_equations": 44,
+  "counts": {
+   "willis": 37,
+   "pin_slot": 4,
+   "follower": 3
+  },
+  "rank": 44,
+  "dof": 1,
+  "rank_with_input": 45,
+  "inconsistent": 0,
+  "rates": {
+   "b": "1",
+   "moon": "254/19",
+   "c": "-32/19",
+   "d": "64/19",
+   "e_pipe": "-254/19",
+   "e_table": "-477/4237",
+   "e_inner": "-254/19",
+   "k": "55688/4237",
+   "kp": "55688/4237",
+   "l": "-32/19",
+   "m": "53/57",
+   "f": "1692/4237",
+   "g": "-940/4237",
+   "h": "940/12711",
+   "i": "-235/12711",
+   "n": "-5/19",
+   "o": "1/4",
+   "p": "5/76",
+   "cal": "-1/76",
+   "spA": "41/24",
+   "spB": "111/62",
+   "spC": "95/44",
+   "x_me40": "-553/960",
+   "x_me20": "1993/480",
+   "x_vn26": "-295/572",
+   "x_r1": "751/462",
+   "t_nodes": "-5/93",
+   "x_cp52": "27/13",
+   "x_cp64": "15/8",
+   "x_su56": "0",
+   "x_sa40": "-167/260",
+   "x_sa68": "869/442",
+   "x_sa86s": "869/442",
+   "x_ju40": "1/64",
+   "x_ju43": "659/344",
+   "x_ju65s": "659/344",
+   "x_ma40": "27/160",
+   "x_ma71": "417/284",
+   "x_ma80s": "417/284",
+   "t_saturn": "15/442",
+   "t_jupiter": "29/344",
+   "t_mars": "151/284",
+   "t_mercury": "1",
+   "t_venus": "1",
+   "t_trueSun": "1",
+   "frame": "0"
+  },
+  "rate_errors": [],
+  "targets": [
+   {
+    "name": "crank",
+    "expr": "a",
+    "expected": "223/48",
+    "got": "223/48",
+    "ok": true
+   },
+   {
+    "name": "mean Sun",
+    "expr": "b",
+    "expected": "1",
+    "got": "1",
+    "ok": true
+   },
+   {
+    "name": "Moon (mean sidereal)",
+    "expr": "moon",
+    "expected": "254/19",
+    "got": "254/19",
+    "ok": true
+   },
+   {
+    "name": "lunar apsidal line",
+    "expr": "e_table",
+    "expected": "-477/4237",
+    "got": "-477/4237",
+    "ok": true
+   },
+   {
+    "name": "lunar anomaly phase (k1 relative to e3)",
+    "expr": "k@e_table",
+    "expected": "56165/4237",
+    "got": "56165/4237",
+    "ok": true
+   },
+   {
+    "name": "Moon phase (q1 relative to Moon pointer, magnitude)",
+    "expr": "q@moon",
+    "expected": "235/19",
+    "got": "235/19",
+    "ok": true
+   },
+   {
+    "name": "Metonic pointer",
+    "expr": "n",
+    "expected": "-5/19",
+    "got": "-5/19",
+    "ok": true
+   },
+   {
+    "name": "Olympiad pointer",
+    "expr": "o",
+    "expected": "1/4",
+    "got": "1/4",
+    "ok": true
+   },
+   {
+    "name": "Callippic pointer",
+    "expr": "cal",
+    "expected": "-1/76",
+    "got": "-1/76",
+    "ok": true
+   },
+   {
+    "name": "Saros pointer",
+    "expr": "g",
+    "expected": "-940/4237",
+    "got": "-940/4237",
+    "ok": true
+   },
+   {
+    "name": "Exeligmos pointer",
+    "expr": "i",
+    "expected": "-235/12711",
+    "got": "-235/12711",
+    "ok": true
+   },
+   {
+    "name": "Dragon Hand (nodes)",
+    "expr": "t_nodes",
+    "expected": "-5/93",
+    "got": "-5/93",
+    "ok": true
+   },
+   {
+    "name": "draconic month (Moon - nodes)",
+    "expr": "moon-t_nodes",
+    "expected": "23717/1767",
+    "got": "23717/1767",
+    "ok": true
+   },
+   {
+    "name": "Mercury epicycle relative to b1",
+    "expr": "x_me20@b",
+    "expected": "1513/480",
+    "got": "1513/480",
+    "ok": true
+   },
+   {
+    "name": "Venus epicycle relative to b1",
+    "expr": "x_r1@b",
+    "expected": "289/462",
+    "got": "289/462",
+    "ok": true
+   },
+   {
+    "name": "true-Sun epicycle absolute",
+    "expr": "x_su56",
+    "expected": "0",
+    "got": "0",
+    "ok": true
+   },
+   {
+    "name": "Mars pin gear relative to CP",
+    "expr": "x_ma71@b",
+    "expected": "133/284",
+    "got": "133/284",
+    "ok": true
+   },
+   {
+    "name": "Jupiter pin gear relative to CP",
+    "expr": "x_ju43@b",
+    "expected": "315/344",
+    "got": "315/344",
+    "ok": true
+   },
+   {
+    "name": "Saturn pin gear relative to CP",
+    "expr": "x_sa68@b",
+    "expected": "427/442",
+    "got": "427/442",
+    "ok": true
+   },
+   {
+    "name": "Mars output",
+    "expr": "t_mars",
+    "expected": "151/284",
+    "got": "151/284",
+    "ok": true
+   },
+   {
+    "name": "Jupiter output",
+    "expr": "t_jupiter",
+    "expected": "29/344",
+    "got": "29/344",
+    "ok": true
+   },
+   {
+    "name": "Saturn output",
+    "expr": "t_saturn",
+    "expected": "15/442",
+    "got": "15/442",
+    "ok": true
+   }
+  ],
+  "ok": true
+ }
+}

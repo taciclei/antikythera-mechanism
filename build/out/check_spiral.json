@@ -1,0 +1,15 @@
+{
+ "spirals": {
+  "metonic": {
+   "samples": 500,
+   "max_err_mm": 0.00012062445190126325,
+   "ok": true
+  },
+  "saros": {
+   "samples": 500,
+   "max_err_mm": 0.00011501581469010991,
+   "ok": true
+  }
+ },
+ "ok": true
+}

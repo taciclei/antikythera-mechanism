@@ -1,0 +1,23 @@
+# macOS / Python
+.DS_Store
+__pycache__/
+*.pyc
+*.tmp
+
+# raw session transcripts and scratch logs of the headless build
+build_logs/
+
+# intermediate render frames, previews and logs (the encoded videos are kept)
+build/out/renders/frames/
+build/out/renders/frames_exploded/
+build/out/renders/previews/
+build/out/renders/_warmup.png
+build/out/logs/
+
+# local backups of the scene before the labels / staging were added
+build/out/am_before_*.blend
+*.blend1
+
+# working copies
+/dossier.html
+tools/prompt_template_v1.md

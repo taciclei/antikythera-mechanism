@@ -1,0 +1,1 @@
+{"note": "Stills rendered with Cycles on Metal (Apple M4 GPU - 8 cores), 1920x1080, 256 samples, OpenImageDenoise on GPU, after a warm-up render (kernel compilation). Animation: EEVEE, 480 frames 1280x720 at 24 fps, crank 0 -> 4 years, PNG frames encoded once through the sequencer to H.264/MP4 (movieclip frame_duration = 480).", "fallbacks": []}

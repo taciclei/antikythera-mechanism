@@ -1,0 +1,10 @@
+{
+ "batch": 3,
+ "n_batches": 8,
+ "samples": 30,
+ "pairs": 168,
+ "missing_objects": [],
+ "overlaps": [],
+ "seconds": 4.167923927307129,
+ "ok": true
+}

@@ -1,0 +1,2179 @@
+{
+"retained": [
+{
+"a": "main_plate",
+"b": "moon_arbor",
+"gap": 0.19831,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.45,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_d",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -4.55,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_m",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -4.15,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_e_inner",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_f",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_g",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_h",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_i",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_n",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_o",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_p",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_cal",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_m",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.4,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_e_inner",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.4,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_f",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.4,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_g",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.2,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_h",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.4,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_i",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -2.0,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_n",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.2,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_o",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -2.0,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_p",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.4,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_cal",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -2.0,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "metonic_slider_pin",
+"gap": 0.09725,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.9,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "saros_slider_pin",
+"gap": 0.09723,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.9,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "olympiad_pointer",
+"gap": -14.95126,
+"coaxial": false,
+"frame": "frame",
+"dz": 0.1
+},
+{
+"a": "back_plate",
+"b": "callippic_pointer",
+"gap": -14.95126,
+"coaxial": false,
+"frame": "frame",
+"dz": 0.1
+},
+{
+"a": "back_plate",
+"b": "exeligmos_pointer",
+"gap": -13.95126,
+"coaxial": false,
+"frame": "frame",
+"dz": 0.1
+},
+{
+"a": "front_plate",
+"b": "t_date",
+"gap": 0.29765,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.15,
+"why": "shaft-plate"
+},
+{
+"a": "crank_bracket",
+"b": "a_shaft",
+"gap": 0.0,
+"coaxial": false,
+"frame": "frame",
+"dz": -3.8376,
+"why": "shaft-plate"
+},
+{
+"a": "fixed_tube",
+"b": "b_hub",
+"gap": 0.19699,
+"coaxial": true,
+"frame": "frame",
+"dz": -8.35
+},
+{
+"a": "fixed_tube",
+"b": "moon_arbor",
+"gap": 0.19831,
+"coaxial": true,
+"frame": "frame",
+"dz": -13.6
+},
+{
+"a": "stud_c",
+"b": "c2",
+"gap": 0.04849,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.45
+},
+{
+"a": "stud_c",
+"b": "c1",
+"gap": 0.04849,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.8
+},
+{
+"a": "stud_c",
+"b": "hub_c",
+"gap": 0.04849,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.1
+},
+{
+"a": "stud_l",
+"b": "l2",
+"gap": 0.04849,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.65
+},
+{
+"a": "stud_l",
+"b": "l1",
+"gap": 0.04849,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.8
+},
+{
+"a": "stud_l",
+"b": "hub_l",
+"gap": 0.04849,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.3
+},
+{
+"a": "fx51",
+"b": "me72",
+"gap": -1.07789,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "fx51",
+"b": "vn44",
+"gap": -1.07789,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "fx49",
+"b": "nd62",
+"gap": -0.97297,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "fx56",
+"b": "t_date",
+"gap": 0.2906,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.15
+},
+{
+"a": "fx56",
+"b": "cp52",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "fx56",
+"b": "cp64",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "sub_plate",
+"b": "t_date",
+"gap": 0.29765,
+"coaxial": true,
+"frame": "frame",
+"dz": -4.5,
+"why": "shaft-plate"
+},
+{
+"a": "spacer_ring",
+"b": "t_date",
+"gap": 0.2906,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.3
+},
+{
+"a": "a1",
+"b": "b1",
+"gap": -1.1552,
+"coaxial": false,
+"frame": "frame",
+"dz": -2.3876,
+"why": "mesh"
+},
+{
+"a": "a1",
+"b": "cp",
+"gap": -1.1752,
+"coaxial": false,
+"frame": "frame",
+"dz": 0.0876
+},
+{
+"a": "a_shaft",
+"b": "case_right",
+"gap": 0.0,
+"coaxial": false,
+"frame": "frame",
+"dz": -44.3376,
+"why": "shaft-plate"
+},
+{
+"a": "b1",
+"b": "hub_spA",
+"gap": -33.23474,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "b1",
+"b": "hub_spB",
+"gap": -39.38,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "b1",
+"b": "hub_spC",
+"gap": -40.78,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "b2",
+"b": "c1",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "b2",
+"b": "l1",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.5,
+"why": "mesh"
+},
+{
+"a": "b0",
+"b": "q1",
+"gap": -1.0,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.05,
+"why": "mesh"
+},
+{
+"a": "t_meanSun",
+"b": "moon_arbor",
+"gap": 0.19831,
+"coaxial": true,
+"frame": "frame",
+"dz": -49.1
+},
+{
+"a": "t_meanSun",
+"b": "t_nodes",
+"gap": 0.19747,
+"coaxial": true,
+"frame": "frame",
+"dz": -36.7
+},
+{
+"a": "t_meanSun",
+"b": "dragon_hand",
+"gap": 0.19747,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.6
+},
+{
+"a": "t_date",
+"b": "t_saturn",
+"gap": 0.19157,
+"coaxial": true,
+"frame": "frame",
+"dz": -9.55
+},
+{
+"a": "mean_sun_bar",
+"b": "moon_arbor",
+"gap": 0.19831,
+"coaxial": false,
+"frame": "frame",
+"dz": -14.75
+},
+{
+"a": "strap",
+"b": "hub_me40",
+"gap": -1.4,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "strap",
+"b": "hub_me20",
+"gap": -1.4,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "d_plate",
+"b": "hub_vn26",
+"gap": -1.4,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "d_plate",
+"b": "hub_r1",
+"gap": -1.4,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "cp",
+"b": "shaft_cp52",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "b",
+"dz": -3.15,
+"why": "shaft-plate"
+},
+{
+"a": "cp",
+"b": "shaft_cp64",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "b",
+"dz": -3.15,
+"why": "shaft-plate"
+},
+{
+"a": "cp",
+"b": "shaft_su56",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "b",
+"dz": -2.9,
+"why": "shaft-plate"
+},
+{
+"a": "cp",
+"b": "hub_sa40",
+"gap": -1.4,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "cp",
+"b": "hub_ju40",
+"gap": -1.4,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "cp",
+"b": "hub_ma40",
+"gap": -1.4,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "cp",
+"b": "t_saturn",
+"gap": 0.19789,
+"coaxial": false,
+"frame": "frame",
+"dz": -7.15,
+"why": "shaft-plate"
+},
+{
+"a": "stud_spA",
+"b": "hub_spA",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -10.35
+},
+{
+"a": "stud_spB",
+"b": "hub_spB",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -5.75
+},
+{
+"a": "stud_spB",
+"b": "mercury_follower",
+"gap": -0.81815,
+"coaxial": false,
+"frame": "b-sector",
+"dz": 0.1
+},
+{
+"a": "stud_spC",
+"b": "hub_spC",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -10.35
+},
+{
+"a": "stud_me40",
+"b": "hub_me40",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -6.75
+},
+{
+"a": "stud_me40",
+"b": "mercury_disk",
+"gap": -1.3,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "stud_me20",
+"b": "hub_me20",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -7.9
+},
+{
+"a": "stud_me20",
+"b": "mercury_disk",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -1.05
+},
+{
+"a": "stud_vn26",
+"b": "hub_vn26",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -1.7
+},
+{
+"a": "stud_r1",
+"b": "hub_r1",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -2.85
+},
+{
+"a": "stud_r1",
+"b": "venus_disk",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -1.05
+},
+{
+"a": "stud_r1",
+"b": "venus_follower",
+"gap": -0.81728,
+"coaxial": false,
+"frame": "b-sector",
+"dz": 0.1
+},
+{
+"a": "stud_sa40",
+"b": "hub_sa40",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -3.95
+},
+{
+"a": "stud_ju40",
+"b": "hub_ju40",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -6.25
+},
+{
+"a": "stud_ma40",
+"b": "ma80s",
+"gap": -0.33913,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "stud_ma40",
+"b": "hub_ma40",
+"gap": 0.04898,
+"coaxial": true,
+"frame": "b",
+"dz": -7.4
+},
+{
+"a": "boss_sa68",
+"b": "sa68",
+"gap": 0.04669,
+"coaxial": true,
+"frame": "b",
+"dz": -1.05
+},
+{
+"a": "boss_sa68",
+"b": "sa86s",
+"gap": -22.32,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "stud_sa86s",
+"b": "sa68",
+"gap": 0.04669,
+"coaxial": false,
+"frame": "b",
+"dz": 0.05
+},
+{
+"a": "stud_sa86s",
+"b": "sa86s",
+"gap": 0.04849,
+"coaxial": true,
+"frame": "b",
+"dz": -1.0
+},
+{
+"a": "boss_ju43",
+"b": "ju43",
+"gap": 0.04657,
+"coaxial": true,
+"frame": "b",
+"dz": -1.05
+},
+{
+"a": "boss_ju43",
+"b": "ju65s",
+"gap": -17.3,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "stud_ju65s",
+"b": "ju43",
+"gap": 0.06657,
+"coaxial": false,
+"frame": "b",
+"dz": 0.05
+},
+{
+"a": "stud_ju65s",
+"b": "ju65s",
+"gap": 0.04849,
+"coaxial": true,
+"frame": "b",
+"dz": -1.0
+},
+{
+"a": "boss_ma71",
+"b": "ma71",
+"gap": 0.04054,
+"coaxial": true,
+"frame": "b",
+"dz": -1.05
+},
+{
+"a": "boss_ma71",
+"b": "ma80s",
+"gap": -20.9,
+"coaxial": false,
+"frame": "b",
+"dz": 0.1
+},
+{
+"a": "stud_ma80s",
+"b": "ma71",
+"gap": 0.06054,
+"coaxial": false,
+"frame": "b",
+"dz": 0.05
+},
+{
+"a": "stud_ma80s",
+"b": "ma80s",
+"gap": 0.04849,
+"coaxial": true,
+"frame": "b",
+"dz": -1.0
+},
+{
+"a": "date_pointer",
+"b": "t_saturn",
+"gap": 0.19789,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.05
+},
+{
+"a": "me89",
+"b": "me40",
+"gap": -1.0,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "nd64",
+"b": "nd48",
+"gap": -0.96429,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "vn34",
+"b": "vn26",
+"gap": -1.042,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "me40",
+"b": "me20",
+"gap": -1.0,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "vn26",
+"b": "r1",
+"gap": -1.042,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "cp52",
+"b": "su56",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "sa61",
+"b": "sa40",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ma38",
+"b": "ma40",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ma38",
+"b": "ma71",
+"gap": 0.31817,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0
+},
+{
+"a": "ju45",
+"b": "ju40",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "sa40",
+"b": "sa68",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "sa86s",
+"b": "pin_saturn",
+"gap": -34.49,
+"coaxial": false,
+"frame": "b",
+"dz": -0.95,
+"why": "pin-slot"
+},
+{
+"a": "sa86s",
+"b": "sa86o",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ju40",
+"b": "ju43",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ju65s",
+"b": "pin_jupiter",
+"gap": -23.22,
+"coaxial": false,
+"frame": "b",
+"dz": -0.95,
+"why": "pin-slot"
+},
+{
+"a": "ju65s",
+"b": "ju65o",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ma40",
+"b": "ma71",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ma80s",
+"b": "pin_mars",
+"gap": -23.6,
+"coaxial": false,
+"frame": "b",
+"dz": -0.95,
+"why": "pin-slot"
+},
+{
+"a": "ma80s",
+"b": "ma80o",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "pin_mercury",
+"b": "mercury_follower",
+"gap": -14.55815,
+"coaxial": false,
+"frame": "b-sector",
+"dz": -0.95,
+"why": "pin-slot"
+},
+{
+"a": "pin_venus",
+"b": "venus_follower",
+"gap": -13.50728,
+"coaxial": false,
+"frame": "b-sector",
+"dz": -0.95,
+"why": "pin-slot"
+},
+{
+"a": "pin_trueSun",
+"b": "true_sun_follower",
+"gap": -2.16983,
+"coaxial": false,
+"frame": "b-sector",
+"dz": -0.75,
+"why": "pin-slot"
+},
+{
+"a": "b3",
+"b": "e1",
+"gap": -1.1188,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "moon_hanger_1",
+"b": "q_arbor",
+"gap": 0.0,
+"coaxial": false,
+"frame": "moon",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "moon_hanger_2",
+"b": "q_arbor",
+"gap": 0.0,
+"coaxial": false,
+"frame": "moon",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "t_nodes",
+"b": "t_mercury",
+"gap": 0.19663,
+"coaxial": true,
+"frame": "frame",
+"dz": -34.4
+},
+{
+"a": "t_nodes",
+"b": "mercury_follower",
+"gap": 0.19663,
+"coaxial": false,
+"frame": "frame",
+"dz": -2.15
+},
+{
+"a": "t_nodes",
+"b": "ring_mercury",
+"gap": 0.19663,
+"coaxial": true,
+"frame": "frame",
+"dz": -0.95
+},
+{
+"a": "t_mercury",
+"b": "t_venus",
+"gap": 0.19578,
+"coaxial": true,
+"frame": "frame",
+"dz": -32.7
+},
+{
+"a": "t_mercury",
+"b": "venus_follower",
+"gap": 0.19578,
+"coaxial": false,
+"frame": "frame",
+"dz": -2.15
+},
+{
+"a": "t_mercury",
+"b": "ring_venus",
+"gap": 0.19578,
+"coaxial": true,
+"frame": "frame",
+"dz": -0.95
+},
+{
+"a": "t_venus",
+"b": "t_trueSun",
+"gap": 0.19494,
+"coaxial": true,
+"frame": "frame",
+"dz": -21.3
+},
+{
+"a": "t_venus",
+"b": "true_sun_follower",
+"gap": 0.19494,
+"coaxial": false,
+"frame": "frame",
+"dz": -11.65
+},
+{
+"a": "t_venus",
+"b": "ring_trueSun",
+"gap": 0.19494,
+"coaxial": true,
+"frame": "frame",
+"dz": -0.95
+},
+{
+"a": "t_trueSun",
+"b": "t_mars",
+"gap": 0.1941,
+"coaxial": true,
+"frame": "frame",
+"dz": -19.8
+},
+{
+"a": "t_trueSun",
+"b": "ring_mars",
+"gap": 0.1941,
+"coaxial": true,
+"frame": "frame",
+"dz": -0.95
+},
+{
+"a": "t_mars",
+"b": "t_jupiter",
+"gap": 0.19325,
+"coaxial": true,
+"frame": "frame",
+"dz": -18.1
+},
+{
+"a": "t_mars",
+"b": "ring_jupiter",
+"gap": 0.19325,
+"coaxial": true,
+"frame": "frame",
+"dz": -0.95
+},
+{
+"a": "t_jupiter",
+"b": "t_saturn",
+"gap": 0.19241,
+"coaxial": true,
+"frame": "frame",
+"dz": -15.25
+},
+{
+"a": "t_jupiter",
+"b": "ring_saturn",
+"gap": 0.19241,
+"coaxial": true,
+"frame": "frame",
+"dz": -0.95
+},
+{
+"a": "c2",
+"b": "d1",
+"gap": -0.8944,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "d2",
+"b": "e2",
+"gap": -0.971,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "e5",
+"b": "k1",
+"gap": -1.024,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.5,
+"why": "mesh"
+},
+{
+"a": "e3",
+"b": "m3",
+"gap": -0.932,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.4,
+"why": "mesh"
+},
+{
+"a": "e3",
+"b": "pipe_e",
+"gap": 0.04777,
+"coaxial": true,
+"frame": "frame",
+"dz": -2.05
+},
+{
+"a": "e4",
+"b": "f1",
+"gap": -1.0406,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "e6",
+"b": "k2",
+"gap": -1.068,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.5,
+"why": "mesh"
+},
+{
+"a": "k1",
+"b": "boss_k",
+"gap": 0.04717,
+"coaxial": true,
+"frame": "e_table",
+"dz": -0.65
+},
+{
+"a": "k1",
+"b": "stud_kp",
+"gap": 0.24717,
+"coaxial": false,
+"frame": "e_table",
+"dz": 0.05
+},
+{
+"a": "k2",
+"b": "boss_k",
+"gap": -15.084,
+"coaxial": false,
+"frame": "e_table",
+"dz": 0.1
+},
+{
+"a": "k2",
+"b": "stud_kp",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "e_table",
+"dz": -0.5
+},
+{
+"a": "k2",
+"b": "pin_lunar",
+"gap": -22.884,
+"coaxial": false,
+"frame": "e_table",
+"dz": -0.45,
+"why": "pin-slot"
+},
+{
+"a": "l2",
+"b": "m1",
+"gap": -0.9932,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.5,
+"why": "mesh"
+},
+{
+"a": "m2",
+"b": "n1",
+"gap": -1.028,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.5,
+"why": "mesh"
+},
+{
+"a": "f2",
+"b": "g1",
+"gap": -1.0334,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.2,
+"why": "mesh"
+},
+{
+"a": "g2",
+"b": "h1",
+"gap": -0.895,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "h2",
+"b": "i1",
+"gap": -0.8694,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.2,
+"why": "mesh"
+},
+{
+"a": "n3",
+"b": "o1",
+"gap": -0.8342,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.1,
+"why": "mesh"
+},
+{
+"a": "n2",
+"b": "p1",
+"gap": -1.0,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "p2",
+"b": "cal1",
+"gap": -1.0,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "shaft_e_inner",
+"b": "pipe_e",
+"gap": 0.19855,
+"coaxial": true,
+"frame": "frame",
+"dz": -7.0
+},
+{
+"a": "shaft_e_inner",
+"b": "saros_rim",
+"gap": 0.18836,
+"coaxial": false,
+"frame": "frame",
+"dz": 0.1
+},
+{
+"a": "shaft_h",
+"b": "exeligmos_dial",
+"gap": -0.45195,
+"coaxial": 0.0,
+"frame": "frame",
+"dz": 0.1
+},
+{
+"a": "shaft_p",
+"b": "callippic_dial",
+"gap": -1.0,
+"coaxial": false,
+"frame": "frame",
+"dz": 0.1
+},
+{
+"a": "metonic_slider_pin",
+"b": "metonic_cells",
+"gap": 0.38905,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.9,
+"why": "pin-groove dial"
+},
+{
+"a": "saros_slider_pin",
+"b": "saros_cells",
+"gap": 0.38695,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.9,
+"why": "pin-groove dial"
+},
+{
+"a": "olympiad_pointer",
+"b": "olympiad_dial",
+"gap": 0.3,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.2
+},
+{
+"a": "callippic_pointer",
+"b": "callippic_dial",
+"gap": 0.3,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.2
+},
+{
+"a": "exeligmos_pointer",
+"b": "exeligmos_dial",
+"gap": 0.3,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.2
+}
+],
+"intended": [
+{
+"a": "main_plate",
+"b": "moon_arbor",
+"gap": 0.19831,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.45,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_d",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -4.55,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_m",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -4.15,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_e_inner",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_f",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_g",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_h",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_i",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_n",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_o",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_p",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "main_plate",
+"b": "shaft_cal",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_m",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.4,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_e_inner",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.4,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_f",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.4,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_g",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.2,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_h",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.4,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_i",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -2.0,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_n",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.2,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_o",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -2.0,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_p",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -1.4,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "shaft_cal",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "frame",
+"dz": -2.0,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "metonic_slider_pin",
+"gap": 0.09725,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.9,
+"why": "shaft-plate"
+},
+{
+"a": "back_plate",
+"b": "saros_slider_pin",
+"gap": 0.09723,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.9,
+"why": "shaft-plate"
+},
+{
+"a": "front_plate",
+"b": "t_date",
+"gap": 0.29765,
+"coaxial": true,
+"frame": "frame",
+"dz": -3.15,
+"why": "shaft-plate"
+},
+{
+"a": "crank_bracket",
+"b": "a_shaft",
+"gap": 0.0,
+"coaxial": false,
+"frame": "frame",
+"dz": -3.8376,
+"why": "shaft-plate"
+},
+{
+"a": "fx51",
+"b": "me72",
+"gap": -1.07789,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "fx51",
+"b": "vn44",
+"gap": -1.07789,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "fx49",
+"b": "nd62",
+"gap": -0.97297,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "fx56",
+"b": "cp52",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "fx56",
+"b": "cp64",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "sub_plate",
+"b": "t_date",
+"gap": 0.29765,
+"coaxial": true,
+"frame": "frame",
+"dz": -4.5,
+"why": "shaft-plate"
+},
+{
+"a": "a1",
+"b": "b1",
+"gap": -1.1552,
+"coaxial": false,
+"frame": "frame",
+"dz": -2.3876,
+"why": "mesh"
+},
+{
+"a": "a_shaft",
+"b": "case_right",
+"gap": 0.0,
+"coaxial": false,
+"frame": "frame",
+"dz": -44.3376,
+"why": "shaft-plate"
+},
+{
+"a": "b2",
+"b": "c1",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "b2",
+"b": "l1",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.5,
+"why": "mesh"
+},
+{
+"a": "b0",
+"b": "q1",
+"gap": -1.0,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.05,
+"why": "mesh"
+},
+{
+"a": "strap",
+"b": "t_venus",
+"gap": 3.79765,
+"coaxial": false,
+"frame": "frame",
+"dz": -10.7,
+"why": "shaft-plate"
+},
+{
+"a": "cp",
+"b": "shaft_cp52",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "b",
+"dz": -3.15,
+"why": "shaft-plate"
+},
+{
+"a": "cp",
+"b": "shaft_cp64",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "b",
+"dz": -3.15,
+"why": "shaft-plate"
+},
+{
+"a": "cp",
+"b": "shaft_su56",
+"gap": 0.04874,
+"coaxial": true,
+"frame": "b",
+"dz": -2.9,
+"why": "shaft-plate"
+},
+{
+"a": "cp",
+"b": "t_saturn",
+"gap": 0.19789,
+"coaxial": false,
+"frame": "frame",
+"dz": -7.15,
+"why": "shaft-plate"
+},
+{
+"a": "me89",
+"b": "me40",
+"gap": -1.0,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "nd64",
+"b": "nd48",
+"gap": -0.96429,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "vn34",
+"b": "vn26",
+"gap": -1.042,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "me40",
+"b": "me20",
+"gap": -1.0,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "vn26",
+"b": "r1",
+"gap": -1.042,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "cp52",
+"b": "su56",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "sa61",
+"b": "sa40",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ma38",
+"b": "ma40",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ju45",
+"b": "ju40",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "sa40",
+"b": "sa68",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "sa86s",
+"b": "pin_saturn",
+"gap": -34.49,
+"coaxial": false,
+"frame": "b",
+"dz": -0.95,
+"why": "pin-slot"
+},
+{
+"a": "sa86s",
+"b": "sa86o",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ju40",
+"b": "ju43",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ju65s",
+"b": "pin_jupiter",
+"gap": -23.22,
+"coaxial": false,
+"frame": "b",
+"dz": -0.95,
+"why": "pin-slot"
+},
+{
+"a": "ju65s",
+"b": "ju65o",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ma40",
+"b": "ma71",
+"gap": -0.96,
+"coaxial": false,
+"frame": "b",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "ma80s",
+"b": "pin_mars",
+"gap": -23.6,
+"coaxial": false,
+"frame": "b",
+"dz": -0.95,
+"why": "pin-slot"
+},
+{
+"a": "ma80s",
+"b": "ma80o",
+"gap": -0.96,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "pin_mercury",
+"b": "mercury_follower",
+"gap": -14.55815,
+"coaxial": false,
+"frame": "b-sector",
+"dz": -0.95,
+"why": "pin-slot"
+},
+{
+"a": "pin_venus",
+"b": "venus_follower",
+"gap": -13.50728,
+"coaxial": false,
+"frame": "b-sector",
+"dz": -0.95,
+"why": "pin-slot"
+},
+{
+"a": "pin_trueSun",
+"b": "true_sun_follower",
+"gap": -2.16983,
+"coaxial": false,
+"frame": "b-sector",
+"dz": -0.75,
+"why": "pin-slot"
+},
+{
+"a": "b3",
+"b": "e1",
+"gap": -1.1188,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "moon_hanger_1",
+"b": "q_arbor",
+"gap": 0.0,
+"coaxial": false,
+"frame": "moon",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "moon_hanger_2",
+"b": "q_arbor",
+"gap": 0.0,
+"coaxial": false,
+"frame": "moon",
+"dz": -1.9,
+"why": "shaft-plate"
+},
+{
+"a": "c2",
+"b": "d1",
+"gap": -0.8944,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "d2",
+"b": "e2",
+"gap": -0.971,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "e5",
+"b": "k1",
+"gap": -1.024,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.5,
+"why": "mesh"
+},
+{
+"a": "e3",
+"b": "m3",
+"gap": -0.932,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.4,
+"why": "mesh"
+},
+{
+"a": "e4",
+"b": "f1",
+"gap": -1.0406,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "e6",
+"b": "k2",
+"gap": -1.068,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.5,
+"why": "mesh"
+},
+{
+"a": "k2",
+"b": "pin_lunar",
+"gap": -22.884,
+"coaxial": false,
+"frame": "e_table",
+"dz": -0.45,
+"why": "pin-slot"
+},
+{
+"a": "l2",
+"b": "m1",
+"gap": -0.9932,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.5,
+"why": "mesh"
+},
+{
+"a": "m2",
+"b": "n1",
+"gap": -1.028,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.5,
+"why": "mesh"
+},
+{
+"a": "f2",
+"b": "g1",
+"gap": -1.0334,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.2,
+"why": "mesh"
+},
+{
+"a": "g2",
+"b": "h1",
+"gap": -0.895,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.0,
+"why": "mesh"
+},
+{
+"a": "h2",
+"b": "i1",
+"gap": -0.8694,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.2,
+"why": "mesh"
+},
+{
+"a": "n3",
+"b": "o1",
+"gap": -0.8342,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.1,
+"why": "mesh"
+},
+{
+"a": "n2",
+"b": "p1",
+"gap": -1.0,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "p2",
+"b": "cal1",
+"gap": -1.0,
+"coaxial": false,
+"frame": "frame",
+"dz": -1.3,
+"why": "mesh"
+},
+{
+"a": "metonic_slider_pin",
+"b": "metonic_cells",
+"gap": 0.38905,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.9,
+"why": "pin-groove dial"
+},
+{
+"a": "saros_slider_pin",
+"b": "saros_cells",
+"gap": 0.38695,
+"coaxial": false,
+"frame": "frame",
+"dz": -0.9,
+"why": "pin-groove dial"
+}
+]
+}

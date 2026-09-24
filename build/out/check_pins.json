@@ -1,0 +1,79 @@
+{
+ "cases": [
+  {
+   "pin": "pin_lunar",
+   "slot": "k2",
+   "cycle_years": 0.07543844030980147,
+   "positions": 72,
+   "pairs_tested": 5,
+   "overlaps": []
+  },
+  {
+   "pin": "pin_saturn",
+   "slot": "sa86s",
+   "cycle_years": 1.035128805620609,
+   "positions": 72,
+   "pairs_tested": 5,
+   "overlaps": []
+  },
+  {
+   "pin": "pin_jupiter",
+   "slot": "ju65s",
+   "cycle_years": 1.0920634920634922,
+   "positions": 72,
+   "pairs_tested": 5,
+   "overlaps": []
+  },
+  {
+   "pin": "pin_mars",
+   "slot": "ma80s",
+   "cycle_years": 2.1353383458646618,
+   "positions": 72,
+   "pairs_tested": 6,
+   "overlaps": []
+  },
+  {
+   "pin": "pin_mercury",
+   "slot": "mercury_follower",
+   "cycle_years": 0.31725049570389957,
+   "positions": 72,
+   "pairs_tested": 3,
+   "overlaps": []
+  },
+  {
+   "pin": "pin_venus",
+   "slot": "venus_follower",
+   "cycle_years": 1.5986159169550174,
+   "positions": 72,
+   "pairs_tested": 3,
+   "overlaps": []
+  },
+  {
+   "pin": "pin_trueSun",
+   "slot": "true_sun_follower",
+   "cycle_years": 1.0,
+   "positions": 72,
+   "pairs_tested": 2,
+   "overlaps": []
+  },
+  {
+   "pin": "metonic_slider_pin",
+   "slot": "back_plate",
+   "cycle_years": 19.0,
+   "positions": 72,
+   "pairs_tested": 17,
+   "overlaps": []
+  },
+  {
+   "pin": "saros_slider_pin",
+   "slot": "back_plate",
+   "cycle_years": 18.029787234042555,
+   "positions": 72,
+   "pairs_tested": 17,
+   "overlaps": []
+  }
+ ],
+ "total_overlaps": 0,
+ "seconds": 2.01235294342041,
+ "ok": true
+}

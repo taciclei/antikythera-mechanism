@@ -1,0 +1,2536 @@
+{
+ "profile": "resin_x1",
+ "scale": 1.0,
+ "backlash_mm": 0.05,
+ "bore_clearance_mm": 0.05,
+ "bed_mm": [
+  218,
+  123
+ ],
+ "n_parts": 228,
+ "n_stl": 228,
+ "interference2d_ok": true,
+ "interference2d_min_signed": 0.02165157028485852,
+ "interference2d_backlash_near": [
+  0.02165157028485852,
+  0.021808518798033846
+ ],
+ "interference2d_failed": [],
+ "mesh_failed": [],
+ "oversize": [
+  {
+   "part": "main_plate",
+   "size_mm": [
+    176.0,
+    300.0,
+    2.0
+   ]
+  },
+  {
+   "part": "back_plate",
+   "size_mm": [
+    176.0,
+    300.0,
+    1.5
+   ]
+  },
+  {
+   "part": "front_plate",
+   "size_mm": [
+    176.0,
+    300.0,
+    1.5
+   ]
+  },
+  {
+   "part": "b1",
+   "size_mm": [
+    129.95,
+    129.96,
+    2.7
+   ]
+  },
+  {
+   "part": "cp",
+   "size_mm": [
+    130.0,
+    130.0,
+    2.0
+   ]
+  },
+  {
+   "part": "ring_saturn",
+   "size_mm": [
+    124.0,
+    124.0,
+    0.4
+   ]
+  },
+  {
+   "part": "metonic_cells",
+   "size_mm": [
+    141.93,
+    141.24,
+    0.3
+   ]
+  },
+  {
+   "part": "metonic_rim",
+   "size_mm": [
+    143.4,
+    143.4,
+    0.3
+   ]
+  },
+  {
+   "part": "saros_cells",
+   "size_mm": [
+    141.99,
+    141.75,
+    0.3
+   ]
+  },
+  {
+   "part": "saros_rim",
+   "size_mm": [
+    143.4,
+    143.4,
+    0.3
+   ]
+  },
+  {
+   "part": "zodiac_ring",
+   "size_mm": [
+    140.0,
+    140.0,
+    0.1
+   ]
+  },
+  {
+   "part": "zodiac_marks",
+   "size_mm": [
+    139.4,
+    139.4,
+    0.05
+   ]
+  },
+  {
+   "part": "calendar_ring",
+   "size_mm": [
+    158.0,
+    158.0,
+    0.8
+   ]
+  },
+  {
+   "part": "calendar_marks",
+   "size_mm": [
+    157.4,
+    157.4,
+    0.05
+   ]
+  },
+  {
+   "part": "case_left",
+   "size_mm": [
+    5.0,
+    318.0,
+    86.0
+   ]
+  },
+  {
+   "part": "case_right",
+   "size_mm": [
+    5.0,
+    318.0,
+    86.0
+   ]
+  },
+  {
+   "part": "case_cover_front",
+   "size_mm": [
+    194.0,
+    318.0,
+    5.0
+   ]
+  },
+  {
+   "part": "case_cover_back",
+   "size_mm": [
+    194.0,
+    318.0,
+    5.0
+   ]
+  }
+ ],
+ "reimport": [
+  {
+   "part": "b1",
+   "dims": [
+    129.95494079589844,
+    129.9580841064453,
+    2.700000047683716
+   ],
+   "expected": [
+    129.955,
+    129.958,
+    2.7
+   ],
+   "rel_err": 6.471817457493315e-07,
+   "ok": true
+  },
+  {
+   "part": "a1",
+   "dims": [
+    2.7995986938476562,
+    29.799999237060547,
+    29.799999237060547
+   ],
+   "expected": [
+    2.8,
+    29.8,
+    29.8
+   ],
+   "rel_err": 0.00014332362583699014,
+   "ok": true
+  },
+  {
+   "part": "main_plate",
+   "dims": [
+    176.0,
+    300.0,
+    2.0
+   ],
+   "expected": [
+    176.0,
+    300.0,
+    2.0
+   ],
+   "rel_err": 0.0,
+   "ok": true
+  },
+  {
+   "part": "marker_trueSun",
+   "dims": [
+    3.200000762939453,
+    3.200000762939453,
+    3.200000762939453
+   ],
+   "expected": [
+    3.2,
+    3.2,
+    3.2
+   ],
+   "rel_err": 2.3841857904605135e-07,
+   "ok": true
+  }
+ ],
+ "threemf": {
+  "path": "out/print/resin_x1/antikythera.3mf",
+  "bytes": 13685386,
+  "objects": 228,
+  "ok": true
+ },
+ "walls": {
+  "min_wall_mm": 0.4,
+  "checked": 160,
+  "below_min": [],
+  "min_found_mm": 0.5017,
+  "fragile_tip_lands": [
+   {
+    "gear": "h2",
+    "tip_land_mm": 0.0855,
+    "limit": 0.0869
+   },
+   {
+    "gear": "p2",
+    "tip_land_mm": 0.0847,
+    "limit": 0.1
+   }
+  ]
+ },
+ "parts": [
+  {
+   "part": "main_plate",
+   "size_mm": [
+    176.0,
+    300.0,
+    2.0
+   ],
+   "stl_bytes": 163884,
+   "closed": true
+  },
+  {
+   "part": "back_plate",
+   "size_mm": [
+    176.0,
+    300.0,
+    1.5
+   ],
+   "stl_bytes": 2739884,
+   "closed": true
+  },
+  {
+   "part": "front_plate",
+   "size_mm": [
+    176.0,
+    300.0,
+    1.5
+   ],
+   "stl_bytes": 954084,
+   "closed": true
+  },
+  {
+   "part": "frame_pillar_1",
+   "size_mm": [
+    5.0,
+    5.0,
+    55.0
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "frame_pillar_2",
+   "size_mm": [
+    5.0,
+    5.0,
+    55.0
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "frame_pillar_3",
+   "size_mm": [
+    5.0,
+    5.0,
+    55.0
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "frame_pillar_4",
+   "size_mm": [
+    5.0,
+    5.0,
+    55.0
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "crank_bracket",
+   "size_mm": [
+    4.0,
+    8.0,
+    21.5
+   ],
+   "stl_bytes": 13684,
+   "closed": true
+  },
+  {
+   "part": "fixed_tube",
+   "size_mm": [
+    4.6,
+    4.6,
+    11.15
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "stud_c",
+   "size_mm": [
+    2.4,
+    2.4,
+    3.4
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_l",
+   "size_mm": [
+    2.4,
+    2.4,
+    3.6
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "fx51",
+   "size_mm": [
+    28.542,
+    28.555,
+    1.0
+   ],
+   "stl_bytes": 685884,
+   "closed": true
+  },
+  {
+   "part": "fx49",
+   "size_mm": [
+    24.79,
+    24.802,
+    1.0
+   ],
+   "stl_bytes": 600884,
+   "closed": true
+  },
+  {
+   "part": "fx56",
+   "size_mm": [
+    27.84,
+    27.84,
+    1.0
+   ],
+   "stl_bytes": 684884,
+   "closed": true
+  },
+  {
+   "part": "sub_plate",
+   "size_mm": [
+    120.0,
+    120.0,
+    1.2
+   ],
+   "stl_bytes": 76884,
+   "closed": true
+  },
+  {
+   "part": "spacer_ring",
+   "size_mm": [
+    24.0,
+    24.0,
+    0.15
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "standoff_1",
+   "size_mm": [
+    4.0,
+    4.0,
+    1.35
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "standoff_2",
+   "size_mm": [
+    4.0,
+    4.0,
+    1.35
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "standoff_3",
+   "size_mm": [
+    4.0,
+    4.0,
+    1.35
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "a1",
+   "size_mm": [
+    2.8,
+    29.8,
+    29.8
+   ],
+   "stl_bytes": 1654284,
+   "closed": true
+  },
+  {
+   "part": "a_shaft",
+   "size_mm": [
+    41.376,
+    3.0,
+    3.0
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "crank_arm",
+   "size_mm": [
+    2.0,
+    4.0,
+    25.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "crank_knob",
+   "size_mm": [
+    10.0,
+    6.0,
+    6.0
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "b1",
+   "size_mm": [
+    129.955,
+    129.958,
+    2.7
+   ],
+   "stl_bytes": 2720884,
+   "closed": true
+  },
+  {
+   "part": "b2",
+   "size_mm": [
+    31.68,
+    31.68,
+    2.0
+   ],
+   "stl_bytes": 842884,
+   "closed": true
+  },
+  {
+   "part": "b0",
+   "size_mm": [
+    11.0,
+    11.0,
+    1.0
+   ],
+   "stl_bytes": 252884,
+   "closed": true
+  },
+  {
+   "part": "b1_hub",
+   "size_mm": [
+    18.0,
+    18.0,
+    1.2
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "b_hub",
+   "size_mm": [
+    6.4,
+    6.4,
+    6.05
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "t_meanSun",
+   "size_mm": [
+    3.8,
+    3.8,
+    37.9
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "t_date",
+   "size_mm": [
+    15.0,
+    15.0,
+    9.0
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "mean_sun_bar",
+   "size_mm": [
+    33.14,
+    21.497,
+    1.0
+   ],
+   "stl_bytes": 42484,
+   "closed": true
+  },
+  {
+   "part": "mean_sun_post",
+   "size_mm": [
+    3.0,
+    3.0,
+    3.65
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "short_pillar_1",
+   "size_mm": [
+    6.16,
+    5.788,
+    16.2
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "short_tenon_1",
+   "size_mm": [
+    3.246,
+    3.618,
+    1.6
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "short_pillar_2",
+   "size_mm": [
+    6.16,
+    5.788,
+    16.2
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "short_tenon_2",
+   "size_mm": [
+    3.246,
+    3.618,
+    1.6
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "long_pillar_1",
+   "size_mm": [
+    10.602,
+    9.117,
+    27.5
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "long_tenon_1",
+   "size_mm": [
+    5.158,
+    5.865,
+    2.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "long_pillar_2",
+   "size_mm": [
+    9.117,
+    10.602,
+    27.5
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "long_tenon_2",
+   "size_mm": [
+    5.865,
+    5.158,
+    2.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "long_pillar_3",
+   "size_mm": [
+    10.602,
+    9.117,
+    27.5
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "long_tenon_3",
+   "size_mm": [
+    5.158,
+    5.865,
+    2.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "long_pillar_4",
+   "size_mm": [
+    9.117,
+    10.602,
+    27.5
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "long_tenon_4",
+   "size_mm": [
+    5.865,
+    5.158,
+    2.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "strap",
+   "size_mm": [
+    124.373,
+    63.494,
+    1.6
+   ],
+   "stl_bytes": 28484,
+   "closed": true
+  },
+  {
+   "part": "d_plate",
+   "size_mm": [
+    35.657,
+    33.363,
+    1.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "d_post_1",
+   "size_mm": [
+    2.0,
+    2.0,
+    4.05
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "d_post_2",
+   "size_mm": [
+    2.0,
+    2.0,
+    4.05
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "cp",
+   "size_mm": [
+    130.0,
+    130.0,
+    2.0
+   ],
+   "stl_bytes": 171084,
+   "closed": true
+  },
+  {
+   "part": "stud_spA",
+   "size_mm": [
+    1.6,
+    1.6,
+    10.45
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_spB",
+   "size_mm": [
+    1.6,
+    1.6,
+    5.85
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_spC",
+   "size_mm": [
+    1.6,
+    1.6,
+    10.45
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_me40",
+   "size_mm": [
+    1.6,
+    1.6,
+    6.85
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_me20",
+   "size_mm": [
+    1.6,
+    1.6,
+    8.0
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_vn26",
+   "size_mm": [
+    1.6,
+    1.6,
+    1.8
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_r1",
+   "size_mm": [
+    1.6,
+    1.6,
+    2.95
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_sa40",
+   "size_mm": [
+    1.6,
+    1.6,
+    4.05
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_ju40",
+   "size_mm": [
+    1.6,
+    1.6,
+    6.35
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_ma40",
+   "size_mm": [
+    1.6,
+    1.6,
+    7.5
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "boss_sa68",
+   "size_mm": [
+    5.4,
+    5.4,
+    4.05
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_sa86s",
+   "size_mm": [
+    2.4,
+    2.4,
+    1.1
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "boss_ju43",
+   "size_mm": [
+    5.6,
+    5.6,
+    6.35
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_ju65s",
+   "size_mm": [
+    2.4,
+    2.4,
+    1.1
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "boss_ma71",
+   "size_mm": [
+    15.6,
+    15.6,
+    7.5
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_ma80s",
+   "size_mm": [
+    2.4,
+    2.4,
+    1.1
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "date_pointer",
+   "size_mm": [
+    87.495,
+    18.0,
+    0.5
+   ],
+   "stl_bytes": 43884,
+   "closed": true
+  },
+  {
+   "part": "me72",
+   "size_mm": [
+    39.882,
+    39.882,
+    1.0
+   ],
+   "stl_bytes": 926084,
+   "closed": true
+  },
+  {
+   "part": "me89",
+   "size_mm": [
+    45.489,
+    45.496,
+    1.0
+   ],
+   "stl_bytes": 1126484,
+   "closed": true
+  },
+  {
+   "part": "nd62",
+   "size_mm": [
+    31.129,
+    31.129,
+    1.0
+   ],
+   "stl_bytes": 813884,
+   "closed": true
+  },
+  {
+   "part": "nd64",
+   "size_mm": [
+    31.821,
+    31.821,
+    1.0
+   ],
+   "stl_bytes": 837884,
+   "closed": true
+  },
+  {
+   "part": "vn44",
+   "size_mm": [
+    24.788,
+    24.788,
+    1.0
+   ],
+   "stl_bytes": 540884,
+   "closed": true
+  },
+  {
+   "part": "vn34",
+   "size_mm": [
+    18.756,
+    18.689,
+    1.0
+   ],
+   "stl_bytes": 420884,
+   "closed": true
+  },
+  {
+   "part": "me40",
+   "size_mm": [
+    20.998,
+    20.998,
+    1.0
+   ],
+   "stl_bytes": 492884,
+   "closed": true
+  },
+  {
+   "part": "me20",
+   "size_mm": [
+    10.973,
+    10.973,
+    1.0
+   ],
+   "stl_bytes": 252884,
+   "closed": true
+  },
+  {
+   "part": "vn26",
+   "size_mm": [
+    14.52,
+    14.588,
+    1.0
+   ],
+   "stl_bytes": 324884,
+   "closed": true
+  },
+  {
+   "part": "r1",
+   "size_mm": [
+    33.854,
+    33.857,
+    1.6
+   ],
+   "stl_bytes": 824884,
+   "closed": true
+  },
+  {
+   "part": "cp52",
+   "size_mm": [
+    25.881,
+    25.881,
+    1.0
+   ],
+   "stl_bytes": 693884,
+   "closed": true
+  },
+  {
+   "part": "sa61",
+   "size_mm": [
+    30.224,
+    30.234,
+    1.0
+   ],
+   "stl_bytes": 799884,
+   "closed": true
+  },
+  {
+   "part": "cp64",
+   "size_mm": [
+    31.678,
+    31.678,
+    1.0
+   ],
+   "stl_bytes": 835884,
+   "closed": true
+  },
+  {
+   "part": "ma38",
+   "size_mm": [
+    19.2,
+    19.146,
+    1.0
+   ],
+   "stl_bytes": 468884,
+   "closed": true
+  },
+  {
+   "part": "ju45",
+   "size_mm": [
+    22.537,
+    22.551,
+    1.0
+   ],
+   "stl_bytes": 552884,
+   "closed": true
+  },
+  {
+   "part": "su56",
+   "size_mm": [
+    27.84,
+    27.84,
+    1.0
+   ],
+   "stl_bytes": 740884,
+   "closed": true
+  },
+  {
+   "part": "sa40",
+   "size_mm": [
+    20.113,
+    20.113,
+    1.0
+   ],
+   "stl_bytes": 492884,
+   "closed": true
+  },
+  {
+   "part": "sa68",
+   "size_mm": [
+    33.6,
+    33.6,
+    1.0
+   ],
+   "stl_bytes": 828884,
+   "closed": true
+  },
+  {
+   "part": "sa86s",
+   "size_mm": [
+    42.24,
+    42.217,
+    1.0
+   ],
+   "stl_bytes": 1052684,
+   "closed": true
+  },
+  {
+   "part": "ju40",
+   "size_mm": [
+    20.136,
+    20.136,
+    1.0
+   ],
+   "stl_bytes": 492884,
+   "closed": true
+  },
+  {
+   "part": "ju43",
+   "size_mm": [
+    21.59,
+    21.581,
+    1.0
+   ],
+   "stl_bytes": 528884,
+   "closed": true
+  },
+  {
+   "part": "ju65s",
+   "size_mm": [
+    32.145,
+    32.154,
+    1.0
+   ],
+   "stl_bytes": 800684,
+   "closed": true
+  },
+  {
+   "part": "ma40",
+   "size_mm": [
+    20.143,
+    20.143,
+    1.0
+   ],
+   "stl_bytes": 492884,
+   "closed": true
+  },
+  {
+   "part": "ma71",
+   "size_mm": [
+    35.033,
+    35.032,
+    1.0
+   ],
+   "stl_bytes": 864884,
+   "closed": true
+  },
+  {
+   "part": "ma80s",
+   "size_mm": [
+    39.36,
+    39.36,
+    1.0
+   ],
+   "stl_bytes": 980684,
+   "closed": true
+  },
+  {
+   "part": "hub_spA",
+   "size_mm": [
+    2.8,
+    2.8,
+    10.3
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "hub_spB",
+   "size_mm": [
+    2.8,
+    2.8,
+    5.7
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "hub_spC",
+   "size_mm": [
+    2.8,
+    2.8,
+    10.3
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "hub_me40",
+   "size_mm": [
+    2.8,
+    2.8,
+    6.7
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "hub_me20",
+   "size_mm": [
+    2.8,
+    2.8,
+    7.85
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "hub_vn26",
+   "size_mm": [
+    2.8,
+    2.8,
+    1.65
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "hub_r1",
+   "size_mm": [
+    2.8,
+    2.8,
+    2.8
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "shaft_cp52",
+   "size_mm": [
+    2.0,
+    2.0,
+    7.15
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_cp64",
+   "size_mm": [
+    2.0,
+    2.0,
+    10.6
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_su56",
+   "size_mm": [
+    2.0,
+    2.0,
+    4.05
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "crank_disc_su56",
+   "size_mm": [
+    5.2,
+    5.2,
+    0.75
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "hub_sa40",
+   "size_mm": [
+    2.8,
+    2.8,
+    3.9
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "hub_ju40",
+   "size_mm": [
+    2.8,
+    2.8,
+    6.2
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "hub_ma40",
+   "size_mm": [
+    2.8,
+    2.8,
+    7.35
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "mercury_disk",
+   "size_mm": [
+    31.0,
+    31.0,
+    1.0
+   ],
+   "stl_bytes": 64084,
+   "closed": true
+  },
+  {
+   "part": "venus_disk",
+   "size_mm": [
+    43.0,
+    43.0,
+    1.0
+   ],
+   "stl_bytes": 64084,
+   "closed": true
+  },
+  {
+   "part": "pin_saturn",
+   "size_mm": [
+    1.0,
+    1.0,
+    1.1
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "pin_jupiter",
+   "size_mm": [
+    1.0,
+    1.0,
+    1.1
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "pin_mars",
+   "size_mm": [
+    1.0,
+    1.0,
+    1.1
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "pin_mercury",
+   "size_mm": [
+    1.0,
+    1.0,
+    2.25
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "pin_venus",
+   "size_mm": [
+    1.0,
+    1.0,
+    1.1
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "pin_trueSun",
+   "size_mm": [
+    1.0,
+    1.0,
+    8.6
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "b3",
+   "size_mm": [
+    19.004,
+    19.004,
+    1.3
+   ],
+   "stl_bytes": 396884,
+   "closed": true
+  },
+  {
+   "part": "moon_arbor",
+   "size_mm": [
+    2.4,
+    2.4,
+    62.85
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "moon_pointer",
+   "size_mm": [
+    64.998,
+    10.194,
+    0.8
+   ],
+   "stl_bytes": 56684,
+   "closed": true
+  },
+  {
+   "part": "moon_hanger_1",
+   "size_mm": [
+    0.6,
+    2.4,
+    7.2
+   ],
+   "stl_bytes": 13684,
+   "closed": true
+  },
+  {
+   "part": "moon_hanger_2",
+   "size_mm": [
+    0.6,
+    2.4,
+    7.2
+   ],
+   "stl_bytes": 13684,
+   "closed": true
+  },
+  {
+   "part": "q1",
+   "size_mm": [
+    2.125,
+    11.1,
+    11.1
+   ],
+   "stl_bytes": 719084,
+   "closed": true
+  },
+  {
+   "part": "q_arbor",
+   "size_mm": [
+    15.6,
+    1.2,
+    1.2
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "phase_sphere_dark",
+   "size_mm": [
+    6.0,
+    6.0,
+    3.0
+   ],
+   "stl_bytes": 57684,
+   "closed": true
+  },
+  {
+   "part": "phase_sphere_silver",
+   "size_mm": [
+    6.0,
+    6.0,
+    3.0
+   ],
+   "stl_bytes": 57684,
+   "closed": true
+  },
+  {
+   "part": "nd48",
+   "size_mm": [
+    24.104,
+    24.104,
+    1.0
+   ],
+   "stl_bytes": 588884,
+   "closed": true
+  },
+  {
+   "part": "t_nodes",
+   "size_mm": [
+    5.2,
+    5.2,
+    35.55
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "dragon_hand",
+   "size_mm": [
+    60.0,
+    6.996,
+    0.4
+   ],
+   "stl_bytes": 29284,
+   "closed": true
+  },
+  {
+   "part": "t_mercury",
+   "size_mm": [
+    6.6,
+    6.6,
+    33.85
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "mercury_follower",
+   "size_mm": [
+    56.496,
+    8.999,
+    1.0
+   ],
+   "stl_bytes": 46284,
+   "closed": true
+  },
+  {
+   "part": "ring_mercury",
+   "size_mm": [
+    74.0,
+    74.0,
+    0.4
+   ],
+   "stl_bytes": 64084,
+   "closed": true
+  },
+  {
+   "part": "marker_mercury",
+   "size_mm": [
+    2.4,
+    2.4,
+    2.4
+   ],
+   "stl_bytes": 110484,
+   "closed": true
+  },
+  {
+   "part": "t_venus",
+   "size_mm": [
+    8.0,
+    8.0,
+    32.15
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "venus_follower",
+   "size_mm": [
+    54.699,
+    10.396,
+    1.0
+   ],
+   "stl_bytes": 46484,
+   "closed": true
+  },
+  {
+   "part": "ring_venus",
+   "size_mm": [
+    84.0,
+    84.0,
+    0.4
+   ],
+   "stl_bytes": 64084,
+   "closed": true
+  },
+  {
+   "part": "marker_venus",
+   "size_mm": [
+    2.4,
+    2.4,
+    2.4
+   ],
+   "stl_bytes": 110484,
+   "closed": true
+  },
+  {
+   "part": "t_trueSun",
+   "size_mm": [
+    9.4,
+    9.4,
+    20.75
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "true_sun_follower",
+   "size_mm": [
+    49.495,
+    12.0,
+    0.8
+   ],
+   "stl_bytes": 46684,
+   "closed": true
+  },
+  {
+   "part": "ring_trueSun",
+   "size_mm": [
+    94.0,
+    94.0,
+    0.4
+   ],
+   "stl_bytes": 64084,
+   "closed": true
+  },
+  {
+   "part": "marker_trueSun",
+   "size_mm": [
+    3.2,
+    3.2,
+    3.2
+   ],
+   "stl_bytes": 110484,
+   "closed": true
+  },
+  {
+   "part": "t_mars",
+   "size_mm": [
+    10.8,
+    10.8,
+    19.25
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "ma80o",
+   "size_mm": [
+    39.358,
+    39.358,
+    1.0
+   ],
+   "stl_bytes": 1035284,
+   "closed": true
+  },
+  {
+   "part": "ring_mars",
+   "size_mm": [
+    104.0,
+    104.0,
+    0.4
+   ],
+   "stl_bytes": 64084,
+   "closed": true
+  },
+  {
+   "part": "marker_mars",
+   "size_mm": [
+    2.4,
+    2.4,
+    2.4
+   ],
+   "stl_bytes": 110484,
+   "closed": true
+  },
+  {
+   "part": "t_jupiter",
+   "size_mm": [
+    12.2,
+    12.2,
+    17.55
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "ju65o",
+   "size_mm": [
+    32.153,
+    32.15,
+    1.0
+   ],
+   "stl_bytes": 858884,
+   "closed": true
+  },
+  {
+   "part": "ring_jupiter",
+   "size_mm": [
+    114.0,
+    114.0,
+    0.4
+   ],
+   "stl_bytes": 64084,
+   "closed": true
+  },
+  {
+   "part": "marker_jupiter",
+   "size_mm": [
+    2.4,
+    2.4,
+    2.4
+   ],
+   "stl_bytes": 110484,
+   "closed": true
+  },
+  {
+   "part": "t_saturn",
+   "size_mm": [
+    13.6,
+    13.6,
+    14.7
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "sa86o",
+   "size_mm": [
+    42.239,
+    42.231,
+    1.0
+   ],
+   "stl_bytes": 1107284,
+   "closed": true
+  },
+  {
+   "part": "ring_saturn",
+   "size_mm": [
+    124.0,
+    124.0,
+    0.4
+   ],
+   "stl_bytes": 64084,
+   "closed": true
+  },
+  {
+   "part": "marker_saturn",
+   "size_mm": [
+    2.4,
+    2.4,
+    2.4
+   ],
+   "stl_bytes": 110484,
+   "closed": true
+  },
+  {
+   "part": "c2",
+   "size_mm": [
+    22.36,
+    22.36,
+    1.3
+   ],
+   "stl_bytes": 588884,
+   "closed": true
+  },
+  {
+   "part": "c1",
+   "size_mm": [
+    19.179,
+    19.196,
+    1.5
+   ],
+   "stl_bytes": 468884,
+   "closed": true
+  },
+  {
+   "part": "d1",
+   "size_mm": [
+    11.608,
+    11.608,
+    2.4
+   ],
+   "stl_bytes": 300884,
+   "closed": true
+  },
+  {
+   "part": "d2",
+   "size_mm": [
+    62.622,
+    62.627,
+    1.3
+   ],
+   "stl_bytes": 1572884,
+   "closed": true
+  },
+  {
+   "part": "e2",
+   "size_mm": [
+    16.447,
+    16.447,
+    1.0
+   ],
+   "stl_bytes": 396884,
+   "closed": true
+  },
+  {
+   "part": "e5",
+   "size_mm": [
+    26.624,
+    26.581,
+    0.5
+   ],
+   "stl_bytes": 672884,
+   "closed": true
+  },
+  {
+   "part": "e3",
+   "size_mm": [
+    104.848,
+    104.846,
+    1.4
+   ],
+   "stl_bytes": 2723484,
+   "closed": true
+  },
+  {
+   "part": "e4",
+   "size_mm": [
+    98.857,
+    98.857,
+    1.5
+   ],
+   "stl_bytes": 2307284,
+   "closed": true
+  },
+  {
+   "part": "e1",
+   "size_mm": [
+    19.02,
+    19.02,
+    1.3
+   ],
+   "stl_bytes": 396884,
+   "closed": true
+  },
+  {
+   "part": "e6",
+   "size_mm": [
+    27.768,
+    27.734,
+    0.6
+   ],
+   "stl_bytes": 668884,
+   "closed": true
+  },
+  {
+   "part": "k1",
+   "size_mm": [
+    26.624,
+    26.591,
+    0.6
+   ],
+   "stl_bytes": 612884,
+   "closed": true
+  },
+  {
+   "part": "k2",
+   "size_mm": [
+    27.768,
+    27.723,
+    0.5
+   ],
+   "stl_bytes": 620684,
+   "closed": true
+  },
+  {
+   "part": "l2",
+   "size_mm": [
+    27.293,
+    27.305,
+    1.5
+   ],
+   "stl_bytes": 705884,
+   "closed": true
+  },
+  {
+   "part": "l1",
+   "size_mm": [
+    19.171,
+    19.198,
+    1.5
+   ],
+   "stl_bytes": 468884,
+   "closed": true
+  },
+  {
+   "part": "m1",
+   "size_mm": [
+    48.665,
+    48.665,
+    2.0
+   ],
+   "stl_bytes": 1204484,
+   "closed": true
+  },
+  {
+   "part": "m3",
+   "size_mm": [
+    13.475,
+    13.498,
+    1.4
+   ],
+   "stl_bytes": 336884,
+   "closed": true
+  },
+  {
+   "part": "m2",
+   "size_mm": [
+    8.653,
+    8.701,
+    1.8
+   ],
+   "stl_bytes": 210884,
+   "closed": true
+  },
+  {
+   "part": "f1",
+   "size_mm": [
+    28.608,
+    28.601,
+    1.3
+   ],
+   "stl_bytes": 704884,
+   "closed": true
+  },
+  {
+   "part": "f2",
+   "size_mm": [
+    16.534,
+    16.458,
+    1.2
+   ],
+   "stl_bytes": 372884,
+   "closed": true
+  },
+  {
+   "part": "g1",
+   "size_mm": [
+    28.926,
+    28.928,
+    1.5
+   ],
+   "stl_bytes": 716884,
+   "closed": true
+  },
+  {
+   "part": "g2",
+   "size_mm": [
+    9.845,
+    9.845,
+    1.6
+   ],
+   "stl_bytes": 252884,
+   "closed": true
+  },
+  {
+   "part": "h1",
+   "size_mm": [
+    27.727,
+    27.727,
+    1.0
+   ],
+   "stl_bytes": 788884,
+   "closed": true
+  },
+  {
+   "part": "h2",
+   "size_mm": [
+    7.318,
+    7.358,
+    1.4
+   ],
+   "stl_bytes": 210884,
+   "closed": true
+  },
+  {
+   "part": "i1",
+   "size_mm": [
+    26.95,
+    26.95,
+    1.2
+   ],
+   "stl_bytes": 789884,
+   "closed": true
+  },
+  {
+   "part": "n1",
+   "size_mm": [
+    28.25,
+    28.262,
+    1.5
+   ],
+   "stl_bytes": 704884,
+   "closed": true
+  },
+  {
+   "part": "n3",
+   "size_mm": [
+    24.594,
+    24.603,
+    1.2
+   ],
+   "stl_bytes": 696884,
+   "closed": true
+  },
+  {
+   "part": "n2",
+   "size_mm": [
+    8.417,
+    8.464,
+    1.5
+   ],
+   "stl_bytes": 210884,
+   "closed": true
+  },
+  {
+   "part": "o1",
+   "size_mm": [
+    25.86,
+    25.86,
+    1.1
+   ],
+   "stl_bytes": 789884,
+   "closed": true
+  },
+  {
+   "part": "p1",
+   "size_mm": [
+    30.988,
+    30.988,
+    1.3
+   ],
+   "stl_bytes": 786884,
+   "closed": true
+  },
+  {
+   "part": "p2",
+   "size_mm": [
+    7.0,
+    7.0,
+    1.5
+   ],
+   "stl_bytes": 176084,
+   "closed": true
+  },
+  {
+   "part": "cal1",
+   "size_mm": [
+    30.973,
+    30.973,
+    1.3
+   ],
+   "stl_bytes": 786884,
+   "closed": true
+  },
+  {
+   "part": "shaft_d",
+   "size_mm": [
+    2.0,
+    2.0,
+    7.45
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_m",
+   "size_mm": [
+    2.0,
+    2.0,
+    18.55
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_e_inner",
+   "size_mm": [
+    2.0,
+    2.0,
+    16.3
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "pipe_e",
+   "size_mm": [
+    3.6,
+    3.6,
+    3.5
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "shaft_f",
+   "size_mm": [
+    2.0,
+    2.0,
+    16.3
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_g",
+   "size_mm": [
+    2.0,
+    2.0,
+    18.1
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_h",
+   "size_mm": [
+    2.0,
+    2.0,
+    16.3
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_i",
+   "size_mm": [
+    2.0,
+    2.0,
+    16.9
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_n",
+   "size_mm": [
+    2.0,
+    2.0,
+    18.1
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_o",
+   "size_mm": [
+    2.0,
+    2.0,
+    16.9
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_p",
+   "size_mm": [
+    2.0,
+    2.0,
+    16.3
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "shaft_cal",
+   "size_mm": [
+    2.0,
+    2.0,
+    16.9
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "hub_c",
+   "size_mm": [
+    5.0,
+    5.0,
+    2.95
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "hub_l",
+   "size_mm": [
+    5.0,
+    5.0,
+    3.15
+   ],
+   "stl_bytes": 25684,
+   "closed": true
+  },
+  {
+   "part": "boss_k",
+   "size_mm": [
+    4.6,
+    4.6,
+    0.8
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "stud_kp",
+   "size_mm": [
+    2.0,
+    2.0,
+    0.6
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "e4_spacers",
+   "size_mm": [
+    94.0,
+    81.674,
+    0.15
+   ],
+   "stl_bytes": 37284,
+   "closed": true
+  },
+  {
+   "part": "pin_lunar",
+   "size_mm": [
+    1.0,
+    1.0,
+    0.6
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "metonic_pointer",
+   "size_mm": [
+    4.999,
+    74.499,
+    0.8
+   ],
+   "stl_bytes": 16484,
+   "closed": true
+  },
+  {
+   "part": "metonic_slider",
+   "size_mm": [
+    3.2,
+    3.0,
+    0.95
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "metonic_slider_pin",
+   "size_mm": [
+    1.0,
+    1.0,
+    1.8
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "saros_pointer",
+   "size_mm": [
+    4.999,
+    74.499,
+    0.8
+   ],
+   "stl_bytes": 16484,
+   "closed": true
+  },
+  {
+   "part": "saros_slider",
+   "size_mm": [
+    3.2,
+    3.0,
+    0.95
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "saros_slider_pin",
+   "size_mm": [
+    1.0,
+    1.0,
+    1.8
+   ],
+   "stl_bytes": 12684,
+   "closed": true
+  },
+  {
+   "part": "olympiad_pointer",
+   "size_mm": [
+    4.0,
+    17.999,
+    0.4
+   ],
+   "stl_bytes": 16484,
+   "closed": true
+  },
+  {
+   "part": "callippic_pointer",
+   "size_mm": [
+    4.0,
+    17.999,
+    0.4
+   ],
+   "stl_bytes": 16484,
+   "closed": true
+  },
+  {
+   "part": "exeligmos_pointer",
+   "size_mm": [
+    4.0,
+    16.999,
+    0.4
+   ],
+   "stl_bytes": 16484,
+   "closed": true
+  },
+  {
+   "part": "metonic_cells",
+   "size_mm": [
+    141.931,
+    141.238,
+    0.3
+   ],
+   "stl_bytes": 138684,
+   "closed": true
+  },
+  {
+   "part": "metonic_rim",
+   "size_mm": [
+    143.4,
+    143.4,
+    0.3
+   ],
+   "stl_bytes": 204884,
+   "closed": true
+  },
+  {
+   "part": "saros_cells",
+   "size_mm": [
+    141.987,
+    141.754,
+    0.3
+   ],
+   "stl_bytes": 131484,
+   "closed": true
+  },
+  {
+   "part": "saros_rim",
+   "size_mm": [
+    143.4,
+    143.4,
+    0.3
+   ],
+   "stl_bytes": 204884,
+   "closed": true
+  },
+  {
+   "part": "olympiad_dial",
+   "size_mm": [
+    36.682,
+    36.682,
+    0.3
+   ],
+   "stl_bytes": 104884,
+   "closed": true
+  },
+  {
+   "part": "callippic_dial",
+   "size_mm": [
+    37.0,
+    37.0,
+    0.3
+   ],
+   "stl_bytes": 104884,
+   "closed": true
+  },
+  {
+   "part": "exeligmos_dial",
+   "size_mm": [
+    34.3,
+    34.65,
+    0.3
+   ],
+   "stl_bytes": 104284,
+   "closed": true
+  },
+  {
+   "part": "zodiac_ring",
+   "size_mm": [
+    140.0,
+    140.0,
+    0.1
+   ],
+   "stl_bytes": 288084,
+   "closed": true
+  },
+  {
+   "part": "zodiac_marks",
+   "size_mm": [
+    139.4,
+    139.4,
+    0.05
+   ],
+   "stl_bytes": 216084,
+   "closed": true
+  },
+  {
+   "part": "calendar_ring",
+   "size_mm": [
+    158.0,
+    158.0,
+    0.8
+   ],
+   "stl_bytes": 288084,
+   "closed": true
+  },
+  {
+   "part": "calendar_marks",
+   "size_mm": [
+    157.398,
+    157.399,
+    0.05
+   ],
+   "stl_bytes": 219084,
+   "closed": true
+  },
+  {
+   "part": "parapegma_1",
+   "size_mm": [
+    160.0,
+    56.0,
+    0.5
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "parapegma_lines_1",
+   "size_mm": [
+    140.0,
+    44.4,
+    0.05
+   ],
+   "stl_bytes": 14484,
+   "closed": true
+  },
+  {
+   "part": "parapegma_2",
+   "size_mm": [
+    160.0,
+    76.0,
+    0.5
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "parapegma_lines_2",
+   "size_mm": [
+    140.0,
+    64.4,
+    0.05
+   ],
+   "stl_bytes": 20484,
+   "closed": true
+  },
+  {
+   "part": "case_left",
+   "size_mm": [
+    5.0,
+    318.0,
+    86.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "case_bottom",
+   "size_mm": [
+    184.0,
+    5.0,
+    86.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "case_top",
+   "size_mm": [
+    184.0,
+    5.0,
+    86.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "case_right",
+   "size_mm": [
+    5.0,
+    318.0,
+    86.0
+   ],
+   "stl_bytes": 13684,
+   "closed": true
+  },
+  {
+   "part": "case_cover_front",
+   "size_mm": [
+    194.0,
+    318.0,
+    5.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  },
+  {
+   "part": "case_cover_back",
+   "size_mm": [
+    194.0,
+    318.0,
+    5.0
+   ],
+   "stl_bytes": 684,
+   "closed": true
+  }
+ ],
+ "seconds": 10.594660758972168,
+ "ok": true
+}

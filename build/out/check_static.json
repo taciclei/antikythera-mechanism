@@ -1,0 +1,105 @@
+{
+ "drivers": {
+  "count": 51,
+  "all_valid": true,
+  "all_simple": true,
+  "expressions_match": true,
+  "max_len": 120
+ },
+ "readback": {
+  "samples": 50,
+  "max_err_rad": 5.999447463267416e-07,
+  "worst": [
+   "t_jupiter",
+   -25.048847198486328
+  ],
+  "ok": true
+ },
+ "cycles": {
+  "metonic": {
+   "period_years": 19.0,
+   "max_err_rad": 0.0,
+   "ok": true
+  },
+  "olympiad": {
+   "period_years": 4.0,
+   "max_err_rad": 0.0,
+   "ok": true
+  },
+  "callippic": {
+   "period_years": 76.0,
+   "max_err_rad": 0.0,
+   "ok": true
+  },
+  "saros": {
+   "period_years": 18.029787063598633,
+   "max_err_rad": 3.0199159795074593e-07,
+   "ok": true
+  }
+ },
+ "crank_fcurve": {
+  "values": {
+   "1": 0.0,
+   "61": 0.5,
+   "481": 4.0,
+   "961": 8.0
+  },
+  "extrapolation": "LINEAR",
+  "interpolation": [
+   "LINEAR",
+   "LINEAR"
+  ],
+  "ok": true
+ },
+ "scene": {
+  "crank_is_float": true,
+  "patina_is_float": true,
+  "patina_range": [
+   0.0,
+   1.0
+  ],
+  "units": [
+   "METRIC",
+   "MILLIMETERS",
+   0.0010000000474974513
+  ],
+  "scale_ok": true,
+  "cameras_clip": {
+   "CAM_back": [
+    1.0,
+    10000.0
+   ],
+   "CAM_exploded": [
+    1.0,
+    10000.0
+   ],
+   "CAM_front": [
+    1.0,
+    10000.0
+   ],
+   "CAM_front34": [
+    1.0,
+    10000.0
+   ]
+  }
+ },
+ "hierarchy": {
+  "non_identity_parent_inverse": [],
+  "ok": true
+ },
+ "meshes": {
+  "count": 228,
+  "all_ok": true,
+  "failed": []
+ },
+ "collections": {
+  "AM_CASE": 6,
+  "AM_DIALS": 72,
+  "AM_HELPERS": 57,
+  "AM_HYPOTHETICAL": 42,
+  "AM_RECONSTRUCTED": 11,
+  "AM_STRUCTURE": 81,
+  "AM_SURVIVING": 47
+ },
+ "ok": true
+}
