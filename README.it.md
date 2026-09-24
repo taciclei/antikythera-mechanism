@@ -4,6 +4,11 @@
 
 ![Il meccanismo ricostruito, vista frontale di tre quarti](docs/images/front34.jpg)
 
+https://github.com/user-attachments/assets/c810d3ee-ecfa-46e3-b11d-f919c3ae2cd9
+
+https://github.com/user-attachments/assets/40b1f61b-5fb0-4b54-bd1c-1ba1f423a424
+
+
 Il Meccanismo di Antikythera è un calcolatore astronomico in bronzo azionato a manovella, costruito in Grecia nel II o nel I secolo a.C. e recuperato da un relitto nel 1901. È la più antica macchina a ingranaggi complessa che si conosca. Questo repository ne contiene una ricostruzione 3D completa in **Blender 5.2**:
 
 - tutte le **69 ruote dentate** hanno il loro numero reale di denti;

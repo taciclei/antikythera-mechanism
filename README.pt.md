@@ -4,6 +4,11 @@
 
 ![O mecanismo reconstruído, vista frontal a três quartos](docs/images/front34.jpg)
 
+https://github.com/user-attachments/assets/c810d3ee-ecfa-46e3-b11d-f919c3ae2cd9
+
+https://github.com/user-attachments/assets/40b1f61b-5fb0-4b54-bd1c-1ba1f423a424
+
+
 O Mecanismo de Anticítera é uma calculadora astronómica de bronze, acionada à mão por uma manivela, construída na Grécia no século II ou I a.C. e recuperada de um naufrágio em 1901. É a mais antiga máquina complexa de engrenagens que se conhece. Este repositório contém uma reconstrução 3D completa do mecanismo em **Blender 5.2**:
 
 - todas as **69 engrenagens** têm o seu número real de dentes;

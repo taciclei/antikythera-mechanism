@@ -6,6 +6,7 @@ LANGS = ['fr', 'es', 'de', 'it', 'pt', 'el', 'zh', 'ja']
 def parse(t):
     code = re.findall(r"```.*?```", t, flags=re.S)
     lines = t.split('\n'); t = '\n'.join(lines[:2] + lines[3:])          # drop the language bar (line 3)
+    t = re.sub(r"https://github\.com/user-attachments/assets/[0-9a-f-]+", "", t)
     body = re.sub(r"```.*?```", "", t, flags=re.S)
     return dict(
         headings=[len(m) for m in re.findall(r"^(#+) ", body, flags=re.M)],

@@ -4,6 +4,11 @@
 
 ![重建后的机械，正面四分之三视角](docs/images/front34.jpg)
 
+https://github.com/user-attachments/assets/c810d3ee-ecfa-46e3-b11d-f919c3ae2cd9
+
+https://github.com/user-attachments/assets/40b1f61b-5fb0-4b54-bd1c-1ba1f423a424
+
+
 安提基特拉机械是一台手摇驱动的青铜天文计算器，于公元前 2 世纪或前 1 世纪在希腊制造，1901 年从一艘沉船中被打捞出水。它是已知最古老的复杂齿轮机械。本仓库包含它在 **Blender 5.2** 中的完整 3D 重建：
 
 - 全部 **69 个齿轮**都采用真实齿数；

@@ -4,6 +4,11 @@
 
 ![Der rekonstruierte Mechanismus, Dreiviertelansicht von vorn](docs/images/front34.jpg)
 
+https://github.com/user-attachments/assets/c810d3ee-ecfa-46e3-b11d-f919c3ae2cd9
+
+https://github.com/user-attachments/assets/40b1f61b-5fb0-4b54-bd1c-1ba1f423a424
+
+
 Der Mechanismus von Antikythera ist ein von Hand gekurbelter astronomischer Rechner aus Bronze, der im 2. oder 1. Jahrhundert v. Chr. in Griechenland gebaut und 1901 aus einem Schiffswrack geborgen wurde. Er ist die älteste bekannte komplexe Maschine mit Zahnradgetriebe. Dieses Repository enthält eine vollständige 3D-Rekonstruktion in **Blender 5.2**:
 
 - alle **69 Zahnräder** haben ihre tatsächlichen Zähnezahlen;

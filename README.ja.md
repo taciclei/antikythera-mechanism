@@ -4,6 +4,11 @@
 
 ![復元された機械、斜め前方からの眺め](docs/images/front34.jpg)
 
+https://github.com/user-attachments/assets/c810d3ee-ecfa-46e3-b11d-f919c3ae2cd9
+
+https://github.com/user-attachments/assets/40b1f61b-5fb0-4b54-bd1c-1ba1f423a424
+
+
 アンティキティラ島の機械は、紀元前2世紀または紀元前1世紀にギリシアで作られた手回しクランク式の青銅製天文計算機で、1901年に沈没船から引き揚げられました。知られている中で最古の複雑な歯車機械です。このリポジトリには、**Blender 5.2** で制作したその完全な3D復元モデルが収められています。
 
 - **69枚の歯車**すべてが、実物どおりの歯数を持っています。
