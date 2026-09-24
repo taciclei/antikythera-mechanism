@@ -4,6 +4,14 @@
 
 ![The reconstructed mechanism, front three-quarter view](docs/images/front34.jpg)
 
+
+https://github.com/user-attachments/assets/c810d3ee-ecfa-46e3-b11d-f919c3ae2cd9
+
+
+
+https://github.com/user-attachments/assets/40b1f61b-5fb0-4b54-bd1c-1ba1f423a424
+
+
 The Antikythera Mechanism is a hand-cranked bronze astronomical calculator built in Greece in the 2nd or 1st century BC and recovered from a shipwreck in 1901. It is the oldest known complex geared machine. This repository contains a complete 3D reconstruction of it in **Blender 5.2**:
 
 - all **69 gears** have their real tooth counts;
