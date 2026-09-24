@@ -19,7 +19,10 @@ def engine_setup(sc, engine, samples=256, res=(1920, 1080)):
     ok = _es(sc, engine, samples, res); staging.finish(sc, engine)
     if engine != 'cycles': sc.eevee.taa_render_samples = SAMPLES
     return ok
-render.set_visibility, render.engine_setup = set_visibility, engine_setup
+def explode(factor=3.0):
+    # use the explode slider (drivers move every part, labels and legend together) instead of moving objects once
+    ctl = bpy.data.objects['AM_Controller']; ctl['explode'] = 1.0; ctl.update_tag(); bpy.context.view_layer.update()
+render.set_visibility, render.engine_setup, render.explode = set_visibility, engine_setup, explode
 mode = argv[0]
 if mode == 'frames': render.frames(int(argv[1]), int(argv[2]))
 elif mode == 'stills': render.stills(argv[1], argv[2] if len(argv) > 2 else 'cycles')
