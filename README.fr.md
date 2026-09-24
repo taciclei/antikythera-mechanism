@@ -1,3 +1,11 @@
+
+
+https://github.com/user-attachments/assets/430b3e08-be21-4612-8b2e-c7baaac96c85
+
+
+
+https://github.com/user-attachments/assets/cf6afd77-1e15-478a-950b-eb82811933c0
+
 # Machine d'Anticythère : une reconstitution 3D fonctionnelle et vérifiée
 
 [English](README.md) · **Français** · [Español](README.es.md) · [Deutsch](README.de.md) · [Italiano](README.it.md) · [Português](README.pt.md) · [Ελληνικά](README.el.md) · [中文](README.zh.md) · [日本語](README.ja.md)
