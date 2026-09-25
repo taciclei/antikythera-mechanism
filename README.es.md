@@ -2,6 +2,8 @@
 
 [English](README.md) · [Français](README.fr.md) · **Español** · [Deutsch](README.de.md) · [Italiano](README.it.md) · [Português](README.pt.md) · [Ελληνικά](README.el.md) · [中文](README.zh.md) · [日本語](README.ja.md)
 
+[![Lean proofs](https://github.com/taciclei/antikythera-mechanism/actions/workflows/lean.yml/badge.svg)](https://github.com/taciclei/antikythera-mechanism/actions/workflows/lean.yml)
+
 ![El mecanismo reconstruido, vista frontal de tres cuartos](docs/images/front34.jpg)
 
 https://github.com/user-attachments/assets/c810d3ee-ecfa-46e3-b11d-f919c3ae2cd9
