@@ -1,0 +1,21 @@
+name: Lean proofs
+
+on:
+  push:
+    paths: ['lean/**', 'spec/**', 'tools/make_lean.py', '.github/workflows/lean.yml']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  proofs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generated Lean files match the spec
+        run: |
+          python3 tools/make_lean.py
+          git diff --exit-code lean/Antikythera
+      - name: Check every proof (warnings are errors, so no sorry)
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: lean
