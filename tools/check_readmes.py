@@ -3,12 +3,15 @@ import re, sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 LANGS = ['fr', 'es', 'de', 'it', 'pt', 'el', 'zh', 'ja']
+VIDEO = re.compile(r"^https://github\.com/user-attachments/assets/[0-9a-f-]+\s*$", flags=re.M)
 def parse(t):
+    videos = len(VIDEO.findall(t))
     code = re.findall(r"```.*?```", t, flags=re.S)
     lines = t.split('\n'); t = '\n'.join(lines[:2] + lines[3:])          # drop the language bar (line 3)
     t = re.sub(r"https://github\.com/user-attachments/assets/[0-9a-f-]+", "", t)
     body = re.sub(r"```.*?```", "", t, flags=re.S)
     return dict(
+        videos=videos,
         headings=[len(m) for m in re.findall(r"^(#+) ", body, flags=re.M)],
         table_rows=len(re.findall(r"^\|.*\|\s*$", body, flags=re.M)),
         code=code,
@@ -18,11 +21,13 @@ def parse(t):
     )
 ref = parse((ROOT / 'README.md').read_text())
 bad = 0
+if ref['videos'] != 2:
+    print(f"README.md: {ref['videos']} video players, expected 2 (exploded view + main video)"); bad += 1
 for l in LANGS:
     p = ROOT / f'README.{l}.md'
     if not p.exists(): print(f'{l}: MISSING'); bad += 1; continue
     t = p.read_text(); d = parse(t); issues = []
-    for k in ('headings', 'table_rows', 'code', 'links'):
+    for k in ('videos', 'headings', 'table_rows', 'code', 'links'):
         if d[k] != ref[k]: issues.append(k)
     miss_num = [n for n in ref['numbers'] if n not in d['numbers']]
     if miss_num: issues.append(f'numbers missing {miss_num[:8]}')
