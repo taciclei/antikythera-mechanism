@@ -1,0 +1,206 @@
+{
+ "note": "QA de prononciation. WER = (S+D+I)/mots, référence = tts_input.txt. « phonétique » : nombres écrits en lettres, finales muettes neutralisées (aiguille/aiguilles, rentre/rentrent, rongé/rongée) et quelques graphies homophones (Végès = Végèce, Anticitère = Anticythère, état = êta, xi = ksi, au tour du = autour du). « orthographique » : mot à mot.",
+ "stt": [
+  "mlx-community/whisper-large-v3-turbo-asr-fp16 (sans prompt ni mots-clés)",
+  "mlx-community/parakeet-tdt-0.6b-v3"
+ ],
+ "tts": "mlx-community/Voxtral-4B-TTS-2603-mlx-bf16, voix fr_female, température 0.8, génération par chapitre entier",
+ "chapitres": [
+  {
+   "n": 1,
+   "duree_s": 20.56,
+   "estimation_script_s": 24,
+   "ecart_s": -3.44,
+   "mots": 61,
+   "prises_sources": [
+    "ch1_t3.wav"
+   ],
+   "wer_phonetique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 0.0,
+    "whisper_fichier_chapitre": 1.6,
+    "whisper_par_phrase": 0.0,
+    "parakeet_par_phrase": 0.0
+   },
+   "wer_orthographique_pct": {
+    "whisper_narration_complete": 6.6,
+    "parakeet_narration_complete": 9.8,
+    "whisper_vs_narration_txt": 6.6
+   },
+   "transcription_parakeet": "Il  y  a  plus  de  deux  mille  ans,  quelqu'un  a  enfermé  le  ciel  dans  une  boîte.  Éclipse,  phase  de  la  lune,  planète,  et  même  les  Jeux  olympiques.  En  mille  neuf  cents,  des  pêcheurs  d'éponge  découvre  l'épave  d'Anticitaire.  En  mille  neuf  cent  deux,  sur  un  bloc  de  bronze  rongée,  apparaît  une  roue  dentée.  Apprenons  à  lire  cette  machine.",
+   "transcription_whisper": "Il  y  a  plus  de  2000  ans,  quelqu 'un  a  enfermé  le  ciel  dans  une  boîte.  Éclipse,  phase  de  la  lune,  planète  et  même  les  Jeux  olympiques.  En  1900,  des  pêcheurs  d 'éponge  découvrent  l 'épave  denticitaire.  En  1902,  sur  un  bloc  de  bronze  rongé  apparaît  une  roue  dentée.  Apprenons  à  lire  cette  machine."
+  },
+  {
+   "n": 2,
+   "duree_s": 12.06,
+   "estimation_script_s": 14,
+   "ecart_s": -1.94,
+   "mots": 34,
+   "prises_sources": [
+    "ch2_t2.wav"
+   ],
+   "wer_phonetique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 0.0,
+    "whisper_fichier_chapitre": 0.0,
+    "whisper_par_phrase": 0.0,
+    "parakeet_par_phrase": 0.0
+   },
+   "wer_orthographique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 5.9,
+    "whisper_vs_narration_txt": 0.0
+   },
+   "transcription_parakeet": "Voici  notre  reconstruction.  Sur  le  côté,  une  manivelle.  Tournez-la.  Toutes  les  aiguilles  avancent  ensemble.  En  avant,  le  temps  passe.  En  arrière,  ils  remontent.  Un  peu  plus  de  quatre  tours  et  demi,  une  année.",
+   "transcription_whisper": "Voici  notre  reconstruction.  Sur  le  côté,  une  manivelle.  Tournez -la.  Toutes  les  aiguilles  avancent  ensemble.  En  avant,  le  temps  passe,  en  arrière,  il  remonte.  Un  peu  plus  de  4  tours  et  demi,  une  année."
+  },
+  {
+   "n": 3,
+   "duree_s": 23.08,
+   "estimation_script_s": 24,
+   "ecart_s": -0.92,
+   "mots": 58,
+   "prises_sources": [
+    "c3u01_t1.wav",
+    "ch3_t2.wav"
+   ],
+   "wer_phonetique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 0.0,
+    "whisper_fichier_chapitre": 0.0,
+    "whisper_par_phrase": 0.0,
+    "parakeet_par_phrase": 5.2
+   },
+   "wer_orthographique_pct": {
+    "whisper_narration_complete": 5.2,
+    "parakeet_narration_complete": 5.2,
+    "whisper_vs_narration_txt": 5.2
+   },
+   "transcription_parakeet": "Devant  deux  anneaux,  le  calendrier  égyptien  de  trois  cent  soixante-cinq  jours  et  le  zodiaque.  La  sphère  dorée,  c'est  le  soleil.  Il  donne  la  date  et  son  signe.  La  lune  fait  le  tour  en  un  mois,  à  vitesse  variable,  comme  la  vraie.  Sa  petite  boule  montre  la  phase.  Aiguille  superposée,  noire,  nouvelle  lune.  Opposée,  blanche,  pleine  lune.",
+   "transcription_whisper": "Devant,  deux  anneaux,  le  calendrier  égyptien  de  365  jours  et  le  zodiaque.  La  sphère  dorée,  c 'est  le  soleil.  Il  donne  la  date  et  son  signe.  La  lune  fait  le  tour  en  un  mois,  à  vitesse  variable,  comme  la  vraie.  Sa  petite  boule  montre  la  phase.  Aiguille  superposée,  noire,  nouvelle  lune.  Opposée,  blanche,  pleine  lune."
+  },
+  {
+   "n": 4,
+   "duree_s": 15.03,
+   "estimation_script_s": 17,
+   "ecart_s": -1.97,
+   "mots": 41,
+   "prises_sources": [
+    "ch4_t2.wav"
+   ],
+   "wer_phonetique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 0.0,
+    "whisper_fichier_chapitre": 0.0,
+    "whisper_par_phrase": 0.0,
+    "parakeet_par_phrase": 0.0
+   },
+   "wer_orthographique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 4.9,
+    "whisper_vs_narration_txt": 0.0
+   },
+   "transcription_parakeet": "Autour  du  centre,  cinq  petites  sphères,  les  planètes,  lues  sur  le  zodiaque.  Leurs  engrenages  ont  presque  tous  disparu.  C'est  une  reconstruction,  une  hypothèse.  Regardez  Mars,  sa  sphère  s'arrête,  puis  reculent,  comme  dans  le  ciel  quand  la  Terre  dépassent  Mars.",
+   "transcription_whisper": "Au  tour  du  centre,  cinq  petites  sphères,  les  planètes,  lues  sur  le  Zodiac.  Leurs  engrenages  ont  presque  tous  disparu.  C 'est  une  reconstruction,  une  hypothèse.  Regardez  Mars,  sa  sphère  s 'arrête,  puis  recule,  comme  dans  le  ciel  quand  la  Terre  dépasse  Mars."
+  },
+  {
+   "n": 5,
+   "duree_s": 15.62,
+   "estimation_script_s": 18,
+   "ecart_s": -2.38,
+   "mots": 45,
+   "prises_sources": [
+    "ch5_t2.wav"
+   ],
+   "wer_phonetique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 0.0,
+    "whisper_fichier_chapitre": 0.0,
+    "whisper_par_phrase": 0.0,
+    "parakeet_par_phrase": 2.2
+   },
+   "wer_orthographique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 0.0,
+    "whisper_vs_narration_txt": 0.0
+   },
+   "transcription_parakeet": "Retournons  la  machine.  En  haut,  une  spirale  de  deux  cent  trente-cinq  mois,  dix-neuf  ans.  Chaque  case,  un  mois,  avec  son  nom.  Dedans,  un  petit  cadran  fait  un  tour  en  quatre  ans.  Tournons  Olympia.  Cette  année,  les  Jeux  Olympiques.  L'année,  pas  le  jour.",
+   "transcription_whisper": "Retournons  la  machine.  En  haut,  une  spirale  de  235  mois,  19  ans.  Chaque  case,  un  mois,  avec  son  nom.  Dedans,  un  petit  cadran  fait  un  tour  en  4  ans.  Tournons  Olympia.  Cette  année,  les  Jeux  Olympiques.  L 'année,  pas  le  jour."
+  },
+  {
+   "n": 6,
+   "duree_s": 27.51,
+   "estimation_script_s": 30,
+   "ecart_s": -2.49,
+   "mots": 76,
+   "prises_sources": [
+    "ch6_t1.wav"
+   ],
+   "wer_phonetique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 0.0,
+    "whisper_fichier_chapitre": 0.0,
+    "whisper_par_phrase": 0.0,
+    "parakeet_par_phrase": 1.3
+   },
+   "wer_orthographique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 0.0,
+    "whisper_vs_narration_txt": 0.0
+   },
+   "transcription_parakeet": "En  bas,  le  Sarros.  Deux  cent  vingt-trois  mois.  Puis  les  éclipses  reviennent.  La  plupart  des  cases  sont  vides.  Tournons.  Une  case  gravée.  Sigma,  éclipse  de  lune.  État,  de  soleil.  Puis  l'heure.  Ce  cadran  y  ajoute  zéro,  huit  ou  seize  heures.  Devant,  la  pleine  lune  tombe  sur  l'aiguille  du  dragon.  Hypothétique,  elle  aussi.  Une  éclipse  est  possible.  Attention,  ces  signes  sont  calculés  par  notre  modèle.  Et  la  machine  ne  disait  pas  où  l'observer.",
+   "transcription_whisper": "En  bas,  le  Saros.  223  mois.  Puis  les  éclipses  reviennent.  La  plupart  des  cases  sont  vides.  Tournons.  Une  case  gravée.  Sigma.  Éclipse  de  lune.  État.  De  soleil.  Puis  l 'heure.  Ce  cadran  y  ajoute  0,  8  ou  16  heures.  Devant,  la  pleine  lune  tombe  sur  l 'aiguille  du  dragon.  Hypothétique  elle  aussi.  Une  éclipse  est  possible.  Attention,  ces  signes  sont  calculés  par  notre  modèle.  Et  la  machine  ne  disait  pas  où  l 'observer."
+  },
+  {
+   "n": 7,
+   "duree_s": 33.51,
+   "estimation_script_s": 38,
+   "ecart_s": -4.49,
+   "mots": 94,
+   "prises_sources": [
+    "ch7_t1.wav"
+   ],
+   "wer_phonetique_pct": {
+    "whisper_narration_complete": 0.0,
+    "parakeet_narration_complete": 0.0,
+    "whisper_fichier_chapitre": 0.0,
+    "whisper_par_phrase": 0.0,
+    "parakeet_par_phrase": 1.1
+   },
+   "wer_orthographique_pct": {
+    "whisper_narration_complete": 2.1,
+    "parakeet_narration_complete": 3.2,
+    "whisper_vs_narration_txt": 2.1
+   },
+   "transcription_parakeet": "Servait-elle  à  naviguer?  Non.  Ni  viseurs,  ni  latitude,  ni  longitude.  C'est  un  calculateur  du  ciel.  Mais  regardez  ces  plaques,  un  calendrier  des  étoiles.  Quand  le  soleil  atteint  la  lettre  XI,  on  lit,  la  Pléiade  se  lève  le  matin.  Bien  plus  tard,  pour  Végès,  la  mer  est  sûre  après  se  lever.  Déjà  Hésiode  avertissait  Quand  les  Pléiades  tombent  dans  la  noire  mer,  rentrent  tes  navires.  La  machine  ne  disait  pas  où  aller,  mais  quand  partir.  La  voici  reconstruite,  ses  rapports  prouvés  mathématiquement,  en  accès  libre.  Et  vous,  quelle  date  allez-vous  lui  demander?",
+   "transcription_whisper": "Servait -elle  à  naviguer  ?  Non,  ni  viseur,  ni  latitude,  ni  longitude.  C 'est  un  calculateur  du  ciel.  Mais  regardez  ces  plaques,  un  calendrier  des  étoiles.  Quand  le  soleil  atteint  la  lettre  Xi,  on  lit  «  La  pléiade  se  lève  le  matin  ».  Bien  plus  tard,  pour  Végès,  la  mer  est  sûre  après  se  lever.  Déjà  Hésiode  avertissait  «  Quand  les  pléiades  tombent  dans  la  noire  mer,  rentrent  tes  navires  ».  La  machine  ne  disait  pas  où  aller,  mais  quand  partir.  La  voici  reconstruite,  ses  rapports  prouvés  mathématiquement,  en  accès  libre.  Et  vous,  quelle  date  allez -vous  lui  demander  ?"
+  }
+ ],
+ "total": {
+  "duree_s": 152.17,
+  "lufs_integre": -16.02,
+  "crete_vraie_dbtp": -1.1
+ },
+ "reecritures_tts": [
+  {
+   "id": "c1u02",
+   "original": "En 1900, des pêcheurs d'éponges découvrent l'épave d'Anticythère.",
+   "envoye": "En mille neuf cent, des pêcheurs d'éponges découvrent l'épave d'Anticythère."
+  },
+  {
+   "id": "c1u03",
+   "original": "En 1902, sur un bloc de bronze rongé, apparaît une roue dentée.",
+   "envoye": "En mille neuf cent deux, sur un bloc de bronze rongé, apparaît une roue dentée."
+  },
+  {
+   "id": "c7u05",
+   "original": "Quand le Soleil atteint la lettre ksi, on lit : « La Pléiade se lève le matin. »",
+   "envoye": "Quand le Soleil atteint la lettre Xi, on lit : La Pléiade se lève le matin."
+  },
+  {
+   "id": "c7u07",
+   "original": "Déjà Hésiode avertissait : quand les Pléiades « tombent dans la noire mer », rentre tes navires.",
+   "envoye": "Déjà Hésiode avertissait : quand les Pléiades tombent dans la noire mer, rentre tes navires."
+  }
+ ]
+}

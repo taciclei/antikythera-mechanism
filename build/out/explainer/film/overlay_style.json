@@ -1,0 +1,286 @@
+{
+ "genere_par": "tools/explainer/overlay.py style (source unique : dictionnaires PALETTE, FONTS, TEXT, BOX, SHADOW, ZONES, SUB, ANIM de ce fichier)",
+ "taille": [
+  1920,
+  1080
+ ],
+ "fps": 25,
+ "unites": "px = taille du corps (em) en pixels, comme ImageFont.truetype(size=px) de Pillow ; ffmpeg drawtext fontsize=px donne le même corps. Lignes de base en px depuis le haut de l'image.",
+ "polices": {
+  "sans": {
+   "fichier": "/Users/tsousa/antikythera/build/cache/fonts/IBMPlexSans-Regular.ttf",
+   "fichier_relatif": "build/cache/fonts/IBMPlexSans-Regular.ttf",
+   "famille": "IBM Plex Sans",
+   "style": "Regular"
+  },
+  "sansm": {
+   "fichier": "/Users/tsousa/antikythera/build/cache/fonts/IBMPlexSans-Medium.ttf",
+   "fichier_relatif": "build/cache/fonts/IBMPlexSans-Medium.ttf",
+   "famille": "IBM Plex Sans",
+   "style": "Medium"
+  },
+  "sansb": {
+   "fichier": "/Users/tsousa/antikythera/build/cache/fonts/IBMPlexSans-SemiBold.ttf",
+   "fichier_relatif": "build/cache/fonts/IBMPlexSans-SemiBold.ttf",
+   "famille": "IBM Plex Sans",
+   "style": "SemiBold"
+  },
+  "sansi": {
+   "fichier": "/Users/tsousa/antikythera/build/cache/fonts/IBMPlexSans-Italic.ttf",
+   "fichier_relatif": "build/cache/fonts/IBMPlexSans-Italic.ttf",
+   "famille": "IBM Plex Sans",
+   "style": "Italic"
+  },
+  "display": {
+   "fichier": "/Users/tsousa/antikythera/build/cache/fonts/Marcellus-Regular.ttf",
+   "fichier_relatif": "build/cache/fonts/Marcellus-Regular.ttf",
+   "famille": "Marcellus",
+   "style": "Regular"
+  },
+  "greek": {
+   "fichier": "/Users/tsousa/antikythera/build/cache/fonts/GentiumBookPlus-Bold.ttf",
+   "fichier_relatif": "build/cache/fonts/GentiumBookPlus-Bold.ttf",
+   "famille": "Gentium Book Plus",
+   "style": "Bold"
+  },
+  "serif": {
+   "fichier": "/Users/tsousa/antikythera/build/cache/fonts/GentiumBookPlus-Regular.ttf",
+   "fichier_relatif": "build/cache/fonts/GentiumBookPlus-Regular.ttf",
+   "famille": "Gentium Book Plus",
+   "style": "Regular"
+  },
+  "quote": {
+   "fichier": "/Users/tsousa/antikythera/build/cache/fonts/GentiumBookPlus-Italic.ttf",
+   "fichier_relatif": "build/cache/fonts/GentiumBookPlus-Italic.ttf",
+   "famille": "Gentium Book Plus",
+   "style": "Italic"
+  }
+ },
+ "regle_grec": "Toute lettre grecque (U+0370-03FF, U+1F00-1FFF) est composée en Gentium Book Plus Bold (clé 'greek') à la même taille que le texte qui l'entoure, dans la même couleur (bronze pour un nom grec isolé). Marcellus n'a pas de grec ; IBM Plex Sans n'a pas le stigma Ϛ.",
+ "regle_chiffres": "Dans un texte en Marcellus (titres, carton final), les chiffres sont composés en Gentium Book Plus Regular (clé 'serif') : le « 1 » de Marcellus se lit comme un « I ». IBM Plex Sans a des chiffres à chasse fixe (0,60 em) : les nombres qui changent ne font pas bouger le texte.",
+ "palette": {
+  "parchemin": "#F3EAD8",
+  "papier": "#FBF5EA",
+  "encre": "#2A2118",
+  "encre_douce": "#6B5B47",
+  "filet": "#E0CFAF",
+  "filet_fort": "#CDB48A",
+  "bronze": "#9A6B2F",
+  "bronze_fort": "#7A4614",
+  "or": "#C8963E",
+  "laiton": "#EDD9AA",
+  "hypothese": "#62529A",
+  "modele": "#2C7263",
+  "alerte": "#A2381F",
+  "grave": "#3A2915",
+  "eclipse_lune": "#2A4F80",
+  "eclipse_soleil": "#9A4A08"
+ },
+ "textes": {
+  "callout": {
+   "police": "sansb",
+   "px": 40,
+   "couleur": "#2A2118",
+   "interlettrage_em": 0.0,
+   "capitales": false
+  },
+  "callout_sous": {
+   "police": "sans",
+   "px": 28,
+   "couleur": "#6B5B47",
+   "interlettrage_em": 0.0,
+   "capitales": false
+  },
+  "mention_hyp": {
+   "police": "sansm",
+   "px": 28,
+   "couleur": "#62529A",
+   "interlettrage_em": 0.0,
+   "capitales": false
+  },
+  "mention_modele": {
+   "police": "sansm",
+   "px": 28,
+   "couleur": "#2C7263",
+   "interlettrage_em": 0.0,
+   "capitales": false
+  },
+  "mention_illustration": {
+   "police": "sansi",
+   "px": 26,
+   "couleur": "#7A4614",
+   "interlettrage_em": 0.0,
+   "capitales": false
+  },
+  "compteur_libelle": {
+   "police": "sansm",
+   "px": 28,
+   "couleur": "#6B5B47",
+   "interlettrage_em": 0.0,
+   "capitales": false
+  },
+  "compteur_valeur": {
+   "police": "sansb",
+   "px": 40,
+   "couleur": "#2A2118",
+   "interlettrage_em": 0.0,
+   "capitales": false
+  },
+  "sous_titre": {
+   "police": "sansm",
+   "px": 42,
+   "couleur": "#2A2118",
+   "interlettrage_em": 0.0,
+   "capitales": false
+  },
+  "petites_capitales": {
+   "police": "sansb",
+   "px": 26,
+   "couleur": "#9A6B2F",
+   "interlettrage_em": 0.06,
+   "capitales": true
+  }
+ },
+ "boite": {
+  "remplissage": "#FBF5EA",
+  "opacite": 0.94,
+  "bord": "#CDB48A",
+  "bord_px": 2,
+  "rayon_px": 14,
+  "marge_px": [
+   24,
+   14
+  ],
+  "barre_accent": {
+   "couleur": "#C8963E",
+   "largeur_px": 6
+  },
+  "note": "fond papier à 94 %, bord 2 px, rayon 14 px, marges 24 x 14 px ; barre d'accent verticale de 6 px à 8 px du bord gauche, couleur selon la nature du callout"
+ },
+ "ombre_portee": {
+  "dx": 0,
+  "dy": 6,
+  "sigma_px": 7.0,
+  "couleur": "#2A2118",
+  "opacite": 0.42,
+  "note": "calculée sur l'alpha du calque entier : flou gaussien sigma 7 px, décalage (0, +6) px, encre à 42 %, placée sous le calque"
+ },
+ "zone_de_securite_px": {
+  "x": 96,
+  "y": 54
+ },
+ "zones": {
+  "compteur": {
+   "ancre": "haut_gauche",
+   "x": 96,
+   "y": 54
+  },
+  "haut_droite": {
+   "ancre": "haut_droite",
+   "x": 1824,
+   "y": 54,
+   "sens": "bas"
+  },
+  "haut_gauche": {
+   "ancre": "haut_gauche",
+   "x": 96,
+   "y": 150,
+   "sens": "bas"
+  },
+  "bas_gauche": {
+   "ancre": "bas_gauche",
+   "x": 96,
+   "y": 876,
+   "sens": "haut"
+  },
+  "bas_droite": {
+   "ancre": "bas_droite",
+   "x": 1824,
+   "y": 876,
+   "sens": "haut"
+  },
+  "note": "compteur en haut à gauche ; callouts empilés en haut à droite par défaut ; si une incrustation occupe la droite (phases, metonic_cell, glyph_anatomy), passer en 'haut_gauche' (sous le compteur) ou 'bas_gauche' ; rien sous y = 880 sauf les sous-titres",
+  "ecart_pile_px": 14
+ },
+ "callouts": {
+  "titre": "callout",
+  "texte_secondaire": "selon la nature : normal -> callout_sous (barre #C8963E), hyp -> mention_hyp (barre #62529A), modele -> mention_modele (barre #2C7263), illustration -> mention_illustration (barre #7A4614), exemple -> mention_illustration (barre #7A4614)",
+  "natures": {
+   "normal": {
+    "style_secondaire": "callout_sous",
+    "couleur_barre": "#C8963E"
+   },
+   "hyp": {
+    "style_secondaire": "mention_hyp",
+    "couleur_barre": "#62529A"
+   },
+   "modele": {
+    "style_secondaire": "mention_modele",
+    "couleur_barre": "#2C7263"
+   },
+   "illustration": {
+    "style_secondaire": "mention_illustration",
+    "couleur_barre": "#7A4614"
+   },
+   "exemple": {
+    "style_secondaire": "mention_illustration",
+    "couleur_barre": "#7A4614"
+   }
+  },
+  "regles": [
+   "Les mentions d'honnêteté sont des callouts de nature 'hyp' (violet), 'modele' (vert-de-gris) ou 'illustration'/'exemple' (bronze foncé, italique) : jamais en simple texte gris.",
+   "Un callout = une idée : titre 40 px SemiBold, au plus une ligne secondaire 28 px.",
+   "Au plus 3 callouts à l'écran en même temps ; apparition décalée de 5 images.",
+   "Textes exacts : ceux de script.md (colonne « Textes à l'écran »)."
+  ]
+ },
+ "compteur": {
+  "boite_px": [
+   96,
+   54,
+   582.0,
+   132
+  ],
+  "libelle": "Temps écoulé :",
+  "style_libelle": "compteur_libelle",
+  "style_valeur": "compteur_valeur",
+  "format": "« X an Y j » si X < 2, sinon « X ans Y j » ; X = partie entière de la manivelle, Y = floor(partie décimale x 365,2422), de 0 à 365",
+  "exemples": {
+   "0.0": "0 an 0 j",
+   "0.6": "0 an 219 j",
+   "0.972": "0 an 355 j",
+   "1.009": "1 an 3 j",
+   "2.31": "2 ans 113 j",
+   "5.95": "5 ans 346 j",
+   "9.014": "9 ans 5 j",
+   "9.6": "9 ans 219 j"
+  },
+  "largeur_fixe": "boîte calculée pour « 10 ans 365 j » : elle ne bouge pas quand les chiffres changent (chiffres à chasse fixe dans IBM Plex Sans : 0,60 em)",
+  "visible": "à partir du chapitre 2 (plan 2.1) ; masqué pendant la reprise du plan 4.3"
+ },
+ "sous_titres": {
+  "largeur_max_px": 1500,
+  "lignes_max": 2,
+  "interligne": 1.28,
+  "bas_px": 1026,
+  "remplissage": "#FBF5EA",
+  "opacite": 0.88,
+  "rayon_px": 12,
+  "marge_px": [
+   26,
+   12
+  ],
+  "car_par_ligne_max": 48,
+  "style": "sous_titre",
+  "note": "centrés, boîte papier à 88 % sans bord, bas de la boîte à y = 1026 ; retours à la ligne de narration.srt respectés ; pas d'ombre portée"
+ },
+ "animation": {
+  "entree_images": 8,
+  "sortie_images": 6,
+  "glissement_px": 10,
+  "decalage_pile_images": 5,
+  "courbe": "smoothstep u*u*(3-2u)",
+  "tenue_min_s": 2.0
+ },
+ "incrustations_2d": "voir build/out/explainer/inserts/timing.json (boîtes, segments, ancres)"
+}

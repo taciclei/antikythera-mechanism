@@ -1,0 +1,81 @@
+{
+ "fps": 25,
+ "total_seconds": 160.36,
+ "total_frames": 4009,
+ "sample_rate_source": 24000,
+ "loudness_lufs_integrated_source": -16.02,
+ "note": "Chaque fichier est posé entier à start_s (film) ; aucune coupe, aucun fondu dans la voix. Musique / ambiance éventuelles : sous -18 dB par rapport à la voix. Fin : carton muet de 4.0 s.",
+ "clips": [
+  {
+   "chapter": 1,
+   "file": "build/out/explainer/voice/ch1.wav",
+   "start_s": 0.6,
+   "start_frame": 16,
+   "start_sample_24k": 14400,
+   "start_sample_48k": 28800,
+   "duration_s": 20.56,
+   "end_s": 21.16
+  },
+  {
+   "chapter": 2,
+   "file": "build/out/explainer/voice/ch2.wav",
+   "start_s": 22.56,
+   "start_frame": 565,
+   "start_sample_24k": 541440,
+   "start_sample_48k": 1082880,
+   "duration_s": 12.06,
+   "end_s": 34.62
+  },
+  {
+   "chapter": 3,
+   "file": "build/out/explainer/voice/ch3.wav",
+   "start_s": 35.62,
+   "start_frame": 892,
+   "start_sample_24k": 854880,
+   "start_sample_48k": 1709760,
+   "duration_s": 23.08,
+   "end_s": 58.7
+  },
+  {
+   "chapter": 4,
+   "file": "build/out/explainer/voice/ch4.wav",
+   "start_s": 59.7,
+   "start_frame": 1494,
+   "start_sample_24k": 1432800,
+   "start_sample_48k": 2865600,
+   "duration_s": 15.03,
+   "end_s": 74.73
+  },
+  {
+   "chapter": 5,
+   "file": "build/out/explainer/voice/ch5.wav",
+   "start_s": 77.7,
+   "start_frame": 1944,
+   "start_sample_24k": 1864800,
+   "start_sample_48k": 3729600,
+   "duration_s": 15.62,
+   "end_s": 93.32
+  },
+  {
+   "chapter": 6,
+   "file": "build/out/explainer/voice/ch6.wav",
+   "start_s": 94.32,
+   "start_frame": 2359,
+   "start_sample_24k": 2263680,
+   "start_sample_48k": 4527360,
+   "duration_s": 27.51,
+   "end_s": 121.83
+  },
+  {
+   "chapter": 7,
+   "file": "build/out/explainer/voice/ch7.wav",
+   "start_s": 122.83,
+   "start_frame": 3072,
+   "start_sample_24k": 2947920,
+   "start_sample_48k": 5895840,
+   "duration_s": 33.51,
+   "end_s": 156.34
+  }
+ ],
+ "ffmpeg_hint": "ffmpeg -i build/out/explainer/voice/ch1.wav -i build/out/explainer/voice/ch2.wav -i build/out/explainer/voice/ch3.wav -i build/out/explainer/voice/ch4.wav -i build/out/explainer/voice/ch5.wav -i build/out/explainer/voice/ch6.wav -i build/out/explainer/voice/ch7.wav -filter_complex \"[0]adelay=600:all=1[a1];[1]adelay=22560:all=1[a2];[2]adelay=35620:all=1[a3];[3]adelay=59700:all=1[a4];[4]adelay=77700:all=1[a5];[5]adelay=94320:all=1[a6];[6]adelay=122830:all=1[a7];[a1][a2][a3][a4][a5][a6][a7]amix=inputs=7:normalize=0,apad=whole_dur=160.360[out]\" -map \"[out]\" -ar 48000 voice_film.wav"
+}

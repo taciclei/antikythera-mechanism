@@ -1,0 +1,1890 @@
+{
+ "model": "mlx-community/parakeet-tdt-0.6b-v3",
+ "unit": "s from the start of chN.wav",
+ "chapters": {
+  "1": [
+   {
+    "w": "Il",
+    "start": 0.0,
+    "end": 0.24
+   },
+   {
+    "w": "y",
+    "start": 0.24,
+    "end": 0.48
+   },
+   {
+    "w": "a",
+    "start": 0.48,
+    "end": 0.56
+   },
+   {
+    "w": "plus",
+    "start": 0.56,
+    "end": 0.72
+   },
+   {
+    "w": "de",
+    "start": 0.72,
+    "end": 0.88
+   },
+   {
+    "w": "2000",
+    "start": 0.88,
+    "end": 1.36
+   },
+   {
+    "w": "ans,",
+    "start": 1.44,
+    "end": 1.76
+   },
+   {
+    "w": "quelqu'un",
+    "start": 1.76,
+    "end": 2.08
+   },
+   {
+    "w": "a",
+    "start": 2.08,
+    "end": 2.24
+   },
+   {
+    "w": "enfermé",
+    "start": 2.24,
+    "end": 2.8
+   },
+   {
+    "w": "le",
+    "start": 2.8,
+    "end": 2.88
+   },
+   {
+    "w": "ciel",
+    "start": 2.88,
+    "end": 3.28
+   },
+   {
+    "w": "dans",
+    "start": 3.28,
+    "end": 3.44
+   },
+   {
+    "w": "une",
+    "start": 3.44,
+    "end": 3.6
+   },
+   {
+    "w": "boîte.",
+    "start": 3.6,
+    "end": 4.32
+   },
+   {
+    "w": "Éclipse,",
+    "start": 4.32,
+    "end": 5.2
+   },
+   {
+    "w": "face",
+    "start": 5.2,
+    "end": 5.36
+   },
+   {
+    "w": "de",
+    "start": 5.6,
+    "end": 5.76
+   },
+   {
+    "w": "la",
+    "start": 5.76,
+    "end": 5.92
+   },
+   {
+    "w": "lune,",
+    "start": 5.92,
+    "end": 6.48
+   },
+   {
+    "w": "planète",
+    "start": 6.48,
+    "end": 7.12
+   },
+   {
+    "w": "et",
+    "start": 7.28,
+    "end": 7.44
+   },
+   {
+    "w": "même",
+    "start": 7.44,
+    "end": 7.68
+   },
+   {
+    "w": "les",
+    "start": 7.68,
+    "end": 7.92
+   },
+   {
+    "w": "Jeux",
+    "start": 7.92,
+    "end": 8.24
+   },
+   {
+    "w": "Olympiques.",
+    "start": 8.24,
+    "end": 9.12
+   },
+   {
+    "w": "En",
+    "start": 9.12,
+    "end": 9.36
+   },
+   {
+    "w": "1900,",
+    "start": 9.36,
+    "end": 10.32
+   },
+   {
+    "w": "des",
+    "start": 10.32,
+    "end": 10.48
+   },
+   {
+    "w": "pêcheurs",
+    "start": 10.48,
+    "end": 10.96
+   },
+   {
+    "w": "d'éponge",
+    "start": 10.96,
+    "end": 11.52
+   },
+   {
+    "w": "découvrent",
+    "start": 11.6,
+    "end": 12.0
+   },
+   {
+    "w": "l'épave",
+    "start": 12.0,
+    "end": 12.32
+   },
+   {
+    "w": "d'Anticitère.",
+    "start": 12.4,
+    "end": 13.68
+   },
+   {
+    "w": "En",
+    "start": 13.68,
+    "end": 13.84
+   },
+   {
+    "w": "1902,",
+    "start": 13.84,
+    "end": 14.96
+   },
+   {
+    "w": "sur",
+    "start": 14.96,
+    "end": 15.2
+   },
+   {
+    "w": "un",
+    "start": 15.2,
+    "end": 15.28
+   },
+   {
+    "w": "bloc",
+    "start": 15.28,
+    "end": 15.6
+   },
+   {
+    "w": "de",
+    "start": 15.6,
+    "end": 15.76
+   },
+   {
+    "w": "bronze",
+    "start": 15.76,
+    "end": 16.24
+   },
+   {
+    "w": "rongé,",
+    "start": 16.24,
+    "end": 16.96
+   },
+   {
+    "w": "apparaît",
+    "start": 16.96,
+    "end": 17.44
+   },
+   {
+    "w": "une",
+    "start": 17.44,
+    "end": 17.6
+   },
+   {
+    "w": "roue",
+    "start": 17.6,
+    "end": 17.92
+   },
+   {
+    "w": "dentée.",
+    "start": 17.92,
+    "end": 18.72
+   },
+   {
+    "w": "Apprenons",
+    "start": 18.72,
+    "end": 19.28
+   },
+   {
+    "w": "à",
+    "start": 19.28,
+    "end": 19.36
+   },
+   {
+    "w": "lire",
+    "start": 19.36,
+    "end": 19.68
+   },
+   {
+    "w": "cette",
+    "start": 19.68,
+    "end": 19.84
+   },
+   {
+    "w": "machine.",
+    "start": 19.84,
+    "end": 20.48
+   }
+  ],
+  "2": [
+   {
+    "w": "Voici",
+    "start": 0.32,
+    "end": 0.64
+   },
+   {
+    "w": "notre",
+    "start": 0.64,
+    "end": 0.88
+   },
+   {
+    "w": "reconstruction.",
+    "start": 0.88,
+    "end": 1.84
+   },
+   {
+    "w": "Sur",
+    "start": 1.84,
+    "end": 2.0
+   },
+   {
+    "w": "le",
+    "start": 2.0,
+    "end": 2.16
+   },
+   {
+    "w": "côté,",
+    "start": 2.16,
+    "end": 2.64
+   },
+   {
+    "w": "une",
+    "start": 2.64,
+    "end": 2.88
+   },
+   {
+    "w": "manivelle.",
+    "start": 2.88,
+    "end": 3.76
+   },
+   {
+    "w": "Tournez-la.",
+    "start": 3.76,
+    "end": 4.56
+   },
+   {
+    "w": "Toutes",
+    "start": 4.56,
+    "end": 4.8
+   },
+   {
+    "w": "les",
+    "start": 4.8,
+    "end": 4.88
+   },
+   {
+    "w": "aiguilles",
+    "start": 4.88,
+    "end": 5.36
+   },
+   {
+    "w": "avancent",
+    "start": 5.36,
+    "end": 5.68
+   },
+   {
+    "w": "ensemble.",
+    "start": 5.84,
+    "end": 6.48
+   },
+   {
+    "w": "En",
+    "start": 6.48,
+    "end": 6.64
+   },
+   {
+    "w": "avant,",
+    "start": 6.64,
+    "end": 7.12
+   },
+   {
+    "w": "le",
+    "start": 7.12,
+    "end": 7.36
+   },
+   {
+    "w": "temps",
+    "start": 7.36,
+    "end": 7.6
+   },
+   {
+    "w": "passe.",
+    "start": 7.6,
+    "end": 8.0
+   },
+   {
+    "w": "En",
+    "start": 8.16,
+    "end": 8.32
+   },
+   {
+    "w": "arrière,",
+    "start": 8.32,
+    "end": 8.8
+   },
+   {
+    "w": "ils",
+    "start": 8.8,
+    "end": 8.96
+   },
+   {
+    "w": "remontent.",
+    "start": 8.96,
+    "end": 9.6
+   },
+   {
+    "w": "Un",
+    "start": 9.6,
+    "end": 9.76
+   },
+   {
+    "w": "peu",
+    "start": 9.76,
+    "end": 9.92
+   },
+   {
+    "w": "plus",
+    "start": 9.92,
+    "end": 10.08
+   },
+   {
+    "w": "de",
+    "start": 10.08,
+    "end": 10.16
+   },
+   {
+    "w": "4",
+    "start": 10.16,
+    "end": 10.4
+   },
+   {
+    "w": "tours",
+    "start": 10.48,
+    "end": 10.8
+   },
+   {
+    "w": "et",
+    "start": 10.8,
+    "end": 10.96
+   },
+   {
+    "w": "demi,",
+    "start": 10.96,
+    "end": 11.44
+   },
+   {
+    "w": "une",
+    "start": 11.44,
+    "end": 11.6
+   },
+   {
+    "w": "année.",
+    "start": 11.6,
+    "end": 12.0
+   }
+  ],
+  "3": [
+   {
+    "w": "Devant",
+    "start": 0.32,
+    "end": 0.8
+   },
+   {
+    "w": "deux",
+    "start": 0.8,
+    "end": 1.04
+   },
+   {
+    "w": "anneaux,",
+    "start": 1.04,
+    "end": 1.76
+   },
+   {
+    "w": "le",
+    "start": 1.76,
+    "end": 1.92
+   },
+   {
+    "w": "calendrier",
+    "start": 1.92,
+    "end": 2.56
+   },
+   {
+    "w": "égyptien",
+    "start": 2.56,
+    "end": 3.12
+   },
+   {
+    "w": "de",
+    "start": 3.12,
+    "end": 3.28
+   },
+   {
+    "w": "365",
+    "start": 3.28,
+    "end": 4.32
+   },
+   {
+    "w": "jours",
+    "start": 4.32,
+    "end": 4.64
+   },
+   {
+    "w": "et",
+    "start": 4.8,
+    "end": 4.88
+   },
+   {
+    "w": "le",
+    "start": 4.88,
+    "end": 5.04
+   },
+   {
+    "w": "Zodiac.",
+    "start": 5.04,
+    "end": 6.0
+   },
+   {
+    "w": "La",
+    "start": 6.0,
+    "end": 6.16
+   },
+   {
+    "w": "sphère",
+    "start": 6.16,
+    "end": 6.56
+   },
+   {
+    "w": "dorée,",
+    "start": 6.56,
+    "end": 7.2
+   },
+   {
+    "w": "c'est",
+    "start": 7.2,
+    "end": 7.44
+   },
+   {
+    "w": "le",
+    "start": 7.44,
+    "end": 7.6
+   },
+   {
+    "w": "soleil.",
+    "start": 7.6,
+    "end": 8.24
+   },
+   {
+    "w": "Il",
+    "start": 8.24,
+    "end": 8.48
+   },
+   {
+    "w": "donne",
+    "start": 8.48,
+    "end": 8.8
+   },
+   {
+    "w": "la",
+    "start": 8.8,
+    "end": 8.96
+   },
+   {
+    "w": "date",
+    "start": 8.96,
+    "end": 9.36
+   },
+   {
+    "w": "et",
+    "start": 9.36,
+    "end": 9.6
+   },
+   {
+    "w": "son",
+    "start": 9.6,
+    "end": 9.92
+   },
+   {
+    "w": "signe.",
+    "start": 9.92,
+    "end": 10.48
+   },
+   {
+    "w": "La",
+    "start": 10.48,
+    "end": 10.72
+   },
+   {
+    "w": "lune",
+    "start": 10.72,
+    "end": 11.2
+   },
+   {
+    "w": "fait",
+    "start": 11.2,
+    "end": 11.36
+   },
+   {
+    "w": "le",
+    "start": 11.36,
+    "end": 11.52
+   },
+   {
+    "w": "tour",
+    "start": 11.52,
+    "end": 11.76
+   },
+   {
+    "w": "en",
+    "start": 11.76,
+    "end": 12.0
+   },
+   {
+    "w": "un",
+    "start": 12.0,
+    "end": 12.16
+   },
+   {
+    "w": "mois,",
+    "start": 12.16,
+    "end": 12.48
+   },
+   {
+    "w": "à",
+    "start": 12.48,
+    "end": 12.64
+   },
+   {
+    "w": "vitesse",
+    "start": 12.64,
+    "end": 13.04
+   },
+   {
+    "w": "variable,",
+    "start": 13.04,
+    "end": 13.68
+   },
+   {
+    "w": "comme",
+    "start": 13.68,
+    "end": 13.84
+   },
+   {
+    "w": "la",
+    "start": 13.84,
+    "end": 14.08
+   },
+   {
+    "w": "vraie.",
+    "start": 14.08,
+    "end": 14.64
+   },
+   {
+    "w": "Sa",
+    "start": 14.64,
+    "end": 14.8
+   },
+   {
+    "w": "petite",
+    "start": 14.8,
+    "end": 15.12
+   },
+   {
+    "w": "boule",
+    "start": 15.12,
+    "end": 15.52
+   },
+   {
+    "w": "montre",
+    "start": 15.52,
+    "end": 15.84
+   },
+   {
+    "w": "la",
+    "start": 15.84,
+    "end": 16.0
+   },
+   {
+    "w": "phase.",
+    "start": 16.0,
+    "end": 16.56
+   },
+   {
+    "w": "Opposée,",
+    "start": 20.16,
+    "end": 21.12
+   },
+   {
+    "w": "blanche,",
+    "start": 21.12,
+    "end": 22.0
+   },
+   {
+    "w": "pleine",
+    "start": 22.0,
+    "end": 22.48
+   },
+   {
+    "w": "lune.",
+    "start": 22.48,
+    "end": 22.96
+   }
+  ],
+  "4": [
+   {
+    "w": "Autour",
+    "start": 0.24,
+    "end": 0.64
+   },
+   {
+    "w": "du",
+    "start": 0.64,
+    "end": 0.88
+   },
+   {
+    "w": "centre,",
+    "start": 0.88,
+    "end": 1.36
+   },
+   {
+    "w": "cinq",
+    "start": 1.36,
+    "end": 1.76
+   },
+   {
+    "w": "petites",
+    "start": 1.76,
+    "end": 2.08
+   },
+   {
+    "w": "sphères,",
+    "start": 2.08,
+    "end": 2.72
+   },
+   {
+    "w": "les",
+    "start": 2.72,
+    "end": 2.88
+   },
+   {
+    "w": "planètes,",
+    "start": 2.88,
+    "end": 3.44
+   },
+   {
+    "w": "lues",
+    "start": 3.44,
+    "end": 3.68
+   },
+   {
+    "w": "sur",
+    "start": 3.76,
+    "end": 3.84
+   },
+   {
+    "w": "le",
+    "start": 3.84,
+    "end": 3.92
+   },
+   {
+    "w": "Zodiac.",
+    "start": 3.92,
+    "end": 4.72
+   },
+   {
+    "w": "Leurs",
+    "start": 4.72,
+    "end": 4.96
+   },
+   {
+    "w": "engrenages",
+    "start": 4.96,
+    "end": 5.6
+   },
+   {
+    "w": "ont",
+    "start": 5.6,
+    "end": 5.76
+   },
+   {
+    "w": "presque",
+    "start": 5.76,
+    "end": 6.08
+   },
+   {
+    "w": "tous",
+    "start": 6.08,
+    "end": 6.24
+   },
+   {
+    "w": "disparu.",
+    "start": 6.24,
+    "end": 6.96
+   },
+   {
+    "w": "C'est",
+    "start": 6.96,
+    "end": 7.28
+   },
+   {
+    "w": "une",
+    "start": 7.28,
+    "end": 7.44
+   },
+   {
+    "w": "reconstruction,",
+    "start": 7.44,
+    "end": 8.24
+   },
+   {
+    "w": "une",
+    "start": 8.24,
+    "end": 8.4
+   },
+   {
+    "w": "hypothèse.",
+    "start": 8.4,
+    "end": 9.28
+   },
+   {
+    "w": "Regardez",
+    "start": 9.28,
+    "end": 9.76
+   },
+   {
+    "w": "Mars,",
+    "start": 9.84,
+    "end": 10.32
+   },
+   {
+    "w": "sa",
+    "start": 10.4,
+    "end": 10.64
+   },
+   {
+    "w": "sphère",
+    "start": 10.64,
+    "end": 11.04
+   },
+   {
+    "w": "s'arrête,",
+    "start": 11.04,
+    "end": 11.84
+   },
+   {
+    "w": "puis",
+    "start": 11.84,
+    "end": 12.16
+   },
+   {
+    "w": "recule,",
+    "start": 12.16,
+    "end": 12.96
+   },
+   {
+    "w": "comme",
+    "start": 12.96,
+    "end": 13.12
+   },
+   {
+    "w": "dans",
+    "start": 13.12,
+    "end": 13.2
+   },
+   {
+    "w": "le",
+    "start": 13.2,
+    "end": 13.28
+   },
+   {
+    "w": "ciel",
+    "start": 13.28,
+    "end": 13.6
+   },
+   {
+    "w": "quand",
+    "start": 13.6,
+    "end": 13.76
+   },
+   {
+    "w": "la",
+    "start": 13.76,
+    "end": 13.84
+   },
+   {
+    "w": "Terre",
+    "start": 13.84,
+    "end": 14.08
+   },
+   {
+    "w": "dépasse",
+    "start": 14.08,
+    "end": 14.56
+   },
+   {
+    "w": "Mars.",
+    "start": 14.56,
+    "end": 14.96
+   }
+  ],
+  "5": [
+   {
+    "w": "Retournons",
+    "start": 0.32,
+    "end": 0.88
+   },
+   {
+    "w": "la",
+    "start": 0.88,
+    "end": 1.04
+   },
+   {
+    "w": "machine.",
+    "start": 1.04,
+    "end": 1.6
+   },
+   {
+    "w": "En",
+    "start": 1.6,
+    "end": 1.76
+   },
+   {
+    "w": "haut,",
+    "start": 1.76,
+    "end": 2.16
+   },
+   {
+    "w": "une",
+    "start": 2.16,
+    "end": 2.4
+   },
+   {
+    "w": "spirale",
+    "start": 2.4,
+    "end": 2.8
+   },
+   {
+    "w": "de",
+    "start": 2.8,
+    "end": 2.96
+   },
+   {
+    "w": "235",
+    "start": 2.96,
+    "end": 3.76
+   },
+   {
+    "w": "mois,",
+    "start": 3.76,
+    "end": 4.16
+   },
+   {
+    "w": "19",
+    "start": 4.16,
+    "end": 4.64
+   },
+   {
+    "w": "ans.",
+    "start": 4.64,
+    "end": 5.04
+   },
+   {
+    "w": "Chaque",
+    "start": 5.04,
+    "end": 5.44
+   },
+   {
+    "w": "case,",
+    "start": 5.44,
+    "end": 5.84
+   },
+   {
+    "w": "un",
+    "start": 5.84,
+    "end": 5.92
+   },
+   {
+    "w": "mois,",
+    "start": 6.0,
+    "end": 6.32
+   },
+   {
+    "w": "avec",
+    "start": 6.32,
+    "end": 6.56
+   },
+   {
+    "w": "son",
+    "start": 6.56,
+    "end": 6.8
+   },
+   {
+    "w": "nom.",
+    "start": 6.8,
+    "end": 7.2
+   },
+   {
+    "w": "Dedans,",
+    "start": 7.2,
+    "end": 7.84
+   },
+   {
+    "w": "un",
+    "start": 7.84,
+    "end": 8.0
+   },
+   {
+    "w": "petit",
+    "start": 8.0,
+    "end": 8.24
+   },
+   {
+    "w": "cadran",
+    "start": 8.24,
+    "end": 8.72
+   },
+   {
+    "w": "fait",
+    "start": 8.88,
+    "end": 9.04
+   },
+   {
+    "w": "un",
+    "start": 9.04,
+    "end": 9.12
+   },
+   {
+    "w": "tour",
+    "start": 9.12,
+    "end": 9.36
+   },
+   {
+    "w": "en",
+    "start": 9.36,
+    "end": 9.52
+   },
+   {
+    "w": "quatre",
+    "start": 9.52,
+    "end": 9.68
+   },
+   {
+    "w": "ans.",
+    "start": 9.76,
+    "end": 10.16
+   },
+   {
+    "w": "Tournons",
+    "start": 10.16,
+    "end": 10.64
+   },
+   {
+    "w": "Olympia.",
+    "start": 11.2,
+    "end": 12.16
+   },
+   {
+    "w": "Cette",
+    "start": 12.16,
+    "end": 12.48
+   },
+   {
+    "w": "année,",
+    "start": 12.48,
+    "end": 12.88
+   },
+   {
+    "w": "les",
+    "start": 12.88,
+    "end": 13.04
+   },
+   {
+    "w": "Jeux",
+    "start": 13.04,
+    "end": 13.36
+   },
+   {
+    "w": "Olympiques.",
+    "start": 13.36,
+    "end": 14.24
+   },
+   {
+    "w": "L'année,",
+    "start": 14.24,
+    "end": 14.88
+   },
+   {
+    "w": "pas",
+    "start": 14.88,
+    "end": 15.04
+   },
+   {
+    "w": "le",
+    "start": 15.04,
+    "end": 15.2
+   },
+   {
+    "w": "jour.",
+    "start": 15.2,
+    "end": 15.52
+   }
+  ],
+  "6": [
+   {
+    "w": "En",
+    "start": 0.0,
+    "end": 0.32
+   },
+   {
+    "w": "bas",
+    "start": 0.32,
+    "end": 0.48
+   },
+   {
+    "w": "le",
+    "start": 0.56,
+    "end": 0.72
+   },
+   {
+    "w": "Sarros.",
+    "start": 0.72,
+    "end": 1.68
+   },
+   {
+    "w": "223",
+    "start": 1.68,
+    "end": 2.64
+   },
+   {
+    "w": "mois.",
+    "start": 2.64,
+    "end": 3.12
+   },
+   {
+    "w": "Puis",
+    "start": 3.12,
+    "end": 3.36
+   },
+   {
+    "w": "les",
+    "start": 3.36,
+    "end": 3.52
+   },
+   {
+    "w": "éclipses",
+    "start": 3.52,
+    "end": 4.0
+   },
+   {
+    "w": "reviennent.",
+    "start": 4.0,
+    "end": 4.64
+   },
+   {
+    "w": "La",
+    "start": 4.64,
+    "end": 4.8
+   },
+   {
+    "w": "plupart",
+    "start": 4.8,
+    "end": 5.12
+   },
+   {
+    "w": "des",
+    "start": 5.12,
+    "end": 5.36
+   },
+   {
+    "w": "cases",
+    "start": 5.36,
+    "end": 5.68
+   },
+   {
+    "w": "sont",
+    "start": 5.68,
+    "end": 5.92
+   },
+   {
+    "w": "vides.",
+    "start": 5.92,
+    "end": 6.48
+   },
+   {
+    "w": "Tournons.",
+    "start": 6.48,
+    "end": 7.28
+   },
+   {
+    "w": "Une",
+    "start": 7.44,
+    "end": 7.84
+   },
+   {
+    "w": "case",
+    "start": 7.84,
+    "end": 8.16
+   },
+   {
+    "w": "gravée.",
+    "start": 8.16,
+    "end": 8.96
+   },
+   {
+    "w": "Sigma.",
+    "start": 8.96,
+    "end": 9.76
+   },
+   {
+    "w": "Éclipse",
+    "start": 9.76,
+    "end": 10.32
+   },
+   {
+    "w": "de",
+    "start": 10.32,
+    "end": 10.48
+   },
+   {
+    "w": "lune.",
+    "start": 10.48,
+    "end": 11.04
+   },
+   {
+    "w": "État",
+    "start": 11.04,
+    "end": 11.44
+   },
+   {
+    "w": "de",
+    "start": 11.6,
+    "end": 11.84
+   },
+   {
+    "w": "soleil.",
+    "start": 11.84,
+    "end": 12.48
+   },
+   {
+    "w": "Puis",
+    "start": 12.48,
+    "end": 12.8
+   },
+   {
+    "w": "l'heure.",
+    "start": 12.8,
+    "end": 13.44
+   },
+   {
+    "w": "Ce",
+    "start": 13.44,
+    "end": 13.6
+   },
+   {
+    "w": "cadran",
+    "start": 13.6,
+    "end": 14.0
+   },
+   {
+    "w": "y",
+    "start": 14.16,
+    "end": 14.32
+   },
+   {
+    "w": "ajoute",
+    "start": 14.32,
+    "end": 14.72
+   },
+   {
+    "w": "zéro,",
+    "start": 14.72,
+    "end": 15.12
+   },
+   {
+    "w": "huit",
+    "start": 15.12,
+    "end": 15.44
+   },
+   {
+    "w": "ou",
+    "start": 15.44,
+    "end": 15.6
+   },
+   {
+    "w": "seize",
+    "start": 15.6,
+    "end": 15.84
+   },
+   {
+    "w": "heures.",
+    "start": 15.84,
+    "end": 16.4
+   },
+   {
+    "w": "Devant,",
+    "start": 16.4,
+    "end": 17.12
+   },
+   {
+    "w": "la",
+    "start": 17.12,
+    "end": 17.28
+   },
+   {
+    "w": "pleine",
+    "start": 17.28,
+    "end": 17.6
+   },
+   {
+    "w": "lune",
+    "start": 17.6,
+    "end": 17.92
+   },
+   {
+    "w": "tombe",
+    "start": 17.92,
+    "end": 18.24
+   },
+   {
+    "w": "sur",
+    "start": 18.24,
+    "end": 18.32
+   },
+   {
+    "w": "l'aiguille",
+    "start": 18.32,
+    "end": 18.8
+   },
+   {
+    "w": "du",
+    "start": 18.8,
+    "end": 18.88
+   },
+   {
+    "w": "dragon.",
+    "start": 18.88,
+    "end": 19.36
+   },
+   {
+    "w": "Hypothétique",
+    "start": 19.36,
+    "end": 20.0
+   },
+   {
+    "w": "elle",
+    "start": 20.08,
+    "end": 20.32
+   },
+   {
+    "w": "aussi.",
+    "start": 20.32,
+    "end": 20.8
+   },
+   {
+    "w": "Une",
+    "start": 20.8,
+    "end": 20.96
+   },
+   {
+    "w": "éclipse",
+    "start": 20.96,
+    "end": 21.52
+   },
+   {
+    "w": "est",
+    "start": 21.52,
+    "end": 21.68
+   },
+   {
+    "w": "possible.",
+    "start": 21.68,
+    "end": 22.32
+   },
+   {
+    "w": "Attention,",
+    "start": 22.32,
+    "end": 23.04
+   },
+   {
+    "w": "ces",
+    "start": 23.04,
+    "end": 23.28
+   },
+   {
+    "w": "signes",
+    "start": 23.28,
+    "end": 23.68
+   },
+   {
+    "w": "sont",
+    "start": 23.68,
+    "end": 23.84
+   },
+   {
+    "w": "calculés",
+    "start": 23.84,
+    "end": 24.32
+   },
+   {
+    "w": "par",
+    "start": 24.32,
+    "end": 24.56
+   },
+   {
+    "w": "notre",
+    "start": 24.56,
+    "end": 24.72
+   },
+   {
+    "w": "modèle.",
+    "start": 24.72,
+    "end": 25.36
+   },
+   {
+    "w": "Et",
+    "start": 25.36,
+    "end": 25.52
+   },
+   {
+    "w": "la",
+    "start": 25.52,
+    "end": 25.6
+   },
+   {
+    "w": "machine",
+    "start": 25.6,
+    "end": 26.0
+   },
+   {
+    "w": "ne",
+    "start": 26.0,
+    "end": 26.16
+   },
+   {
+    "w": "disait",
+    "start": 26.16,
+    "end": 26.4
+   },
+   {
+    "w": "pas",
+    "start": 26.4,
+    "end": 26.56
+   },
+   {
+    "w": "où",
+    "start": 26.56,
+    "end": 26.72
+   },
+   {
+    "w": "l'observer.",
+    "start": 26.72,
+    "end": 27.44
+   }
+  ],
+  "7": [
+   {
+    "w": "Servait-elle",
+    "start": 0.24,
+    "end": 0.8
+   },
+   {
+    "w": "à",
+    "start": 0.88,
+    "end": 1.04
+   },
+   {
+    "w": "naviguer",
+    "start": 1.04,
+    "end": 1.52
+   },
+   {
+    "w": "?",
+    "start": 1.52,
+    "end": 1.6
+   },
+   {
+    "w": "Non,",
+    "start": 1.84,
+    "end": 2.4
+   },
+   {
+    "w": "ni",
+    "start": 2.4,
+    "end": 2.72
+   },
+   {
+    "w": "viseur,",
+    "start": 2.72,
+    "end": 3.2
+   },
+   {
+    "w": "ni",
+    "start": 3.2,
+    "end": 3.36
+   },
+   {
+    "w": "latitude,",
+    "start": 3.36,
+    "end": 4.0
+   },
+   {
+    "w": "ni",
+    "start": 4.0,
+    "end": 4.24
+   },
+   {
+    "w": "longitude.",
+    "start": 4.24,
+    "end": 5.04
+   },
+   {
+    "w": "C'est",
+    "start": 5.04,
+    "end": 5.28
+   },
+   {
+    "w": "un",
+    "start": 5.28,
+    "end": 5.44
+   },
+   {
+    "w": "calculateur",
+    "start": 5.44,
+    "end": 6.08
+   },
+   {
+    "w": "du",
+    "start": 6.08,
+    "end": 6.24
+   },
+   {
+    "w": "ciel.",
+    "start": 6.24,
+    "end": 6.88
+   },
+   {
+    "w": "Mais",
+    "start": 6.88,
+    "end": 7.04
+   },
+   {
+    "w": "regardez",
+    "start": 7.04,
+    "end": 7.6
+   },
+   {
+    "w": "ces",
+    "start": 7.6,
+    "end": 7.76
+   },
+   {
+    "w": "plaques,",
+    "start": 7.76,
+    "end": 8.32
+   },
+   {
+    "w": "un",
+    "start": 8.32,
+    "end": 8.48
+   },
+   {
+    "w": "calendrier",
+    "start": 8.48,
+    "end": 9.2
+   },
+   {
+    "w": "des",
+    "start": 9.2,
+    "end": 9.36
+   },
+   {
+    "w": "étoiles.",
+    "start": 9.36,
+    "end": 9.92
+   },
+   {
+    "w": "Quand",
+    "start": 9.92,
+    "end": 10.16
+   },
+   {
+    "w": "le",
+    "start": 10.16,
+    "end": 10.24
+   },
+   {
+    "w": "soleil",
+    "start": 10.24,
+    "end": 10.56
+   },
+   {
+    "w": "atteint",
+    "start": 10.56,
+    "end": 10.88
+   },
+   {
+    "w": "la",
+    "start": 10.88,
+    "end": 11.04
+   },
+   {
+    "w": "lettre",
+    "start": 11.04,
+    "end": 11.36
+   },
+   {
+    "w": "XI,",
+    "start": 11.36,
+    "end": 11.84
+   },
+   {
+    "w": "on",
+    "start": 11.84,
+    "end": 12.08
+   },
+   {
+    "w": "lit,",
+    "start": 12.08,
+    "end": 12.48
+   },
+   {
+    "w": "la",
+    "start": 12.48,
+    "end": 12.64
+   },
+   {
+    "w": "Pléiade",
+    "start": 12.64,
+    "end": 13.36
+   },
+   {
+    "w": "se",
+    "start": 13.36,
+    "end": 13.44
+   },
+   {
+    "w": "lève",
+    "start": 13.44,
+    "end": 13.76
+   },
+   {
+    "w": "le",
+    "start": 13.76,
+    "end": 13.84
+   },
+   {
+    "w": "matin.",
+    "start": 13.84,
+    "end": 14.48
+   },
+   {
+    "w": "Bien",
+    "start": 14.48,
+    "end": 14.72
+   },
+   {
+    "w": "plus",
+    "start": 14.72,
+    "end": 14.88
+   },
+   {
+    "w": "tard,",
+    "start": 14.88,
+    "end": 15.12
+   },
+   {
+    "w": "pour",
+    "start": 15.12,
+    "end": 15.36
+   },
+   {
+    "w": "Végès,",
+    "start": 15.36,
+    "end": 16.16
+   },
+   {
+    "w": "la",
+    "start": 16.16,
+    "end": 16.32
+   },
+   {
+    "w": "mer",
+    "start": 16.32,
+    "end": 16.56
+   },
+   {
+    "w": "est",
+    "start": 16.56,
+    "end": 16.72
+   },
+   {
+    "w": "sûre",
+    "start": 16.72,
+    "end": 17.04
+   },
+   {
+    "w": "après",
+    "start": 17.04,
+    "end": 17.28
+   },
+   {
+    "w": "se",
+    "start": 17.28,
+    "end": 17.44
+   },
+   {
+    "w": "lever.",
+    "start": 17.44,
+    "end": 18.0
+   },
+   {
+    "w": "Déjà",
+    "start": 18.0,
+    "end": 18.24
+   },
+   {
+    "w": "Hésiode",
+    "start": 18.32,
+    "end": 19.04
+   },
+   {
+    "w": "avertissait,",
+    "start": 19.04,
+    "end": 19.76
+   },
+   {
+    "w": "quand",
+    "start": 19.84,
+    "end": 20.0
+   },
+   {
+    "w": "les",
+    "start": 20.0,
+    "end": 20.16
+   },
+   {
+    "w": "Pléiades",
+    "start": 20.16,
+    "end": 20.8
+   },
+   {
+    "w": "tombent",
+    "start": 20.8,
+    "end": 21.12
+   },
+   {
+    "w": "dans",
+    "start": 21.12,
+    "end": 21.2
+   },
+   {
+    "w": "la",
+    "start": 21.2,
+    "end": 21.36
+   },
+   {
+    "w": "noire",
+    "start": 21.36,
+    "end": 21.68
+   },
+   {
+    "w": "mer,",
+    "start": 21.68,
+    "end": 22.16
+   },
+   {
+    "w": "rentrent",
+    "start": 22.16,
+    "end": 22.48
+   },
+   {
+    "w": "tes",
+    "start": 22.56,
+    "end": 22.72
+   },
+   {
+    "w": "navires.",
+    "start": 22.72,
+    "end": 23.52
+   },
+   {
+    "w": "La",
+    "start": 23.52,
+    "end": 23.68
+   },
+   {
+    "w": "machine",
+    "start": 23.68,
+    "end": 24.08
+   },
+   {
+    "w": "ne",
+    "start": 24.08,
+    "end": 24.24
+   },
+   {
+    "w": "disait",
+    "start": 24.24,
+    "end": 24.56
+   },
+   {
+    "w": "pas",
+    "start": 24.56,
+    "end": 24.72
+   },
+   {
+    "w": "où",
+    "start": 24.72,
+    "end": 24.96
+   },
+   {
+    "w": "aller,",
+    "start": 24.96,
+    "end": 25.36
+   },
+   {
+    "w": "mais",
+    "start": 25.36,
+    "end": 25.52
+   },
+   {
+    "w": "quand",
+    "start": 25.52,
+    "end": 25.84
+   },
+   {
+    "w": "partir.",
+    "start": 25.84,
+    "end": 26.56
+   },
+   {
+    "w": "La",
+    "start": 26.56,
+    "end": 26.8
+   },
+   {
+    "w": "voici",
+    "start": 26.8,
+    "end": 27.28
+   },
+   {
+    "w": "reconstruite,",
+    "start": 27.28,
+    "end": 28.0
+   },
+   {
+    "w": "ses",
+    "start": 28.0,
+    "end": 28.24
+   },
+   {
+    "w": "rapports",
+    "start": 28.24,
+    "end": 28.64
+   },
+   {
+    "w": "prouvés",
+    "start": 28.64,
+    "end": 29.04
+   },
+   {
+    "w": "mathématiquement,",
+    "start": 29.12,
+    "end": 29.92
+   },
+   {
+    "w": "en",
+    "start": 29.92,
+    "end": 30.16
+   },
+   {
+    "w": "accès",
+    "start": 30.16,
+    "end": 30.56
+   },
+   {
+    "w": "libre.",
+    "start": 30.56,
+    "end": 31.12
+   },
+   {
+    "w": "Et",
+    "start": 31.12,
+    "end": 31.36
+   },
+   {
+    "w": "vous,",
+    "start": 31.36,
+    "end": 31.76
+   },
+   {
+    "w": "quelle",
+    "start": 31.76,
+    "end": 32.08
+   },
+   {
+    "w": "date",
+    "start": 32.08,
+    "end": 32.32
+   },
+   {
+    "w": "allez-vous",
+    "start": 32.32,
+    "end": 32.72
+   },
+   {
+    "w": "lui",
+    "start": 32.8,
+    "end": 32.96
+   },
+   {
+    "w": "demander?",
+    "start": 32.96,
+    "end": 33.36
+   }
+  ]
+ }
+}

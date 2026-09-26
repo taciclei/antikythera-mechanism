@@ -1,0 +1,13 @@
+Il y a plus de deux mille ans, quelqu'un a enfermé le ciel dans une boîte : éclipses, phases de la Lune, planètes, et même les Jeux olympiques. En mille neuf cent, des pêcheurs d'éponges découvrent l'épave d'Anticythère. En mille neuf cent deux, sur un bloc de bronze rongé, apparaît une roue dentée. Apprenons à lire cette machine.
+---
+Voici notre reconstruction. Sur le côté, une manivelle. Tournez-la : toutes les aiguilles avancent ensemble. En avant, le temps passe ; en arrière, il remonte. Un peu plus de quatre tours et demi : une année.
+---
+Devant, deux anneaux : le calendrier égyptien de trois cent soixante-cinq jours, et le zodiaque. La sphère dorée, c'est le Soleil : il donne la date et son signe. La Lune fait le tour en un mois, à vitesse variable, comme la vraie. Sa petite boule montre la phase. Aiguilles superposées : noire, nouvelle lune. Opposées : blanche… pleine lune.
+---
+Autour du centre, cinq petites sphères : les planètes, lues sur le zodiaque. Leurs engrenages ont presque tous disparu : c'est une reconstruction, une hypothèse. Regardez Mars : sa sphère s'arrête… puis recule, comme dans le ciel quand la Terre dépasse Mars.
+---
+Retournons la machine. En haut, une spirale de deux cent trente-cinq mois : dix-neuf ans. Chaque case, un mois, avec son nom. Dedans, un petit cadran fait un tour en quatre ans. Tournons… Olympia ! Cette année, les Jeux olympiques. L'année, pas le jour.
+---
+En bas, le Saros : deux cent vingt-trois mois, puis les éclipses reviennent. La plupart des cases sont vides. Tournons… Une case gravée ! Sigma : éclipse de Lune. Êta : de Soleil. Puis l'heure ; ce cadran y ajoute zéro, huit ou seize heures. Devant, la pleine lune tombe sur l'aiguille du Dragon, hypothétique elle aussi : une éclipse est possible. Attention : ces signes sont calculés par notre modèle. Et la machine ne disait pas où l'observer.
+---
+Servait-elle à naviguer ? Non : ni viseur, ni latitude, ni longitude. C'est un calculateur du ciel. Mais regardez ces plaques : un calendrier des étoiles. Quand le Soleil atteint la lettre Xi, on lit : La Pléiade se lève le matin. Bien plus tard, pour Végèce, la mer est sûre après ce lever. Déjà Hésiode avertissait : quand les Pléiades tombent dans la noire mer, rentre tes navires. La machine ne disait pas où aller, mais quand partir. La voici reconstruite, ses rapports prouvés mathématiquement, en accès libre. Et vous, quelle date allez-vous lui demander ?

@@ -1,0 +1,53 @@
+{
+ "chapters": [
+  {
+   "n": 1,
+   "file": "ch1.wav",
+   "duration": 20.56,
+   "start": 0.0
+  },
+  {
+   "n": 2,
+   "file": "ch2.wav",
+   "duration": 12.06,
+   "start": 21.36
+  },
+  {
+   "n": 3,
+   "file": "ch3.wav",
+   "duration": 23.08,
+   "start": 34.22
+  },
+  {
+   "n": 4,
+   "file": "ch4.wav",
+   "duration": 15.03,
+   "start": 58.1
+  },
+  {
+   "n": 5,
+   "file": "ch5.wav",
+   "duration": 15.62,
+   "start": 73.93
+  },
+  {
+   "n": 6,
+   "file": "ch6.wav",
+   "duration": 27.51,
+   "start": 90.35
+  },
+  {
+   "n": 7,
+   "file": "ch7.wav",
+   "duration": 33.51,
+   "start": 118.66
+  }
+ ],
+ "gap_between_chapters": 0.8,
+ "sample_rate": 24000,
+ "lead_tail_silence": 0.15,
+ "voice": "Voxtral-4B-TTS-2603 (MLX bf16), voix fr_female",
+ "total_duration": 152.17,
+ "loudness_lufs_integrated": -16.02,
+ "true_peak_dbtp": -1.1
+}

@@ -1,0 +1,589 @@
+{
+ "derive_par_siecle": {
+  "soleil_moyen": {
+   "modele_deg_par_siecle": 36000.768805,
+   "reel_deg_par_siecle": 36000.76983,
+   "derive_deg_par_siecle": -0.001,
+   "rapport": "b = 1 tour/an"
+  },
+  "apogee_solaire": {
+   "modele_deg_par_siecle": 0.0,
+   "reel_deg_par_siecle": 1.71954,
+   "derive_deg_par_siecle": -1.7195,
+   "rapport": "su56 fixe (apogée fixe)"
+  },
+  "lune_longitude_moyenne": {
+   "modele_deg_par_siecle": 481273.435603,
+   "reel_deg_par_siecle": 481267.881234,
+   "derive_deg_par_siecle": 5.5544,
+   "rapport": "moon = 254/19 tour/an"
+  },
+  "lune_elongation_D": {
+   "modele_deg_par_siecle": 445272.666798,
+   "reel_deg_par_siecle": 445267.111403,
+   "derive_deg_par_siecle": 5.5554,
+   "rapport": "235/19 lunaisons/an (Méton)"
+  },
+  "lune_anomalie_moyenne": {
+   "modele_deg_par_siecle": 477220.481456,
+   "reel_deg_par_siecle": 477198.867505,
+   "derive_deg_par_siecle": 21.614,
+   "rapport": "k/e_table = 56165/4237"
+  },
+  "perigee_lunaire": {
+   "modele_deg_par_siecle": 4052.954147,
+   "reel_deg_par_siecle": 4069.013729,
+   "derive_deg_par_siecle": -16.0596,
+   "rapport": "e_table = 477/4237 tour/an"
+  },
+  "noeud_lunaire": {
+   "modele_deg_par_siecle": -1935.525205,
+   "reel_deg_par_siecle": -1934.136289,
+   "derive_deg_par_siecle": -1.3889,
+   "rapport": "t_nodes = −5/93 tour/an"
+  },
+  "argument_de_latitude_F": {
+   "modele_deg_par_siecle": 483208.960807,
+   "reel_deg_par_siecle": 483202.017523,
+   "derive_deg_par_siecle": 6.9433,
+   "rapport": "Lune − nœud"
+  },
+  "mercury": {
+   "modele_deg_par_siecle": 149478.192142,
+   "reel_deg_par_siecle": 149474.072249,
+   "derive_deg_par_siecle": 4.1199,
+   "rapport": "épicycle x_me20 = 1993/480 tour/an (longitude héliocentrique)"
+  },
+  "venus": {
+   "modele_deg_par_siecle": 58520.730243,
+   "reel_deg_par_siecle": 58519.21303,
+   "derive_deg_par_siecle": 1.5172,
+   "rapport": "épicycle x_r1 = 751/462 tour/an (longitude héliocentrique)"
+  },
+  "mars": {
+   "modele_deg_par_siecle": 19141.253836,
+   "reel_deg_par_siecle": 19141.696447,
+   "derive_deg_par_siecle": -0.4426,
+   "rapport": "t_mars = 151/284 tour/an"
+  },
+  "jupiter": {
+   "modele_deg_par_siecle": 3034.948533,
+   "reel_deg_par_siecle": 3036.302775,
+   "derive_deg_par_siecle": -1.3542,
+   "rapport": "t_jupiter = 29/344 tour/an"
+  },
+  "saturn": {
+   "modele_deg_par_siecle": 1221.745548,
+   "reel_deg_par_siecle": 1223.511069,
+   "derive_deg_par_siecle": -1.7655,
+   "rapport": "t_saturn = 15/442 tour/an"
+  },
+  "_resume": {
+   "mois_synodique_modele_jours": 29.53022,
+   "mois_synodique_reel_jours": 29.530588853,
+   "phases_de_la_lune_avance_jours_par_siecle": 0.456,
+   "eclipses_F_derive_deg_par_siecle": 6.9433
+  }
+ },
+ "machine_vs_ciel_2026_2028": {
+  "periode": [
+   "2026-01-01",
+   "2028-12-31"
+  ],
+  "pas_jours": 1.0,
+  "ecarts": {
+   "soleil_vrai": {
+    "ecart_max_deg": 0.478,
+    "ecart_moyen_abs_deg": 0.302,
+    "ecart_moyen_deg": -0.0
+   },
+   "soleil_moyen": {
+    "ecart_max_deg": 1.914,
+    "ecart_moyen_abs_deg": 1.218,
+    "ecart_moyen_deg": -0.0
+   },
+   "lune": {
+    "ecart_max_deg": 4.599,
+    "ecart_moyen_abs_deg": 1.54,
+    "ecart_moyen_deg": 1.526
+   },
+   "noeud_ascendant": {
+    "ecart_max_deg": 0.403,
+    "ecart_moyen_abs_deg": 0.382,
+    "ecart_moyen_deg": -0.382
+   },
+   "mercure": {
+    "ecart_max_deg": 11.404,
+    "ecart_moyen_abs_deg": 3.704,
+    "ecart_moyen_deg": 0.02
+   },
+   "venus": {
+    "ecart_max_deg": 3.657,
+    "ecart_moyen_abs_deg": 1.081,
+    "ecart_moyen_deg": 0.171
+   },
+   "mars": {
+    "ecart_max_deg": 7.95,
+    "ecart_moyen_abs_deg": 4.501,
+    "ecart_moyen_deg": -1.174
+   },
+   "jupiter": {
+    "ecart_max_deg": 7.257,
+    "ecart_moyen_abs_deg": 3.672,
+    "ecart_moyen_deg": -3.666
+   },
+   "saturne": {
+    "ecart_max_deg": 6.047,
+    "ecart_moyen_abs_deg": 5.048,
+    "ecart_moyen_deg": 5.048
+   }
+  },
+  "debuts_de_retrogradation_reels": {
+   "mercure": [
+    "2026-02-27",
+    "2026-06-30",
+    "2026-10-25",
+    "2027-02-10",
+    "2027-06-11",
+    "2027-10-08",
+    "2028-01-25",
+    "2028-05-22",
+    "2028-09-20"
+   ],
+   "venus": [
+    "2026-10-04",
+    "2028-05-11"
+   ],
+   "mars": [
+    "2027-01-11"
+   ],
+   "jupiter": [
+    "2026-12-14",
+    "2028-01-13"
+   ],
+   "saturne": [
+    "2026-07-27",
+    "2027-08-10",
+    "2028-08-23"
+   ]
+  },
+  "reference": "Soleil Meeus ch. 25 ; Lune 6 termes de Meeus ch. 47 ; planètes JPL approx_pos table 1 (https://ssd.jpl.nasa.gov/planets/approx_pos.html) + précession ; précision ~0.01° / 0.3° / 0.1°",
+  "debuts_de_retrogradation_machine": {
+   "mercure": [
+    "2026-03-02",
+    "2026-06-26",
+    "2026-10-20",
+    "2027-02-13",
+    "2027-06-09",
+    "2027-10-02",
+    "2028-01-26",
+    "2028-05-21",
+    "2028-09-14"
+   ],
+   "venus": [
+    "2026-10-04",
+    "2028-05-10"
+   ],
+   "mars": [
+    "2027-01-14"
+   ],
+   "jupiter": [
+    "2026-12-08",
+    "2028-01-11"
+   ],
+   "saturne": [
+    "2026-07-31",
+    "2027-08-13",
+    "2028-08-25"
+   ]
+  }
+ },
+ "eclipses_2026_2028_regle_limites": {
+  "regle": "limits",
+  "eclipses": [
+   {
+    "reelle": "2026-02-17 12:13:05 solaire annulaire (Saros 121)",
+    "jd_reel": 2461089.009085648,
+    "machine": "2026-02-17 09:32 TT",
+    "ecart_heures": -2.69,
+    "distance_noeud_machine_deg": 11.913,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 150
+   },
+   {
+    "reelle": "2026-03-03 11:34:52 lunaire totale (Saros 133)",
+    "jd_reel": 2461102.9825462964,
+    "machine": "2026-03-03 02:08 TT",
+    "ecart_heures": -9.45,
+    "distance_noeud_machine_deg": 2.307,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 151
+   },
+   {
+    "reelle": "2026-08-12 17:47:05 solaire totale (Saros 126)",
+    "jd_reel": 2461265.241030093,
+    "machine": "2026-08-12 13:52 TT",
+    "ecart_heures": -3.92,
+    "distance_noeud_machine_deg": 8.925,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 156
+   },
+   {
+    "reelle": "2026-08-28 04:14:04 lunaire partielle (Saros 138)",
+    "jd_reel": 2461280.676435185,
+    "machine": "2026-08-28 07:43 TT",
+    "ecart_heures": 3.48,
+    "distance_noeud_machine_deg": 7.427,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 157
+   },
+   {
+    "reelle": "2027-02-06 16:00:47 solaire annulaire (Saros 131)",
+    "jd_reel": 2461443.1672106483,
+    "machine": "2027-02-06 12:42 TT",
+    "ecart_heures": -3.31,
+    "distance_noeud_machine_deg": 4.098,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 162
+   },
+   {
+    "reelle": "2027-02-20 23:14:06 lunaire pénombrale (Saros 143)",
+    "jd_reel": 2461457.468125,
+    "machine": "2027-02-20 14:13 TT",
+    "ecart_heures": -9.02,
+    "distance_noeud_machine_deg": 10.509,
+    "aiguille_du_dragon": true,
+    "cadran_saros": false,
+    "case_saros": 163
+   },
+   {
+    "reelle": "2027-07-18 16:04:09 lunaire pénombrale (Saros 110)",
+    "jd_reel": 2461605.169548611,
+    "machine": "NON PRÉDITE",
+    "syzygie_machine": "2027-07-18 14:32 TT",
+    "ecart_heures": -1.54,
+    "distance_noeud_machine_deg": 15.759
+   },
+   {
+    "reelle": "2027-08-02 10:07:49 solaire totale (Saros 136)",
+    "jd_reel": 2461619.9220949076,
+    "machine": "2027-08-02 07:34 TT",
+    "ecart_heures": -2.56,
+    "distance_noeud_machine_deg": 0.481,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 168
+   },
+   {
+    "reelle": "2027-08-17 07:14:59 lunaire pénombrale (Saros 148)",
+    "jd_reel": 2461634.8020717595,
+    "machine": "NON PRÉDITE",
+    "syzygie_machine": "2027-08-17 09:00 TT",
+    "ecart_heures": 1.75,
+    "distance_noeud_machine_deg": 15.161
+   },
+   {
+    "reelle": "2028-01-12 04:14:13 lunaire partielle (Saros 115)",
+    "jd_reel": 2461782.6765393517,
+    "machine": "NON PRÉDITE",
+    "syzygie_machine": "2028-01-12 01:47 TT",
+    "ecart_heures": -2.45,
+    "distance_noeud_machine_deg": 11.433
+   },
+   {
+    "reelle": "2028-01-26 15:08:58 solaire annulaire (Saros 141)",
+    "jd_reel": 2461797.131226852,
+    "machine": "2028-01-26 10:32 TT",
+    "ecart_heures": -4.61,
+    "distance_noeud_machine_deg": 3.487,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 174
+   },
+   {
+    "reelle": "2028-07-06 18:20:57 lunaire partielle (Saros 120)",
+    "jd_reel": 2461959.264548611,
+    "machine": "2028-07-06 13:34 TT",
+    "ecart_heures": -4.79,
+    "distance_noeud_machine_deg": 8.123,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 180
+   },
+   {
+    "reelle": "2028-07-22 02:56:39 solaire totale (Saros 146)",
+    "jd_reel": 2461974.622673611,
+    "machine": "2028-07-22 02:45 TT",
+    "ecart_heures": -0.2,
+    "distance_noeud_machine_deg": 8.027,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 180
+   },
+   {
+    "reelle": "2028-12-31 16:53:15 lunaire totale (Saros 125)",
+    "jd_reel": 2462137.2036458333,
+    "machine": "2028-12-31 17:02 TT",
+    "ecart_heures": 0.15,
+    "distance_noeud_machine_deg": 3.094,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 186
+   }
+  ],
+  "predictions_sans_eclipse_reelle": [],
+  "sources": [
+   "https://eclipse.gsfc.nasa.gov/SEdecade/SEdecade2021.html",
+   "https://eclipse.gsfc.nasa.gov/LEdecade/LEdecade2021.html"
+  ]
+ },
+ "eclipses_2026_2028_regle_freeth2014": {
+  "regle": "freeth2014",
+  "eclipses": [
+   {
+    "reelle": "2026-02-17 12:13:05 solaire annulaire (Saros 121)",
+    "jd_reel": 2461089.009085648,
+    "machine": "2026-02-17 09:32 TT",
+    "ecart_heures": -2.69,
+    "distance_noeud_machine_deg": 11.913,
+    "aiguille_du_dragon": false,
+    "cadran_saros": true,
+    "case_saros": 150
+   },
+   {
+    "reelle": "2026-03-03 11:34:52 lunaire totale (Saros 133)",
+    "jd_reel": 2461102.9825462964,
+    "machine": "2026-03-03 02:08 TT",
+    "ecart_heures": -9.45,
+    "distance_noeud_machine_deg": 2.307,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 151
+   },
+   {
+    "reelle": "2026-08-12 17:47:05 solaire totale (Saros 126)",
+    "jd_reel": 2461265.241030093,
+    "machine": "2026-08-12 13:52 TT",
+    "ecart_heures": -3.92,
+    "distance_noeud_machine_deg": 8.925,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 156
+   },
+   {
+    "reelle": "2026-08-28 04:14:04 lunaire partielle (Saros 138)",
+    "jd_reel": 2461280.676435185,
+    "machine": "2026-08-28 07:43 TT",
+    "ecart_heures": 3.48,
+    "distance_noeud_machine_deg": 7.427,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 157
+   },
+   {
+    "reelle": "2027-02-06 16:00:47 solaire annulaire (Saros 131)",
+    "jd_reel": 2461443.1672106483,
+    "machine": "2027-02-06 12:42 TT",
+    "ecart_heures": -3.31,
+    "distance_noeud_machine_deg": 4.098,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 162
+   },
+   {
+    "reelle": "2027-02-20 23:14:06 lunaire pénombrale (Saros 143)",
+    "jd_reel": 2461457.468125,
+    "machine": "2027-02-20 14:13 TT",
+    "ecart_heures": -9.02,
+    "distance_noeud_machine_deg": 10.509,
+    "aiguille_du_dragon": true,
+    "cadran_saros": false,
+    "case_saros": 163
+   },
+   {
+    "reelle": "2027-07-18 16:04:09 lunaire pénombrale (Saros 110)",
+    "jd_reel": 2461605.169548611,
+    "machine": "2027-07-18 14:32 TT",
+    "ecart_heures": -1.54,
+    "distance_noeud_machine_deg": 15.759,
+    "aiguille_du_dragon": true,
+    "cadran_saros": false,
+    "case_saros": 168
+   },
+   {
+    "reelle": "2027-08-02 10:07:49 solaire totale (Saros 136)",
+    "jd_reel": 2461619.9220949076,
+    "machine": "2027-08-02 07:34 TT",
+    "ecart_heures": -2.56,
+    "distance_noeud_machine_deg": 0.481,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 168
+   },
+   {
+    "reelle": "2027-08-17 07:14:59 lunaire pénombrale (Saros 148)",
+    "jd_reel": 2461634.8020717595,
+    "machine": "NON PRÉDITE",
+    "syzygie_machine": "2027-08-17 09:00 TT",
+    "ecart_heures": 1.75,
+    "distance_noeud_machine_deg": 15.161
+   },
+   {
+    "reelle": "2028-01-12 04:14:13 lunaire partielle (Saros 115)",
+    "jd_reel": 2461782.6765393517,
+    "machine": "2028-01-12 01:47 TT",
+    "ecart_heures": -2.45,
+    "distance_noeud_machine_deg": 11.433,
+    "aiguille_du_dragon": true,
+    "cadran_saros": false,
+    "case_saros": 174
+   },
+   {
+    "reelle": "2028-01-26 15:08:58 solaire annulaire (Saros 141)",
+    "jd_reel": 2461797.131226852,
+    "machine": "2028-01-26 10:32 TT",
+    "ecart_heures": -4.61,
+    "distance_noeud_machine_deg": 3.487,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 174
+   },
+   {
+    "reelle": "2028-07-06 18:20:57 lunaire partielle (Saros 120)",
+    "jd_reel": 2461959.264548611,
+    "machine": "2028-07-06 13:34 TT",
+    "ecart_heures": -4.79,
+    "distance_noeud_machine_deg": 8.123,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 180
+   },
+   {
+    "reelle": "2028-07-22 02:56:39 solaire totale (Saros 146)",
+    "jd_reel": 2461974.622673611,
+    "machine": "2028-07-22 02:45 TT",
+    "ecart_heures": -0.2,
+    "distance_noeud_machine_deg": 8.027,
+    "aiguille_du_dragon": false,
+    "cadran_saros": true,
+    "case_saros": 180
+   },
+   {
+    "reelle": "2028-12-31 16:53:15 lunaire totale (Saros 125)",
+    "jd_reel": 2462137.2036458333,
+    "machine": "2028-12-31 17:02 TT",
+    "ecart_heures": 0.15,
+    "distance_noeud_machine_deg": 3.094,
+    "aiguille_du_dragon": true,
+    "cadran_saros": true,
+    "case_saros": 186
+   }
+  ],
+  "predictions_sans_eclipse_reelle": [],
+  "sources": [
+   "https://eclipse.gsfc.nasa.gov/SEdecade/SEdecade2021.html",
+   "https://eclipse.gsfc.nasa.gov/LEdecade/LEdecade2021.html"
+  ]
+ },
+ "jeux_olympiques": {
+  "Jeux de Los Angeles (14-30 juillet 2028)": {
+   "date": "2028-07-21",
+   "secteur": "ΝΕΜΕΑ ΑΛΙΕΙΑ",
+   "annee_de_l_olympiade": 4,
+   "olympiade_numero": 701
+  },
+  "été 2029": {
+   "date": "2029-08-01",
+   "secteur": "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+   "annee_de_l_olympiade": 1,
+   "olympiade_numero": 702
+  },
+  "été 2025": {
+   "date": "2025-08-01",
+   "secteur": "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+   "annee_de_l_olympiade": 1,
+   "olympiade_numero": 701
+  },
+  "Tokyo 2020 tenus en 2021": {
+   "date": "2021-08-01",
+   "secteur": "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+   "annee_de_l_olympiade": 1,
+   "olympiade_numero": 700
+  },
+  "Athènes 1896": {
+   "date": "1896-04-10",
+   "secteur": "ΙΣΘΜΙΑ ΠΥΘΙΑ",
+   "annee_de_l_olympiade": 3,
+   "olympiade_numero": 668
+  },
+  "1re Olympiade, été 776 av. J.-C.": {
+   "date": "-775-08-01",
+   "secteur": "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+   "annee_de_l_olympiade": 1,
+   "olympiade_numero": 1
+  },
+  "Olympiade de 332 av. J.-C.": {
+   "date": "-331-08-01",
+   "secteur": "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+   "annee_de_l_olympiade": 1,
+   "olympiade_numero": 112
+  },
+  "explication": "Le cycle antique commence à l'été 776 av. J.-C. (année astronomique −775) ; comme il n'y a pas d'année 0, les années olympiques antiques prolongées sont celles ≡ 1 (mod 4) : 1 apr. J.-C., …, 2021, 2025, 2029. Les Jeux modernes (depuis 1896) tombent les années divisibles par 4 : ils sont décalés d'un an. Calée sur le cycle antique, l'aiguille montre donc ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ à l'été 2025 et 2029, et ΝΕΜΕΑ ΑΛΙΕΙΑ (4e année de l'olympiade) pendant les Jeux de Los Angeles 2028. Clin d'œil : les Jeux de Tokyo 2020, reportés à l'été 2021, sont tombés une année « olympique » antique."
+ },
+ "calage": {
+  "epoch_jd": 2451545.0,
+  "epoch": "2000-01-01 12:00 TT",
+  "t_epoch": 0.0,
+  "mean_elements_deg": {
+   "sun_L0": 280.46646,
+   "sun_M": 357.52911,
+   "moon_L": 218.3164477,
+   "moon_D": 297.8501921,
+   "moon_M": 134.9633964,
+   "moon_F": 93.272095,
+   "moon_Omega": 125.0445479,
+   "mercury": 252.250906,
+   "venus": 181.979801,
+   "earth": 100.466457,
+   "mars": 355.433,
+   "jupiter": 34.351519,
+   "saturn": 50.077444,
+   "sun_apogee": 102.93734999999998,
+   "moon_perigee": 83.3530513
+  },
+  "anchors": {
+   "saros_nouvelle_lune_moyenne": "-0204-04-27 22:41 TT (julien) [205 av. J.-C.]",
+   "saros_jd": 1646664.4448702591,
+   "metonique_nouvelle_lune_moyenne": "-0329-06-28 17:24 TT (julien) [330 av. J.-C.]",
+   "metonique_jd": 1601069.2247344044,
+   "debut_des_cases": "nouvelle lune moyenne + 2/38 de mois (1er croissant, Freeth 2014)",
+   "sources": {
+    "saros_FM1": "Freeth 2014, PLoS ONE 9(7):e103275 : « FM1 at -204 May-12 » (205 av. J.-C.)",
+    "callippic": "Début du 1er cycle de Callippe : solstice d'été de 330 av. J.-C. (28 juin julien), Evans 1998 p. 186-187",
+    "olympiad": "1re Olympiade : été 776 av. J.-C. (année astronomique -775) ; Jeux en été",
+    "nabonassar_jd": "Ère de Nabonassar : 1 Thot = mercredi 26 février 747 av. J.-C. (julien), JD 1448638 (calcul Meeus ch. 7)"
+   }
+  },
+  "cycles": {
+   "saros": {
+    "offset": 123,
+    "lunaisons_depuis_repere": 27255.827361644722
+   },
+   "metonic": {
+    "offset": 123,
+    "lunaisons_depuis_repere": 28799.827361644722
+   }
+  },
+  "olympiad": {
+   "t_start": -2.5290735,
+   "year_start": 1997,
+   "number_at_start": 694,
+   "convention": "l'aiguille entre dans ΟΛΥΜΠΙΑ au solstice d'été moyen (Soleil moyen à 90°) des années olympiques antiques (≡ 776 av. J.-C. mod 4)"
+  }
+ }
+}

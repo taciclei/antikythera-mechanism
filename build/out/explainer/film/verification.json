@@ -1,0 +1,313 @@
+{
+ "ok": true,
+ "errors": 0,
+ "warnings": 2,
+ "passed": 55,
+ "results": [
+  {
+   "level": "OK",
+   "check": "keys->frames.crank",
+   "detail": "frames[].crank = eval des clés (float32) sur les 4009 images"
+  },
+  {
+   "level": "OK",
+   "check": "keys.crank",
+   "detail": "313 clés triées, une par image, interpolations Blender connues"
+  },
+  {
+   "level": "OK",
+   "check": "keys.explode",
+   "detail": "7 clés triées, une par image, interpolations Blender connues"
+  },
+  {
+   "level": "OK",
+   "check": "keys.patina",
+   "detail": "4 clés triées, une par image, interpolations Blender connues"
+  },
+  {
+   "level": "OK",
+   "check": "explode/patina bornés",
+   "detail": "explode et patina dans [0, 1]"
+  },
+  {
+   "level": "OK",
+   "check": "segments contigus",
+   "detail": "33 plans couvrent les images 1-4009 sans trou ni chevauchement"
+  },
+  {
+   "level": "OK",
+   "check": "frames[]",
+   "detail": "une entrée par image"
+  },
+  {
+   "level": "INFO",
+   "check": "durée",
+   "detail": "4009 images = 160.36 s (2 min 40.36 s)"
+  },
+  {
+   "level": "OK",
+   "check": "schéma 4.3 (retrograde_split)",
+   "detail": "une image du schéma par image du film (1816-1938), images 29-151 croissantes, fichiers présents"
+  },
+  {
+   "level": "OK",
+   "check": "schéma 6.5a (eclipse)",
+   "detail": "une image du schéma par image du film (2915-3006), images 147-238 croissantes, fichiers présents"
+  },
+  {
+   "level": "OK",
+   "check": "schéma 7.3a (pleiades_lever)",
+   "detail": "une image du schéma par image du film (3432-3491), images 61-150 croissantes, fichiers présents"
+  },
+  {
+   "level": "OK",
+   "check": "schéma 7.4 (pleiades_coucher)",
+   "detail": "une image du schéma par image du film (3520-3659), images 15-200 croissantes, fichiers présents"
+  },
+  {
+   "level": "OK",
+   "check": "callouts : ancres",
+   "detail": "toutes les ancres existent dans anchors"
+  },
+  {
+   "level": "OK",
+   "check": "callouts : in <= out",
+   "detail": "aucun callout vide après recadrage sur son plan"
+  },
+  {
+   "level": "OK",
+   "check": "callouts : compteur",
+   "detail": "aucun callout posé sur le compteur (haut gauche) quand il est visible"
+  },
+  {
+   "level": "WARN",
+   "check": "callouts : tenue >= 2 s",
+   "detail": "16 callouts plus courts que la tenue minimale de la charte : 1.4 « 30 roues dentées conservées » 1.5 s ; 2.2 « En arrière : le passé » 1.4 s ; 3.1 « Zodiaque · 12 signes » 1.1 s ; 3.3 « Vitesse variable (Hipparque) » 1.9 s ; 3.4 « Lune dans ΧΗΛΑΙ (Balance) » 1.7 s ; 4.2 « Station » 1.7 s ; 4.2 « Rétrogradation » 1.2 s ; 4.2 « « stêrigmos » dans l'inscription » 1.2 s ; 6.1 « Cycle babylonien » 1.4 s ; 6.2 « Η = éclipse de Soleil » 1.4 s ; 6.3 « Ici : +0 h » 1.3 s ; 6.4 « Pleine lune sur le Dragon : éclipse possible » 1.4 s ; 7.1 « Calculateur du ciel » 1.4 s ; 7.3b « ΠΑΧΩΝ : mois cité par Végèce » 1.0 s ; 7.4 « Végèce : mer fermée du 11 nov. au 10 mars » 1.4 s ; 7.5 « Code et modèle libres · GitHub » 1.9 s"
+  },
+  {
+   "level": "OK",
+   "check": "mentions obligatoires",
+   "detail": "9 mentions présentes (callouts, textes des schémas et des incrustations)"
+  },
+  {
+   "level": "OK",
+   "check": "textes interdits / crédit",
+   "detail": "aucun texte interdit (callouts, schémas, incrustations) ; crédit = ['taciclei']"
+  },
+  {
+   "level": "INFO",
+   "check": "callouts recadrés sur leur plan",
+   "detail": "6.5a « Signes calculés par notre modèle » [2920, 3069] -> [2920, 3006] ; 6.5b « Possible · pas le lieu » [2993, 3071] -> [3007, 3071]"
+  },
+  {
+   "level": "OK",
+   "check": "caméras",
+   "detail": "poses triées couvrant chaque plan"
+  },
+  {
+   "level": "OK",
+   "check": "manivelle : le temps avance",
+   "detail": "la manivelle ne recule que dans 2.2 (« en arrière ») et aux sauts des éclairs 1.2, du retour à 0 (1.3) et de la reprise 4.3"
+  },
+  {
+   "level": "INFO",
+   "check": "manivelle",
+   "detail": "de 0.000 (image 1) à 9.720 (image 4009) ; max 9.720"
+  },
+  {
+   "level": "OK",
+   "check": "compteur = manivelle",
+   "detail": "le texte du compteur suit la manivelle de chaque image"
+  },
+  {
+   "level": "OK",
+   "check": "compteur : visibilité",
+   "detail": "visible de « Tournez-la » (2.1) à 7.5, masqué au chapitre 1, pendant la reprise 4.3, les schémas plein écran et le carton"
+  },
+  {
+   "level": "OK",
+   "check": "aiguille de la Lune (stroboscope)",
+   "detail": "vitesse max de l'aiguille de la Lune sur les plans de face (> 90°/image = effet de roue de chariot) : 2.1 44°, 2.2 89°, 2.3 77°, 4.1 37°, 4.2 34°, 4.3 23°, 7.4 26°"
+  },
+  {
+   "level": "OK",
+   "check": "beat flash_eclipse (1.2a, image 127 (5.04 s), manivelle 9.0140)",
+   "detail": "9,014 : pleine lune sur l'aiguille du Dragon (Soleil à l'autre bout), sans signe d'éclipse — pleine lune (élongation 180.084°), Lune à 0.411° du nœud (≤ 1.0°), boule éclairée à 1.0000 | synchro : image 127 dans [122, 143] (« éclipses », mots [124, 146]) | manivelle tenue à 9.0140 des images 122 à 143"
+  },
+  {
+   "level": "OK",
+   "check": "beat flash_phase (1.2b, image 149 (5.92 s), manivelle 0.9900)",
+   "detail": "0,99 : boule des phases à moitié claire — boule éclairée à 0.491 (attendu 0.40-0.60), élongation 88.9° | synchro : image 149 dans [144, 175] (« phases », mots [146, 150]) | manivelle tenue à 0.9900 des images 144 à 175"
+  },
+  {
+   "level": "OK",
+   "check": "beat flash_jeux (1.2d, image 217 (8.64 s), manivelle 5.9500)",
+   "detail": "5,95 : aiguille des Jeux dans ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ — secteur des Jeux sous l'aiguille : ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ | synchro : image 217 dans [212, 241] (« Jeux », mots [214, 222]) | manivelle tenue à 5.9500 des images 212 à 241"
+  },
+  {
+   "level": "OK",
+   "check": "beat nouvelle_lune (3.4, image 1308 (52.28 s), manivelle 0.9720)",
+   "detail": "0,972 : nouvelle lune, aiguilles Lune et Soleil superposées, boule noire (tenue de 3.1 à « Opposées ») — élongation 1.39° (écart 1.39° ≤ 7.5°), boule éclairée à 0.0001 ; Lune à 1.39° de l'aiguille de date, 0.89° de la sphère dorée | synchro : image 1308 dans [1308, 1392] (« Aiguilles superposées (cue 15, absente de l'STT) », mots [1308, 1392]) | manivelle tenue à 0.9720 des images 894 à 1396"
+  },
+  {
+   "level": "OK",
+   "check": "beat pleine_lune_3_4 (3.4, image 1446 (57.80 s), manivelle 1.0090)",
+   "detail": "1,009 : pleine lune, Lune dans ΧΗΛΑΙ, Soleil (aiguille de date et sphère dorée) dans ΚΡΙΟΣ — élongation 179.10° (écart 0.90° ≤ 7.5°), boule éclairée à 0.9999 ; Lune 2.3° dans ΧΗΛΑΙ ; aiguille de date 3.2° dans ΚΡΙΟΣ, sphère dorée 5.3° dans ΚΡΙΟΣ | synchro : image 1446 dans [1420, 1466] (« Opposées : blanche… pleine lune », mots [1396, 1466]) | manivelle tenue à 1.0090 des images 1446 à 1493"
+  },
+  {
+   "level": "OK",
+   "check": "beat mars_station_1 (4.2, image 1779 (71.12 s), manivelle 2.2169)",
+   "detail": "Mars s'arrête (1re station 2.2134) : sa vitesse change de signe — vitesse de Mars 1.3 -> -6.2 °/an de manivelle entre les images 1778 et 1779 | synchro : image 1779 dans [1770, 1790] (« s'arrête », mots [1770, 1790])"
+  },
+  {
+   "level": "OK",
+   "check": "beat mars_retro_max (4.2, image 1799 (71.92 s), manivelle 2.3174)",
+   "detail": "Mars recule au plus vite (opposition 2.3133) — vitesse de Mars -132.6 °/an (rétrograde) | synchro : image 1799 dans [1790, 1818] (« puis recule », mots [1790, 1818])"
+  },
+  {
+   "level": "OK",
+   "check": "beat mars_retro (4.2, image 1798 (71.88 s), manivelle 2.3116)",
+   "detail": "Mars rétrograde sur « recule » — vitesse de Mars -132.9 °/an (rétrograde) | synchro : image 1798 dans [1798, 1818] (« recule », mots [1798, 1818])"
+  },
+  {
+   "level": "OK",
+   "check": "beat mars_station_2 (4.2, image 1815 (72.56 s), manivelle 2.4200)",
+   "detail": "Mars repart (2e station 2.4131) juste avant la coupe vers 4.3 — vitesse de Mars -0.2 -> 12.1 °/an de manivelle entre les images 1814 et 1815 | synchro : image 1815 dans [1798, 1815] (« recule », mots [1798, 1818])"
+  },
+  {
+   "level": "OK",
+   "check": "beat mars_reprise_4_3 (4.3, image 1816 (72.60 s), manivelle 2.1000)",
+   "detail": "reprise 2,10 -> 2,52 avec le schéma : les deux stations repassent, image par image avec retrograde_split — manivelle = colonne du schéma image par image (oui) ; plage 2.100-2.520 ; stations aux images ['1855 (74.16 s)', '1898 (75.88 s)']"
+  },
+  {
+   "level": "OK",
+   "check": "beat olympia (5.3, image 2226 (89.00 s), manivelle 5.9158)",
+   "detail": "l'aiguille des Jeux entre dans ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ (5.9111) — secteur ΝΕΜΕΑ ΑΛΙΕΙΑ -> ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ entre les images 2225 et 2226 | reste dans ['ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ'] jusqu'à la fin du plan (image 2353) | synchro : image 2226 dans [2222, 2248] (« Olympia », mots [2224, 2248])"
+  },
+  {
+   "level": "OK",
+   "check": "beat saros_112 (6.2, image 2551 (102.00 s), manivelle 8.9751)",
+   "detail": "l'aiguille du Saros entre dans la case 112 (signe calculé Σ Η) après les cases vides 108-111 — case 111 -> 112 (signe « Σ Η ») ; cases parcourues avant dans le plan : [108, 109, 110, 111] (sans signe : [108, 109, 110, 111]) | synchro : image 2551 dans [2545, 2583] (« Une case gravée », mots [2545, 2583])"
+  },
+  {
+   "level": "OK",
+   "check": "beat exeligmos_0h (6.3, image 2669 (106.72 s), manivelle 8.9800)",
+   "detail": "aiguille de l'Exeligmos dans le secteur vide (+0 h) pendant tout le plan — heures à ajouter sur tout le plan : [0] | manivelle tenue à 8.9800 des images 2669 à 2766"
+  },
+  {
+   "level": "OK",
+   "check": "beat boule_noire_6_4 (6.4, image 2767 (110.64 s), manivelle 8.9800)",
+   "detail": "début de 6.4 : boule presque noire (8,98) — boule éclairée à 0.035 (attendu 0.00-0.05), élongation 21.6°"
+  },
+  {
+   "level": "OK",
+   "check": "beat dragon_full_moon (6.4, image 2834 (113.32 s), manivelle 9.0140)",
+   "detail": "9,014 : pleine lune sur l'aiguille du Dragon (≤ 1°), boule blanche ; tenue jusqu'à la fin de 7.1 — pleine lune (élongation 180.084°), Lune à 0.411° du nœud (≤ 1.0°), boule éclairée à 1.0000 | synchro : image 2834 dans [2807, 2843] (« la pleine lune tombe sur l'aiguille du Dragon », mots [2807, 2843]) | manivelle tenue à 9.0140 des images 2834 à 3241"
+  },
+  {
+   "level": "OK",
+   "check": "beat soleil_taureau (7.2, image 3363 (134.48 s), manivelle 9.1300)",
+   "detail": "Soleil vers 47° : 17° dans ΤΑΥΡΟΣ (lever du matin des Pléiades) — aiguille de date 16.80° dans ΤΑΥΡΟΣ (46.8°), sphère dorée 17.5° dans ΤΑΥΡΟΣ | synchro : image 3363 dans [3356, 3434] (« ksi », mots [3356, 3368]) | manivelle tenue à 9.1300 des images 3363 à 3525"
+  },
+  {
+   "level": "OK",
+   "check": "beat soleil_scorpion (7.4, image 3628 (145.08 s), manivelle 9.6000)",
+   "detail": "Soleil vers 216° : ΣΚΟΡΠΙΟΣ (coucher du matin des Pléiades, fin oct.-début nov.) — aiguille de date 6.00° dans ΣΚΟΡΠΙΟΣ (216.0°), sphère dorée 4.8° dans ΣΚΟΡΠΙΟΣ ; entrée de l'aiguille de date dans ΣΚΟΡΠΙΟΣ à l'image 3619 (144.72 s) | synchro : image 3628 dans [3592, 3660] (« tombent dans la noire mer », mots [3592, 3626]) | manivelle tenue à 9.6000 des images 3628 à 3733"
+  },
+  {
+   "level": "OK",
+   "check": "6.1 : cases gravées qui clignotent",
+   "detail": "cases à signe traversées par l'aiguille (moteur) : 77 Σ Η @2383, 83 Σ Η @2400, 89 Η @2414, 95 Η @2426, 100 Σ @2437, 101 Η @2440, 106 Σ @2456, 107 Η @2461 ; la dernière est 107 Η"
+  },
+  {
+   "level": "OK",
+   "check": "6.1 : surlignages des cases",
+   "detail": "un clignotement par case, allumé à son entrée"
+  },
+  {
+   "level": "OK",
+   "check": "incrustations : placement",
+   "detail": "15 calques 2D (inserts.py), une image par image du film, dans leur plan"
+  },
+  {
+   "level": "OK",
+   "check": "incrustations rendues",
+   "detail": "séquences présentes sur disque : 15/15 (source des métadonnées : build/out/explainer/inserts/timing.json ; rendu : ~/voxtral-tts/bin/python tools/explainer/inserts.py)"
+  },
+  {
+   "level": "OK",
+   "check": "incrustation phases = machine",
+   "detail": "manivelle de chaque image = colonne « manivelle » de l'image affichée (écart max 0.0e+00 an)"
+  },
+  {
+   "level": "OK",
+   "check": "incrustation games_banner = machine",
+   "detail": "manivelle de chaque image = colonne « manivelle » de l'image affichée (écart max 0.0e+00 an)"
+  },
+  {
+   "level": "OK",
+   "check": "mise en page : chevauchements",
+   "detail": "callouts empilés dans les zones de la charte (overlay.py, tailles mesurées) : aucun ne touche un autre callout, le compteur, une incrustation, l'incrustation 3D ou un titre de chapitre"
+  },
+  {
+   "level": "OK",
+   "check": "mise en page : zone de sécurité",
+   "detail": "callouts entre y = 54 et y = 880 (au-dessus des sous-titres)"
+  },
+  {
+   "level": "OK",
+   "check": "audio : fichiers",
+   "detail": "7 fichiers WAV présents, durées et fréquence conformes"
+  },
+  {
+   "level": "OK",
+   "check": "audio : placement",
+   "detail": "chapitres dans l'ordre, sans chevauchement ; pré-roll 0.60 s, silences entre chapitres [1.4, 1.0, 1.0, 2.97, 1.0, 1.0] s, fin de la voix 156.34 s, fin du film 160.36 s (carton muet 4.02 s)"
+  },
+  {
+   "level": "OK",
+   "check": "audio = timeline",
+   "detail": "timeline.json audio[] et chapters[].audio_start_s = audio_placement.json"
+  },
+  {
+   "level": "OK",
+   "check": "audio : commande ffmpeg",
+   "detail": "adelay (ms) = départs, piste complétée à la durée du film"
+  },
+  {
+   "level": "OK",
+   "check": "audio : voix et premier plan du chapitre",
+   "detail": "décalage (s) du premier plan de chaque chapitre par rapport au début de sa voix (négatif = l'image précède) : ch1 -0.60, ch2 +1.76, ch3 +0.08, ch4 +0.00, ch5 -0.20, ch6 -0.20, ch7 +0.00"
+  },
+  {
+   "level": "OK",
+   "check": "sous-titres : fichier",
+   "detail": "46 répliques, textes identiques à narration.srt, subtitles_film.srt = timeline.json subtitles[]"
+  },
+  {
+   "level": "OK",
+   "check": "sous-titres : placement",
+   "detail": "chaque réplique garde son décalage dans son fichier de chapitre et reste dans la voix de ce chapitre ; aucune superposition"
+  },
+  {
+   "level": "OK",
+   "check": "sous-titres / voix",
+   "detail": "373 mots de la voix (STT) sur 373 tombent dans une réplique de leur chapitre (± 0,25 s)"
+  },
+  {
+   "level": "OK",
+   "check": "sous-titres : carton final",
+   "detail": "répliques pendant le carton 7.6 : [46] (non incrustées : burn_in = false)"
+  },
+  {
+   "level": "WARN",
+   "check": "sous-titres sur les schémas plein écran",
+   "detail": "répliques incrustées sur un schéma ou une carte plein écran, dont le bas porte du texte (monter la boîte ou l'éclaircir) : 3 (map), 34 (diagram), 35 (diagram), 41 (diagram)"
+  },
+  {
+   "level": "INFO",
+   "check": "sous-titres",
+   "detail": "46 répliques, de 00:00:00,680 à 00:02:36,390 ; plus courte 1.41 s ([])"
+  }
+ ]
+}

@@ -1,0 +1,902 @@
+{
+ "fps": 25,
+ "taille": [
+  1920,
+  1080
+ ],
+ "numerotation": "%04d.png, première image 0001",
+ "retrograde": {
+  "images": 200,
+  "duree_s": 8.0,
+  "plan": "4.3 (écran partagé)",
+  "segments": {
+   "mise_en_place": [
+    1,
+    38
+   ],
+   "balayage_manivelle": [
+    39,
+    138
+   ],
+   "tenue": [
+    139,
+    200
+   ]
+  },
+  "manivelle_debut_fin": [
+   2.1,
+   2.52
+  ],
+  "stations_manivelle": [
+   2.2135,
+   2.4131
+  ],
+  "opposition_manivelle": 2.3133,
+  "note": "Pour le plan 4.3 (4 s), utiliser les images 39-138 et poser AM_Controller[\"crank\"] = colonne « manivelle » image par image : le schéma et la machine s'arrêtent et reculent ensemble.",
+  "manivelle_par_image": [
+   {
+    "image": 1,
+    "manivelle": 2.1
+   },
+   {
+    "image": 2,
+    "manivelle": 2.1
+   },
+   {
+    "image": 3,
+    "manivelle": 2.1
+   },
+   {
+    "image": 4,
+    "manivelle": 2.1
+   },
+   {
+    "image": 5,
+    "manivelle": 2.1
+   },
+   {
+    "image": 6,
+    "manivelle": 2.1
+   },
+   {
+    "image": 7,
+    "manivelle": 2.1
+   },
+   {
+    "image": 8,
+    "manivelle": 2.1
+   },
+   {
+    "image": 9,
+    "manivelle": 2.1
+   },
+   {
+    "image": 10,
+    "manivelle": 2.1
+   },
+   {
+    "image": 11,
+    "manivelle": 2.1
+   },
+   {
+    "image": 12,
+    "manivelle": 2.1
+   },
+   {
+    "image": 13,
+    "manivelle": 2.1
+   },
+   {
+    "image": 14,
+    "manivelle": 2.1
+   },
+   {
+    "image": 15,
+    "manivelle": 2.1
+   },
+   {
+    "image": 16,
+    "manivelle": 2.1
+   },
+   {
+    "image": 17,
+    "manivelle": 2.1
+   },
+   {
+    "image": 18,
+    "manivelle": 2.1
+   },
+   {
+    "image": 19,
+    "manivelle": 2.1
+   },
+   {
+    "image": 20,
+    "manivelle": 2.1
+   },
+   {
+    "image": 21,
+    "manivelle": 2.1
+   },
+   {
+    "image": 22,
+    "manivelle": 2.1
+   },
+   {
+    "image": 23,
+    "manivelle": 2.1
+   },
+   {
+    "image": 24,
+    "manivelle": 2.1
+   },
+   {
+    "image": 25,
+    "manivelle": 2.1
+   },
+   {
+    "image": 26,
+    "manivelle": 2.1
+   },
+   {
+    "image": 27,
+    "manivelle": 2.1
+   },
+   {
+    "image": 28,
+    "manivelle": 2.1
+   },
+   {
+    "image": 29,
+    "manivelle": 2.1
+   },
+   {
+    "image": 30,
+    "manivelle": 2.1
+   },
+   {
+    "image": 31,
+    "manivelle": 2.1
+   },
+   {
+    "image": 32,
+    "manivelle": 2.1
+   },
+   {
+    "image": 33,
+    "manivelle": 2.1
+   },
+   {
+    "image": 34,
+    "manivelle": 2.1
+   },
+   {
+    "image": 35,
+    "manivelle": 2.1
+   },
+   {
+    "image": 36,
+    "manivelle": 2.1
+   },
+   {
+    "image": 37,
+    "manivelle": 2.1
+   },
+   {
+    "image": 38,
+    "manivelle": 2.1
+   },
+   {
+    "image": 39,
+    "manivelle": 2.1
+   },
+   {
+    "image": 40,
+    "manivelle": 2.10321
+   },
+   {
+    "image": 41,
+    "manivelle": 2.10649
+   },
+   {
+    "image": 42,
+    "manivelle": 2.10983
+   },
+   {
+    "image": 43,
+    "manivelle": 2.11323
+   },
+   {
+    "image": 44,
+    "manivelle": 2.11669
+   },
+   {
+    "image": 45,
+    "manivelle": 2.1202
+   },
+   {
+    "image": 46,
+    "manivelle": 2.12377
+   },
+   {
+    "image": 47,
+    "manivelle": 2.1274
+   },
+   {
+    "image": 48,
+    "manivelle": 2.13108
+   },
+   {
+    "image": 49,
+    "manivelle": 2.13482
+   },
+   {
+    "image": 50,
+    "manivelle": 2.1386
+   },
+   {
+    "image": 51,
+    "manivelle": 2.14244
+   },
+   {
+    "image": 52,
+    "manivelle": 2.14632
+   },
+   {
+    "image": 53,
+    "manivelle": 2.15025
+   },
+   {
+    "image": 54,
+    "manivelle": 2.15423
+   },
+   {
+    "image": 55,
+    "manivelle": 2.15825
+   },
+   {
+    "image": 56,
+    "manivelle": 2.16232
+   },
+   {
+    "image": 57,
+    "manivelle": 2.16642
+   },
+   {
+    "image": 58,
+    "manivelle": 2.17057
+   },
+   {
+    "image": 59,
+    "manivelle": 2.17476
+   },
+   {
+    "image": 60,
+    "manivelle": 2.17899
+   },
+   {
+    "image": 61,
+    "manivelle": 2.18325
+   },
+   {
+    "image": 62,
+    "manivelle": 2.18755
+   },
+   {
+    "image": 63,
+    "manivelle": 2.19188
+   },
+   {
+    "image": 64,
+    "manivelle": 2.19625
+   },
+   {
+    "image": 65,
+    "manivelle": 2.20065
+   },
+   {
+    "image": 66,
+    "manivelle": 2.20508
+   },
+   {
+    "image": 67,
+    "manivelle": 2.20954
+   },
+   {
+    "image": 68,
+    "manivelle": 2.21402
+   },
+   {
+    "image": 69,
+    "manivelle": 2.21854
+   },
+   {
+    "image": 70,
+    "manivelle": 2.22307
+   },
+   {
+    "image": 71,
+    "manivelle": 2.22764
+   },
+   {
+    "image": 72,
+    "manivelle": 2.23222
+   },
+   {
+    "image": 73,
+    "manivelle": 2.23683
+   },
+   {
+    "image": 74,
+    "manivelle": 2.24146
+   },
+   {
+    "image": 75,
+    "manivelle": 2.2461
+   },
+   {
+    "image": 76,
+    "manivelle": 2.25076
+   },
+   {
+    "image": 77,
+    "manivelle": 2.25544
+   },
+   {
+    "image": 78,
+    "manivelle": 2.26014
+   },
+   {
+    "image": 79,
+    "manivelle": 2.26484
+   },
+   {
+    "image": 80,
+    "manivelle": 2.26956
+   },
+   {
+    "image": 81,
+    "manivelle": 2.2743
+   },
+   {
+    "image": 82,
+    "manivelle": 2.27904
+   },
+   {
+    "image": 83,
+    "manivelle": 2.28379
+   },
+   {
+    "image": 84,
+    "manivelle": 2.28854
+   },
+   {
+    "image": 85,
+    "manivelle": 2.2933
+   },
+   {
+    "image": 86,
+    "manivelle": 2.29807
+   },
+   {
+    "image": 87,
+    "manivelle": 2.30284
+   },
+   {
+    "image": 88,
+    "manivelle": 2.30761
+   },
+   {
+    "image": 89,
+    "manivelle": 2.31239
+   },
+   {
+    "image": 90,
+    "manivelle": 2.31716
+   },
+   {
+    "image": 91,
+    "manivelle": 2.32193
+   },
+   {
+    "image": 92,
+    "manivelle": 2.3267
+   },
+   {
+    "image": 93,
+    "manivelle": 2.33146
+   },
+   {
+    "image": 94,
+    "manivelle": 2.33621
+   },
+   {
+    "image": 95,
+    "manivelle": 2.34096
+   },
+   {
+    "image": 96,
+    "manivelle": 2.3457
+   },
+   {
+    "image": 97,
+    "manivelle": 2.35044
+   },
+   {
+    "image": 98,
+    "manivelle": 2.35516
+   },
+   {
+    "image": 99,
+    "manivelle": 2.35986
+   },
+   {
+    "image": 100,
+    "manivelle": 2.36456
+   },
+   {
+    "image": 101,
+    "manivelle": 2.36924
+   },
+   {
+    "image": 102,
+    "manivelle": 2.3739
+   },
+   {
+    "image": 103,
+    "manivelle": 2.37854
+   },
+   {
+    "image": 104,
+    "manivelle": 2.38317
+   },
+   {
+    "image": 105,
+    "manivelle": 2.38778
+   },
+   {
+    "image": 106,
+    "manivelle": 2.39236
+   },
+   {
+    "image": 107,
+    "manivelle": 2.39693
+   },
+   {
+    "image": 108,
+    "manivelle": 2.40146
+   },
+   {
+    "image": 109,
+    "manivelle": 2.40598
+   },
+   {
+    "image": 110,
+    "manivelle": 2.41046
+   },
+   {
+    "image": 111,
+    "manivelle": 2.41492
+   },
+   {
+    "image": 112,
+    "manivelle": 2.41935
+   },
+   {
+    "image": 113,
+    "manivelle": 2.42375
+   },
+   {
+    "image": 114,
+    "manivelle": 2.42812
+   },
+   {
+    "image": 115,
+    "manivelle": 2.43245
+   },
+   {
+    "image": 116,
+    "manivelle": 2.43675
+   },
+   {
+    "image": 117,
+    "manivelle": 2.44101
+   },
+   {
+    "image": 118,
+    "manivelle": 2.44524
+   },
+   {
+    "image": 119,
+    "manivelle": 2.44943
+   },
+   {
+    "image": 120,
+    "manivelle": 2.45358
+   },
+   {
+    "image": 121,
+    "manivelle": 2.45768
+   },
+   {
+    "image": 122,
+    "manivelle": 2.46175
+   },
+   {
+    "image": 123,
+    "manivelle": 2.46577
+   },
+   {
+    "image": 124,
+    "manivelle": 2.46975
+   },
+   {
+    "image": 125,
+    "manivelle": 2.47368
+   },
+   {
+    "image": 126,
+    "manivelle": 2.47756
+   },
+   {
+    "image": 127,
+    "manivelle": 2.4814
+   },
+   {
+    "image": 128,
+    "manivelle": 2.48518
+   },
+   {
+    "image": 129,
+    "manivelle": 2.48892
+   },
+   {
+    "image": 130,
+    "manivelle": 2.4926
+   },
+   {
+    "image": 131,
+    "manivelle": 2.49623
+   },
+   {
+    "image": 132,
+    "manivelle": 2.4998
+   },
+   {
+    "image": 133,
+    "manivelle": 2.50331
+   },
+   {
+    "image": 134,
+    "manivelle": 2.50677
+   },
+   {
+    "image": 135,
+    "manivelle": 2.51017
+   },
+   {
+    "image": 136,
+    "manivelle": 2.51351
+   },
+   {
+    "image": 137,
+    "manivelle": 2.51679
+   },
+   {
+    "image": 138,
+    "manivelle": 2.52
+   },
+   {
+    "image": 139,
+    "manivelle": 2.52
+   },
+   {
+    "image": 140,
+    "manivelle": 2.52
+   },
+   {
+    "image": 141,
+    "manivelle": 2.52
+   },
+   {
+    "image": 142,
+    "manivelle": 2.52
+   },
+   {
+    "image": 143,
+    "manivelle": 2.52
+   },
+   {
+    "image": 144,
+    "manivelle": 2.52
+   },
+   {
+    "image": 145,
+    "manivelle": 2.52
+   },
+   {
+    "image": 146,
+    "manivelle": 2.52
+   },
+   {
+    "image": 147,
+    "manivelle": 2.52
+   },
+   {
+    "image": 148,
+    "manivelle": 2.52
+   },
+   {
+    "image": 149,
+    "manivelle": 2.52
+   },
+   {
+    "image": 150,
+    "manivelle": 2.52
+   },
+   {
+    "image": 151,
+    "manivelle": 2.52
+   },
+   {
+    "image": 152,
+    "manivelle": 2.52
+   },
+   {
+    "image": 153,
+    "manivelle": 2.52
+   },
+   {
+    "image": 154,
+    "manivelle": 2.52
+   },
+   {
+    "image": 155,
+    "manivelle": 2.52
+   },
+   {
+    "image": 156,
+    "manivelle": 2.52
+   },
+   {
+    "image": 157,
+    "manivelle": 2.52
+   },
+   {
+    "image": 158,
+    "manivelle": 2.52
+   },
+   {
+    "image": 159,
+    "manivelle": 2.52
+   },
+   {
+    "image": 160,
+    "manivelle": 2.52
+   },
+   {
+    "image": 161,
+    "manivelle": 2.52
+   },
+   {
+    "image": 162,
+    "manivelle": 2.52
+   },
+   {
+    "image": 163,
+    "manivelle": 2.52
+   },
+   {
+    "image": 164,
+    "manivelle": 2.52
+   },
+   {
+    "image": 165,
+    "manivelle": 2.52
+   },
+   {
+    "image": 166,
+    "manivelle": 2.52
+   },
+   {
+    "image": 167,
+    "manivelle": 2.52
+   },
+   {
+    "image": 168,
+    "manivelle": 2.52
+   },
+   {
+    "image": 169,
+    "manivelle": 2.52
+   },
+   {
+    "image": 170,
+    "manivelle": 2.52
+   },
+   {
+    "image": 171,
+    "manivelle": 2.52
+   },
+   {
+    "image": 172,
+    "manivelle": 2.52
+   },
+   {
+    "image": 173,
+    "manivelle": 2.52
+   },
+   {
+    "image": 174,
+    "manivelle": 2.52
+   },
+   {
+    "image": 175,
+    "manivelle": 2.52
+   },
+   {
+    "image": 176,
+    "manivelle": 2.52
+   },
+   {
+    "image": 177,
+    "manivelle": 2.52
+   },
+   {
+    "image": 178,
+    "manivelle": 2.52
+   },
+   {
+    "image": 179,
+    "manivelle": 2.52
+   },
+   {
+    "image": 180,
+    "manivelle": 2.52
+   },
+   {
+    "image": 181,
+    "manivelle": 2.52
+   },
+   {
+    "image": 182,
+    "manivelle": 2.52
+   },
+   {
+    "image": 183,
+    "manivelle": 2.52
+   },
+   {
+    "image": 184,
+    "manivelle": 2.52
+   },
+   {
+    "image": 185,
+    "manivelle": 2.52
+   },
+   {
+    "image": 186,
+    "manivelle": 2.52
+   },
+   {
+    "image": 187,
+    "manivelle": 2.52
+   },
+   {
+    "image": 188,
+    "manivelle": 2.52
+   },
+   {
+    "image": 189,
+    "manivelle": 2.52
+   },
+   {
+    "image": 190,
+    "manivelle": 2.52
+   },
+   {
+    "image": 191,
+    "manivelle": 2.52
+   },
+   {
+    "image": 192,
+    "manivelle": 2.52
+   },
+   {
+    "image": 193,
+    "manivelle": 2.52
+   },
+   {
+    "image": 194,
+    "manivelle": 2.52
+   },
+   {
+    "image": 195,
+    "manivelle": 2.52
+   },
+   {
+    "image": 196,
+    "manivelle": 2.52
+   },
+   {
+    "image": 197,
+    "manivelle": 2.52
+   },
+   {
+    "image": 198,
+    "manivelle": 2.52
+   },
+   {
+    "image": 199,
+    "manivelle": 2.52
+   },
+   {
+    "image": 200,
+    "manivelle": 2.52
+   }
+  ]
+ },
+ "retrograde_split": {
+  "identique_a": "retrograde",
+  "alpha": "moitié gauche transparente (RGBA)"
+ },
+ "eclipse": {
+  "images": 250,
+  "duree_s": 10.0,
+  "plan": "6.5 (plein écran)",
+  "segments": {
+   "mise_en_place": [
+    1,
+    34
+   ],
+   "nouvelle_lune_loin_du_noeud": [
+    35,
+    80
+   ],
+   "quelques_mois_plus_tard": [
+    81,
+    102
+   ],
+   "eclipse_de_soleil": [
+    103,
+    146
+   ],
+   "eclipse_de_lune": [
+    147,
+    184
+   ],
+   "aiguille_du_dragon_tenue": [
+    185,
+    250
+   ]
+  },
+  "note": "Le plan 6.5 dure 6,5 s avec un retour sur la machine : la fin (éclipse de Lune + Dragon, images 147-250) suffit si le plan est court."
+ },
+ "pleiades_lever": {
+  "images": 150,
+  "duree_s": 6.0,
+  "plan": "7.3 (plein écran, puis retour sur l'anneau égyptien)",
+  "segments": {
+   "tout_est_lisible_a_partir_de": 100
+  }
+ },
+ "pleiades_coucher": {
+  "images": 225,
+  "duree_s": 9.0,
+  "plan": "7.4 (incrustation, puis retour sur la machine)",
+  "segments": {
+   "hesiode": [
+    15,
+    164
+   ],
+   "mer_fermee": [
+    97,
+    225
+   ],
+   "conclusion": [
+    163,
+    225
+   ]
+  }
+ }
+}

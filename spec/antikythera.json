@@ -2679,6 +2679,18 @@
      "length": 72.0
     },
     "glyphs": "eclipse glyph placeholders optional",
+    "glyphs_computed": {
+     "kind": "COMPUTED BY OUR MODEL, optional: not the glyphs of the original and not engraved in am.blend (only in the film working copy am_atelier.blend, collection AM_GLYPHS_COMPUTED)",
+     "table": "tools/explainer/engine.py glyph_table(Machine(), t_debut_cycle = 0, rule = 'limits') = build/out/explainer/glyphs.json modele_epoque_t0.limits (uncalibrated machine; cell 1 is under the pointer at crank 0): 55 engraved cells, 28 Σ, 42 Η, 15 with both",
+     "rule": "Cell j = one lunar month of the machine. Σ (ΣΕΛΗΝΗ, lunar eclipse) if at the machine's full Moon in the cell the Moon pointer is within 10.8 deg of a node (Dragon Hand, umbral limit); Η (ΗΛΙΟΣ, solar eclipse) if at its new Moon it is within 17.0 deg. Both: 'Σ Η' (Σ first, as on the original). No hour (ΩΡ) nor index letter: the epoch is not calibrated. Glyph scheme and the eclipse-year rule 'freeth2014' (same glyphs for cells 106-112): Freeth 2014.",
+     "layout": {
+      "size": 2.5,
+      "placement": "one FONT object per engraved cell (built-in font, align centre/centre, text up = radially outward; same extrusion, z, material and body as the other back texts); 'Σ Η' on two lines (Σ outer). Centred at the cell's mid angle psi_c = 8 pi (j - 0.5) / 223 and midway between rho(psi_c) + 0.9 and min(rho(psi_c + 2 pi) - 0.9, 71.0), the band the cell marks span; where the last-turn band is too narrow: one line ('Σ Η') and a smaller size"
+     },
+     "sources": [
+      "F14"
+     ]
+    },
     "status": "SURVIVING"
    },
    "follower": "Each spiral pointer carries a radial slider (owned by the pointer body n or g) with a pin r 0.5 riding in the groove at rho(psi). psi_mod is computed from the crank c directly, never from the wrapped pointer rotation: Metonic psi_mod = 10*pi*fmod(fmod(c/19, 1) + 1, 1); Saros psi_mod = 8*pi*fmod(fmod(c*235/4237, 1) + 1, 1). rho(psi_mod) through a driver F-curve lookup table (>= 1800 keys, LINEAR; clear the 2 default keys first). The groove is the spiral offset by +-0.6 with round ends (r 0.6) centred on the spiral points at psi = 0 and psi = turns*2pi.",
@@ -2689,10 +2701,28 @@
      "radius": 18.0,
      "sectors": 4,
      "labels": [
-      "ΙΣΘΜΙΑ",
-      "ΟΛΥΜΠΙΑ",
-      "ΝΕΜΕΑ",
-      "ΠΥΘΙΑ"
+      "ΝΕΜΕΑ ΝΑΑ",
+      "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+      "ΝΕΜΕΑ ΑΛΙΕΙΑ",
+      "ΙΣΘΜΙΑ ΠΥΘΙΑ"
+     ],
+     "label_years": [
+      2,
+      1,
+      4,
+      3
+     ],
+     "label_note": "Historical pairs: each sector names the two festivals of one year of the 4-year cycle. Year 1 Isthmia + Olympia, year 2 Nemea + Naa (Dodona), year 3 Isthmia + Pythia (Delphi), year 4 Nemea + Halieia (Rhodes; read after 2008, 'probably' for the National Archaeological Museum). The pointer turns anticlockwise seen from the back, so turning the crank forward it reads sectors 1 -> 0 -> 3 -> 2 = years 1 -> 2 -> 3 -> 4 (label_years): ΟΛΥΜΠΙΑ is read in the Olympic year. Replaces the single names of prompt v1.2 (ΙΣΘΜΙΑ, ΟΛΥΜΠΙΑ, ΝΕΜΕΑ, ΠΥΘΙΑ), whose year 2 (ΙΣΘΜΙΑ) was wrong.",
+     "label_layout": {
+      "size": 2.0,
+      "r_centre": 10.5,
+      "lines": "two per sector: the label split at the space, first festival on the outer line",
+      "placement": "one FONT object per sector (built-in font, align centre/centre), block centred on the sector bisector psi = sector_tilt_deg + 90 (k + 0.5) at r_centre from the dial centre, text up = radially outward (read from the back); same extrusion, z, material, body and collection as the other back texts"
+     },
+     "label_sources": [
+      "F08",
+      "F08SI",
+      "I17"
      ],
      "sector_tilt_deg": 8,
      "pointer_body": "o",
@@ -3119,6 +3149,9 @@
   "F06": "https://www.nature.com/articles/nature05357",
   "F06SI": "https://static-content.springer.com/esm/art%3A10.1038%2Fnature05357/MediaObjects/41586_2006_BFnature05357_MOESM1_ESM.pdf",
   "F08SI": "https://archive.nyu.edu/bitstream/2451/60882/2/Freeth_Jones_Steele_Bitsakis_2008_supplementary.pdf",
+  "F08": "https://doi.org/10.1038/nature07130",
+  "I17": "https://doi.org/10.2972/hesperia.86.1.0129",
+  "F14": "https://doi.org/10.1371/journal.pone.0103275",
   "FJ12": "http://dlib.nyu.edu/awdl/isaw/isaw-papers/4/",
   "P74": "https://gwern.net/doc/history/1974-desollaprice.pdf",
   "B20": "https://bhi.co.uk/wp-content/uploads/2020/12/BHI-Antikythera-Mechanism-Evidence-of-a-Lunar-Calendar.pdf",

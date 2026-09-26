@@ -1,0 +1,2028 @@
+{
+ "fps": 25,
+ "taille": [
+  1920,
+  1080
+ ],
+ "numerotation": "%04d.png, première image 0001",
+ "alpha": "RGBA à alpha droit (non prémultiplié) ; ombre portée de la charte déjà incluse dans les calques transparents ; ffmpeg : overlay=format=auto",
+ "charte": "build/out/explainer/film/overlay_style.json (tools/explainer/overlay.py)",
+ "map": {
+  "images": 120,
+  "duree_s": 4.8,
+  "plan": "1.3 (plein écran, opaque)",
+  "rgba": false,
+  "segments": {
+   "carte_lisible_des": 1,
+   "epave_pulse": [
+    7,
+    120
+   ],
+   "printemps_1900": [
+    17,
+    29
+   ],
+   "symi": [
+    31,
+    43
+   ],
+   "profondeur": [
+    45,
+    57
+   ],
+   "tout_est_lisible_a_partir_de": 58
+  },
+  "note": "Lent travelling avant vers Anticythère sur toute la durée (vue MAP_V0 -> MAP_V1). Côtes : Natural Earth 10 m (domaine public), simplifiées à 0,0022° ; épave au nord-est d'Anticythère (faits.md 1.5). Aucune ville. Symi est hors carte, à l'est (flèche).",
+  "textes": [
+   "PÉLOPONNÈSE",
+   "CRÈTE",
+   "Cythère",
+   "Anticythère",
+   "épave",
+   "40–50 m de fond",
+   "Symi",
+   "50 km",
+   "N",
+   "Printemps 1900",
+   "Pêcheurs d'éponges de Symi"
+  ]
+ },
+ "phases": {
+  "images": 175,
+  "duree_s": 7.0,
+  "plan": "3.4 (incrustation, transparent)",
+  "rgba": true,
+  "boite": [
+   1096,
+   96,
+   1824,
+   716
+  ],
+  "segments": {
+   "entree": [
+    1,
+    12
+   ],
+   "nouvelle_lune_tenue": [
+    13,
+    90
+   ],
+   "manivelle_0972_1009": [
+    91,
+    141
+   ],
+   "pleine_lune_tenue": [
+    142,
+    165
+   ],
+   "sortie": [
+    166,
+    175
+   ]
+  },
+  "note": "Caler l'image 91 sur « Opposées » : AM_Controller[\"crank\"] = colonne « manivelle » image par image ; la Lune du schéma et la boule de la machine suivent la même élongation (engine.py). La légende « Superposées : nouvelle lune » / « Opposées : pleine lune » est dans l'incrustation : ne pas la doubler en callout ; reste « Lune dans ΧΗΛΑΙ (Balance) ».",
+  "manivelle_par_image": [
+   {
+    "image": 1,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 2,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 3,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 4,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 5,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 6,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 7,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 8,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 9,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 10,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 11,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 12,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 13,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 14,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 15,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 16,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 17,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 18,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 19,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 20,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 21,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 22,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 23,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 24,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 25,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 26,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 27,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 28,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 29,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 30,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 31,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 32,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 33,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 34,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 35,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 36,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 37,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 38,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 39,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 40,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 41,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 42,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 43,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 44,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 45,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 46,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 47,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 48,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 49,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 50,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 51,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 52,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 53,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 54,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 55,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 56,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 57,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 58,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 59,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 60,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 61,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 62,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 63,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 64,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 65,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 66,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 67,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 68,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 69,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 70,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 71,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 72,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 73,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 74,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 75,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 76,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 77,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 78,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 79,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 80,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 81,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 82,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 83,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 84,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 85,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 86,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 87,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 88,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 89,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 90,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 91,
+    "manivelle": 0.972,
+    "elongation_deg": 1.39
+   },
+   {
+    "image": 92,
+    "manivelle": 0.972044,
+    "elongation_deg": 1.59
+   },
+   {
+    "image": 93,
+    "manivelle": 0.972173,
+    "elongation_deg": 2.17
+   },
+   {
+    "image": 94,
+    "manivelle": 0.972384,
+    "elongation_deg": 3.12
+   },
+   {
+    "image": 95,
+    "manivelle": 0.972673,
+    "elongation_deg": 4.43
+   },
+   {
+    "image": 96,
+    "manivelle": 0.973036,
+    "elongation_deg": 6.07
+   },
+   {
+    "image": 97,
+    "manivelle": 0.973471,
+    "elongation_deg": 8.05
+   },
+   {
+    "image": 98,
+    "manivelle": 0.973973,
+    "elongation_deg": 10.35
+   },
+   {
+    "image": 99,
+    "manivelle": 0.974538,
+    "elongation_deg": 12.94
+   },
+   {
+    "image": 100,
+    "manivelle": 0.975165,
+    "elongation_deg": 15.85
+   },
+   {
+    "image": 101,
+    "manivelle": 0.975848,
+    "elongation_deg": 19.03
+   },
+   {
+    "image": 102,
+    "manivelle": 0.976584,
+    "elongation_deg": 22.48
+   },
+   {
+    "image": 103,
+    "manivelle": 0.977371,
+    "elongation_deg": 26.2
+   },
+   {
+    "image": 104,
+    "manivelle": 0.978203,
+    "elongation_deg": 30.17
+   },
+   {
+    "image": 105,
+    "manivelle": 0.979078,
+    "elongation_deg": 34.38
+   },
+   {
+    "image": 106,
+    "manivelle": 0.979992,
+    "elongation_deg": 38.81
+   },
+   {
+    "image": 107,
+    "manivelle": 0.980942,
+    "elongation_deg": 43.45
+   },
+   {
+    "image": 108,
+    "manivelle": 0.981923,
+    "elongation_deg": 48.28
+   },
+   {
+    "image": 109,
+    "manivelle": 0.982933,
+    "elongation_deg": 53.29
+   },
+   {
+    "image": 110,
+    "manivelle": 0.983968,
+    "elongation_deg": 58.45
+   },
+   {
+    "image": 111,
+    "manivelle": 0.985024,
+    "elongation_deg": 63.75
+   },
+   {
+    "image": 112,
+    "manivelle": 0.986098,
+    "elongation_deg": 69.16
+   },
+   {
+    "image": 113,
+    "manivelle": 0.987186,
+    "elongation_deg": 74.67
+   },
+   {
+    "image": 114,
+    "manivelle": 0.988285,
+    "elongation_deg": 80.24
+   },
+   {
+    "image": 115,
+    "manivelle": 0.989391,
+    "elongation_deg": 85.84
+   },
+   {
+    "image": 116,
+    "manivelle": 0.9905,
+    "elongation_deg": 91.46
+   },
+   {
+    "image": 117,
+    "manivelle": 0.991609,
+    "elongation_deg": 97.06
+   },
+   {
+    "image": 118,
+    "manivelle": 0.992715,
+    "elongation_deg": 102.63
+   },
+   {
+    "image": 119,
+    "manivelle": 0.993814,
+    "elongation_deg": 108.13
+   },
+   {
+    "image": 120,
+    "manivelle": 0.994902,
+    "elongation_deg": 113.55
+   },
+   {
+    "image": 121,
+    "manivelle": 0.995976,
+    "elongation_deg": 118.85
+   },
+   {
+    "image": 122,
+    "manivelle": 0.997032,
+    "elongation_deg": 124.03
+   },
+   {
+    "image": 123,
+    "manivelle": 0.998067,
+    "elongation_deg": 129.05
+   },
+   {
+    "image": 124,
+    "manivelle": 0.999077,
+    "elongation_deg": 133.91
+   },
+   {
+    "image": 125,
+    "manivelle": 1.000058,
+    "elongation_deg": 138.59
+   },
+   {
+    "image": 126,
+    "manivelle": 1.001008,
+    "elongation_deg": 143.07
+   },
+   {
+    "image": 127,
+    "manivelle": 1.001922,
+    "elongation_deg": 147.35
+   },
+   {
+    "image": 128,
+    "manivelle": 1.002797,
+    "elongation_deg": 151.4
+   },
+   {
+    "image": 129,
+    "manivelle": 1.003629,
+    "elongation_deg": 155.22
+   },
+   {
+    "image": 130,
+    "manivelle": 1.004416,
+    "elongation_deg": 158.8
+   },
+   {
+    "image": 131,
+    "manivelle": 1.005152,
+    "elongation_deg": 162.13
+   },
+   {
+    "image": 132,
+    "manivelle": 1.005835,
+    "elongation_deg": 165.19
+   },
+   {
+    "image": 133,
+    "manivelle": 1.006462,
+    "elongation_deg": 167.98
+   },
+   {
+    "image": 134,
+    "manivelle": 1.007027,
+    "elongation_deg": 170.48
+   },
+   {
+    "image": 135,
+    "manivelle": 1.007529,
+    "elongation_deg": 172.69
+   },
+   {
+    "image": 136,
+    "manivelle": 1.007964,
+    "elongation_deg": 174.6
+   },
+   {
+    "image": 137,
+    "manivelle": 1.008327,
+    "elongation_deg": 176.18
+   },
+   {
+    "image": 138,
+    "manivelle": 1.008616,
+    "elongation_deg": 177.44
+   },
+   {
+    "image": 139,
+    "manivelle": 1.008827,
+    "elongation_deg": 178.35
+   },
+   {
+    "image": 140,
+    "manivelle": 1.008956,
+    "elongation_deg": 178.91
+   },
+   {
+    "image": 141,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 142,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 143,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 144,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 145,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 146,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 147,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 148,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 149,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 150,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 151,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 152,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 153,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 154,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 155,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 156,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 157,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 158,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 159,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 160,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 161,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 162,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 163,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 164,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 165,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 166,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 167,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 168,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 169,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 170,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 171,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 172,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 173,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 174,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   },
+   {
+    "image": 175,
+    "manivelle": 1.009,
+    "elongation_deg": 179.1
+   }
+  ],
+  "textes": [
+   "Vue du dessus",
+   "pas à l'échelle",
+   "Soleil",
+   "Terre",
+   "Lune",
+   "boule des phases",
+   "noire",
+   "blanche",
+   "aiguille du Soleil",
+   "aiguille de la Lune",
+   "Superposées : nouvelle lune",
+   "Opposées : pleine lune"
+  ]
+ },
+ "metonic_cell": {
+  "images": 100,
+  "duree_s": 4.0,
+  "plan": "5.2 (incrustation, transparent)",
+  "rgba": true,
+  "boite": [
+   1096,
+   150,
+   1824,
+   700
+  ],
+  "segments": {
+   "entree": [
+    1,
+    10
+   ],
+   "reflet": [
+    15,
+    42
+   ],
+   "phoinikaios": [
+    25,
+    37
+   ],
+   "an_1": [
+    37,
+    49
+   ],
+   "mention_illustration": [
+    47,
+    59
+   ],
+   "tenue": [
+    60,
+    92
+   ],
+   "sortie": [
+    93,
+    100
+   ]
+  },
+  "note": "Case illustrative (le modèle n'a pas de noms dans les cases, script.md note 4).",
+  "textes": [
+   "Une case agrandie",
+   "spirale de Méton",
+   "ΦΟΙΝΙΚΑΙΟΣ",
+   "L Α",
+   "Phoinikaios",
+   "nom du mois (corinthien)",
+   "… an 1",
+   "L = année, Α = 1",
+   "illustration d'après Freeth et al. 2008"
+  ]
+ },
+ "games_banner": {
+  "images": 150,
+  "duree_s": 6.0,
+  "plan": "5.3 (bandeau, transparent)",
+  "rgba": true,
+  "boite": [
+   150,
+   648,
+   1770,
+   884
+  ],
+  "segments": {
+   "entree": [
+    1,
+    12
+   ],
+   "manivelle_3_595": [
+    13,
+    113
+   ],
+   "arrivee_an_1": 95,
+   "tenue": [
+    96,
+    140
+   ],
+   "sortie": [
+    141,
+    150
+   ]
+  },
+  "an_1_commence_a_la_manivelle": 5.91111,
+  "note": "Le curseur sous les cases suit l'aiguille des Jeux de notre modèle (engine.py, étiquettes historiques par paires). Poser AM_Controller[\"crank\"] = colonne « manivelle » pour que l'aiguille arrive sur ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ à l'image 95, sur « Olympia ! » de la voix.",
+  "manivelle_par_image": [
+   {
+    "image": 1,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 2,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 3,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 4,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 5,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 6,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 7,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 8,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 9,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 10,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 11,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 12,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 13,
+    "manivelle": 3.0,
+    "annee": 2
+   },
+   {
+    "image": 14,
+    "manivelle": 3.076088,
+    "annee": 2
+   },
+   {
+    "image": 15,
+    "manivelle": 3.150955,
+    "annee": 2
+   },
+   {
+    "image": 16,
+    "manivelle": 3.224611,
+    "annee": 2
+   },
+   {
+    "image": 17,
+    "manivelle": 3.297061,
+    "annee": 2
+   },
+   {
+    "image": 18,
+    "manivelle": 3.368314,
+    "annee": 2
+   },
+   {
+    "image": 19,
+    "manivelle": 3.438377,
+    "annee": 2
+   },
+   {
+    "image": 20,
+    "manivelle": 3.507258,
+    "annee": 2
+   },
+   {
+    "image": 21,
+    "manivelle": 3.574963,
+    "annee": 2
+   },
+   {
+    "image": 22,
+    "manivelle": 3.641501,
+    "annee": 2
+   },
+   {
+    "image": 23,
+    "manivelle": 3.70688,
+    "annee": 2
+   },
+   {
+    "image": 24,
+    "manivelle": 3.771106,
+    "annee": 2
+   },
+   {
+    "image": 25,
+    "manivelle": 3.834189,
+    "annee": 2
+   },
+   {
+    "image": 26,
+    "manivelle": 3.896134,
+    "annee": 2
+   },
+   {
+    "image": 27,
+    "manivelle": 3.956951,
+    "annee": 3
+   },
+   {
+    "image": 28,
+    "manivelle": 4.016647,
+    "annee": 3
+   },
+   {
+    "image": 29,
+    "manivelle": 4.075229,
+    "annee": 3
+   },
+   {
+    "image": 30,
+    "manivelle": 4.132707,
+    "annee": 3
+   },
+   {
+    "image": 31,
+    "manivelle": 4.189086,
+    "annee": 3
+   },
+   {
+    "image": 32,
+    "manivelle": 4.244377,
+    "annee": 3
+   },
+   {
+    "image": 33,
+    "manivelle": 4.298586,
+    "annee": 3
+   },
+   {
+    "image": 34,
+    "manivelle": 4.351722,
+    "annee": 3
+   },
+   {
+    "image": 35,
+    "manivelle": 4.403792,
+    "annee": 3
+   },
+   {
+    "image": 36,
+    "manivelle": 4.454805,
+    "annee": 3
+   },
+   {
+    "image": 37,
+    "manivelle": 4.504769,
+    "annee": 3
+   },
+   {
+    "image": 38,
+    "manivelle": 4.553692,
+    "annee": 3
+   },
+   {
+    "image": 39,
+    "manivelle": 4.601582,
+    "annee": 3
+   },
+   {
+    "image": 40,
+    "manivelle": 4.648448,
+    "annee": 3
+   },
+   {
+    "image": 41,
+    "manivelle": 4.694298,
+    "annee": 3
+   },
+   {
+    "image": 42,
+    "manivelle": 4.739141,
+    "annee": 3
+   },
+   {
+    "image": 43,
+    "manivelle": 4.782984,
+    "annee": 3
+   },
+   {
+    "image": 44,
+    "manivelle": 4.825836,
+    "annee": 3
+   },
+   {
+    "image": 45,
+    "manivelle": 4.867706,
+    "annee": 3
+   },
+   {
+    "image": 46,
+    "manivelle": 4.908603,
+    "annee": 3
+   },
+   {
+    "image": 47,
+    "manivelle": 4.948534,
+    "annee": 4
+   },
+   {
+    "image": 48,
+    "manivelle": 4.987509,
+    "annee": 4
+   },
+   {
+    "image": 49,
+    "manivelle": 5.025536,
+    "annee": 4
+   },
+   {
+    "image": 50,
+    "manivelle": 5.062624,
+    "annee": 4
+   },
+   {
+    "image": 51,
+    "manivelle": 5.098783,
+    "annee": 4
+   },
+   {
+    "image": 52,
+    "manivelle": 5.13402,
+    "annee": 4
+   },
+   {
+    "image": 53,
+    "manivelle": 5.168345,
+    "annee": 4
+   },
+   {
+    "image": 54,
+    "manivelle": 5.201766,
+    "annee": 4
+   },
+   {
+    "image": 55,
+    "manivelle": 5.234294,
+    "annee": 4
+   },
+   {
+    "image": 56,
+    "manivelle": 5.265936,
+    "annee": 4
+   },
+   {
+    "image": 57,
+    "manivelle": 5.296703,
+    "annee": 4
+   },
+   {
+    "image": 58,
+    "manivelle": 5.326603,
+    "annee": 4
+   },
+   {
+    "image": 59,
+    "manivelle": 5.355645,
+    "annee": 4
+   },
+   {
+    "image": 60,
+    "manivelle": 5.38384,
+    "annee": 4
+   },
+   {
+    "image": 61,
+    "manivelle": 5.411196,
+    "annee": 4
+   },
+   {
+    "image": 62,
+    "manivelle": 5.437723,
+    "annee": 4
+   },
+   {
+    "image": 63,
+    "manivelle": 5.463431,
+    "annee": 4
+   },
+   {
+    "image": 64,
+    "manivelle": 5.48833,
+    "annee": 4
+   },
+   {
+    "image": 65,
+    "manivelle": 5.512428,
+    "annee": 4
+   },
+   {
+    "image": 66,
+    "manivelle": 5.535737,
+    "annee": 4
+   },
+   {
+    "image": 67,
+    "manivelle": 5.558265,
+    "annee": 4
+   },
+   {
+    "image": 68,
+    "manivelle": 5.580023,
+    "annee": 4
+   },
+   {
+    "image": 69,
+    "manivelle": 5.601021,
+    "annee": 4
+   },
+   {
+    "image": 70,
+    "manivelle": 5.621269,
+    "annee": 4
+   },
+   {
+    "image": 71,
+    "manivelle": 5.640778,
+    "annee": 4
+   },
+   {
+    "image": 72,
+    "manivelle": 5.659558,
+    "annee": 4
+   },
+   {
+    "image": 73,
+    "manivelle": 5.677618,
+    "annee": 4
+   },
+   {
+    "image": 74,
+    "manivelle": 5.694971,
+    "annee": 4
+   },
+   {
+    "image": 75,
+    "manivelle": 5.711626,
+    "annee": 4
+   },
+   {
+    "image": 76,
+    "manivelle": 5.727594,
+    "annee": 4
+   },
+   {
+    "image": 77,
+    "manivelle": 5.742886,
+    "annee": 4
+   },
+   {
+    "image": 78,
+    "manivelle": 5.757514,
+    "annee": 4
+   },
+   {
+    "image": 79,
+    "manivelle": 5.771488,
+    "annee": 4
+   },
+   {
+    "image": 80,
+    "manivelle": 5.78482,
+    "annee": 4
+   },
+   {
+    "image": 81,
+    "manivelle": 5.79752,
+    "annee": 4
+   },
+   {
+    "image": 82,
+    "manivelle": 5.809602,
+    "annee": 4
+   },
+   {
+    "image": 83,
+    "manivelle": 5.821075,
+    "annee": 4
+   },
+   {
+    "image": 84,
+    "manivelle": 5.831952,
+    "annee": 4
+   },
+   {
+    "image": 85,
+    "manivelle": 5.842246,
+    "annee": 4
+   },
+   {
+    "image": 86,
+    "manivelle": 5.851968,
+    "annee": 4
+   },
+   {
+    "image": 87,
+    "manivelle": 5.861131,
+    "annee": 4
+   },
+   {
+    "image": 88,
+    "manivelle": 5.869746,
+    "annee": 4
+   },
+   {
+    "image": 89,
+    "manivelle": 5.877828,
+    "annee": 4
+   },
+   {
+    "image": 90,
+    "manivelle": 5.885388,
+    "annee": 4
+   },
+   {
+    "image": 91,
+    "manivelle": 5.89244,
+    "annee": 4
+   },
+   {
+    "image": 92,
+    "manivelle": 5.898997,
+    "annee": 4
+   },
+   {
+    "image": 93,
+    "manivelle": 5.905074,
+    "annee": 4
+   },
+   {
+    "image": 94,
+    "manivelle": 5.910683,
+    "annee": 4
+   },
+   {
+    "image": 95,
+    "manivelle": 5.915839,
+    "annee": 1
+   },
+   {
+    "image": 96,
+    "manivelle": 5.920557,
+    "annee": 1
+   },
+   {
+    "image": 97,
+    "manivelle": 5.92485,
+    "annee": 1
+   },
+   {
+    "image": 98,
+    "manivelle": 5.928735,
+    "annee": 1
+   },
+   {
+    "image": 99,
+    "manivelle": 5.932227,
+    "annee": 1
+   },
+   {
+    "image": 100,
+    "manivelle": 5.935342,
+    "annee": 1
+   },
+   {
+    "image": 101,
+    "manivelle": 5.938096,
+    "annee": 1
+   },
+   {
+    "image": 102,
+    "manivelle": 5.940506,
+    "annee": 1
+   },
+   {
+    "image": 103,
+    "manivelle": 5.94259,
+    "annee": 1
+   },
+   {
+    "image": 104,
+    "manivelle": 5.944366,
+    "annee": 1
+   },
+   {
+    "image": 105,
+    "manivelle": 5.945852,
+    "annee": 1
+   },
+   {
+    "image": 106,
+    "manivelle": 5.947069,
+    "annee": 1
+   },
+   {
+    "image": 107,
+    "manivelle": 5.948037,
+    "annee": 1
+   },
+   {
+    "image": 108,
+    "manivelle": 5.948778,
+    "annee": 1
+   },
+   {
+    "image": 109,
+    "manivelle": 5.949316,
+    "annee": 1
+   },
+   {
+    "image": 110,
+    "manivelle": 5.949676,
+    "annee": 1
+   },
+   {
+    "image": 111,
+    "manivelle": 5.949887,
+    "annee": 1
+   },
+   {
+    "image": 112,
+    "manivelle": 5.949981,
+    "annee": 1
+   },
+   {
+    "image": 113,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 114,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 115,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 116,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 117,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 118,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 119,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 120,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 121,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 122,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 123,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 124,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 125,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 126,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 127,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 128,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 129,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 130,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 131,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 132,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 133,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 134,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 135,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 136,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 137,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 138,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 139,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 140,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 141,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 142,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 143,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 144,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 145,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 146,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 147,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 148,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 149,
+    "manivelle": 5.95,
+    "annee": 1
+   },
+   {
+    "image": 150,
+    "manivelle": 5.95,
+    "annee": 1
+   }
+  ],
+  "textes": [
+   "Cadran des Jeux : les 4 années de l'original",
+   "Freeth et al. 2008 ; Iversen 2017",
+   "An 1 : Isthmia, Olympia",
+   "An 2 : Nemea, Naa",
+   "An 3 : Isthmia, Pythia",
+   "An 4 : Nemea, Halieia",
+   "ΙΣΘΜΙΑ · ΟΛΥΜΠΙΑ",
+   "ΝΕΜΕΑ · ΝΑΑ",
+   "ΙΣΘΜΙΑ · ΠΥΘΙΑ",
+   "ΝΕΜΕΑ · ΑΛΙΕΙΑ"
+  ]
+ },
+ "glyph_anatomy": {
+  "images": 113,
+  "duree_s": 4.52,
+  "plan": "6.3 (incrustation, transparent)",
+  "rgba": true,
+  "boite": [
+   1064,
+   100,
+   1824,
+   716
+  ],
+  "segments": {
+   "entree": [
+    1,
+    10
+   ],
+   "sigma": [
+    13,
+    25
+   ],
+   "heure": [
+    35,
+    47
+   ],
+   "lettre_index": [
+    57,
+    69
+   ],
+   "notes": [
+    67,
+    79
+   ],
+   "tenue": [
+    80,
+    104
+   ],
+   "sortie": [
+    105,
+    113
+   ]
+  },
+  "note": "Schéma marqué « exemple » (Σ, ΩΡ Δ, Κ) : la case 112 du modèle ne porte que « Σ Η », ni heure ni lettre (script.md note 1).",
+  "textes": [
+   "Anatomie d'un signe",
+   "exemple",
+   "Σ",
+   "ΩΡ Δ",
+   "Κ",
+   "Σ = éclipse de Lune",
+   "(Η = éclipse de Soleil)",
+   "ΩΡ + chiffre = heure",
+   "ici Δ = 4",
+   "Lettre d'index → détails",
+   "direction, grandeur, couleur",
+   "Dans notre modèle, la case 112 ne porte ni heure ni lettre.",
+   "Forme des signes : Freeth et al. 2008 ; Freeth 2014"
+  ]
+ },
+ "parapegma_line": {
+  "images": 125,
+  "duree_s": 5.0,
+  "plan": "7.2 (surimpression, transparent)",
+  "rgba": true,
+  "segments": {
+   "repere_xi": [
+    1,
+    13
+   ],
+   "ecriture": [
+    23,
+    73
+   ],
+   "mention_illustration": [
+    75,
+    87
+   ],
+   "tenue": [
+    88,
+    115
+   ],
+   "sortie": [
+    116,
+    125
+   ]
+  },
+  "ancre_xi": [
+   960,
+   700
+  ],
+  "ligne_de_base_y": 214,
+  "calques_separes": {
+   "parapegma_xi": "repère Ξ seul, centré sur (960, 540) : décaler de (x − 960, y − 540) pour le poser sur l'échelle du zodiaque, sous le Soleil (vers 17° de ΤΑΥΡΟΣ)",
+   "parapegma_ligne": "ligne + mention seules (sur la plaque du haut)"
+  },
+  "note": "Surimpression illustrative (script.md note 3) : le modèle n'a ni lettres sur l'échelle ni texte de parapegme.",
+  "textes": [
+   "Ξ",
+   "La Pléiade se lève le matin",
+   "illustration",
+   "ligne du parapegme d'après Bitsakis & Jones 2016"
+  ]
+ },
+ "parapegma_xi": {
+  "images": 125,
+  "identique_a": "parapegma_line",
+  "ancre_xi": [
+   960,
+   540
+  ]
+ },
+ "parapegma_ligne": {
+  "images": 125,
+  "identique_a": "parapegma_line"
+ },
+ "end_card": {
+  "images": 125,
+  "duree_s": 5.0,
+  "plan": "7.6 (plein écran, opaque, vignettage)",
+  "rgba": false,
+  "segments": {
+   "etapes": [
+    1,
+    15
+   ],
+   "question": [
+    45,
+    59
+   ],
+   "credits": [
+    61,
+    75
+   ],
+   "tenue": [
+    76,
+    125
+   ]
+  },
+  "fond_seul": "end_card_fond.png (parchemin + vignettage, sans texte)",
+  "variante_transparente": "end_card_texte : mêmes textes en RGBA ; pour « la machine en fondu derrière » : fond_seul, puis la machine à ~20 % d'opacité, puis end_card_texte",
+  "note": "Caler l'image 45 sur « Et vous, quelle date… » de la voix. Pas de sous-titres sur ce carton (les crédits occupent le bas).",
+  "textes": [
+   "Comment lire la machine",
+   "1. Tournez la manivelle",
+   "2. Soleil : date, saison",
+   "3. Lune : place, phase",
+   "4. Planètes : place (hypothèse)",
+   "5. Dos : mois, Jeux",
+   "6. Signe : éclipse, heure",
+   "Et vous, quelle date ?",
+   "taciclei · github.com/taciclei/antikythera-mechanism · rapports prouvés en Lean 4"
+  ]
+ },
+ "end_card_texte": {
+  "images": 125,
+  "identique_a": "end_card",
+  "rgba": true
+ },
+ "chapter_titles": {
+  "images": 63,
+  "duree_s": 2.52,
+  "rgba": true,
+  "sequences": [
+   "chapter_title_1",
+   "chapter_title_2",
+   "chapter_title_3",
+   "chapter_title_4",
+   "chapter_title_5",
+   "chapter_title_6",
+   "chapter_title_7"
+  ],
+  "boite": [
+   96,
+   772,
+   "largeur selon le titre",
+   876
+  ],
+  "segments": {
+   "entree": [
+    1,
+    21
+   ],
+   "tenue": [
+    22,
+    52
+   ],
+   "sortie": [
+    53,
+    63
+   ]
+  },
+  "note": "En bas à gauche, au-dessus des sous-titres (bas de la carte à y = 876).",
+  "textes": [
+   "1 · Le ciel dans une boîte",
+   "2 · La manivelle, c'est le temps",
+   "3 · Lire la face avant",
+   "4 · Les planètes, une hypothèse",
+   "5 · Le dos : les mois et les Jeux",
+   "6 · Prédire une éclipse",
+   "7 · Et la navigation ?"
+  ]
+ }
+}

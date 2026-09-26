@@ -1,0 +1,31 @@
+{
+ "snippet": {
+  "title": "Le ciel dans une boîte : comment lire la machine d'Anticythère",
+  "description": "Comment lisait-on la machine d'Anticythère, le calculateur astronomique grec en bronze vieux de plus de deux mille ans ? En 2 min 40, apprenez à lire ses cadrans : le Soleil et la date, la Lune et sa phase, les planètes, le calendrier de 19 ans, l'année des Jeux… et comment elle annonçait les éclipses.\n\nChapitres\n0:00 Le ciel dans une boîte\n0:24 La manivelle, c'est le temps\n0:35 Lire la face avant\n0:59 Les planètes, une hypothèse\n1:17 Le dos : les mois et les Jeux\n1:34 Prédire une éclipse\n2:02 Et la navigation ?\n\nEssayez-la vous-même : réglez une date, tournez la manivelle, et la page vous dit ce que montre chaque aiguille (prochaine pleine lune, prochaine éclipse selon la machine, prochains Jeux) :\nhttps://taciclei.github.io/antikythera-mechanism/lire/\n\nTout est libre : modèle 3D Blender (69 engrenages), fichiers d'impression 3D, rapports d'engrenages prouvés en Lean 4, code de ce film :\nhttps://github.com/taciclei/antikythera-mechanism\n\nCe qui est sûr, ce qui est reconstruit\n• 82 fragments, environ un tiers de la machine, dont 30 roues dentées.\n• Les engrenages des planètes, du Soleil vrai et l'aiguille du Dragon suivent l'hypothèse de Freeth et al. (2021).\n• Les signes d'éclipse montrés sur la spirale du Saros sont calculés par notre modèle, pas copiés de l'original.\n• Les couleurs des planètes sont modernes.\n• Ce n'était pas un instrument de navigation : son calendrier des étoiles (le parapegme) marquait les saisons, dont celle où l'on prenait la mer.\n\nSources : Freeth et al., Nature 2006 et 2008, PLoS ONE 2014, Scientific Reports 2021 ; Bitsakis et Jones 2016 ; Iversen 2017 ; Jones 2017 et 2020 ; Carman et Evans 2014 ; Hésiode, Les Travaux et les Jours ; Végèce, IV, 39.\n\nRéalisation : taciclei, avec Claude Code (agents IA), Blender 5.2 et Lean 4. Voix off générée localement avec Voxtral TTS de Mistral AI (poids sous licence CC BY-NC 4.0) : usage non commercial.\n\n#Anticythère #Antikythera #Astronomie #HistoireDesSciences #Blender",
+  "tags": [
+   "Anticythère",
+   "machine d'Anticythère",
+   "Antikythera",
+   "Antikythera mechanism",
+   "astronomie",
+   "éclipse",
+   "histoire des sciences",
+   "Grèce antique",
+   "Blender",
+   "Lean 4",
+   "Claude Code",
+   "IA",
+   "calculateur astronomique",
+   "Saros",
+   "Méton",
+   "Jeux olympiques antiques"
+  ],
+  "categoryId": "27",
+  "defaultLanguage": "fr"
+ },
+ "status": {
+  "privacyStatus": "unlisted",
+  "selfDeclaredMadeForKids": false,
+  "license": "youtube"
+ }
+}

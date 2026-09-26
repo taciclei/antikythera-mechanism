@@ -1,0 +1,85 @@
+{
+ "page": "docs/lire/index.html",
+ "node": "v26.7.0",
+ "syntaxe_node_check": {
+  "am-engine": "OK",
+  "am-ui": "OK"
+ },
+ "dates_lues": 20,
+ "epoques_de_recalage": [
+  "-204-05-12T12:00",
+  "1000-01-01T00:00",
+  "2000-01-01T12:00",
+  "3000-06-15T00:00"
+ ],
+ "lectures_recalees": 20,
+ "evenements_2026_2029_js_py": {
+  "nouvelle lune": [
+   49,
+   49
+  ],
+  "pleine lune": [
+   50,
+   50
+  ],
+  "éclipse de Soleil": [
+   10,
+   10
+  ],
+  "éclipse de Lune": [
+   7,
+   7
+  ],
+  "Jeux : nouveau secteur": [
+   4,
+   4
+  ],
+  "début de rétrogradation": [
+   25,
+   25
+  ],
+  "fin de rétrogradation": [
+   23,
+   23
+  ]
+ },
+ "ecarts_max": {
+  "JD (jours)": "0",
+  "longitudes (deg)": "8.86e-10",
+  "psi aiguilles arrière (deg)": "5.12e-11",
+  "fraction éclairée": "7.7e-12",
+  "âge de la Lune (jours)": "7.27e-11",
+  "vitesse des planètes (°/jour)": "1.74e-11",
+  "distance Lune-nœud (deg)": "8.34e-10",
+  "aller-retour date (jours)": "0",
+  "ciel réel de référence (deg)": "1.86e-09",
+  "modèle non calé : longitudes (deg)": "0",
+  "modèle non calé : psi (deg)": "0",
+  "phases de calage (rad)": "1.46e-11",
+  "calage : début des Olympiades (ans)": "1.14e-13",
+  "instants des événements (minutes)": "0.000278",
+  "distance au nœud des éclipses (deg)": "3.55e-15",
+  "boutons « prochain… » (minutes)": "1.14e-05"
+ },
+ "tolerances": {
+  "longitudes (deg)": 1e-08,
+  "psi aiguilles arrière (deg)": 1e-08,
+  "fraction éclairée": 1e-09,
+  "âge de la Lune (jours)": 1e-08,
+  "vitesse des planètes (°/jour)": 1e-06,
+  "distance Lune-nœud (deg)": 1e-08,
+  "JD (jours)": 1e-09,
+  "aller-retour date (jours)": 0.001,
+  "ciel réel de référence (deg)": 1e-08,
+  "modèle non calé : longitudes (deg)": 1e-09,
+  "modèle non calé : psi (deg)": 1e-09,
+  "phases de calage (rad)": 1e-09,
+  "calage : début des Olympiades (ans)": 1e-09,
+  "instants des événements (minutes)": 0.01,
+  "distance au nœud des éclipses (deg)": 1e-06,
+  "boutons « prochain… » (minutes)": 0.05
+ },
+ "desaccords": [],
+ "au_dela_de_la_tolerance": [],
+ "verdict": "OK"
+}

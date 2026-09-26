@@ -21,3 +21,31 @@ build/out/am_before_*.blend
 # working copies
 /dossier.html
 tools/prompt_template_v1.md
+
+# explainer film: heavy, regenerable intermediates (see tools/explainer/film/README.md)
+build/cache/
+build/out/am_atelier_before_*.blend
+build/out/explainer/film/frames/
+build/out/explainer/film/comp/
+build/out/explainer/film/preview_comp/
+build/out/explainer/film/review*/
+build/out/explainer/film/test*/
+build/out/explainer/film/bench/
+build/out/explainer/film/overlay_samples/
+build/out/explainer/film/*.log
+build/out/explainer/film/film.blend
+build/out/explainer/film/animatic_placeholder.mp4*
+build/out/explainer/diagrams/*
+!build/out/explainer/diagrams/timing.json
+build/out/explainer/inserts/*
+!build/out/explainer/inserts/index.json
+!build/out/explainer/inserts/timing.json
+build/out/explainer/look/
+build/out/explainer/look2/*
+!build/out/explainer/look2/compare.jpg
+build/out/explainer/voice/*.wav
+tools/explainer/voice/takes/
+build/out/explainer/film/qa_*/
+build/out/explainer/film/film.mp4
+build/out/explainer/film/film.mp4.check.json
+build/out/explainer/publish/yt_*

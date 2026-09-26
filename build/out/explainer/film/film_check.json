@@ -1,0 +1,544 @@
+{
+ "checks": [
+  {
+   "check": "clés -> frames[] (toutes les images)",
+   "ok": true,
+   "detail": "4009 images : manivelle identique (float32) sur 3893, écart max 9.54e-07 an ; explode 5.3e-07, patina 5.3e-07"
+  },
+  {
+   "check": "manivelle évaluée (depsgraph, échantillon)",
+   "ok": true,
+   "detail": "120 images échantillon (beats, bords de plans, 1 sur 97)"
+  },
+  {
+   "check": "caméras liées par les marqueurs",
+   "ok": true,
+   "detail": "caméra du plan au début, au milieu et à la fin de chaque plan rendu"
+  },
+  {
+   "check": "mise en scène par plan (boîtier, atelier, rig arrière, étiquettes)",
+   "ok": true,
+   "detail": "boîtier fermé seulement en 1.1, rig arrière dans les plans du dos (bascule de 5.1 à l'image 1971), étiquettes des planètes en 1.2c et 4.1-4.3"
+  },
+  {
+   "check": "beat flash_eclipse (1.2a, image 127)",
+   "ok": true,
+   "detail": "Blender vs moteur 1.2e-07 rad ; {\"crank\": 9.013999938964844, \"elongation_deg\": 180.084, \"boule_eclairee\": 1.0, \"lune\": \"5.12° ΧΗΛΑΙ\", \"aiguille_de_date\": \"5.04° ΚΡΙΟΣ\", \"sphere_doree\": \"7.07° ΚΡΙΟΣ\", \"lune_noeud_deg\": 0.411}"
+  },
+  {
+   "check": "beat flash_phase (1.2b, image 149)",
+   "ok": true,
+   "detail": "Blender vs moteur 8.8e-08 rad ; {\"crank\": 0.9900000095367432, \"elongation_deg\": 88.929, \"boule_eclairee\": 0.4907, \"lune\": \"25.33° ΔΙΔΥΜΟΙ\", \"aiguille_de_date\": \"26.40° ΙΧΘΥΕΣ\", \"sphere_doree\": \"28.60° ΙΧΘΥΕΣ\", \"lune_noeud_deg\": 75.51}"
+  },
+  {
+   "check": "beat flash_jeux (1.2d, image 217)",
+   "ok": true,
+   "detail": "Blender vs moteur 5.2e-07 rad ; {\"crank\": 5.949999809265137, \"elongation_deg\": 206.578, \"boule_eclairee\": 0.9472, \"lune\": \"8.58° ΧΗΛΑΙ\", \"aiguille_de_date\": \"12.00° ΙΧΘΥΕΣ\", \"sphere_doree\": \"14.36° ΙΧΘΥΕΣ\", \"lune_noeud_deg\": 56.261, \"secteur_jeux\": \"ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ\", \"etiquette_gravee_sous_l_aiguille\": \"ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ\", \"aiguille_jeux_ecart_au_milieu_deg\": 41.28}"
+  },
+  {
+   "check": "beat nouvelle_lune (3.4, image 1308)",
+   "ok": true,
+   "detail": "Blender vs moteur 2.0e-07 rad ; {\"crank\": 0.972000002861023, \"elongation_deg\": 1.394, \"boule_eclairee\": 0.0001, \"lune\": \"21.31° ΙΧΘΥΕΣ\", \"aiguille_de_date\": \"19.92° ΙΧΘΥΕΣ\", \"sphere_doree\": \"22.21° ΙΧΘΥΕΣ\", \"lune_noeud_deg\": 10.127}"
+  },
+  {
+   "check": "beat pleine_lune_3_4 (3.4, image 1446)",
+   "ok": true,
+   "detail": "Blender vs moteur 1.3e-07 rad ; {\"crank\": 1.0089999437332153, \"elongation_deg\": 179.103, \"boule_eclairee\": 0.9999, \"lune\": \"2.34° ΧΗΛΑΙ\", \"aiguille_de_date\": \"3.24° ΚΡΙΟΣ\", \"sphere_doree\": \"5.31° ΚΡΙΟΣ\", \"lune_noeud_deg\": 21.872}"
+  },
+  {
+   "check": "beat mars_station_1 (4.2, image 1779)",
+   "ok": true,
+   "detail": "Blender vs moteur 1.1e-07 rad ; {\"crank\": 2.2168941497802734, \"elongation_deg\": 157.286, \"boule_eclairee\": 0.9612, \"lune\": \"25.37° ΣΚΟΡΠΙΟΣ\", \"aiguille_de_date\": \"18.08° ΔΙΔΥΜΟΙ\", \"sphere_doree\": \"17.58° ΔΙΔΥΜΟΙ\", \"lune_noeud_deg\": 81.724, \"mars_deg_par_an\": [1.32, -6.23]}"
+  },
+  {
+   "check": "beat mars_retro_max (4.2, image 1799)",
+   "ok": true,
+   "detail": "Blender vs moteur 1.4e-07 rad ; {\"crank\": 2.3173651695251465, \"elongation_deg\": 234.44, \"boule_eclairee\": 0.7908, \"lune\": \"18.69° ΙΧΘΥΕΣ\", \"aiguille_de_date\": \"24.25° ΚΑΡΚΙΝΟΣ\", \"sphere_doree\": \"22.50° ΚΑΡΚΙΝΟΣ\", \"lune_noeud_deg\": 33.544, \"mars_deg_par_an\": -132.66}"
+  },
+  {
+   "check": "beat mars_retro (4.2, image 1798)",
+   "ok": true,
+   "detail": "Blender vs moteur 3.1e-07 rad ; {\"crank\": 2.3116073608398438, \"elongation_deg\": 211.385, \"boule_eclairee\": 0.9268, \"lune\": \"23.56° ΥΔΡΟΧΟΟΣ\", \"aiguille_de_date\": \"22.18° ΚΑΡΚΙΝΟΣ\", \"sphere_doree\": \"20.49° ΚΑΡΚΙΝΟΣ\", \"lune_noeud_deg\": 8.304, \"mars_deg_par_an\": -132.93}"
+  },
+  {
+   "check": "beat mars_station_2 (4.2, image 1815)",
+   "ok": true,
+   "detail": "Blender vs moteur 1.2e-07 rad ; {\"crank\": 2.4200000762939453, \"elongation_deg\": 334.146, \"boule_eclairee\": 0.05, \"lune\": \"5.35° ΛΕΩΝ\", \"aiguille_de_date\": \"1.20° ΠΑΡΘΕΝΟΣ\", \"sphere_doree\": \"28.83° ΛΕΩΝ\", \"lune_noeud_deg\": 7.815, \"mars_deg_par_an\": [-0.26, 12.08]}"
+  },
+  {
+   "check": "beat mars_reprise_4_3 (4.3, image 1816)",
+   "ok": true,
+   "detail": "Blender vs moteur 3.2e-07 rad ; {\"crank\": 2.0999999046325684, \"elongation_deg\": 344.116, \"boule_eclairee\": 0.0191, \"lune\": \"20.11° ΚΡΙΟΣ\", \"aiguille_de_date\": \"6.00° ΤΑΥΡΟΣ\", \"sphere_doree\": \"7.13° ΤΑΥΡΟΣ\", \"lune_noeud_deg\": 60.761, \"stations_images\": [1855, 1898]}"
+  },
+  {
+   "check": "beat olympia (5.3, image 2226)",
+   "ok": true,
+   "detail": "Blender vs moteur 2.2e-07 rad ; {\"crank\": 5.915839195251465, \"elongation_deg\": 66.817, \"boule_eclairee\": 0.3032, \"lune\": \"6.52° ΤΑΥΡΟΣ\", \"aiguille_de_date\": \"29.70° ΥΔΡΟΧΟΟΣ\", \"sphere_doree\": \"2.09° ΙΧΘΥΕΣ\", \"lune_noeud_deg\": 28.98, \"secteur_jeux\": \"ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ\", \"etiquette_gravee_sous_l_aiguille\": \"ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ\", \"aiguille_jeux_ecart_au_milieu_deg\": 44.35, \"secteur_jeux_image_precedente\": \"ΝΕΜΕΑ ΑΛΙΕΙΑ\"}"
+  },
+  {
+   "check": "beat saros_112 (6.2, image 2551)",
+   "ok": true,
+   "detail": "Blender vs moteur 4.1e-07 rad ; {\"crank\": 8.975068092346191, \"elongation_deg\": 357.399, \"boule_eclairee\": 0.0005, \"lune\": \"18.42° ΙΧΘΥΕΣ\", \"aiguille_de_date\": \"21.02° ΙΧΘΥΕΣ\", \"sphere_doree\": \"23.30° ΙΧΘΥΕΣ\", \"lune_noeud_deg\": 17.866, \"case_saros\": [111, 112], \"curseur_rayon_vs_moteur_mm\": 0.0, \"curseur_vs_signe\": {\"dpsi_deg\": 3.18, \"dr_mm\": 3.26, \"texte\": \"Σ Η\"}}"
+  },
+  {
+   "check": "beat exeligmos_0h (6.3, image 2669)",
+   "ok": true,
+   "detail": "Blender vs moteur 2.0e-07 rad ; {\"crank\": 8.979999542236328, \"elongation_deg\": 21.591, \"boule_eclairee\": 0.0351, \"lune\": \"14.39° ΚΡΙΟΣ\", \"aiguille_de_date\": \"22.80° ΙΧΘΥΕΣ\", \"sphere_doree\": \"25.05° ΙΧΘΥΕΣ\", \"lune_noeud_deg\": 8.197}"
+  },
+  {
+   "check": "beat boule_noire_6_4 (6.4, image 2767)",
+   "ok": true,
+   "detail": "Blender vs moteur 2.0e-07 rad ; {\"crank\": 8.979999542236328, \"elongation_deg\": 21.591, \"boule_eclairee\": 0.0351, \"lune\": \"14.39° ΚΡΙΟΣ\", \"aiguille_de_date\": \"22.80° ΙΧΘΥΕΣ\", \"sphere_doree\": \"25.05° ΙΧΘΥΕΣ\", \"lune_noeud_deg\": 8.197}"
+  },
+  {
+   "check": "beat dragon_full_moon (6.4, image 2834)",
+   "ok": true,
+   "detail": "Blender vs moteur 1.2e-07 rad ; {\"crank\": 9.013999938964844, \"elongation_deg\": 180.084, \"boule_eclairee\": 1.0, \"lune\": \"5.12° ΧΗΛΑΙ\", \"aiguille_de_date\": \"5.04° ΚΡΙΟΣ\", \"sphere_doree\": \"7.07° ΚΡΙΟΣ\", \"lune_noeud_deg\": 0.411}"
+  },
+  {
+   "check": "beat soleil_taureau (7.2, image 3363)",
+   "ok": true,
+   "detail": "Blender vs moteur 1.4e-07 rad ; {\"crank\": 9.130000114440918, \"elongation_deg\": 329.026, \"boule_eclairee\": 0.0713, \"lune\": \"15.83° ΚΡΙΟΣ\", \"aiguille_de_date\": \"16.80° ΤΑΥΡΟΣ\", \"sphere_doree\": \"17.54° ΤΑΥΡΟΣ\", \"lune_noeud_deg\": 12.536}"
+  },
+  {
+   "check": "beat soleil_scorpion (7.4, image 3628)",
+   "ok": true,
+   "detail": "Blender vs moteur 1.8e-07 rad ; {\"crank\": 9.600000381469727, \"elongation_deg\": 270.953, \"boule_eclairee\": 0.4917, \"lune\": \"6.95° ΛΕΩΝ\", \"aiguille_de_date\": \"6.00° ΣΚΟΡΠΙΟΣ\", \"sphere_doree\": \"4.78° ΣΚΟΡΠΙΟΣ\", \"lune_noeud_deg\": 47.241}"
+  },
+  {
+   "check": "verify_beats.py sur les valeurs de Blender",
+   "ok": true,
+   "detail": "19 contrôles (beats avec synchro et tenue, clignotements 6.1)"
+  },
+  {
+   "check": "surlignages",
+   "ok": true,
+   "detail": "24 surlignages, matériaux propres à leurs cibles, valeur au sommet = clé"
+  },
+  {
+   "check": "matériaux partagés intacts",
+   "ok": true,
+   "detail": "AM_bronze et AM_engraving sans émission (seules les cibles ont une copie) : front_plate -> ['AM_bronze']"
+  }
+ ],
+ "beats": [
+  {
+   "id": "flash_eclipse",
+   "frame": 127,
+   "segment": "1.2a",
+   "check": "dragon",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 1.2395762238881503e-07,
+   "blender": {
+    "crank": 9.013999938964844,
+    "elongation_deg": 180.084,
+    "boule_eclairee": 1.0,
+    "lune": "5.12° ΧΗΛΑΙ",
+    "aiguille_de_date": "5.04° ΚΡΙΟΣ",
+    "sphere_doree": "7.07° ΚΡΙΟΣ",
+    "lune_noeud_deg": 0.411
+   }
+  },
+  {
+   "id": "flash_phase",
+   "frame": 149,
+   "segment": "1.2b",
+   "check": "fraction",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 8.785111127451728e-08,
+   "blender": {
+    "crank": 0.9900000095367432,
+    "elongation_deg": 88.929,
+    "boule_eclairee": 0.4907,
+    "lune": "25.33° ΔΙΔΥΜΟΙ",
+    "aiguille_de_date": "26.40° ΙΧΘΥΕΣ",
+    "sphere_doree": "28.60° ΙΧΘΥΕΣ",
+    "lune_noeud_deg": 75.51
+   }
+  },
+  {
+   "id": "flash_jeux",
+   "frame": 217,
+   "segment": "1.2d",
+   "check": "games",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 5.187132945394524e-07,
+   "blender": {
+    "crank": 5.949999809265137,
+    "elongation_deg": 206.578,
+    "boule_eclairee": 0.9472,
+    "lune": "8.58° ΧΗΛΑΙ",
+    "aiguille_de_date": "12.00° ΙΧΘΥΕΣ",
+    "sphere_doree": "14.36° ΙΧΘΥΕΣ",
+    "lune_noeud_deg": 56.261,
+    "secteur_jeux": "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+    "etiquette_gravee_sous_l_aiguille": "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+    "aiguille_jeux_ecart_au_milieu_deg": 41.28
+   }
+  },
+  {
+   "id": "nouvelle_lune",
+   "frame": 1308,
+   "segment": "3.4",
+   "check": "phase",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 2.0427609204176633e-07,
+   "blender": {
+    "crank": 0.972000002861023,
+    "elongation_deg": 1.394,
+    "boule_eclairee": 0.0001,
+    "lune": "21.31° ΙΧΘΥΕΣ",
+    "aiguille_de_date": "19.92° ΙΧΘΥΕΣ",
+    "sphere_doree": "22.21° ΙΧΘΥΕΣ",
+    "lune_noeud_deg": 10.127
+   }
+  },
+  {
+   "id": "pleine_lune_3_4",
+   "frame": 1446,
+   "segment": "3.4",
+   "check": "phase",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 1.2646813285499547e-07,
+   "blender": {
+    "crank": 1.0089999437332153,
+    "elongation_deg": 179.103,
+    "boule_eclairee": 0.9999,
+    "lune": "2.34° ΧΗΛΑΙ",
+    "aiguille_de_date": "3.24° ΚΡΙΟΣ",
+    "sphere_doree": "5.31° ΚΡΙΟΣ",
+    "lune_noeud_deg": 21.872
+   }
+  },
+  {
+   "id": "mars_station_1",
+   "frame": 1779,
+   "segment": "4.2",
+   "check": "mars_station",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 1.074523279243067e-07,
+   "blender": {
+    "crank": 2.2168941497802734,
+    "elongation_deg": 157.286,
+    "boule_eclairee": 0.9612,
+    "lune": "25.37° ΣΚΟΡΠΙΟΣ",
+    "aiguille_de_date": "18.08° ΔΙΔΥΜΟΙ",
+    "sphere_doree": "17.58° ΔΙΔΥΜΟΙ",
+    "lune_noeud_deg": 81.724,
+    "mars_deg_par_an": [
+     1.32,
+     -6.23
+    ]
+   }
+  },
+  {
+   "id": "mars_retro_max",
+   "frame": 1799,
+   "segment": "4.2",
+   "check": "mars_retro",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 1.3537536869279165e-07,
+   "blender": {
+    "crank": 2.3173651695251465,
+    "elongation_deg": 234.44,
+    "boule_eclairee": 0.7908,
+    "lune": "18.69° ΙΧΘΥΕΣ",
+    "aiguille_de_date": "24.25° ΚΑΡΚΙΝΟΣ",
+    "sphere_doree": "22.50° ΚΑΡΚΙΝΟΣ",
+    "lune_noeud_deg": 33.544,
+    "mars_deg_par_an": -132.66
+   }
+  },
+  {
+   "id": "mars_retro",
+   "frame": 1798,
+   "segment": "4.2",
+   "check": "mars_retro",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 3.078007564383256e-07,
+   "blender": {
+    "crank": 2.3116073608398438,
+    "elongation_deg": 211.385,
+    "boule_eclairee": 0.9268,
+    "lune": "23.56° ΥΔΡΟΧΟΟΣ",
+    "aiguille_de_date": "22.18° ΚΑΡΚΙΝΟΣ",
+    "sphere_doree": "20.49° ΚΑΡΚΙΝΟΣ",
+    "lune_noeud_deg": 8.304,
+    "mars_deg_par_an": -132.93
+   }
+  },
+  {
+   "id": "mars_station_2",
+   "frame": 1815,
+   "segment": "4.2",
+   "check": "mars_station",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 1.1862133808548947e-07,
+   "blender": {
+    "crank": 2.4200000762939453,
+    "elongation_deg": 334.146,
+    "boule_eclairee": 0.05,
+    "lune": "5.35° ΛΕΩΝ",
+    "aiguille_de_date": "1.20° ΠΑΡΘΕΝΟΣ",
+    "sphere_doree": "28.83° ΛΕΩΝ",
+    "lune_noeud_deg": 7.815,
+    "mars_deg_par_an": [
+     -0.26,
+     12.08
+    ]
+   }
+  },
+  {
+   "id": "mars_reprise_4_3",
+   "frame": 1816,
+   "segment": "4.3",
+   "check": "mars_replay",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 3.2022895002370433e-07,
+   "blender": {
+    "crank": 2.0999999046325684,
+    "elongation_deg": 344.116,
+    "boule_eclairee": 0.0191,
+    "lune": "20.11° ΚΡΙΟΣ",
+    "aiguille_de_date": "6.00° ΤΑΥΡΟΣ",
+    "sphere_doree": "7.13° ΤΑΥΡΟΣ",
+    "lune_noeud_deg": 60.761,
+    "stations_images": [
+     1855,
+     1898
+    ]
+   }
+  },
+  {
+   "id": "olympia",
+   "frame": 2226,
+   "segment": "5.3",
+   "check": "games_entry",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 2.2470921123840526e-07,
+   "blender": {
+    "crank": 5.915839195251465,
+    "elongation_deg": 66.817,
+    "boule_eclairee": 0.3032,
+    "lune": "6.52° ΤΑΥΡΟΣ",
+    "aiguille_de_date": "29.70° ΥΔΡΟΧΟΟΣ",
+    "sphere_doree": "2.09° ΙΧΘΥΕΣ",
+    "lune_noeud_deg": 28.98,
+    "secteur_jeux": "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+    "etiquette_gravee_sous_l_aiguille": "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+    "aiguille_jeux_ecart_au_milieu_deg": 44.35,
+    "secteur_jeux_image_precedente": "ΝΕΜΕΑ ΑΛΙΕΙΑ"
+   }
+  },
+  {
+   "id": "saros_112",
+   "frame": 2551,
+   "segment": "6.2",
+   "check": "saros_entry",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 4.0687940749961626e-07,
+   "blender": {
+    "crank": 8.975068092346191,
+    "elongation_deg": 357.399,
+    "boule_eclairee": 0.0005,
+    "lune": "18.42° ΙΧΘΥΕΣ",
+    "aiguille_de_date": "21.02° ΙΧΘΥΕΣ",
+    "sphere_doree": "23.30° ΙΧΘΥΕΣ",
+    "lune_noeud_deg": 17.866,
+    "case_saros": [
+     111,
+     112
+    ],
+    "curseur_rayon_vs_moteur_mm": 0.0,
+    "curseur_vs_signe": {
+     "dpsi_deg": 3.18,
+     "dr_mm": 3.26,
+     "texte": "Σ Η"
+    }
+   }
+  },
+  {
+   "id": "exeligmos_0h",
+   "frame": 2669,
+   "segment": "6.3",
+   "check": "exeligmos",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 2.0326673322301758e-07,
+   "blender": {
+    "crank": 8.979999542236328,
+    "elongation_deg": 21.591,
+    "boule_eclairee": 0.0351,
+    "lune": "14.39° ΚΡΙΟΣ",
+    "aiguille_de_date": "22.80° ΙΧΘΥΕΣ",
+    "sphere_doree": "25.05° ΙΧΘΥΕΣ",
+    "lune_noeud_deg": 8.197
+   }
+  },
+  {
+   "id": "boule_noire_6_4",
+   "frame": 2767,
+   "segment": "6.4",
+   "check": "fraction",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 2.0326673322301758e-07,
+   "blender": {
+    "crank": 8.979999542236328,
+    "elongation_deg": 21.591,
+    "boule_eclairee": 0.0351,
+    "lune": "14.39° ΚΡΙΟΣ",
+    "aiguille_de_date": "22.80° ΙΧΘΥΕΣ",
+    "sphere_doree": "25.05° ΙΧΘΥΕΣ",
+    "lune_noeud_deg": 8.197
+   }
+  },
+  {
+   "id": "dragon_full_moon",
+   "frame": 2834,
+   "segment": "6.4",
+   "check": "dragon",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 1.2395762238881503e-07,
+   "blender": {
+    "crank": 9.013999938964844,
+    "elongation_deg": 180.084,
+    "boule_eclairee": 1.0,
+    "lune": "5.12° ΧΗΛΑΙ",
+    "aiguille_de_date": "5.04° ΚΡΙΟΣ",
+    "sphere_doree": "7.07° ΚΡΙΟΣ",
+    "lune_noeud_deg": 0.411
+   }
+  },
+  {
+   "id": "soleil_taureau",
+   "frame": 3363,
+   "segment": "7.2",
+   "check": "sun_sign",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 1.3785568908630808e-07,
+   "blender": {
+    "crank": 9.130000114440918,
+    "elongation_deg": 329.026,
+    "boule_eclairee": 0.0713,
+    "lune": "15.83° ΚΡΙΟΣ",
+    "aiguille_de_date": "16.80° ΤΑΥΡΟΣ",
+    "sphere_doree": "17.54° ΤΑΥΡΟΣ",
+    "lune_noeud_deg": 12.536
+   }
+  },
+  {
+   "id": "soleil_scorpion",
+   "frame": 3628,
+   "segment": "7.4",
+   "check": "sun_sign",
+   "ok": true,
+   "max_err_blender_vs_engine_rad": 1.7794339868260067e-07,
+   "blender": {
+    "crank": 9.600000381469727,
+    "elongation_deg": 270.953,
+    "boule_eclairee": 0.4917,
+    "lune": "6.95° ΛΕΩΝ",
+    "aiguille_de_date": "6.00° ΣΚΟΡΠΙΟΣ",
+    "sphere_doree": "4.78° ΣΚΟΡΠΙΟΣ",
+    "lune_noeud_deg": 47.241
+   }
+  }
+ ],
+ "verify_beats": [
+  {
+   "level": "OK",
+   "check": "beat flash_eclipse (1.2a, image 127 (5.04 s), manivelle 9.0140)",
+   "detail": "9,014 : pleine lune sur l'aiguille du Dragon (Soleil à l'autre bout), sans signe d'éclipse — pleine lune (élongation 180.084°), Lune à 0.411° du nœud (≤ 1.0°), boule éclairée à 1.0000 | synchro : image 127 dans [122, 143] (« éclipses », mots [124, 146]) | manivelle tenue à 9.0140 des images 122 à 143"
+  },
+  {
+   "level": "OK",
+   "check": "beat flash_phase (1.2b, image 149 (5.92 s), manivelle 0.9900)",
+   "detail": "0,99 : boule des phases à moitié claire — boule éclairée à 0.491 (attendu 0.40-0.60), élongation 88.9° | synchro : image 149 dans [144, 175] (« phases », mots [146, 150]) | manivelle tenue à 0.9900 des images 144 à 175"
+  },
+  {
+   "level": "OK",
+   "check": "beat flash_jeux (1.2d, image 217 (8.64 s), manivelle 5.9500)",
+   "detail": "5,95 : aiguille des Jeux dans ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ — secteur des Jeux sous l'aiguille : ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ | synchro : image 217 dans [212, 241] (« Jeux », mots [214, 222]) | manivelle tenue à 5.9500 des images 212 à 241"
+  },
+  {
+   "level": "OK",
+   "check": "beat nouvelle_lune (3.4, image 1308 (52.28 s), manivelle 0.9720)",
+   "detail": "0,972 : nouvelle lune, aiguilles Lune et Soleil superposées, boule noire (tenue de 3.1 à « Opposées ») — élongation 1.39° (écart 1.39° ≤ 7.5°), boule éclairée à 0.0001 ; Lune à 1.39° de l'aiguille de date, 0.89° de la sphère dorée | synchro : image 1308 dans [1308, 1392] (« Aiguilles superposées (cue 15, absente de l'STT) », mots [1308, 1392]) | manivelle tenue à 0.9720 des images 894 à 1396"
+  },
+  {
+   "level": "OK",
+   "check": "beat pleine_lune_3_4 (3.4, image 1446 (57.80 s), manivelle 1.0090)",
+   "detail": "1,009 : pleine lune, Lune dans ΧΗΛΑΙ, Soleil (aiguille de date et sphère dorée) dans ΚΡΙΟΣ — élongation 179.10° (écart 0.90° ≤ 7.5°), boule éclairée à 0.9999 ; Lune 2.3° dans ΧΗΛΑΙ ; aiguille de date 3.2° dans ΚΡΙΟΣ, sphère dorée 5.3° dans ΚΡΙΟΣ | synchro : image 1446 dans [1420, 1466] (« Opposées : blanche… pleine lune », mots [1396, 1466]) | manivelle tenue à 1.0090 des images 1446 à 1493"
+  },
+  {
+   "level": "OK",
+   "check": "beat mars_station_1 (4.2, image 1779 (71.12 s), manivelle 2.2169)",
+   "detail": "Mars s'arrête (1re station 2.2134) : sa vitesse change de signe — vitesse de Mars 1.3 -> -6.2 °/an de manivelle entre les images 1778 et 1779 | synchro : image 1779 dans [1770, 1790] (« s'arrête », mots [1770, 1790])"
+  },
+  {
+   "level": "OK",
+   "check": "beat mars_retro_max (4.2, image 1799 (71.92 s), manivelle 2.3174)",
+   "detail": "Mars recule au plus vite (opposition 2.3133) — vitesse de Mars -132.6 °/an (rétrograde) | synchro : image 1799 dans [1790, 1818] (« puis recule », mots [1790, 1818])"
+  },
+  {
+   "level": "OK",
+   "check": "beat mars_retro (4.2, image 1798 (71.88 s), manivelle 2.3116)",
+   "detail": "Mars rétrograde sur « recule » — vitesse de Mars -132.9 °/an (rétrograde) | synchro : image 1798 dans [1798, 1818] (« recule », mots [1798, 1818])"
+  },
+  {
+   "level": "OK",
+   "check": "beat mars_station_2 (4.2, image 1815 (72.56 s), manivelle 2.4200)",
+   "detail": "Mars repart (2e station 2.4131) juste avant la coupe vers 4.3 — vitesse de Mars -0.2 -> 12.1 °/an de manivelle entre les images 1814 et 1815 | synchro : image 1815 dans [1798, 1815] (« recule », mots [1798, 1818])"
+  },
+  {
+   "level": "OK",
+   "check": "beat mars_reprise_4_3 (4.3, image 1816 (72.60 s), manivelle 2.1000)",
+   "detail": "reprise 2,10 -> 2,52 avec le schéma : les deux stations repassent, image par image avec retrograde_split — manivelle = colonne du schéma image par image (oui) ; plage 2.100-2.520 ; stations aux images ['1855 (74.16 s)', '1898 (75.88 s)']"
+  },
+  {
+   "level": "OK",
+   "check": "beat olympia (5.3, image 2226 (89.00 s), manivelle 5.9158)",
+   "detail": "l'aiguille des Jeux entre dans ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ (5.9111) — secteur ΝΕΜΕΑ ΑΛΙΕΙΑ -> ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ entre les images 2225 et 2226 | reste dans ['ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ'] jusqu'à la fin du plan (image 2353) | synchro : image 2226 dans [2222, 2248] (« Olympia », mots [2224, 2248])"
+  },
+  {
+   "level": "OK",
+   "check": "beat saros_112 (6.2, image 2551 (102.00 s), manivelle 8.9751)",
+   "detail": "l'aiguille du Saros entre dans la case 112 (signe calculé Σ Η) après les cases vides 108-111 — case 111 -> 112 (signe « Σ Η ») ; cases parcourues avant dans le plan : [108, 109, 110, 111] (sans signe : [108, 109, 110, 111]) | synchro : image 2551 dans [2545, 2583] (« Une case gravée », mots [2545, 2583])"
+  },
+  {
+   "level": "OK",
+   "check": "beat exeligmos_0h (6.3, image 2669 (106.72 s), manivelle 8.9800)",
+   "detail": "aiguille de l'Exeligmos dans le secteur vide (+0 h) pendant tout le plan — heures à ajouter sur tout le plan : [0] | manivelle tenue à 8.9800 des images 2669 à 2766"
+  },
+  {
+   "level": "OK",
+   "check": "beat boule_noire_6_4 (6.4, image 2767 (110.64 s), manivelle 8.9800)",
+   "detail": "début de 6.4 : boule presque noire (8,98) — boule éclairée à 0.035 (attendu 0.00-0.05), élongation 21.6°"
+  },
+  {
+   "level": "OK",
+   "check": "beat dragon_full_moon (6.4, image 2834 (113.32 s), manivelle 9.0140)",
+   "detail": "9,014 : pleine lune sur l'aiguille du Dragon (≤ 1°), boule blanche ; tenue jusqu'à la fin de 7.1 — pleine lune (élongation 180.084°), Lune à 0.411° du nœud (≤ 1.0°), boule éclairée à 1.0000 | synchro : image 2834 dans [2807, 2843] (« la pleine lune tombe sur l'aiguille du Dragon », mots [2807, 2843]) | manivelle tenue à 9.0140 des images 2834 à 3241"
+  },
+  {
+   "level": "OK",
+   "check": "beat soleil_taureau (7.2, image 3363 (134.48 s), manivelle 9.1300)",
+   "detail": "Soleil vers 47° : 17° dans ΤΑΥΡΟΣ (lever du matin des Pléiades) — aiguille de date 16.80° dans ΤΑΥΡΟΣ (46.8°), sphère dorée 17.5° dans ΤΑΥΡΟΣ | synchro : image 3363 dans [3356, 3434] (« ksi », mots [3356, 3368]) | manivelle tenue à 9.1300 des images 3363 à 3525"
+  },
+  {
+   "level": "OK",
+   "check": "beat soleil_scorpion (7.4, image 3628 (145.08 s), manivelle 9.6000)",
+   "detail": "Soleil vers 216° : ΣΚΟΡΠΙΟΣ (coucher du matin des Pléiades, fin oct.-début nov.) — aiguille de date 6.00° dans ΣΚΟΡΠΙΟΣ (216.0°), sphère dorée 4.8° dans ΣΚΟΡΠΙΟΣ ; entrée de l'aiguille de date dans ΣΚΟΡΠΙΟΣ à l'image 3619 (144.72 s) | synchro : image 3628 dans [3592, 3660] (« tombent dans la noire mer », mots [3592, 3626]) | manivelle tenue à 9.6000 des images 3628 à 3733"
+  },
+  {
+   "level": "OK",
+   "check": "6.1 : cases gravées qui clignotent",
+   "detail": "cases à signe traversées par l'aiguille (moteur) : 77 Σ Η @2383, 83 Σ Η @2400, 89 Η @2414, 95 Η @2426, 100 Σ @2437, 101 Η @2440, 106 Σ @2456, 107 Η @2461 ; la dernière est 107 Η"
+  },
+  {
+   "level": "OK",
+   "check": "6.1 : surlignages des cases",
+   "detail": "un clignotement par case, allumé à son entrée"
+  }
+ ],
+ "ok": true
+}

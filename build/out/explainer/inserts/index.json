@@ -1,0 +1,482 @@
+{
+ "generated_by": "tools/explainer/inserts.py",
+ "fps": 25,
+ "size": [
+  1920,
+  1080
+ ],
+ "numbering": "%04d.png, première image 0001",
+ "alpha": "RGBA à alpha droit (non prémultiplié) ; ffmpeg : overlay=format=auto",
+ "timing": "build/out/explainer/inserts/timing.json (segments, manivelle image par image, textes)",
+ "style": "build/out/explainer/film/overlay_style.json (charte commune avec overlay.py et diagrams.py)",
+ "typography": "espace insécable (U+00A0) avant « : » et dans « », espace fine insécable (U+202F) avant ; ! ?, insécable entre nombre et unité",
+ "sequences": [
+  {
+   "name": "map",
+   "path": "build/out/explainer/inserts/map",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 120,
+   "frames_expected": 120,
+   "fps": 25,
+   "duration_s": 4.8,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGB",
+   "transparent": false,
+   "shadow_included": false,
+   "shot": "1.3",
+   "role": "carte animée plein écran (remplace la 3D)",
+   "placement": "plein cadre",
+   "preview": "build/out/explainer/inserts/map_apercu.mp4",
+   "preview_background": null
+  },
+  {
+   "name": "phases",
+   "path": "build/out/explainer/inserts/phases",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 175,
+   "frames_expected": 175,
+   "fps": 25,
+   "duration_s": 7.0,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "3.4",
+   "role": "incrustation à droite : vue du dessus Soleil-Terre-Lune + boule des phases",
+   "placement": [
+    1096,
+    96,
+    1824,
+    716
+   ],
+   "preview": "build/out/explainer/inserts/phases_apercu.mp4",
+   "preview_background": "look2/CAM_front_close_eevee.png"
+  },
+  {
+   "name": "metonic_cell",
+   "path": "build/out/explainer/inserts/metonic_cell",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 100,
+   "frames_expected": 100,
+   "fps": 25,
+   "duration_s": 4.0,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "5.2",
+   "role": "incrustation à droite : case de Méton agrandie « Phoinikaios… an 1 » (illustration)",
+   "placement": [
+    1096,
+    150,
+    1824,
+    700
+   ],
+   "preview": "build/out/explainer/inserts/metonic_cell_apercu.mp4",
+   "preview_background": "look2/CAM_back_close_eevee.png"
+  },
+  {
+   "name": "games_banner",
+   "path": "build/out/explainer/inserts/games_banner",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 150,
+   "frames_expected": 150,
+   "fps": 25,
+   "duration_s": 6.0,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "5.3",
+   "role": "bandeau des 4 années d'origine, curseur synchronisé sur la manivelle",
+   "placement": [
+    150,
+    648,
+    1770,
+    884
+   ],
+   "preview": "build/out/explainer/inserts/games_banner_apercu.mp4",
+   "preview_background": "look2/CAM_games_close_eevee.png"
+  },
+  {
+   "name": "glyph_anatomy",
+   "path": "build/out/explainer/inserts/glyph_anatomy",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 113,
+   "frames_expected": 113,
+   "fps": 25,
+   "duration_s": 4.52,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "6.3",
+   "role": "incrustation à droite : anatomie d'un signe, marquée « exemple »",
+   "placement": [
+    1064,
+    100,
+    1824,
+    716
+   ],
+   "preview": "build/out/explainer/inserts/glyph_anatomy_apercu.mp4",
+   "preview_background": "look2/CAM_saros_close_eevee.png"
+  },
+  {
+   "name": "parapegma_line",
+   "path": "build/out/explainer/inserts/parapegma_line",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 125,
+   "frames_expected": 125,
+   "fps": 25,
+   "duration_s": 5.0,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "7.2",
+   "role": "repère Ξ + ligne du parapegme (version composée, repère en (960, 700))",
+   "placement": "ligne centrée, ligne de base y = 214",
+   "preview": "build/out/explainer/inserts/parapegma_line_apercu.mp4",
+   "preview_background": "look2/CAM_front_close_eevee.png"
+  },
+  {
+   "name": "parapegma_xi",
+   "path": "build/out/explainer/inserts/parapegma_xi",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 125,
+   "frames_expected": 125,
+   "fps": 25,
+   "duration_s": 5.0,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "7.2",
+   "role": "repère Ξ seul, centré sur (960, 540) : à translater sous le Soleil",
+   "placement": "ancre (960, 540)",
+   "preview": "build/out/explainer/inserts/parapegma_xi_apercu.mp4",
+   "preview_background": "look2/CAM_front_close_eevee.png"
+  },
+  {
+   "name": "parapegma_ligne",
+   "path": "build/out/explainer/inserts/parapegma_ligne",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 125,
+   "frames_expected": 125,
+   "fps": 25,
+   "duration_s": 5.0,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "7.2",
+   "role": "ligne « Ξ  La Pléiade se lève le matin » seule, à poser sur la plaque du haut",
+   "placement": "ligne de base y = 214",
+   "preview": "build/out/explainer/inserts/parapegma_ligne_apercu.mp4",
+   "preview_background": "look2/CAM_front_close_eevee.png"
+  },
+  {
+   "name": "end_card",
+   "path": "build/out/explainer/inserts/end_card",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 125,
+   "frames_expected": 125,
+   "fps": 25,
+   "duration_s": 5.0,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGB",
+   "transparent": false,
+   "shadow_included": false,
+   "shot": "7.6",
+   "role": "carton final opaque (parchemin + vignettage)",
+   "placement": "plein cadre",
+   "preview": "build/out/explainer/inserts/end_card_apercu.mp4",
+   "preview_background": null
+  },
+  {
+   "name": "end_card_texte",
+   "path": "build/out/explainer/inserts/end_card_texte",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 125,
+   "frames_expected": 125,
+   "fps": 25,
+   "duration_s": 5.0,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": false,
+   "shot": "7.6",
+   "role": "textes du carton final en RGBA, sur end_card_fond.png et la machine en fondu",
+   "placement": "plein cadre",
+   "preview": "build/out/explainer/inserts/end_card_texte_apercu.mp4",
+   "preview_background": "parchemin"
+  },
+  {
+   "name": "chapter_title_1",
+   "path": "build/out/explainer/inserts/chapter_title_1",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 63,
+   "frames_expected": 63,
+   "fps": 25,
+   "duration_s": 2.52,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "1.1",
+   "role": "titre du chapitre 1 en bas à gauche (0,2 s après le début du premier plan du chapitre)",
+   "placement": [
+    96,
+    772,
+    null,
+    876
+   ],
+   "text": "1 · Le ciel dans une boîte",
+   "group": "chapter_titles",
+   "preview": "build/out/explainer/inserts/chapter_title_1_apercu.mp4",
+   "preview_background": "look2/CAM_front34_eevee.png"
+  },
+  {
+   "name": "chapter_title_2",
+   "path": "build/out/explainer/inserts/chapter_title_2",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 63,
+   "frames_expected": 63,
+   "fps": 25,
+   "duration_s": 2.52,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "2.1",
+   "role": "titre du chapitre 2 en bas à gauche (0,2 s après le début du premier plan du chapitre)",
+   "placement": [
+    96,
+    772,
+    null,
+    876
+   ],
+   "text": "2 · La manivelle, c'est le temps",
+   "group": "chapter_titles",
+   "preview": "build/out/explainer/inserts/chapter_title_2_apercu.mp4",
+   "preview_background": "look2/CAM_front34_eevee.png"
+  },
+  {
+   "name": "chapter_title_3",
+   "path": "build/out/explainer/inserts/chapter_title_3",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 63,
+   "frames_expected": 63,
+   "fps": 25,
+   "duration_s": 2.52,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "3.1",
+   "role": "titre du chapitre 3 en bas à gauche (0,2 s après le début du premier plan du chapitre)",
+   "placement": [
+    96,
+    772,
+    null,
+    876
+   ],
+   "text": "3 · Lire la face avant",
+   "group": "chapter_titles",
+   "preview": "build/out/explainer/inserts/chapter_title_3_apercu.mp4",
+   "preview_background": "look2/CAM_front34_eevee.png"
+  },
+  {
+   "name": "chapter_title_4",
+   "path": "build/out/explainer/inserts/chapter_title_4",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 63,
+   "frames_expected": 63,
+   "fps": 25,
+   "duration_s": 2.52,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "4.1",
+   "role": "titre du chapitre 4 en bas à gauche (0,2 s après le début du premier plan du chapitre)",
+   "placement": [
+    96,
+    772,
+    null,
+    876
+   ],
+   "text": "4 · Les planètes, une hypothèse",
+   "group": "chapter_titles",
+   "preview": "build/out/explainer/inserts/chapter_title_4_apercu.mp4",
+   "preview_background": "look2/CAM_front34_eevee.png"
+  },
+  {
+   "name": "chapter_title_5",
+   "path": "build/out/explainer/inserts/chapter_title_5",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 63,
+   "frames_expected": 63,
+   "fps": 25,
+   "duration_s": 2.52,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "5.1",
+   "role": "titre du chapitre 5 en bas à gauche (0,2 s après le début du premier plan du chapitre)",
+   "placement": [
+    96,
+    772,
+    null,
+    876
+   ],
+   "text": "5 · Le dos : les mois et les Jeux",
+   "group": "chapter_titles",
+   "preview": "build/out/explainer/inserts/chapter_title_5_apercu.mp4",
+   "preview_background": "look2/CAM_front34_eevee.png"
+  },
+  {
+   "name": "chapter_title_6",
+   "path": "build/out/explainer/inserts/chapter_title_6",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 63,
+   "frames_expected": 63,
+   "fps": 25,
+   "duration_s": 2.52,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "6.1",
+   "role": "titre du chapitre 6 en bas à gauche (0,2 s après le début du premier plan du chapitre)",
+   "placement": [
+    96,
+    772,
+    null,
+    876
+   ],
+   "text": "6 · Prédire une éclipse",
+   "group": "chapter_titles",
+   "preview": "build/out/explainer/inserts/chapter_title_6_apercu.mp4",
+   "preview_background": "look2/CAM_front34_eevee.png"
+  },
+  {
+   "name": "chapter_title_7",
+   "path": "build/out/explainer/inserts/chapter_title_7",
+   "pattern": "%04d.png",
+   "first": 1,
+   "frames": 63,
+   "frames_expected": 63,
+   "fps": 25,
+   "duration_s": 2.52,
+   "size": [
+    1920,
+    1080
+   ],
+   "mode": "RGBA",
+   "transparent": true,
+   "shadow_included": true,
+   "shot": "7.1",
+   "role": "titre du chapitre 7 en bas à gauche (0,2 s après le début du premier plan du chapitre)",
+   "placement": [
+    96,
+    772,
+    null,
+    876
+   ],
+   "text": "7 · Et la navigation ?",
+   "group": "chapter_titles",
+   "preview": "build/out/explainer/inserts/chapter_title_7_apercu.mp4",
+   "preview_background": "look2/CAM_front34_eevee.png"
+  }
+ ],
+ "extras": [
+  {
+   "name": "end_card_fond",
+   "path": "build/out/explainer/inserts/end_card_fond.png",
+   "frames": 1,
+   "transparent": false,
+   "shot": "7.6",
+   "role": "fond du carton final (parchemin + vignettage, sans texte), sous end_card_texte"
+  },
+  {
+   "name": "chapter_titles",
+   "preview": "build/out/explainer/inserts/chapter_titles_apercu.mp4",
+   "sequences": [
+    "chapter_title_1",
+    "chapter_title_2",
+    "chapter_title_3",
+    "chapter_title_4",
+    "chapter_title_5",
+    "chapter_title_6",
+    "chapter_title_7"
+   ],
+   "role": "les 7 titres de chapitre (aperçu à la suite)"
+  }
+ ]
+}

@@ -11,7 +11,7 @@ ctl['explode'] = 0.0
 ctl.id_properties_ui('explode').update(min=0.0, max=1.0, soft_min=0.0, soft_max=1.0, description='Exploded view (0 = assembled, 1 = z tripled)')
 for c in ('crank',): pass
 ctl['crank'] = 0.0; ctl.update_tag(); bpy.context.view_layer.update()
-SKIP_COLL = {'AM_HELPERS', 'AM_STAGE'}
+SKIP_COLL = {'AM_HELPERS', 'AM_STAGE', 'AM_ATELIER'}
 def in_skip(ob): return any(c.name in SKIP_COLL for c in ob.users_collection)
 def centroid_z(ob):
     if ob.type == 'MESH' and len(ob.data.vertices):

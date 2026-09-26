@@ -1,0 +1,4563 @@
+{
+ "titre": "Moteur de la machine d'Anticythère — export pour le portage JavaScript",
+ "genere_par": "tools/explainer/engine.py",
+ "date": "2026-09-25",
+ "spec_sha256": "4c0162f2d8c7b02c287651a95decf9b5372810cbb8354a11b17d7de0cebe333f",
+ "temps": {
+  "annee_du_modele_jours": 365.2422,
+  "jd_t0_cale": 2451545.0,
+  "t": "t = (JD_TT − 2451545.0) / 365.2422 (années de manivelle ; t = 0 = J2000.0 dans le mode calé)"
+ },
+ "formules": {
+  "lin": "angle local = s·2π·fmod(t·n/d, 1) + phase, avec rate_rel_parent = ±n/d et s = −1 si le taux est positif (horaire vu de face), +1 sinon ; fmod garde le signe de t (comme en C)",
+  "a": "rotation autour de +x = −2π·fmod(t·223/48, 1)",
+  "pin_slot": "slot = p + atan2(e·sin(p − beta), r − e·cos(p − beta)) avec p = angle local du corps à goupille",
+  "lune": "e_inner = e_table − kp ; moon = −e_inner ; q = b − moon (boule de phase, autour de l'axe radial)",
+  "sorties_planetes_superieures": "θ(t_X) = θ_b − slot",
+  "suiveurs": "θ_F = θ_b + g0 + atan2(d·sin(lam), i + d·cos(lam)), lam = θ(épicycle, local) + pin_phase − g0",
+  "monde": "θ_monde = θ_local + θ_local(parent) si parent ∈ {b, e_table}",
+  "longitudes": "λ = −(θ_monde + marker_local) (croît dans le sens horaire vu de face, 0 = début du Bélier sur +x) ; Lune = −θ(moon) ; Soleil moyen = −θ(b) ; nœud ascendant = −θ(t_nodes) ; phase = q mod 2π (0 = nouvelle lune)",
+  "spirales": "psi = turns·2π·frac(t·q + psi0/(turns·2π)), psi0 = phase du corps pointeur ; case = floor(psi/(turns·2π)·cells) + 1 ; rayon = spirale à deux centres (rho_exact) ou table linéaire",
+  "cadrans_secondaires": "psi = θ_monde mod 2π (horaire vu de l'arrière depuis 12 h) ; secteur = floor(((psi − tilt) mod 2π)/(2π/secteurs))",
+  "calendrier": "jour (0..364) = floor(λ_Soleil_moyen/360·365 + décalage_anneau) ; mois = jour // 30"
+ },
+ "rapport_manivelle": [
+  223,
+  48
+ ],
+ "corps": {
+  "frame": {
+   "parent": null,
+   "axis": "z",
+   "kind": "fixed",
+   "rate_rel_parent": null,
+   "rate_abs": [
+    0,
+    1
+   ]
+  },
+  "a": {
+   "parent": "frame",
+   "axis": "x",
+   "kind": "crank",
+   "rate_rel_parent": null,
+   "rate_abs": null
+  },
+  "b": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    1,
+    1
+   ],
+   "rate_abs": [
+    1,
+    1
+   ]
+  },
+  "moon": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    254,
+    19
+   ],
+   "rate_abs": [
+    254,
+    19
+   ]
+  },
+  "c": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -32,
+    19
+   ],
+   "rate_abs": [
+    -32,
+    19
+   ]
+  },
+  "d": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    64,
+    19
+   ],
+   "rate_abs": [
+    64,
+    19
+   ]
+  },
+  "e_pipe": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -254,
+    19
+   ],
+   "rate_abs": [
+    -254,
+    19
+   ]
+  },
+  "e_table": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -477,
+    4237
+   ],
+   "rate_abs": [
+    -477,
+    4237
+   ]
+  },
+  "e_inner": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "pin_slot_driven",
+   "rate_rel_parent": [
+    -254,
+    19
+   ],
+   "rate_abs": [
+    -254,
+    19
+   ]
+  },
+  "k": {
+   "parent": "e_table",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    56165,
+    4237
+   ],
+   "rate_abs": [
+    55688,
+    4237
+   ]
+  },
+  "kp": {
+   "parent": "e_table",
+   "axis": "z",
+   "kind": "pin_slot_output",
+   "rate_rel_parent": [
+    56165,
+    4237
+   ],
+   "rate_abs": [
+    55688,
+    4237
+   ]
+  },
+  "l": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -32,
+    19
+   ],
+   "rate_abs": [
+    -32,
+    19
+   ]
+  },
+  "m": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    53,
+    57
+   ],
+   "rate_abs": [
+    53,
+    57
+   ]
+  },
+  "f": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    1692,
+    4237
+   ],
+   "rate_abs": [
+    1692,
+    4237
+   ]
+  },
+  "g": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -940,
+    4237
+   ],
+   "rate_abs": [
+    -940,
+    4237
+   ]
+  },
+  "h": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    940,
+    12711
+   ],
+   "rate_abs": [
+    940,
+    12711
+   ]
+  },
+  "i": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -235,
+    12711
+   ],
+   "rate_abs": [
+    -235,
+    12711
+   ]
+  },
+  "n": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -5,
+    19
+   ],
+   "rate_abs": [
+    -5,
+    19
+   ]
+  },
+  "o": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    1,
+    4
+   ],
+   "rate_abs": [
+    1,
+    4
+   ]
+  },
+  "p": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    5,
+    76
+   ],
+   "rate_abs": [
+    5,
+    76
+   ]
+  },
+  "cal": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -1,
+    76
+   ],
+   "rate_abs": [
+    -1,
+    76
+   ]
+  },
+  "q": {
+   "parent": "moon",
+   "axis": "radial",
+   "kind": "nonlinear_crown",
+   "rate_rel_parent": null,
+   "rate_abs": null
+  },
+  "spA": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    17,
+    24
+   ],
+   "rate_abs": [
+    41,
+    24
+   ]
+  },
+  "spB": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    49,
+    62
+   ],
+   "rate_abs": [
+    111,
+    62
+   ]
+  },
+  "spC": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    51,
+    44
+   ],
+   "rate_abs": [
+    95,
+    44
+   ]
+  },
+  "x_me40": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -1513,
+    960
+   ],
+   "rate_abs": [
+    -553,
+    960
+   ]
+  },
+  "x_me20": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    1513,
+    480
+   ],
+   "rate_abs": [
+    1993,
+    480
+   ]
+  },
+  "x_vn26": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -867,
+    572
+   ],
+   "rate_abs": [
+    -295,
+    572
+   ]
+  },
+  "x_r1": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    289,
+    462
+   ],
+   "rate_abs": [
+    751,
+    462
+   ]
+  },
+  "t_nodes": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -5,
+    93
+   ],
+   "rate_abs": [
+    -5,
+    93
+   ]
+  },
+  "x_cp52": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    14,
+    13
+   ],
+   "rate_abs": [
+    27,
+    13
+   ]
+  },
+  "x_cp64": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    7,
+    8
+   ],
+   "rate_abs": [
+    15,
+    8
+   ]
+  },
+  "x_su56": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -1,
+    1
+   ],
+   "rate_abs": [
+    0,
+    1
+   ]
+  },
+  "x_sa40": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -427,
+    260
+   ],
+   "rate_abs": [
+    -167,
+    260
+   ]
+  },
+  "x_sa68": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    427,
+    442
+   ],
+   "rate_abs": [
+    869,
+    442
+   ]
+  },
+  "x_sa86s": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "pin_slot_output",
+   "rate_rel_parent": [
+    427,
+    442
+   ],
+   "rate_abs": [
+    869,
+    442
+   ]
+  },
+  "x_ju40": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -63,
+    64
+   ],
+   "rate_abs": [
+    1,
+    64
+   ]
+  },
+  "x_ju43": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    315,
+    344
+   ],
+   "rate_abs": [
+    659,
+    344
+   ]
+  },
+  "x_ju65s": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "pin_slot_output",
+   "rate_rel_parent": [
+    315,
+    344
+   ],
+   "rate_abs": [
+    659,
+    344
+   ]
+  },
+  "x_ma40": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    -133,
+    160
+   ],
+   "rate_abs": [
+    27,
+    160
+   ]
+  },
+  "x_ma71": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "revolute",
+   "rate_rel_parent": [
+    133,
+    284
+   ],
+   "rate_abs": [
+    417,
+    284
+   ]
+  },
+  "x_ma80s": {
+   "parent": "b",
+   "axis": "z",
+   "kind": "pin_slot_output",
+   "rate_rel_parent": [
+    133,
+    284
+   ],
+   "rate_abs": [
+    417,
+    284
+   ]
+  },
+  "t_saturn": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "pin_slot_driven",
+   "rate_rel_parent": [
+    15,
+    442
+   ],
+   "rate_abs": [
+    15,
+    442
+   ]
+  },
+  "t_jupiter": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "pin_slot_driven",
+   "rate_rel_parent": [
+    29,
+    344
+   ],
+   "rate_abs": [
+    29,
+    344
+   ]
+  },
+  "t_mars": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "pin_slot_driven",
+   "rate_rel_parent": [
+    151,
+    284
+   ],
+   "rate_abs": [
+    151,
+    284
+   ]
+  },
+  "t_mercury": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "follower",
+   "rate_rel_parent": [
+    1,
+    1
+   ],
+   "rate_abs": [
+    1,
+    1
+   ]
+  },
+  "t_venus": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "follower",
+   "rate_rel_parent": [
+    1,
+    1
+   ],
+   "rate_abs": [
+    1,
+    1
+   ]
+  },
+  "t_trueSun": {
+   "parent": "frame",
+   "axis": "z",
+   "kind": "follower",
+   "rate_rel_parent": [
+    1,
+    1
+   ],
+   "rate_abs": [
+    1,
+    1
+   ]
+  }
+ },
+ "goupilles_rainures": {
+  "kp": {
+   "id": "lunar",
+   "pin": "k",
+   "e": 1.1,
+   "r": 9.6,
+   "beta": -0.6632251157578453,
+   "carrier": "e_table"
+  },
+  "x_sa86s": {
+   "id": "saturn",
+   "pin": "x_sa68",
+   "e": 1.5,
+   "r": 14.37,
+   "beta": 3.141592653589793,
+   "carrier": "b"
+  },
+  "x_ju65s": {
+   "id": "jupiter",
+   "pin": "x_ju43",
+   "e": 1.58,
+   "r": 8.22,
+   "beta": 3.141592653589793,
+   "carrier": "b"
+  },
+  "x_ma80s": {
+   "id": "mars",
+   "pin": "x_ma71",
+   "e": 6.58,
+   "r": 10.0,
+   "beta": 5.759586531581287,
+   "carrier": "b"
+  }
+ },
+ "sorties_de_rainure": {
+  "t_saturn": "x_sa86s",
+  "t_jupiter": "x_ju65s",
+  "t_mars": "x_ma80s"
+ },
+ "suiveurs": {
+  "t_mercury": {
+   "id": "mercury",
+   "epi": "x_me20",
+   "i": 36.0,
+   "d": 14.04,
+   "g0": -0.4537856055179911,
+   "ph": 0.0
+  },
+  "t_venus": {
+   "id": "venus",
+   "epi": "x_r1",
+   "i": 27.8,
+   "d": 20.01,
+   "g0": 2.705260340590645,
+   "ph": 0.0
+  },
+  "t_trueSun": {
+   "id": "trueSun",
+   "epi": "x_su56",
+   "i": 39.711744,
+   "d": 1.654656,
+   "g0": 2.617993877992732,
+   "ph": 1.4748032179352084
+  }
+ },
+ "marqueurs_rad": {
+  "t_saturn": 0.0,
+  "t_jupiter": 0.0,
+  "t_mars": 2.6179938779914944,
+  "t_trueSun": -2.6179938779914944,
+  "t_venus": -2.705260340591211,
+  "t_mercury": 0.4537856055185257
+ },
+ "spirales": {
+  "metonic": {
+   "pointer_body": "n",
+   "turns": 5,
+   "cells": 235,
+   "r_start": 44.0,
+   "pitch": 5.2,
+   "q_turns_per_year": [
+    1,
+    19
+   ],
+   "lookup": "clés linéaires tous les π/250 de 0 à turns·2π (comme la F-curve du driver)"
+  },
+  "saros": {
+   "pointer_body": "g",
+   "turns": 4,
+   "cells": 223,
+   "r_start": 44.0,
+   "pitch": 6.5,
+   "q_turns_per_year": [
+    235,
+    4237
+   ],
+   "lookup": "clés linéaires tous les π/250 de 0 à turns·2π (comme la F-curve du driver)"
+  }
+ },
+ "cadrans_secondaires": {
+  "olympiad": {
+   "id": "olympiad",
+   "centre": "O",
+   "radius": 18.0,
+   "sectors": 4,
+   "labels": [
+    "ΝΕΜΕΑ ΝΑΑ",
+    "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+    "ΝΕΜΕΑ ΑΛΙΕΙΑ",
+    "ΙΣΘΜΙΑ ΠΥΘΙΑ"
+   ],
+   "label_years": [
+    2,
+    1,
+    4,
+    3
+   ],
+   "label_note": "Historical pairs: each sector names the two festivals of one year of the 4-year cycle. Year 1 Isthmia + Olympia, year 2 Nemea + Naa (Dodona), year 3 Isthmia + Pythia (Delphi), year 4 Nemea + Halieia (Rhodes; read after 2008, 'probably' for the National Archaeological Museum). The pointer turns anticlockwise seen from the back, so turning the crank forward it reads sectors 1 -> 0 -> 3 -> 2 = years 1 -> 2 -> 3 -> 4 (label_years): ΟΛΥΜΠΙΑ is read in the Olympic year. Replaces the single names of prompt v1.2 (ΙΣΘΜΙΑ, ΟΛΥΜΠΙΑ, ΝΕΜΕΑ, ΠΥΘΙΑ), whose year 2 (ΙΣΘΜΙΑ) was wrong.",
+   "label_layout": {
+    "size": 2.0,
+    "r_centre": 10.5,
+    "lines": "two per sector: the label split at the space, first festival on the outer line",
+    "placement": "one FONT object per sector (built-in font, align centre/centre), block centred on the sector bisector psi = sector_tilt_deg + 90 (k + 0.5) at r_centre from the dial centre, text up = radially outward (read from the back); same extrusion, z, material, body and collection as the other back texts"
+   },
+   "label_sources": [
+    "F08",
+    "F08SI",
+    "I17"
+   ],
+   "sector_tilt_deg": 8,
+   "pointer_body": "o",
+   "pointer": {
+    "z": [
+     -17.0,
+     -16.6
+    ],
+    "length": 16.0
+   },
+   "note": "turns anticlockwise seen from the back (+1/4)",
+   "status": "SURVIVING"
+  },
+  "callippic": {
+   "id": "callippic",
+   "centre": "cal",
+   "radius": 18.0,
+   "sectors": 4,
+   "pointer_body": "cal",
+   "pointer": {
+    "z": [
+     -17.0,
+     -16.6
+    ],
+    "length": 16.0
+   },
+   "status": "RECONSTRUCTED"
+  },
+  "exeligmos": {
+   "id": "exeligmos",
+   "centre": "I",
+   "radius": 17.0,
+   "sectors": 3,
+   "labels": [
+    "",
+    "Η",
+    "ΙΣΤ"
+   ],
+   "label_note": "the stigma Ϛ (U+03DA) is missing from Blender's built-in font, so 16 is written ΙΣΤ",
+   "pointer_body": "i",
+   "pointer": {
+    "z": [
+     -17.0,
+     -16.6
+    ],
+    "length": 15.0
+   },
+   "status": "SURVIVING"
+  }
+ },
+ "libelles": {
+  "zodiaque_grec": [
+   "ΚΡΙΟΣ",
+   "ΤΑΥΡΟΣ",
+   "ΔΙΔΥΜΟΙ",
+   "ΚΑΡΚΙΝΟΣ",
+   "ΛΕΩΝ",
+   "ΠΑΡΘΕΝΟΣ",
+   "ΧΗΛΑΙ",
+   "ΣΚΟΡΠΙΟΣ",
+   "ΤΟΞΟΤΗΣ",
+   "ΑΙΓΟΚΕΡΩΣ",
+   "ΥΔΡΟΧΟΟΣ",
+   "ΙΧΘΥΕΣ"
+  ],
+  "zodiaque_fr": [
+   "Bélier",
+   "Taureau",
+   "Gémeaux",
+   "Cancer",
+   "Lion",
+   "Vierge",
+   "Balance",
+   "Scorpion",
+   "Sagittaire",
+   "Capricorne",
+   "Verseau",
+   "Poissons"
+  ],
+  "mois_egyptiens_grec": [
+   "ΘΩΥΘ",
+   "ΦΑΩΦΙ",
+   "ΑΘΥΡ",
+   "ΧΟΙΑΚ",
+   "ΤΥΒΙ",
+   "ΜΕΧΙΡ",
+   "ΦΑΜΕΝΩΘ",
+   "ΦΑΡΜΟΥΘΙ",
+   "ΠΑΧΩΝ",
+   "ΠΑΥΝΙ",
+   "ΕΠΙΦΙ",
+   "ΜΕΣΟΡΗ",
+   "ΕΠΑΓΟΜΕΝΑΙ"
+  ],
+  "mois_egyptiens_fr": [
+   "Thot",
+   "Phaophi",
+   "Athyr",
+   "Choiak",
+   "Tybi",
+   "Méchir",
+   "Phaménoth",
+   "Pharmouthi",
+   "Pachôn",
+   "Payni",
+   "Épiphi",
+   "Mésorê",
+   "jours épagomènes"
+  ],
+  "jeux_fr": {
+   "ΙΣΘΜΙΑ": "Jeux isthmiques (Corinthe)",
+   "ΟΛΥΜΠΙΑ": "Jeux olympiques (Olympie)",
+   "ΝΕΜΕΑ": "Jeux néméens (Némée)",
+   "ΠΥΘΙΑ": "Jeux pythiques (Delphes)",
+   "ΝΑΑ": "Naa (Dodone)",
+   "ΑΛΙΕΙΑ": "Halieia (Rhodes)",
+   "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ": "Jeux isthmiques (Corinthe) et Jeux olympiques (Olympie)",
+   "ΝΕΜΕΑ ΝΑΑ": "Jeux néméens (Némée) et Naa (Dodone)",
+   "ΙΣΘΜΙΑ ΠΥΘΙΑ": "Jeux isthmiques (Corinthe) et Jeux pythiques (Delphes)",
+   "ΝΕΜΕΑ ΑΛΙΕΙΑ": "Jeux néméens (Némée) et Halieia (Rhodes)"
+  },
+  "planetes": {
+   "t_mercury": "Mercure",
+   "t_venus": "Vénus",
+   "t_mars": "Mars",
+   "t_jupiter": "Jupiter",
+   "t_saturn": "Saturne"
+  }
+ },
+ "phases": {
+  "modele": {},
+  "cale_J2000": {
+   "b": 1.3881221387666107,
+   "x_su56": 4.241658147692714,
+   "k": 3.2644045545674794,
+   "e_table": 0.7915600710108945,
+   "t_nodes": 4.100746234656825,
+   "x_ma71": 3.926406829819524,
+   "x_ju43": 1.9876692483780012,
+   "x_sa68": 2.26213841754969,
+   "x_me20": 0.0386687120562651,
+   "x_r1": 4.424176809429551,
+   "g": 5.609755203912343,
+   "n": 17.348908025371763,
+   "i": 4.6562698051124345,
+   "cal": 4.009038054858381,
+   "o": 5.591744935934614
+  },
+  "note": "phase = constante ajoutée à l'angle local linéaire du corps ; pour n et g (spirales) c'est psi0 ∈ [0, tours·2π) : rotation = lin + psi0, curseur = tours·2π·frac(t·q + psi0/(tours·2π))"
+ },
+ "blender_film_2026": {
+  "t_ref": 26.0,
+  "jd_ref": 2461041.2972,
+  "date_ref": "2025-12-31 19:08 TT",
+  "corps": {
+   "b": 1.3881221387666107,
+   "moon": 2.6455517082862166,
+   "c": 4.960409453036522,
+   "d": 2.6455517082861273,
+   "e_pipe": 3.6376335988933697,
+   "e_table": 0.3333339062909282,
+   "k": 5.451730098133588,
+   "l": 4.960409453036522,
+   "m": 5.180872095393685,
+   "f": 3.8778686755427447,
+   "g": 4.15351541829744,
+   "h": 0.4854132618716349,
+   "i": 1.3933238360547326,
+   "n": 3.7904555204052883,
+   "o": 2.4501522823448205,
+   "p": 1.8188167994467221,
+   "cal": 6.158548817840871,
+   "spA": 3.6651914291880847,
+   "spB": 2.837567558081112,
+   "spC": 5.426387310746004,
+   "x_me40": 6.1391956438900515,
+   "x_me20": 0.3266480386353354,
+   "x_vn26": 2.5703939893007237,
+   "x_r1": 2.7649806893518285,
+   "t_nodes": 0.31732282388202115,
+   "x_cp52": 0.0,
+   "x_cp64": 1.5707963267948966,
+   "x_su56": 4.241658147692714,
+   "x_sa40": 4.398229715025728,
+   "x_sa68": 1.5229401461168002,
+   "x_ju40": 3.730641276137879,
+   "x_ju43": 3.193164103825241,
+   "x_ma40": 3.848451000647501,
+   "x_ma71": 2.8202122334850843,
+   "a": 1.3089969389957172
+  },
+  "curseurs": {
+   "metonic": 0.9206539465284929,
+   "saros": 0.6652631275076097
+  }
+ },
+ "calage_J2000": {
+  "epoch_jd": 2451545.0,
+  "epoch": "2000-01-01 12:00 TT",
+  "t_epoch": 0.0,
+  "mean_elements_deg": {
+   "sun_L0": 280.46646,
+   "sun_M": 357.52911,
+   "moon_L": 218.3164477,
+   "moon_D": 297.8501921,
+   "moon_M": 134.9633964,
+   "moon_F": 93.272095,
+   "moon_Omega": 125.0445479,
+   "mercury": 252.250906,
+   "venus": 181.979801,
+   "earth": 100.466457,
+   "mars": 355.433,
+   "jupiter": 34.351519,
+   "saturn": 50.077444,
+   "sun_apogee": 102.93734999999998,
+   "moon_perigee": 83.3530513
+  },
+  "anchors": {
+   "saros_nouvelle_lune_moyenne": "-0204-04-27 22:41 TT (julien) [205 av. J.-C.]",
+   "saros_jd": 1646664.4448702591,
+   "metonique_nouvelle_lune_moyenne": "-0329-06-28 17:24 TT (julien) [330 av. J.-C.]",
+   "metonique_jd": 1601069.2247344044,
+   "debut_des_cases": "nouvelle lune moyenne + 2/38 de mois (1er croissant, Freeth 2014)",
+   "sources": {
+    "saros_FM1": "Freeth 2014, PLoS ONE 9(7):e103275 : « FM1 at -204 May-12 » (205 av. J.-C.)",
+    "callippic": "Début du 1er cycle de Callippe : solstice d'été de 330 av. J.-C. (28 juin julien), Evans 1998 p. 186-187",
+    "olympiad": "1re Olympiade : été 776 av. J.-C. (année astronomique -775) ; Jeux en été",
+    "nabonassar_jd": "Ère de Nabonassar : 1 Thot = mercredi 26 février 747 av. J.-C. (julien), JD 1448638 (calcul Meeus ch. 7)"
+   }
+  },
+  "cycles": {
+   "saros": {
+    "offset": 123,
+    "lunaisons_depuis_repere": 27255.827361644722
+   },
+   "metonic": {
+    "offset": 123,
+    "lunaisons_depuis_repere": 28799.827361644722
+   }
+  },
+  "olympiad": {
+   "t_start": -2.5290735,
+   "year_start": 1997,
+   "number_at_start": 694,
+   "convention": "l'aiguille entre dans ΟΛΥΜΠΙΑ au solstice d'été moyen (Soleil moyen à 90°) des années olympiques antiques (≡ 776 av. J.-C. mod 4)"
+  }
+ },
+ "derive": {
+  "soleil_moyen": {
+   "modele_deg_par_siecle": 36000.768805,
+   "reel_deg_par_siecle": 36000.76983,
+   "derive_deg_par_siecle": -0.001,
+   "rapport": "b = 1 tour/an"
+  },
+  "apogee_solaire": {
+   "modele_deg_par_siecle": 0.0,
+   "reel_deg_par_siecle": 1.71954,
+   "derive_deg_par_siecle": -1.7195,
+   "rapport": "su56 fixe (apogée fixe)"
+  },
+  "lune_longitude_moyenne": {
+   "modele_deg_par_siecle": 481273.435603,
+   "reel_deg_par_siecle": 481267.881234,
+   "derive_deg_par_siecle": 5.5544,
+   "rapport": "moon = 254/19 tour/an"
+  },
+  "lune_elongation_D": {
+   "modele_deg_par_siecle": 445272.666798,
+   "reel_deg_par_siecle": 445267.111403,
+   "derive_deg_par_siecle": 5.5554,
+   "rapport": "235/19 lunaisons/an (Méton)"
+  },
+  "lune_anomalie_moyenne": {
+   "modele_deg_par_siecle": 477220.481456,
+   "reel_deg_par_siecle": 477198.867505,
+   "derive_deg_par_siecle": 21.614,
+   "rapport": "k/e_table = 56165/4237"
+  },
+  "perigee_lunaire": {
+   "modele_deg_par_siecle": 4052.954147,
+   "reel_deg_par_siecle": 4069.013729,
+   "derive_deg_par_siecle": -16.0596,
+   "rapport": "e_table = 477/4237 tour/an"
+  },
+  "noeud_lunaire": {
+   "modele_deg_par_siecle": -1935.525205,
+   "reel_deg_par_siecle": -1934.136289,
+   "derive_deg_par_siecle": -1.3889,
+   "rapport": "t_nodes = −5/93 tour/an"
+  },
+  "argument_de_latitude_F": {
+   "modele_deg_par_siecle": 483208.960807,
+   "reel_deg_par_siecle": 483202.017523,
+   "derive_deg_par_siecle": 6.9433,
+   "rapport": "Lune − nœud"
+  },
+  "mercury": {
+   "modele_deg_par_siecle": 149478.192142,
+   "reel_deg_par_siecle": 149474.072249,
+   "derive_deg_par_siecle": 4.1199,
+   "rapport": "épicycle x_me20 = 1993/480 tour/an (longitude héliocentrique)"
+  },
+  "venus": {
+   "modele_deg_par_siecle": 58520.730243,
+   "reel_deg_par_siecle": 58519.21303,
+   "derive_deg_par_siecle": 1.5172,
+   "rapport": "épicycle x_r1 = 751/462 tour/an (longitude héliocentrique)"
+  },
+  "mars": {
+   "modele_deg_par_siecle": 19141.253836,
+   "reel_deg_par_siecle": 19141.696447,
+   "derive_deg_par_siecle": -0.4426,
+   "rapport": "t_mars = 151/284 tour/an"
+  },
+  "jupiter": {
+   "modele_deg_par_siecle": 3034.948533,
+   "reel_deg_par_siecle": 3036.302775,
+   "derive_deg_par_siecle": -1.3542,
+   "rapport": "t_jupiter = 29/344 tour/an"
+  },
+  "saturn": {
+   "modele_deg_par_siecle": 1221.745548,
+   "reel_deg_par_siecle": 1223.511069,
+   "derive_deg_par_siecle": -1.7655,
+   "rapport": "t_saturn = 15/442 tour/an"
+  },
+  "_resume": {
+   "mois_synodique_modele_jours": 29.53022,
+   "mois_synodique_reel_jours": 29.530588853,
+   "phases_de_la_lune_avance_jours_par_siecle": 0.456,
+   "eclipses_F_derive_deg_par_siecle": 6.9433
+  }
+ },
+ "limites_ecliptiques": {
+  "solar_deg": 17.0,
+  "lunar_deg": 10.8,
+  "doc": "Éclipse de Soleil possible si, à la nouvelle lune de la machine, l'aiguille de la Lune est à moins de 17.0° d'un nœud (aiguille du Dragon) : milieu de la fourchette 15.39°-18.59° donnée par F. Espenak (NASA, « Periodicity of Solar Eclipses » §1.1 : « within about 17° of a node »). Éclipse de Lune (partielle ou totale, par l'ombre) possible si, à la pleine lune, la Lune est à moins de L° d'un nœud, L calculé par ecliptic_limits() à partir de la géométrie moyenne (ombre = 1.02 × (π_Lune − s_Soleil + π_Soleil), + rayon lunaire, inclinaison 5.145°) ; fourchette apogée-périgée donnée dans glyphs.json. Les éclipses pénombrales (≈ 17°) ne sont pas comptées par cette règle.",
+  "geometrie": {
+   "moyenne": {
+    "lunaire_ombre": 10.76,
+    "lunaire_penombre": 17.01,
+    "solaire": 16.67
+   },
+   "min": {
+    "lunaire_ombre": 10.05,
+    "lunaire_penombre": 16.17,
+    "solaire": 15.85
+   },
+   "max": {
+    "lunaire_ombre": 11.81,
+    "lunaire_penombre": 18.19,
+    "solaire": 17.83
+   }
+  }
+ },
+ "regle_freeth2014": {
+  "lunar_eyu": 20,
+  "solar_north_eyu": 20,
+  "solar_south_eyu": 7,
+  "doc": "Règle EYM de Freeth 2014 (PLoS ONE 9(7):e103275) : glyphe lunaire si la pleine lune est à ≤ 20 EYu du « point nodal », glyphe solaire si la nouvelle lune est à ≤ 20 EYu au NORD du nœud ou ≤ 7 EYu au SUD (visibilité depuis la Grèce), pas de 2e prédiction lunaire le mois suivant ; 1 EYu = 360°/446 = 0.807° de distance Soleil-nœud. Appliquée ici aux positions de NOTRE machine."
+ },
+ "glyphes": {
+  "modele_t0_limites": [
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "cale_J2000_limites": [
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   ""
+  ],
+  "cale_J2000_t_debut_cycle": -4.024339877658477,
+  "historique_EYM_Freeth2014": [
+   "",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Η",
+   "Σ",
+   "",
+   "",
+   "",
+   "",
+   "Σ Η",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "convention": "modèle : Η = nouvelle lune qui ouvre la case ; calé (Freeth 2014) : cases au 1er croissant, Η = nouvelle lune qui termine la case, Σ = pleine lune du milieu"
+ },
+ "ancres": {
+  "saros_FM1": {
+   "date": [
+    -204,
+    5,
+    12,
+    12.0
+   ],
+   "calendar": "julian",
+   "source": "Freeth 2014, PLoS ONE 9(7):e103275 : « FM1 at -204 May-12 » (205 av. J.-C.)"
+  },
+  "callippic": {
+   "date": [
+    -329,
+    6,
+    28,
+    12.0
+   ],
+   "calendar": "julian",
+   "source": "Début du 1er cycle de Callippe : solstice d'été de 330 av. J.-C. (28 juin julien), Evans 1998 p. 186-187"
+  },
+  "olympiad": {
+   "first_year": -775,
+   "source": "1re Olympiade : été 776 av. J.-C. (année astronomique -775) ; Jeux en été"
+  },
+  "nabonassar_jd": {
+   "jd": 1448638.0,
+   "source": "Ère de Nabonassar : 1 Thot = mercredi 26 février 747 av. J.-C. (julien), JD 1448638 (calcul Meeus ch. 7)"
+  }
+ },
+ "vecteurs_de_test": [
+  {
+   "machine": "modele",
+   "t": 0.0,
+   "local_rad": {
+    "frame": 0.0,
+    "b": 0.0,
+    "moon": 0.07739155451147976,
+    "c": 0.0,
+    "d": 0.0,
+    "e_pipe": 0.0,
+    "e_table": 0.0,
+    "k": 0.0,
+    "l": 0.0,
+    "m": 0.0,
+    "f": 0.0,
+    "g": 0.0,
+    "h": 0.0,
+    "i": 0.0,
+    "n": 0.0,
+    "o": 0.0,
+    "p": 0.0,
+    "cal": 0.0,
+    "spA": 0.0,
+    "spB": 0.0,
+    "spC": 0.0,
+    "x_me40": 0.0,
+    "x_me20": 0.0,
+    "x_vn26": 0.0,
+    "x_r1": 0.0,
+    "t_nodes": 0.0,
+    "x_cp52": 0.0,
+    "x_cp64": 0.0,
+    "x_su56": 0.0,
+    "x_sa40": 0.0,
+    "x_sa68": 0.0,
+    "x_ju40": 0.0,
+    "x_ju43": 0.0,
+    "x_ma40": 0.0,
+    "x_ma71": 0.0,
+    "a": 0.0,
+    "kp": 0.07739155451147976,
+    "x_sa86s": -1.1575111523131883e-17,
+    "x_ju65s": -1.9744305537273653e-17,
+    "x_ma80s": 0.6529313018915722,
+    "e_inner": -0.07739155451147976,
+    "t_saturn": 1.1575111523131883e-17,
+    "t_jupiter": 1.9744305537273653e-17,
+    "t_mars": -0.6529313018915722,
+    "t_mercury": -0.3278645089894793,
+    "t_venus": 1.9864357391565672,
+    "t_trueSun": 2.5807400710001294,
+    "q": -0.07739155451147976
+   },
+   "psi_rad": {
+    "metonic": 0.0,
+    "saros": 0.0,
+    "olympiad": 0.0,
+    "callippic": 0.0,
+    "exeligmos": 0.0
+   },
+   "rho_mm": {
+    "metonic": 44.0,
+    "saros": 44.0
+   },
+   "lon_deg": {
+    "soleil_moyen": 0.0,
+    "soleil_vrai": 2.1344859114001764,
+    "lune": 355.56579055653555,
+    "noeud_ascendant": 0.0,
+    "phase": 355.56579055653555,
+    "mercure": 352.7852526172262,
+    "venus": 41.18561587237862,
+    "mars": 247.4102079103693,
+    "jupiter": 360.0,
+    "saturne": 360.0
+   },
+   "lecture": {
+    "t_manivelle_ans": 0.0,
+    "mode": "modèle (époque non calée, manivelle 0 = tout à zéro)",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 0.0,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 0.0,
+      "texte": "0°00′ dans ΚΡΙΟΣ (Bélier)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 2.1345,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 2.134,
+      "texte": "2°08′ dans ΚΡΙΟΣ (Bélier)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 1,
+      "mois_grec": "ΘΩΥΘ",
+      "mois_fr": "Thot",
+      "jour": 1,
+      "texte": "1 Thot (ΘΩΥΘ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 355.5658,
+     "signe_grec": "ΙΧΘΥΕΣ",
+     "signe_fr": "Poissons",
+     "degre_dans_le_signe": 25.566,
+     "texte": "25°34′ dans ΙΧΘΥΕΣ (Poissons)",
+     "elongation_deg": 355.566,
+     "phase": "nouvelle lune",
+     "fraction_eclairee": 0.0015,
+     "age_jours": 29.17,
+     "croissante": false
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 352.7853,
+      "signe_grec": "ΙΧΘΥΕΣ",
+      "signe_fr": "Poissons",
+      "degre_dans_le_signe": 22.785,
+      "texte": "22°47′ dans ΙΧΘΥΕΣ (Poissons)",
+      "vitesse_deg_par_jour": 1.8283,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 41.1856,
+      "signe_grec": "ΤΑΥΡΟΣ",
+      "signe_fr": "Taureau",
+      "degre_dans_le_signe": 11.186,
+      "texte": "11°11′ dans ΤΑΥΡΟΣ (Taureau)",
+      "vitesse_deg_par_jour": 0.5977,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 247.4102,
+      "signe_grec": "ΤΟΞΟΤΗΣ",
+      "signe_fr": "Sagittaire",
+      "degre_dans_le_signe": 7.41,
+      "texte": "7°25′ dans ΤΟΞΟΤΗΣ (Sagittaire)",
+      "vitesse_deg_par_jour": 0.3086,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 0.0,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 0.0,
+      "texte": "0°00′ dans ΚΡΙΟΣ (Bélier)",
+      "vitesse_deg_par_jour": 0.2286,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 0.0,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 0.0,
+      "texte": "0°00′ dans ΚΡΙΟΣ (Bélier)",
+      "vitesse_deg_par_jour": 0.1234,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 0.0,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 0.0,
+      "texte": "0°00′ dans ΚΡΙΟΣ (Bélier)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 180.0,
+      "signe_grec": "ΧΗΛΑΙ",
+      "signe_fr": "Balance",
+      "degre_dans_le_signe": 0.0,
+      "texte": "0°00′ dans ΧΗΛΑΙ (Balance)"
+     },
+     "lune_distance_au_noeud_deg": 4.434,
+     "lune_au_nord_de_l_ecliptique": false,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 1,
+     "spire": 1,
+     "annee_du_cycle": 1,
+     "mois_dans_l_annee": 1,
+     "rayon_curseur_mm": 44.0,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)"
+    },
+    "callippique": {
+     "secteur": 1,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 4,
+     "inscription": "ΙΣΘΜΙΑ ΠΥΘΙΑ",
+     "nom_fr": "Jeux isthmiques (Corinthe) et Jeux pythiques (Delphes)",
+     "annee_de_l_olympiade": 3
+    },
+    "saros": {
+     "case": 1,
+     "spire": 1,
+     "glyphe": "Η",
+     "rayon_curseur_mm": 44.0,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui ouvre ce mois ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)"
+    },
+    "exeligmos": {
+     "secteur": 1,
+     "inscription": "",
+     "heures_a_ajouter": 0
+    }
+   }
+  },
+  {
+   "machine": "cale_J2000",
+   "t": 0.0,
+   "local_rad": {
+    "frame": 0.0,
+    "b": 1.3881221387666107,
+    "moon": 2.3979831809713117,
+    "c": 0.0,
+    "d": 0.0,
+    "e_pipe": 0.0,
+    "e_table": 0.7915600710108945,
+    "k": 3.2644045545674794,
+    "l": 0.0,
+    "m": 0.0,
+    "f": 0.0,
+    "g": 5.609755203912343,
+    "h": 0.0,
+    "i": 4.6562698051124345,
+    "n": 17.348908025371763,
+    "o": 5.591744935934614,
+    "p": 0.0,
+    "cal": 4.009038054858381,
+    "spA": 0.0,
+    "spB": 0.0,
+    "spC": 0.0,
+    "x_me40": 0.0,
+    "x_me20": 0.0386687120562651,
+    "x_vn26": 0.0,
+    "x_r1": 4.424176809429551,
+    "t_nodes": 4.100746234656825,
+    "x_cp52": 0.0,
+    "x_cp64": 0.0,
+    "x_su56": 4.241658147692714,
+    "x_sa40": 0.0,
+    "x_sa68": 2.26213841754969,
+    "x_ju40": 0.0,
+    "x_ju43": 1.9876692483780012,
+    "x_ma40": 0.0,
+    "x_ma71": 3.926406829819524,
+    "a": 0.0,
+    "kp": 3.1895432519822062,
+    "x_sa86s": 2.1762005112061704,
+    "x_ju65s": 1.7993420314638386,
+    "x_ma80s": 3.4290833473027726,
+    "e_inner": -2.3979831809713117,
+    "t_saturn": -0.7880783724395597,
+    "t_jupiter": -0.4112198926972279,
+    "t_mars": -2.040961208536162,
+    "t_mercury": 1.0707131390562643,
+    "t_venus": 4.765993173962749,
+    "t_trueSun": 4.00799036488212,
+    "q": -1.009861042204701
+   },
+   "psi_rad": {
+    "metonic": 17.348908025371763,
+    "saros": 5.609755203912343,
+    "olympiad": 5.591744935934614,
+    "callippic": 4.009038054858381,
+    "exeligmos": 4.6562698051124345
+   },
+   "rho_mm": {
+    "metonic": 57.12319766514386,
+    "saros": 49.74693762424988
+   },
+   "lon_deg": {
+    "soleil_moyen": 280.46646,
+    "soleil_vrai": 280.3590677631557,
+    "lune": 222.60568438698795,
+    "noeud_ascendant": 125.04454790000003,
+    "phase": 302.1392243869879,
+    "mercure": 272.65265606287204,
+    "venus": 241.9287059437749,
+    "mars": 326.93846339904195,
+    "jupiter": 23.561164303373744,
+    "saturne": 45.153564666325785
+   },
+   "lecture": {
+    "t_manivelle_ans": 0.0,
+    "mode": "calé sur le ciel réel",
+    "jd_tt": 2451545.0,
+    "date": "2000-01-01 12:00 TT",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 280.4665,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 10.466,
+      "texte": "10°28′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 280.3591,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 10.359,
+      "texte": "10°22′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 285,
+      "mois_grec": "ΠΑΥΝΙ",
+      "mois_fr": "Payni",
+      "jour": 15,
+      "texte": "15 Payni (ΠΑΥΝΙ)"
+     },
+     "anneau_regle": {
+      "jour_de_l_annee": 253,
+      "mois_grec": "ΠΑΧΩΝ",
+      "mois_fr": "Pachôn",
+      "jour": 13,
+      "texte": "13 Pachôn (ΠΑΧΩΝ)",
+      "decalage_anneau_jours": 333.14,
+      "note": "anneau tourné à la main pour suivre l'année vague égyptienne (1 jour tous les 4 ans environ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 222.6057,
+     "signe_grec": "ΣΚΟΡΠΙΟΣ",
+     "signe_fr": "Scorpion",
+     "degre_dans_le_signe": 12.606,
+     "texte": "12°36′ dans ΣΚΟΡΠΙΟΣ (Scorpion)",
+     "elongation_deg": 302.139,
+     "phase": "dernier croissant",
+     "fraction_eclairee": 0.234,
+     "age_jours": 24.78,
+     "croissante": false
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 272.6527,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 2.653,
+      "texte": "2°39′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)",
+      "vitesse_deg_par_jour": 1.823,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 241.9287,
+      "signe_grec": "ΤΟΞΟΤΗΣ",
+      "signe_fr": "Sagittaire",
+      "degre_dans_le_signe": 1.929,
+      "texte": "1°56′ dans ΤΟΞΟΤΗΣ (Sagittaire)",
+      "vitesse_deg_par_jour": 1.1801,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 326.9385,
+      "signe_grec": "ΥΔΡΟΧΟΟΣ",
+      "signe_fr": "Verseau",
+      "degre_dans_le_signe": 26.938,
+      "texte": "26°56′ dans ΥΔΡΟΧΟΟΣ (Verseau)",
+      "vitesse_deg_par_jour": 0.6811,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 23.5612,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 23.561,
+      "texte": "23°34′ dans ΚΡΙΟΣ (Bélier)",
+      "vitesse_deg_par_jour": 0.0412,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 45.1536,
+      "signe_grec": "ΤΑΥΡΟΣ",
+      "signe_fr": "Taureau",
+      "degre_dans_le_signe": 15.154,
+      "texte": "15°09′ dans ΤΑΥΡΟΣ (Taureau)",
+      "vitesse_deg_par_jour": -0.0269,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 125.0445,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 5.045,
+      "texte": "5°03′ dans ΛΕΩΝ (Lion)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 305.0445,
+      "signe_grec": "ΥΔΡΟΧΟΟΣ",
+      "signe_fr": "Verseau",
+      "degre_dans_le_signe": 5.045,
+      "texte": "5°03′ dans ΥΔΡΟΧΟΟΣ (Verseau)"
+     },
+     "lune_distance_au_noeud_deg": 82.439,
+     "lune_au_nord_de_l_ecliptique": true,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 130,
+     "spire": 3,
+     "annee_du_cycle": 11,
+     "mois_dans_l_annee": 6,
+     "rayon_curseur_mm": 57.1232,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)",
+     "cycle_numero": 123
+    },
+    "callippique": {
+     "secteur": 3,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 4,
+     "inscription": "ΙΣΘΜΙΑ ΠΥΘΙΑ",
+     "nom_fr": "Jeux isthmiques (Corinthe) et Jeux pythiques (Delphes)",
+     "annee_de_l_olympiade": 3,
+     "olympiade_numero": 694
+    },
+    "saros": {
+     "case": 50,
+     "spire": 1,
+     "glyphe": null,
+     "rayon_curseur_mm": 49.7469,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui termine ce mois (mois commençant au 1er croissant, Freeth 2014) ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)",
+     "cycle_numero": 123
+    },
+    "exeligmos": {
+     "secteur": 3,
+     "inscription": "ΙΣΤ",
+     "heures_a_ajouter": 16
+    }
+   }
+  },
+  {
+   "machine": "modele",
+   "t": 1.0,
+   "local_rad": {
+    "frame": 0.0,
+    "b": 0.0,
+    "moon": -2.414037122472028,
+    "c": 4.29902152596498,
+    "d": -2.314857744750373,
+    "e_pipe": 2.314857744750373,
+    "e_table": 0.7073588368007228,
+    "k": -1.6074989079496553,
+    "l": 4.29902152596498,
+    "m": -5.842260022465229,
+    "f": -2.5091219116704884,
+    "g": 1.3939566175947158,
+    "h": -0.46465220586490524,
+    "i": 0.11616305146622631,
+    "n": 1.6534698176788385,
+    "o": -1.5707963267948966,
+    "p": -0.4133674544197096,
+    "cal": 0.08267349088394192,
+    "spA": -4.4505895925855405,
+    "spB": -4.965743226641931,
+    "spC": -0.9995976625058438,
+    "x_me40": 3.61937653632324,
+    "x_me20": -0.9555677654668941,
+    "x_vn26": 3.2404539608705916,
+    "x_r1": -3.930390809036581,
+    "t_nodes": 0.33780566167632187,
+    "x_cp52": -0.4833219467061217,
+    "x_cp64": -5.497787143782138,
+    "x_su56": 0.0,
+    "x_sa40": 4.035738254996119,
+    "x_sa68": -6.069955036573944,
+    "x_ju40": 6.1850105367549055,
+    "x_ju43": -5.753498173725493,
+    "x_ma40": 5.222897786593031,
+    "x_ma71": -2.942477626249595,
+    "a": -4.057890510886814,
+    "kp": -1.7066782856713054,
+    "x_sa86s": -6.089996972057928,
+    "x_ju65s": -5.836607527823383,
+    "x_ma80s": -3.226030591556373,
+    "e_inner": 2.414037122472028,
+    "t_saturn": 6.089996972057928,
+    "t_jupiter": 5.836607527823383,
+    "t_mars": 3.226030591556373,
+    "t_mercury": -0.5926742205848348,
+    "t_venus": 2.5580350930146585,
+    "t_trueSun": 2.5807400710001294,
+    "q": 2.414037122472028
+   },
+   "psi_rad": {
+    "metonic": 1.6534698176788367,
+    "saros": 1.3939566175947173,
+    "olympiad": 4.71238898038469,
+    "callippic": 0.08267349088394192,
+    "exeligmos": 0.11616305146622631
+   },
+   "rho_mm": {
+    "metonic": 44.0,
+    "saros": 44.0
+   },
+   "lon_deg": {
+    "soleil_moyen": 0.0,
+    "soleil_vrai": 2.1344859114001764,
+    "lune": 138.31413870555303,
+    "noeud_ascendant": 340.64516129032256,
+    "phase": 138.31413870555303,
+    "mercure": 7.957731465716607,
+    "venus": 8.435385323905098,
+    "mars": 25.16206252372751,
+    "jupiter": 25.58702198143494,
+    "saturne": 11.068876253630007
+   },
+   "lecture": {
+    "t_manivelle_ans": 1.0,
+    "mode": "modèle (époque non calée, manivelle 0 = tout à zéro)",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 0.0,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 0.0,
+      "texte": "0°00′ dans ΚΡΙΟΣ (Bélier)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 2.1345,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 2.134,
+      "texte": "2°08′ dans ΚΡΙΟΣ (Bélier)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 1,
+      "mois_grec": "ΘΩΥΘ",
+      "mois_fr": "Thot",
+      "jour": 1,
+      "texte": "1 Thot (ΘΩΥΘ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 138.3141,
+     "signe_grec": "ΛΕΩΝ",
+     "signe_fr": "Lion",
+     "degre_dans_le_signe": 18.314,
+     "texte": "18°19′ dans ΛΕΩΝ (Lion)",
+     "elongation_deg": 138.314,
+     "phase": "gibbeuse croissante",
+     "fraction_eclairee": 0.8734,
+     "age_jours": 11.35,
+     "croissante": true
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 7.9577,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 7.958,
+      "texte": "7°57′ dans ΚΡΙΟΣ (Bélier)",
+      "vitesse_deg_par_jour": 1.8216,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 8.4354,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 8.435,
+      "texte": "8°26′ dans ΚΡΙΟΣ (Bélier)",
+      "vitesse_deg_par_jour": 1.2421,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 25.1621,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 25.162,
+      "texte": "25°10′ dans ΚΡΙΟΣ (Bélier)",
+      "vitesse_deg_par_jour": 0.7008,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 25.587,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 25.587,
+      "texte": "25°35′ dans ΚΡΙΟΣ (Bélier)",
+      "vitesse_deg_par_jour": 0.2168,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 11.0689,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 11.069,
+      "texte": "11°04′ dans ΚΡΙΟΣ (Bélier)",
+      "vitesse_deg_par_jour": 0.1219,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 340.6452,
+      "signe_grec": "ΙΧΘΥΕΣ",
+      "signe_fr": "Poissons",
+      "degre_dans_le_signe": 10.645,
+      "texte": "10°39′ dans ΙΧΘΥΕΣ (Poissons)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 160.6452,
+      "signe_grec": "ΠΑΡΘΕΝΟΣ",
+      "signe_fr": "Vierge",
+      "degre_dans_le_signe": 10.645,
+      "texte": "10°39′ dans ΠΑΡΘΕΝΟΣ (Vierge)"
+     },
+     "lune_distance_au_noeud_deg": 22.331,
+     "lune_au_nord_de_l_ecliptique": true,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 13,
+     "spire": 1,
+     "annee_du_cycle": 1,
+     "mois_dans_l_annee": 13,
+     "rayon_curseur_mm": 44.0,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)"
+    },
+    "callippique": {
+     "secteur": 1,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 3,
+     "inscription": "ΝΕΜΕΑ ΑΛΙΕΙΑ",
+     "nom_fr": "Jeux néméens (Némée) et Halieia (Rhodes)",
+     "annee_de_l_olympiade": 4
+    },
+    "saros": {
+     "case": 13,
+     "spire": 1,
+     "glyphe": "Η",
+     "rayon_curseur_mm": 44.0,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui ouvre ce mois ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)"
+    },
+    "exeligmos": {
+     "secteur": 1,
+     "inscription": "",
+     "heures_a_ajouter": 0
+    }
+   }
+  },
+  {
+   "machine": "cale_J2000",
+   "t": 1.0,
+   "local_rad": {
+    "frame": 0.0,
+    "b": 1.3881221387666107,
+    "moon": 0.23564797583520436,
+    "c": 4.29902152596498,
+    "d": -2.314857744750373,
+    "e_pipe": 2.314857744750373,
+    "e_table": 1.4989189078116172,
+    "k": 1.656905646617824,
+    "l": 4.29902152596498,
+    "m": -5.842260022465229,
+    "f": -2.5091219116704884,
+    "g": 7.003711821507059,
+    "h": -0.46465220586490524,
+    "i": 4.772432856578661,
+    "n": 19.002377843050603,
+    "o": 4.020948609139717,
+    "p": -0.4133674544197096,
+    "cal": 4.091711545742323,
+    "spA": -4.4505895925855405,
+    "spB": -4.965743226641931,
+    "spC": -0.9995976625058438,
+    "x_me40": 3.61937653632324,
+    "x_me20": -0.916899053410629,
+    "x_vn26": 3.2404539608705916,
+    "x_r1": 0.49378600039297016,
+    "t_nodes": 4.438551896333147,
+    "x_cp52": -0.4833219467061217,
+    "x_cp64": -5.497787143782138,
+    "x_su56": 4.241658147692714,
+    "x_sa40": 4.035738254996119,
+    "x_sa68": -3.807816619024254,
+    "x_ju40": 6.1850105367549055,
+    "x_ju43": -3.765828925347492,
+    "x_ma40": 5.222897786593031,
+    "x_ma71": 0.9839292035699287,
+    "a": -4.057890510886814,
+    "kp": 1.7345668836468215,
+    "x_sa86s": -3.8779802111102906,
+    "x_ju65s": -3.8981555388088593,
+    "x_ma80s": 1.5846457778385223,
+    "e_inner": -0.23564797583520436,
+    "t_saturn": 5.266102349876901,
+    "t_jupiter": 5.28627767757547,
+    "t_mars": -0.19652363907191162,
+    "t_mercury": 0.8058873099894348,
+    "t_venus": 3.3016298358353984,
+    "t_trueSun": 4.00799036488212,
+    "q": 1.1524741629314064
+   },
+   "psi_rad": {
+    "metonic": 19.0023778430506,
+    "saros": 7.003711821507061,
+    "olympiad": 4.020948609139717,
+    "callippic": 4.091711545742323,
+    "exeligmos": 4.772432856578661
+   },
+   "rho_mm": {
+    "metonic": 59.6,
+    "saros": 50.5
+   },
+   "lon_deg": {
+    "soleil_moyen": 280.46646,
+    "soleil_vrai": 280.3590677631557,
+    "lune": 346.49836553384193,
+    "noeud_ascendant": 105.6897091903226,
+    "phase": 66.03190553384198,
+    "mercure": 287.8260583744543,
+    "venus": 325.8305448921608,
+    "mars": 221.2599750933728,
+    "jupiter": 57.118599740707005,
+    "saturne": 58.27456086812838
+   },
+   "lecture": {
+    "t_manivelle_ans": 1.0,
+    "mode": "calé sur le ciel réel",
+    "jd_tt": 2451910.2422,
+    "date": "2000-12-31 17:49 TT",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 280.4665,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 10.466,
+      "texte": "10°28′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 280.3591,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 10.359,
+      "texte": "10°22′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 285,
+      "mois_grec": "ΠΑΥΝΙ",
+      "mois_fr": "Payni",
+      "jour": 15,
+      "texte": "15 Payni (ΠΑΥΝΙ)"
+     },
+     "anneau_regle": {
+      "jour_de_l_annee": 253,
+      "mois_grec": "ΠΑΧΩΝ",
+      "mois_fr": "Pachôn",
+      "jour": 13,
+      "texte": "13 Pachôn (ΠΑΧΩΝ)",
+      "decalage_anneau_jours": 333.14,
+      "note": "anneau tourné à la main pour suivre l'année vague égyptienne (1 jour tous les 4 ans environ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 346.4984,
+     "signe_grec": "ΙΧΘΥΕΣ",
+     "signe_fr": "Poissons",
+     "degre_dans_le_signe": 16.498,
+     "texte": "16°30′ dans ΙΧΘΥΕΣ (Poissons)",
+     "elongation_deg": 66.032,
+     "phase": "premier croissant",
+     "fraction_eclairee": 0.2969,
+     "age_jours": 5.42,
+     "croissante": true
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 287.8261,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 17.826,
+      "texte": "17°50′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)",
+      "vitesse_deg_par_jour": 1.8271,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 325.8305,
+      "signe_grec": "ΥΔΡΟΧΟΟΣ",
+      "signe_fr": "Verseau",
+      "degre_dans_le_signe": 25.831,
+      "texte": "25°50′ dans ΥΔΡΟΧΟΟΣ (Verseau)",
+      "vitesse_deg_par_jour": 1.068,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 221.26,
+      "signe_grec": "ΣΚΟΡΠΙΟΣ",
+      "signe_fr": "Scorpion",
+      "degre_dans_le_signe": 11.26,
+      "texte": "11°16′ dans ΣΚΟΡΠΙΟΣ (Scorpion)",
+      "vitesse_deg_par_jour": 0.6579,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 57.1186,
+      "signe_grec": "ΤΑΥΡΟΣ",
+      "signe_fr": "Taureau",
+      "degre_dans_le_signe": 27.119,
+      "texte": "27°07′ dans ΤΑΥΡΟΣ (Taureau)",
+      "vitesse_deg_par_jour": -0.0651,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 58.2746,
+      "signe_grec": "ΤΑΥΡΟΣ",
+      "signe_fr": "Taureau",
+      "degre_dans_le_signe": 28.275,
+      "texte": "28°16′ dans ΤΑΥΡΟΣ (Taureau)",
+      "vitesse_deg_par_jour": -0.0466,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 105.6897,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 15.69,
+      "texte": "15°41′ dans ΚΑΡΚΙΝΟΣ (Cancer)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 285.6897,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 15.69,
+      "texte": "15°41′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)"
+     },
+     "lune_distance_au_noeud_deg": 60.809,
+     "lune_au_nord_de_l_ecliptique": false,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 143,
+     "spire": 4,
+     "annee_du_cycle": 12,
+     "mois_dans_l_annee": 6,
+     "rayon_curseur_mm": 59.6,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)",
+     "cycle_numero": 123
+    },
+    "callippique": {
+     "secteur": 3,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 3,
+     "inscription": "ΝΕΜΕΑ ΑΛΙΕΙΑ",
+     "nom_fr": "Jeux néméens (Némée) et Halieia (Rhodes)",
+     "annee_de_l_olympiade": 4,
+     "olympiade_numero": 694
+    },
+    "saros": {
+     "case": 63,
+     "spire": 2,
+     "glyphe": "Σ",
+     "rayon_curseur_mm": 50.5,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui termine ce mois (mois commençant au 1er croissant, Freeth 2014) ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)",
+     "cycle_numero": 123
+    },
+    "exeligmos": {
+     "secteur": 3,
+     "inscription": "ΙΣΤ",
+     "heures_a_ajouter": 16
+    }
+   }
+  },
+  {
+   "machine": "modele",
+   "t": 3.3,
+   "local_rad": {
+    "frame": 0.0,
+    "b": -1.8849555921538748,
+    "moon": -6.929217857738176,
+    "c": 3.5053560134791346,
+    "d": -0.7275267197786828,
+    "e_pipe": 0.7275267197786828,
+    "e_table": 2.334284161442385,
+    "k": -4.676427865515893,
+    "l": 3.5053560134791346,
+    "m": -0.42990215259649517,
+    "f": -1.9969170013330246,
+    "g": 4.600056838062562,
+    "h": -1.5333522793541874,
+    "i": 0.38333806983854685,
+    "n": 5.456450398340167,
+    "o": -5.183627878423159,
+    "p": -1.3641125995850418,
+    "cal": 0.27282251991700834,
+    "spA": -2.12057504117311,
+    "spB": -3.8205820335591993,
+    "spC": -5.183627878423157,
+    "x_me40": 1.262527547661394,
+    "x_me20": -2.525055095322788,
+    "x_vn26": 0.012083048667650217,
+    "x_r1": -0.4039190554615434,
+    "t_nodes": 1.1147586835318621,
+    "x_cp52": -3.4799180162840773,
+    "x_cp64": -5.5763269601218814,
+    "x_su56": 1.8849555921538748,
+    "x_sa40": 2.6365212192818936,
+    "x_sa68": -1.1812956991552557,
+    "x_ju40": 1.5609788497524262,
+    "x_ju43": -0.13698805175536843,
+    "x_ma40": 4.6691920813978305,
+    "x_ma71": -3.426990859444077,
+    "a": -2.081305133003231,
+    "kp": -4.594933696295791,
+    "x_sa86s": -1.0886774852204737,
+    "x_ju65s": -0.11494150279490022,
+    "x_ma80s": -3.521412204791508,
+    "e_inner": 6.929217857738176,
+    "t_saturn": -0.7962781069334011,
+    "t_jupiter": -1.7700140893589746,
+    "t_mars": 1.6364566126376332,
+    "t_mercury": -2.737170593016999,
+    "t_venus": 0.7373629964049653,
+    "t_trueSun": 0.7603421118077547,
+    "q": 5.044262265584301
+   },
+   "psi_rad": {
+    "metonic": 5.456450398340163,
+    "saros": 4.60005683806256,
+    "olympiad": 1.0995574287564276,
+    "callippic": 0.27282251991700834,
+    "exeligmos": 0.38333806983854685
+   },
+   "rho_mm": {
+    "metonic": 48.32163158585108,
+    "saros": 46.77519321600738
+   },
+   "lon_deg": {
+    "soleil_moyen": 107.99999999999993,
+    "soleil_vrai": 106.43560600735151,
+    "lune": 37.01493857507917,
+    "noeud_ascendant": 296.1290322580645,
+    "phase": 289.0149385750792,
+    "mercure": 130.82832278719474,
+    "venus": 112.7522123368754,
+    "mars": 116.23794273958858,
+    "jupiter": 101.414336998961,
+    "saturne": 45.623374845950735
+   },
+   "lecture": {
+    "t_manivelle_ans": 3.3,
+    "mode": "modèle (époque non calée, manivelle 0 = tout à zéro)",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 108.0,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 18.0,
+      "texte": "18°00′ dans ΚΑΡΚΙΝΟΣ (Cancer)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 106.4356,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 16.436,
+      "texte": "16°26′ dans ΚΑΡΚΙΝΟΣ (Cancer)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 110,
+      "mois_grec": "ΧΟΙΑΚ",
+      "mois_fr": "Choiak",
+      "jour": 20,
+      "texte": "20 Choiak (ΧΟΙΑΚ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 37.0149,
+     "signe_grec": "ΤΑΥΡΟΣ",
+     "signe_fr": "Taureau",
+     "degre_dans_le_signe": 7.015,
+     "texte": "7°01′ dans ΤΑΥΡΟΣ (Taureau)",
+     "elongation_deg": 289.015,
+     "phase": "dernier croissant",
+     "fraction_eclairee": 0.3371,
+     "age_jours": 23.71,
+     "croissante": false
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 130.8283,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 10.828,
+      "texte": "10°50′ dans ΛΕΩΝ (Lion)",
+      "vitesse_deg_par_jour": 0.8457,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 112.7522,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 22.752,
+      "texte": "22°45′ dans ΚΑΡΚΙΝΟΣ (Cancer)",
+      "vitesse_deg_par_jour": -0.5801,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 116.2379,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 26.238,
+      "texte": "26°14′ dans ΚΑΡΚΙΝΟΣ (Cancer)",
+      "vitesse_deg_par_jour": 0.7066,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 101.4143,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 11.414,
+      "texte": "11°25′ dans ΚΑΡΚΙΝΟΣ (Cancer)",
+      "vitesse_deg_par_jour": 0.2278,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 45.6234,
+      "signe_grec": "ΤΑΥΡΟΣ",
+      "signe_fr": "Taureau",
+      "degre_dans_le_signe": 15.623,
+      "texte": "15°37′ dans ΤΑΥΡΟΣ (Taureau)",
+      "vitesse_deg_par_jour": 0.0776,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 296.129,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 26.129,
+      "texte": "26°08′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 116.129,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 26.129,
+      "texte": "26°08′ dans ΚΑΡΚΙΝΟΣ (Cancer)"
+     },
+     "lune_distance_au_noeud_deg": 79.114,
+     "lune_au_nord_de_l_ecliptique": true,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 41,
+     "spire": 1,
+     "annee_du_cycle": 4,
+     "mois_dans_l_annee": 3,
+     "rayon_curseur_mm": 48.3216,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)"
+    },
+    "callippique": {
+     "secteur": 1,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 1,
+     "inscription": "ΝΕΜΕΑ ΝΑΑ",
+     "nom_fr": "Jeux néméens (Némée) et Naa (Dodone)",
+     "annee_de_l_olympiade": 2
+    },
+    "saros": {
+     "case": 41,
+     "spire": 1,
+     "glyphe": null,
+     "rayon_curseur_mm": 46.7752,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui ouvre ce mois ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)"
+    },
+    "exeligmos": {
+     "secteur": 1,
+     "inscription": "",
+     "heures_a_ajouter": 0
+    }
+   }
+  },
+  {
+   "machine": "cale_J2000",
+   "t": 3.3,
+   "local_rad": {
+    "frame": 0.0,
+    "b": -0.49683345338726403,
+    "moon": -4.6228132193474565,
+    "c": 3.5053560134791346,
+    "d": -0.7275267197786828,
+    "e_pipe": 0.7275267197786828,
+    "e_table": 3.1258442324532796,
+    "k": -1.4120233109484137,
+    "l": 3.5053560134791346,
+    "m": -0.42990215259649517,
+    "f": -1.9969170013330246,
+    "g": 10.209812041974905,
+    "h": -1.5333522793541874,
+    "i": 5.039607874950981,
+    "n": 22.80535842371193,
+    "o": 0.408117057511455,
+    "p": -1.3641125995850418,
+    "cal": 4.28186057477539,
+    "spA": -2.12057504117311,
+    "spB": -3.8205820335591993,
+    "spC": -5.183627878423157,
+    "x_me40": 1.262527547661394,
+    "x_me20": -2.486386383266523,
+    "x_vn26": 0.012083048667650217,
+    "x_r1": 4.020257753968008,
+    "t_nodes": 5.215504918188687,
+    "x_cp52": -3.4799180162840773,
+    "x_cp64": -5.5763269601218814,
+    "x_su56": 6.126613739846589,
+    "x_sa40": 2.6365212192818936,
+    "x_sa68": 1.0808427183944345,
+    "x_ju40": 1.5609788497524262,
+    "x_ju43": 1.8506811966226326,
+    "x_ma40": 4.6691920813978305,
+    "x_ma71": 0.4994159703754466,
+    "a": -2.081305133003231,
+    "kp": -1.4969689868941767,
+    "x_sa86s": 0.9932758498806683,
+    "x_ju65s": 1.6580077001240376,
+    "x_ma80s": 1.2065565294757163,
+    "e_inner": 4.6228132193474565,
+    "t_saturn": -1.4901093032679325,
+    "t_jupiter": -2.1548411535113017,
+    "t_mars": -1.7033899828629804,
+    "t_mercury": -1.3504373763017172,
+    "t_venus": 2.7407789077518436,
+    "t_trueSun": 2.0814785565060037,
+    "q": 4.125979765960192
+   },
+   "psi_rad": {
+    "metonic": 22.805358423711926,
+    "saros": 10.209812041974903,
+    "olympiad": 0.408117057511455,
+    "callippic": 4.28186057477539,
+    "exeligmos": 5.039607874950981
+   },
+   "rho_mm": {
+    "metonic": 60.38652914090764,
+    "saros": 51.401997055185824
+   },
+   "lon_deg": {
+    "soleil_moyen": 28.466459999999945,
+    "soleil_vrai": 30.740063565223156,
+    "lune": 264.86768694589415,
+    "noeud_ascendant": 61.17358015806453,
+    "phase": 236.40122694589417,
+    "mercure": 51.37436215880857,
+    "venus": 357.9649360073438,
+    "mars": 307.5970568829104,
+    "jupiter": 123.46330361729952,
+    "saturne": 85.37697409043218
+   },
+   "lecture": {
+    "t_manivelle_ans": 3.3,
+    "mode": "calé sur le ciel réel",
+    "jd_tt": 2452750.29926,
+    "date": "2003-04-20 19:11 TT",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 28.4665,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 28.466,
+      "texte": "28°28′ dans ΚΡΙΟΣ (Bélier)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 30.7401,
+      "signe_grec": "ΤΑΥΡΟΣ",
+      "signe_fr": "Taureau",
+      "degre_dans_le_signe": 0.74,
+      "texte": "0°44′ dans ΤΑΥΡΟΣ (Taureau)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 29,
+      "mois_grec": "ΘΩΥΘ",
+      "mois_fr": "Thot",
+      "jour": 29,
+      "texte": "29 Thot (ΘΩΥΘ)"
+     },
+     "anneau_regle": {
+      "jour_de_l_annee": 363,
+      "mois_grec": "ΕΠΑΓΟΜΕΝΑΙ",
+      "mois_fr": "jours épagomènes",
+      "jour": 3,
+      "texte": "3e jour épagomène (ΕΠΑΓΟΜΕΝΑΙ)",
+      "decalage_anneau_jours": 333.64,
+      "note": "anneau tourné à la main pour suivre l'année vague égyptienne (1 jour tous les 4 ans environ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 264.8677,
+     "signe_grec": "ΤΟΞΟΤΗΣ",
+     "signe_fr": "Sagittaire",
+     "degre_dans_le_signe": 24.868,
+     "texte": "24°52′ dans ΤΟΞΟΤΗΣ (Sagittaire)",
+     "elongation_deg": 236.401,
+     "phase": "gibbeuse décroissante",
+     "fraction_eclairee": 0.7767,
+     "age_jours": 19.39,
+     "croissante": false
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 51.3744,
+      "signe_grec": "ΤΑΥΡΟΣ",
+      "signe_fr": "Taureau",
+      "degre_dans_le_signe": 21.374,
+      "texte": "21°22′ dans ΤΑΥΡΟΣ (Taureau)",
+      "vitesse_deg_par_jour": 0.902,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 357.9649,
+      "signe_grec": "ΙΧΘΥΕΣ",
+      "signe_fr": "Poissons",
+      "degre_dans_le_signe": 27.965,
+      "texte": "27°58′ dans ΙΧΘΥΕΣ (Poissons)",
+      "vitesse_deg_par_jour": 1.215,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 307.5971,
+      "signe_grec": "ΥΔΡΟΧΟΟΣ",
+      "signe_fr": "Verseau",
+      "degre_dans_le_signe": 7.597,
+      "texte": "7°36′ dans ΥΔΡΟΧΟΟΣ (Verseau)",
+      "vitesse_deg_par_jour": 0.5798,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 123.4633,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 3.463,
+      "texte": "3°28′ dans ΛΕΩΝ (Lion)",
+      "vitesse_deg_par_jour": 0.0674,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 85.377,
+      "signe_grec": "ΔΙΔΥΜΟΙ",
+      "signe_fr": "Gémeaux",
+      "degre_dans_le_signe": 25.377,
+      "texte": "25°23′ dans ΔΙΔΥΜΟΙ (Gémeaux)",
+      "vitesse_deg_par_jour": 0.085,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 61.1736,
+      "signe_grec": "ΔΙΔΥΜΟΙ",
+      "signe_fr": "Gémeaux",
+      "degre_dans_le_signe": 1.174,
+      "texte": "1°10′ dans ΔΙΔΥΜΟΙ (Gémeaux)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 241.1736,
+      "signe_grec": "ΤΟΞΟΤΗΣ",
+      "signe_fr": "Sagittaire",
+      "degre_dans_le_signe": 1.174,
+      "texte": "1°10′ dans ΤΟΞΟΤΗΣ (Sagittaire)"
+     },
+     "lune_distance_au_noeud_deg": 23.694,
+     "lune_au_nord_de_l_ecliptique": false,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 171,
+     "spire": 4,
+     "annee_du_cycle": 14,
+     "mois_dans_l_annee": 10,
+     "rayon_curseur_mm": 60.3865,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)",
+     "cycle_numero": 123
+    },
+    "callippique": {
+     "secteur": 3,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 1,
+     "inscription": "ΝΕΜΕΑ ΝΑΑ",
+     "nom_fr": "Jeux néméens (Némée) et Naa (Dodone)",
+     "annee_de_l_olympiade": 2,
+     "olympiade_numero": 695
+    },
+    "saros": {
+     "case": 91,
+     "spire": 2,
+     "glyphe": null,
+     "rayon_curseur_mm": 51.402,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui termine ce mois (mois commençant au 1er croissant, Freeth 2014) ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)",
+     "cycle_numero": 123
+    },
+    "exeligmos": {
+     "secteur": 3,
+     "inscription": "ΙΣΤ",
+     "heures_a_ajouter": 16
+    }
+   }
+  },
+  {
+   "machine": "modele",
+   "t": -7.25,
+   "local_rad": {
+    "frame": 0.0,
+    "b": 1.5707963267948966,
+    "moon": 5.9009306395791175,
+    "c": -1.322775854143075,
+    "d": 2.64555170828615,
+    "e_pipe": -5.787144361875921,
+    "e_table": -5.12835156680524,
+    "k": 0.6587927950706755,
+    "l": -1.322775854143075,
+    "m": 4.657273319795394,
+    "f": 5.624763245251869,
+    "g": -3.823000170382104,
+    "h": 3.3687284925205634,
+    "i": -0.8421821231301408,
+    "n": -5.704470870991993,
+    "o": 5.105088062083414,
+    "p": 2.996914044542895,
+    "cal": -0.599382808908579,
+    "spA": 0.8508480103472374,
+    "spB": 4.585711857256067,
+    "spC": 2.534694072782679,
+    "x_me40": -2.6785349864200447,
+    "x_me20": 5.3570699728400895,
+    "x_vn26": -6.214531621567922,
+    "x_r1": 3.3625921367968687,
+    "t_nodes": -2.4490910471533334,
+    "x_cp52": 5.0748804404142795,
+    "x_cp64": 2.1598449493429825,
+    "x_su56": -1.5707963267948966,
+    "x_sa40": -5.697157446798414,
+    "x_sa68": 0.024876864903994277,
+    "x_ju40": -0.859029241215959,
+    "x_ju43": 4.013749916432311,
+    "x_ma40": -0.16689710972195665,
+    "x_ma71": 2.483406868770805,
+    "a": 4.286964975211057,
+    "kp": 0.7725790727738775,
+    "x_sa86s": 0.022525732508423955,
+    "x_ju65s": 4.1801415359588585,
+    "x_ma80s": 2.5367994707752533,
+    "e_inner": -5.9009306395791175,
+    "t_saturn": 1.5482705942864725,
+    "t_jupiter": -2.609345209163962,
+    "t_mars": -0.9660031439803567,
+    "t_mercury": 0.9860672962483483,
+    "t_venus": 4.549212571971895,
+    "t_trueSun": 4.170832302293981,
+    "q": -4.330134312784221
+   },
+   "psi_rad": {
+    "metonic": 19.428270357726355,
+    "saros": 15.026555751156657,
+    "olympiad": 5.105088062083414,
+    "callippic": 5.683802498271008,
+    "exeligmos": 5.441003184049445
+   },
+   "rho_mm": {
+    "metonic": 59.6,
+    "saros": 57.0
+   },
+   "lon_deg": {
+    "soleil_moyen": 270.0,
+    "soleil_vrai": 271.0289120217226,
+    "lune": 21.90157915268303,
+    "noeud_ascendant": 140.32258064516128,
+    "phase": 111.90157915268303,
+    "mercure": 277.5025056090934,
+    "venus": 254.3493195181561,
+    "mars": 265.34790314644283,
+    "jupiter": 149.50446777777603,
+    "saturne": 271.2906294031733
+   },
+   "lecture": {
+    "t_manivelle_ans": -7.25,
+    "mode": "modèle (époque non calée, manivelle 0 = tout à zéro)",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 270.0,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 0.0,
+      "texte": "0°00′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 271.0289,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 1.029,
+      "texte": "1°02′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 274,
+      "mois_grec": "ΠΑΥΝΙ",
+      "mois_fr": "Payni",
+      "jour": 4,
+      "texte": "4 Payni (ΠΑΥΝΙ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 21.9016,
+     "signe_grec": "ΚΡΙΟΣ",
+     "signe_fr": "Bélier",
+     "degre_dans_le_signe": 21.902,
+     "texte": "21°54′ dans ΚΡΙΟΣ (Bélier)",
+     "elongation_deg": 111.902,
+     "phase": "gibbeuse croissante",
+     "fraction_eclairee": 0.6865,
+     "age_jours": 9.18,
+     "croissante": true
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 277.5025,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 7.503,
+      "texte": "7°30′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)",
+      "vitesse_deg_par_jour": 1.8258,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 254.3493,
+      "signe_grec": "ΤΟΞΟΤΗΣ",
+      "signe_fr": "Sagittaire",
+      "degre_dans_le_signe": 14.349,
+      "texte": "14°21′ dans ΤΟΞΟΤΗΣ (Sagittaire)",
+      "vitesse_deg_par_jour": 1.238,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 265.3479,
+      "signe_grec": "ΤΟΞΟΤΗΣ",
+      "signe_fr": "Sagittaire",
+      "degre_dans_le_signe": 25.348,
+      "texte": "25°21′ dans ΤΟΞΟΤΗΣ (Sagittaire)",
+      "vitesse_deg_par_jour": 0.707,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 149.5045,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 29.504,
+      "texte": "29°30′ dans ΛΕΩΝ (Lion)",
+      "vitesse_deg_par_jour": -0.016,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 271.2906,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 1.291,
+      "texte": "1°17′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)",
+      "vitesse_deg_par_jour": 0.1234,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 140.3226,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 20.323,
+      "texte": "20°19′ dans ΛΕΩΝ (Lion)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 320.3226,
+      "signe_grec": "ΥΔΡΟΧΟΟΣ",
+      "signe_fr": "Verseau",
+      "degre_dans_le_signe": 20.323,
+      "texte": "20°19′ dans ΥΔΡΟΧΟΟΣ (Verseau)"
+     },
+     "lune_distance_au_noeud_deg": 61.579,
+     "lune_au_nord_de_l_ecliptique": false,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 146,
+     "spire": 4,
+     "annee_du_cycle": 12,
+     "mois_dans_l_annee": 9,
+     "rayon_curseur_mm": 59.6,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)"
+    },
+    "callippique": {
+     "secteur": 4,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 4,
+     "inscription": "ΙΣΘΜΙΑ ΠΥΘΙΑ",
+     "nom_fr": "Jeux isthmiques (Corinthe) et Jeux pythiques (Delphes)",
+     "annee_de_l_olympiade": 3
+    },
+    "saros": {
+     "case": 134,
+     "spire": 3,
+     "glyphe": null,
+     "rayon_curseur_mm": 57.0,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui ouvre ce mois ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)"
+    },
+    "exeligmos": {
+     "secteur": 3,
+     "inscription": "ΙΣΤ",
+     "heures_a_ajouter": 16
+    }
+   }
+  },
+  {
+   "machine": "cale_J2000",
+   "t": -7.25,
+   "local_rad": {
+    "frame": 0.0,
+    "b": 2.9589184655615073,
+    "moon": 8.14839217223351,
+    "c": -1.322775854143075,
+    "d": 2.64555170828615,
+    "e_pipe": -5.787144361875921,
+    "e_table": -4.336791495794346,
+    "k": 3.923197349638155,
+    "l": -1.322775854143075,
+    "m": 4.657273319795394,
+    "f": 5.624763245251869,
+    "g": 1.786755033530239,
+    "h": 3.3687284925205634,
+    "i": 3.8140876819822935,
+    "n": 11.64443715437977,
+    "o": 10.696832998018028,
+    "p": 2.996914044542895,
+    "cal": 3.409655245949802,
+    "spA": 0.8508480103472374,
+    "spB": 4.585711857256067,
+    "spC": 2.534694072782679,
+    "x_me40": -2.6785349864200447,
+    "x_me20": 5.395738684896354,
+    "x_vn26": -6.214531621567922,
+    "x_r1": 7.78676894622642,
+    "t_nodes": 1.6516551875034913,
+    "x_cp52": 5.0748804404142795,
+    "x_cp64": 2.1598449493429825,
+    "x_su56": 2.6708618208978177,
+    "x_sa40": -5.697157446798414,
+    "x_sa68": 2.2870152824536842,
+    "x_ju40": -0.859029241215959,
+    "x_ju43": 6.001419164810312,
+    "x_ma40": -0.16689710972195665,
+    "x_ma71": 6.4098136985903285,
+    "a": 4.286964975211057,
+    "kp": 3.8116006764391646,
+    "x_sa86s": 2.2026865100353055,
+    "x_ju65s": 6.046504311582871,
+    "x_ma80s": 7.106336402275115,
+    "e_inner": -8.14839217223351,
+    "t_saturn": 0.7562319555262018,
+    "t_jupiter": -3.087585846021364,
+    "t_mars": -4.147417936713608,
+    "t_mercury": 2.3846785354369984,
+    "t_venus": 5.174551285188493,
+    "t_trueSun": 5.6184417360093075,
+    "q": -5.189473706672003
+   },
+   "psi_rad": {
+    "metonic": 5.361251847200186,
+    "saros": 20.636310955069,
+    "olympiad": 4.413647690838442,
+    "callippic": 3.409655245949802,
+    "exeligmos": 3.8140876819822935
+   },
+   "rho_mm": {
+    "metonic": 48.12503253399424,
+    "saros": 63.5
+   },
+   "lon_deg": {
+    "soleil_moyen": 190.46646,
+    "soleil_vrai": 188.08700108651124,
+    "lune": 253.13151871358286,
+    "noeud_ascendant": 265.3671285451613,
+    "phase": 62.66505871358286,
+    "mercure": 197.36798442402167,
+    "venus": 218.52005048470332,
+    "mars": 87.62954365054568,
+    "jupiter": 176.90563786135382,
+    "saturne": 316.67110061542365
+   },
+   "lecture": {
+    "t_manivelle_ans": -7.25,
+    "mode": "calé sur le ciel réel",
+    "jd_tt": 2448896.99405,
+    "date": "1992-10-01 11:51 TT",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 190.4665,
+      "signe_grec": "ΧΗΛΑΙ",
+      "signe_fr": "Balance",
+      "degre_dans_le_signe": 10.466,
+      "texte": "10°28′ dans ΧΗΛΑΙ (Balance)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 188.087,
+      "signe_grec": "ΧΗΛΑΙ",
+      "signe_fr": "Balance",
+      "degre_dans_le_signe": 8.087,
+      "texte": "8°05′ dans ΧΗΛΑΙ (Balance)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 194,
+      "mois_grec": "ΦΑΜΕΝΩΘ",
+      "mois_fr": "Phaménoth",
+      "jour": 14,
+      "texte": "14 Phaménoth (ΦΑΜΕΝΩΘ)"
+     },
+     "anneau_regle": {
+      "jour_de_l_annee": 160,
+      "mois_grec": "ΜΕΧΙΡ",
+      "mois_fr": "Méchir",
+      "jour": 10,
+      "texte": "10 Méchir (ΜΕΧΙΡ)",
+      "decalage_anneau_jours": 331.39,
+      "note": "anneau tourné à la main pour suivre l'année vague égyptienne (1 jour tous les 4 ans environ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 253.1315,
+     "signe_grec": "ΤΟΞΟΤΗΣ",
+     "signe_fr": "Sagittaire",
+     "degre_dans_le_signe": 13.132,
+     "texte": "13°08′ dans ΤΟΞΟΤΗΣ (Sagittaire)",
+     "elongation_deg": 62.665,
+     "phase": "premier croissant",
+     "fraction_eclairee": 0.2704,
+     "age_jours": 5.14,
+     "croissante": true
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 197.368,
+      "signe_grec": "ΧΗΛΑΙ",
+      "signe_fr": "Balance",
+      "degre_dans_le_signe": 17.368,
+      "texte": "17°22′ dans ΧΗΛΑΙ (Balance)",
+      "vitesse_deg_par_jour": 1.8309,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 218.5201,
+      "signe_grec": "ΣΚΟΡΠΙΟΣ",
+      "signe_fr": "Scorpion",
+      "degre_dans_le_signe": 8.52,
+      "texte": "8°31′ dans ΣΚΟΡΠΙΟΣ (Scorpion)",
+      "vitesse_deg_par_jour": 1.221,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 87.6295,
+      "signe_grec": "ΔΙΔΥΜΟΙ",
+      "signe_fr": "Gémeaux",
+      "degre_dans_le_signe": 27.63,
+      "texte": "27°38′ dans ΔΙΔΥΜΟΙ (Gémeaux)",
+      "vitesse_deg_par_jour": 0.4154,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 176.9056,
+      "signe_grec": "ΠΑΡΘΕΝΟΣ",
+      "signe_fr": "Vierge",
+      "degre_dans_le_signe": 26.906,
+      "texte": "26°54′ dans ΠΑΡΘΕΝΟΣ (Vierge)",
+      "vitesse_deg_par_jour": 0.2253,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 316.6711,
+      "signe_grec": "ΥΔΡΟΧΟΟΣ",
+      "signe_fr": "Verseau",
+      "degre_dans_le_signe": 16.671,
+      "texte": "16°40′ dans ΥΔΡΟΧΟΟΣ (Verseau)",
+      "vitesse_deg_par_jour": -0.0294,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 265.3671,
+      "signe_grec": "ΤΟΞΟΤΗΣ",
+      "signe_fr": "Sagittaire",
+      "degre_dans_le_signe": 25.367,
+      "texte": "25°22′ dans ΤΟΞΟΤΗΣ (Sagittaire)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 85.3671,
+      "signe_grec": "ΔΙΔΥΜΟΙ",
+      "signe_fr": "Gémeaux",
+      "degre_dans_le_signe": 25.367,
+      "texte": "25°22′ dans ΔΙΔΥΜΟΙ (Gémeaux)"
+     },
+     "lune_distance_au_noeud_deg": 12.236,
+     "lune_au_nord_de_l_ecliptique": false,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 41,
+     "spire": 1,
+     "annee_du_cycle": 4,
+     "mois_dans_l_annee": 3,
+     "rayon_curseur_mm": 48.125,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)",
+     "cycle_numero": 123
+    },
+    "callippique": {
+     "secteur": 3,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 3,
+     "inscription": "ΝΕΜΕΑ ΑΛΙΕΙΑ",
+     "nom_fr": "Jeux néméens (Némée) et Halieia (Rhodes)",
+     "annee_de_l_olympiade": 4,
+     "olympiade_numero": 692
+    },
+    "saros": {
+     "case": 184,
+     "spire": 4,
+     "glyphe": null,
+     "rayon_curseur_mm": 63.5,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui termine ce mois (mois commençant au 1er croissant, Freeth 2014) ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)",
+     "cycle_numero": 122
+    },
+    "exeligmos": {
+     "secteur": 2,
+     "inscription": "Η",
+     "heures_a_ajouter": 8
+    }
+   }
+  },
+  {
+   "machine": "modele",
+   "t": 26.73,
+   "local_rad": {
+    "frame": 0.0,
+    "b": -4.5867252742411,
+    "moon": -2.237719882168055,
+    "c": 0.11904982687287619,
+    "d": -0.23809965374575237,
+    "e_pipe": 2.123055245899521,
+    "e_table": 0.05814578614456432,
+    "k": -2.0649094597548507,
+    "l": 0.11904982687287619,
+    "m": -5.367163028185509,
+    "f": -4.236975627156301,
+    "g": 5.8445338524088255,
+    "h": -6.136968155589332,
+    "i": 3.10503836569223,
+    "n": 0.21495107629825178,
+    "o": -4.288273972150068,
+    "p": -4.766126749459253,
+    "cal": 2.2098624113277676,
+    "spA": -5.866924280578938,
+    "spB": -0.7874249973675044,
+    "spC": -6.173229564303954,
+    "x_me40": 0.8016951752879171,
+    "x_me20": -1.6033903505758342,
+    "x_vn26": 3.2394653477977693,
+    "x_r1": -4.528381410674438,
+    "t_nodes": 2.7463600294284976,
+    "x_cp52": -4.939550295336579,
+    "x_cp64": -2.4425882881660748,
+    "x_su56": 4.5867252742411,
+    "x_sa40": 5.647858608234398,
+    "x_sa68": -5.170265448131886,
+    "x_ju40": 1.9625136607893747,
+    "x_ju43": -2.994558811372384,
+    "x_ma40": 1.3779810776808288,
+    "x_ma71": -3.2542032634966396,
+    "a": -1.1506083093772868,
+    "kp": -2.1795740960234906,
+    "x_sa86s": -5.259529622048268,
+    "x_ju65s": -2.959801050657867,
+    "x_ma80s": -3.4167291057164197,
+    "e_inner": 2.237719882168055,
+    "t_saturn": 0.6728043478071672,
+    "t_jupiter": -1.6269242235832335,
+    "t_mars": -1.1699961685246807,
+    "t_mercury": -5.3383485243448785,
+    "t_venus": -2.273047990047839,
+    "t_trueSun": -1.9816346413664558,
+    "q": -2.3490053920730456
+   },
+   "psi_rad": {
+    "metonic": 12.781321690657421,
+    "saros": 12.12771915958841,
+    "olympiad": 1.994911335029518,
+    "callippic": 2.2098624113277676,
+    "exeligmos": 3.10503836569223
+   },
+   "rho_mm": {
+    "metonic": 54.4,
+    "saros": 56.674559593232516
+   },
+   "lon_deg": {
+    "soleil_moyen": 262.8000000000001,
+    "soleil_vrai": 263.53930148721844,
+    "lune": 128.21190498074142,
+    "noeud_ascendant": 202.64516129032253,
+    "phase": 225.41190498074127,
+    "mercure": 279.8648400148525,
+    "venus": 285.2360564604359,
+    "mars": 277.03584250294125,
+    "jupiter": 93.2158915989176,
+    "saturne": 321.4511504325974
+   },
+   "lecture": {
+    "t_manivelle_ans": 26.73,
+    "mode": "modèle (époque non calée, manivelle 0 = tout à zéro)",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 262.8,
+      "signe_grec": "ΤΟΞΟΤΗΣ",
+      "signe_fr": "Sagittaire",
+      "degre_dans_le_signe": 22.8,
+      "texte": "22°48′ dans ΤΟΞΟΤΗΣ (Sagittaire)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 263.5393,
+      "signe_grec": "ΤΟΞΟΤΗΣ",
+      "signe_fr": "Sagittaire",
+      "degre_dans_le_signe": 23.539,
+      "texte": "23°32′ dans ΤΟΞΟΤΗΣ (Sagittaire)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 267,
+      "mois_grec": "ΠΑΧΩΝ",
+      "mois_fr": "Pachôn",
+      "jour": 27,
+      "texte": "27 Pachôn (ΠΑΧΩΝ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 128.2119,
+     "signe_grec": "ΛΕΩΝ",
+     "signe_fr": "Lion",
+     "degre_dans_le_signe": 8.212,
+     "texte": "8°13′ dans ΛΕΩΝ (Lion)",
+     "elongation_deg": 225.412,
+     "phase": "gibbeuse décroissante",
+     "fraction_eclairee": 0.851,
+     "age_jours": 18.49,
+     "croissante": false
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 279.8648,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 9.865,
+      "texte": "9°52′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)",
+      "vitesse_deg_par_jour": 1.6437,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 285.2361,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 15.236,
+      "texte": "15°14′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)",
+      "vitesse_deg_par_jour": 1.2308,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 277.0358,
+      "signe_grec": "ΑΙΓΟΚΕΡΩΣ",
+      "signe_fr": "Capricorne",
+      "degre_dans_le_signe": 7.036,
+      "texte": "7°02′ dans ΑΙΓΟΚΕΡΩΣ (Capricorne)",
+      "vitesse_deg_par_jour": 0.7053,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 93.2159,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 3.216,
+      "texte": "3°13′ dans ΚΑΡΚΙΝΟΣ (Cancer)",
+      "vitesse_deg_par_jour": -0.1275,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 321.4512,
+      "signe_grec": "ΥΔΡΟΧΟΟΣ",
+      "signe_fr": "Verseau",
+      "degre_dans_le_signe": 21.451,
+      "texte": "21°27′ dans ΥΔΡΟΧΟΟΣ (Verseau)",
+      "vitesse_deg_par_jour": 0.0827,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 202.6452,
+      "signe_grec": "ΧΗΛΑΙ",
+      "signe_fr": "Balance",
+      "degre_dans_le_signe": 22.645,
+      "texte": "22°39′ dans ΧΗΛΑΙ (Balance)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 22.6452,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 22.645,
+      "texte": "22°39′ dans ΚΡΙΟΣ (Bélier)"
+     },
+     "lune_distance_au_noeud_deg": 74.433,
+     "lune_au_nord_de_l_ecliptique": false,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 96,
+     "spire": 3,
+     "annee_du_cycle": 8,
+     "mois_dans_l_annee": 9,
+     "rayon_curseur_mm": 54.4,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)"
+    },
+    "callippique": {
+     "secteur": 2,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 2,
+     "inscription": "ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ",
+     "nom_fr": "Jeux isthmiques (Corinthe) et Jeux olympiques (Olympie)",
+     "annee_de_l_olympiade": 1
+    },
+    "saros": {
+     "case": 108,
+     "spire": 2,
+     "glyphe": null,
+     "rayon_curseur_mm": 56.6746,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui ouvre ce mois ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)"
+    },
+    "exeligmos": {
+     "secteur": 2,
+     "inscription": "Η",
+     "heures_a_ajouter": 8
+    }
+   }
+  },
+  {
+   "machine": "cale_J2000",
+   "t": 26.73,
+   "local_rad": {
+    "frame": 0.0,
+    "b": -3.1986031354744897,
+    "moon": 0.4556246620011578,
+    "c": 0.11904982687287619,
+    "d": -0.23809965374575237,
+    "e_pipe": 2.123055245899521,
+    "e_table": 0.8497058571554589,
+    "k": 1.1994950948126286,
+    "l": 0.11904982687287619,
+    "m": -5.367163028185509,
+    "f": -4.236975627156301,
+    "g": 11.45428905632117,
+    "h": -6.136968155589332,
+    "i": 7.761308170804664,
+    "n": 17.563859101670015,
+    "o": 1.3034709637845454,
+    "p": -4.766126749459253,
+    "cal": 6.218900466186149,
+    "spA": -5.866924280578938,
+    "spB": -0.7874249973675044,
+    "spC": -6.173229564303954,
+    "x_me40": 0.8016951752879171,
+    "x_me20": -1.5647216385195692,
+    "x_vn26": 3.2394653477977693,
+    "x_r1": -0.10420460124488695,
+    "t_nodes": 6.847106264085323,
+    "x_cp52": -4.939550295336579,
+    "x_cp64": -2.4425882881660748,
+    "x_su56": 8.828383421933815,
+    "x_sa40": 5.647858608234398,
+    "x_sa68": -2.908127030582196,
+    "x_ju40": 1.9625136607893747,
+    "x_ju43": -1.0068895629943828,
+    "x_ma40": 1.3779810776808288,
+    "x_ma71": 0.6722035663228842,
+    "a": -1.1506083093772868,
+    "kp": 1.3053305191566167,
+    "x_sa86s": -2.8812545620763212,
+    "x_ju65s": -0.8606225057797972,
+    "x_ma80s": 1.351011037895172,
+    "e_inner": -0.4556246620011578,
+    "t_saturn": -0.31734857339816847,
+    "t_jupiter": -2.337980629694693,
+    "t_mars": -4.549614173369662,
+    "t_mercury": -3.9419341576484355,
+    "t_venus": -1.126806764535726,
+    "t_trueSun": -0.5398428201891783,
+    "q": -3.6542277974756474
+   },
+   "psi_rad": {
+    "metonic": 30.130229716029184,
+    "saros": 17.737474363500755,
+    "olympiad": 1.3034709637845454,
+    "callippic": 6.218900466186149,
+    "exeligmos": 1.478122863625078
+   },
+   "rho_mm": {
+    "metonic": 68.08504944630869,
+    "saros": 61.61855067746583
+   },
+   "lon_deg": {
+    "soleil_moyen": 183.26646000000014,
+    "soleil_vrai": 180.93071519727974,
+    "lune": 333.89462982525896,
+    "noeud_ascendant": 327.6897091903225,
+    "phase": 150.62816982525885,
+    "mercure": 199.85619035171266,
+    "venus": 219.56127193468862,
+    "mars": 110.67369054698243,
+    "jupiter": 133.9564226648445,
+    "saturne": 18.18273389021268
+   },
+   "lecture": {
+    "t_manivelle_ans": 26.73,
+    "mode": "calé sur le ciel réel",
+    "jd_tt": 2461307.924006,
+    "date": "2026-09-24 10:11 TT",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 183.2665,
+      "signe_grec": "ΧΗΛΑΙ",
+      "signe_fr": "Balance",
+      "degre_dans_le_signe": 3.266,
+      "texte": "3°16′ dans ΧΗΛΑΙ (Balance)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 180.9307,
+      "signe_grec": "ΧΗΛΑΙ",
+      "signe_fr": "Balance",
+      "degre_dans_le_signe": 0.931,
+      "texte": "0°56′ dans ΧΗΛΑΙ (Balance)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 186,
+      "mois_grec": "ΦΑΜΕΝΩΘ",
+      "mois_fr": "Phaménoth",
+      "jour": 6,
+      "texte": "6 Phaménoth (ΦΑΜΕΝΩΘ)"
+     },
+     "anneau_regle": {
+      "jour_de_l_annee": 161,
+      "mois_grec": "ΜΕΧΙΡ",
+      "mois_fr": "Méchir",
+      "jour": 11,
+      "texte": "11 Méchir (ΜΕΧΙΡ)",
+      "decalage_anneau_jours": 339.69,
+      "note": "anneau tourné à la main pour suivre l'année vague égyptienne (1 jour tous les 4 ans environ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 333.8946,
+     "signe_grec": "ΙΧΘΥΕΣ",
+     "signe_fr": "Poissons",
+     "degre_dans_le_signe": 3.895,
+     "texte": "3°54′ dans ΙΧΘΥΕΣ (Poissons)",
+     "elongation_deg": 150.628,
+     "phase": "gibbeuse croissante",
+     "fraction_eclairee": 0.9357,
+     "age_jours": 12.36,
+     "croissante": true
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 199.8562,
+      "signe_grec": "ΧΗΛΑΙ",
+      "signe_fr": "Balance",
+      "degre_dans_le_signe": 19.856,
+      "texte": "19°51′ dans ΧΗΛΑΙ (Balance)",
+      "vitesse_deg_par_jour": 1.66,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 219.5613,
+      "signe_grec": "ΣΚΟΡΠΙΟΣ",
+      "signe_fr": "Scorpion",
+      "degre_dans_le_signe": 9.561,
+      "texte": "9°34′ dans ΣΚΟΡΠΙΟΣ (Scorpion)",
+      "vitesse_deg_par_jour": 0.3488,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 110.6737,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 20.674,
+      "texte": "20°40′ dans ΚΑΡΚΙΝΟΣ (Cancer)",
+      "vitesse_deg_par_jour": 0.6172,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 133.9564,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 13.956,
+      "texte": "13°57′ dans ΛΕΩΝ (Lion)",
+      "vitesse_deg_par_jour": 0.1846,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 18.1827,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 18.183,
+      "texte": "18°11′ dans ΚΡΙΟΣ (Bélier)",
+      "vitesse_deg_par_jour": -0.0734,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 327.6897,
+      "signe_grec": "ΥΔΡΟΧΟΟΣ",
+      "signe_fr": "Verseau",
+      "degre_dans_le_signe": 27.69,
+      "texte": "27°41′ dans ΥΔΡΟΧΟΟΣ (Verseau)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 147.6897,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 27.69,
+      "texte": "27°41′ dans ΛΕΩΝ (Lion)"
+     },
+     "lune_distance_au_noeud_deg": 6.205,
+     "lune_au_nord_de_l_ecliptique": true,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 226,
+     "spire": 5,
+     "annee_du_cycle": 19,
+     "mois_dans_l_annee": 3,
+     "rayon_curseur_mm": 68.085,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)",
+     "cycle_numero": 124
+    },
+    "callippique": {
+     "secteur": 4,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 1,
+     "inscription": "ΝΕΜΕΑ ΝΑΑ",
+     "nom_fr": "Jeux néméens (Némée) et Naa (Dodone)",
+     "annee_de_l_olympiade": 2,
+     "olympiade_numero": 701
+    },
+    "saros": {
+     "case": 158,
+     "spire": 3,
+     "glyphe": null,
+     "rayon_curseur_mm": 61.6186,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui termine ce mois (mois commençant au 1er croissant, Freeth 2014) ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)",
+     "cycle_numero": 124
+    },
+    "exeligmos": {
+     "secteur": 1,
+     "inscription": "",
+     "heures_a_ajouter": 0
+    }
+   }
+  },
+  {
+   "machine": "modele",
+   "t": -2204.4,
+   "local_rad": {
+    "frame": 0.0,
+    "b": 2.513274122872406,
+    "moon": 2.291834738033674,
+    "c": -4.23288273325909,
+    "d": 2.182580159338593,
+    "e_pipe": -2.182580159327164,
+    "e_table": -1.0718636629760656,
+    "k": 1.1107164963603848,
+    "l": -4.23288273325909,
+    "m": 4.43129911138052,
+    "f": 1.905271768389592,
+    "g": -0.3603526149739065,
+    "h": 0.12011753832457599,
+    "i": -4.742418364965833,
+    "n": -0.661387927071197,
+    "o": 0.6283185307181015,
+    "p": 0.16534698176779924,
+    "cal": -0.03306939635358664,
+    "spA": 2.8274333882310994,
+    "spB": 1.1755637026339594,
+    "spC": 0.6283185307202445,
+    "x_me40": -1.42157067575041,
+    "x_me20": 2.84314135150082,
+    "x_vn26": -1.7882912028123437,
+    "x_r1": 5.924146146768835,
+    "t_nodes": -3.242934352092687,
+    "x_cp52": 6.089856528497093,
+    "x_cp64": 5.340707511103505,
+    "x_su56": -2.513274122872406,
+    "x_sa40": -1.9042884700241252,
+    "x_sa68": 3.7073636382651136,
+    "x_ju40": -6.008295949991623,
+    "x_ju43": 3.5434242720724742,
+    "x_ma40": -2.560398012675853,
+    "x_ma71": 2.1504422952746993,
+    "a": 1.7278759594721005,
+    "kp": 1.2199710750576083,
+    "x_sa86s": 3.7686509817026757,
+    "x_ju65s": 3.6345045488162064,
+    "x_ma80s": 2.3351378977863213,
+    "e_inner": -2.291834738033674,
+    "t_saturn": -1.2553768588302696,
+    "t_jupiter": -1.1212304259438004,
+    "t_mars": 0.17813622508608473,
+    "t_mercury": 1.96164435295532,
+    "t_venus": 5.024184949205881,
+    "t_trueSun": 5.152554501277149,
+    "q": 0.22143938483873216
+   },
+   "psi_rad": {
+    "metonic": 30.7545386088262,
+    "saros": 18.489203306564853,
+    "olympiad": 0.6283185307181015,
+    "callippic": 6.250115910826,
+    "exeligmos": 1.5407669422137529
+   },
+   "rho_mm": {
+    "metonic": 69.43280564802284,
+    "saros": 63.280306685924266
+   },
+   "lon_deg": {
+    "soleil_moyen": 215.99999999996726,
+    "soleil_vrai": 214.78037336568462,
+    "lune": 228.68754216919984,
+    "noeud_ascendant": 185.80645161290306,
+    "phase": 12.687542169232582,
+    "mercure": 221.60605766998896,
+    "venus": 227.13540691735312,
+    "mars": 199.79354612417487,
+    "jupiter": 64.24177126823537,
+    "saturne": 71.927795709365
+   },
+   "lecture": {
+    "t_manivelle_ans": -2204.4,
+    "mode": "modèle (époque non calée, manivelle 0 = tout à zéro)",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 216.0,
+      "signe_grec": "ΣΚΟΡΠΙΟΣ",
+      "signe_fr": "Scorpion",
+      "degre_dans_le_signe": 6.0,
+      "texte": "6°00′ dans ΣΚΟΡΠΙΟΣ (Scorpion)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 214.7804,
+      "signe_grec": "ΣΚΟΡΠΙΟΣ",
+      "signe_fr": "Scorpion",
+      "degre_dans_le_signe": 4.78,
+      "texte": "4°47′ dans ΣΚΟΡΠΙΟΣ (Scorpion)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 219,
+      "mois_grec": "ΦΑΡΜΟΥΘΙ",
+      "mois_fr": "Pharmouthi",
+      "jour": 9,
+      "texte": "9 Pharmouthi (ΦΑΡΜΟΥΘΙ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 228.6875,
+     "signe_grec": "ΣΚΟΡΠΙΟΣ",
+     "signe_fr": "Scorpion",
+     "degre_dans_le_signe": 18.688,
+     "texte": "18°41′ dans ΣΚΟΡΠΙΟΣ (Scorpion)",
+     "elongation_deg": 12.688,
+     "phase": "premier croissant",
+     "fraction_eclairee": 0.0122,
+     "age_jours": 1.04,
+     "croissante": true
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 221.6061,
+      "signe_grec": "ΣΚΟΡΠΙΟΣ",
+      "signe_fr": "Scorpion",
+      "degre_dans_le_signe": 11.606,
+      "texte": "11°36′ dans ΣΚΟΡΠΙΟΣ (Scorpion)",
+      "vitesse_deg_par_jour": -0.9136,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 227.1354,
+      "signe_grec": "ΣΚΟΡΠΙΟΣ",
+      "signe_fr": "Scorpion",
+      "degre_dans_le_signe": 17.135,
+      "texte": "17°08′ dans ΣΚΟΡΠΙΟΣ (Scorpion)",
+      "vitesse_deg_par_jour": -0.4999,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 199.7935,
+      "signe_grec": "ΧΗΛΑΙ",
+      "signe_fr": "Balance",
+      "degre_dans_le_signe": 19.794,
+      "texte": "19°48′ dans ΧΗΛΑΙ (Balance)",
+      "vitesse_deg_par_jour": 0.7047,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 64.2418,
+      "signe_grec": "ΔΙΔΥΜΟΙ",
+      "signe_fr": "Gémeaux",
+      "degre_dans_le_signe": 4.242,
+      "texte": "4°15′ dans ΔΙΔΥΜΟΙ (Gémeaux)",
+      "vitesse_deg_par_jour": -0.1018,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 71.9278,
+      "signe_grec": "ΔΙΔΥΜΟΙ",
+      "signe_fr": "Gémeaux",
+      "degre_dans_le_signe": 11.928,
+      "texte": "11°56′ dans ΔΙΔΥΜΟΙ (Gémeaux)",
+      "vitesse_deg_par_jour": -0.0546,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 185.8065,
+      "signe_grec": "ΧΗΛΑΙ",
+      "signe_fr": "Balance",
+      "degre_dans_le_signe": 5.806,
+      "texte": "5°48′ dans ΧΗΛΑΙ (Balance)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 5.8065,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 5.806,
+      "texte": "5°48′ dans ΚΡΙΟΣ (Bélier)"
+     },
+     "lune_distance_au_noeud_deg": 42.881,
+     "lune_au_nord_de_l_ecliptique": true,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 231,
+     "spire": 5,
+     "annee_du_cycle": 19,
+     "mois_dans_l_annee": 8,
+     "rayon_curseur_mm": 69.4328,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)"
+    },
+    "callippique": {
+     "secteur": 4,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 1,
+     "inscription": "ΝΕΜΕΑ ΝΑΑ",
+     "nom_fr": "Jeux néméens (Némée) et Naa (Dodone)",
+     "annee_de_l_olympiade": 2
+    },
+    "saros": {
+     "case": 165,
+     "spire": 3,
+     "glyphe": "Σ Η",
+     "rayon_curseur_mm": 63.2803,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui ouvre ce mois ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)"
+    },
+    "exeligmos": {
+     "secteur": 1,
+     "inscription": "",
+     "heures_a_ajouter": 0
+    }
+   }
+  },
+  {
+   "machine": "cale_J2000",
+   "t": -2204.4,
+   "local_rad": {
+    "frame": 0.0,
+    "b": 3.9013962616390168,
+    "moon": 4.543213532528229,
+    "c": -4.23288273325909,
+    "d": 2.182580159338593,
+    "e_pipe": -2.182580159327164,
+    "e_table": -0.2803035919651711,
+    "k": 4.375121050927865,
+    "l": -4.23288273325909,
+    "m": 4.43129911138052,
+    "f": 1.905271768389592,
+    "g": 5.249402588938437,
+    "h": 0.12011753832457599,
+    "i": -0.08614855985339887,
+    "n": 16.687520098300567,
+    "o": 6.220063466652715,
+    "p": 0.16534698176779924,
+    "cal": 3.9759686585047946,
+    "spA": 2.8274333882310994,
+    "spB": 1.1755637026339594,
+    "spC": 0.6283185307202445,
+    "x_me40": -1.42157067575041,
+    "x_me20": 2.881810063557085,
+    "x_vn26": -1.7882912028123437,
+    "x_r1": 10.348322956198386,
+    "t_nodes": 0.8578118825641377,
+    "x_cp52": 6.089856528497093,
+    "x_cp64": 5.340707511103505,
+    "x_su56": 1.7283840248203082,
+    "x_sa40": -1.9042884700241252,
+    "x_sa68": 5.969502055814804,
+    "x_ju40": -6.008295949991623,
+    "x_ju43": 5.531093520450476,
+    "x_ma40": -2.560398012675853,
+    "x_ma71": 6.076849125094223,
+    "a": 1.7278759594721005,
+    "kp": 4.262909940563058,
+    "x_sa86s": 5.998793673693002,
+    "x_ju65s": 5.645739698462128,
+    "x_ma80s": 6.5778735174496035,
+    "e_inner": -4.543213532528229,
+    "t_saturn": -2.097397412053985,
+    "t_jupiter": -1.7443434368231112,
+    "t_mars": -2.6764772558105867,
+    "t_mercury": 3.326410317780748,
+    "t_venus": 7.155605597025082,
+    "t_trueSun": 6.541628937170608,
+    "q": -0.6418172708892125
+   },
+   "psi_rad": {
+    "metonic": 16.68752009830003,
+    "saros": 24.098958510477196,
+    "olympiad": 6.220063466652715,
+    "callippic": 3.9759686585047946,
+    "exeligmos": 6.197036747326187
+   },
+   "rho_mm": {
+    "metonic": 55.50990026529746,
+    "saros": 68.354146165576
+   },
+   "lon_deg": {
+    "soleil_moyen": 136.46645999996727,
+    "soleil_vrai": 135.1922707594738,
+    "lune": 99.69303915941072,
+    "noeud_ascendant": 310.8509995129031,
+    "phase": 323.2265791594434,
+    "mercure": 143.41072786239215,
+    "venus": 105.01399943027306,
+    "mars": 3.3508507207030016,
+    "jupiter": 99.94351695130922,
+    "saturne": 120.17201967235461
+   },
+   "lecture": {
+    "t_manivelle_ans": -2204.4,
+    "mode": "calé sur le ciel réel",
+    "jd_tt": 1646405.09432,
+    "date": "-0205-08-12 14:16 TT (julien) [206 av. J.-C.]",
+    "soleil": {
+     "moyen (aiguille de date)": {
+      "longitude_deg": 136.4665,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 16.466,
+      "texte": "16°28′ dans ΛΕΩΝ (Lion)"
+     },
+     "vrai (sphère dorée)": {
+      "longitude_deg": 135.1923,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 15.192,
+      "texte": "15°12′ dans ΛΕΩΝ (Lion)",
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "calendrier_egyptien": {
+     "anneau_fixe": {
+      "jour_de_l_annee": 139,
+      "mois_grec": "ΤΥΒΙ",
+      "mois_fr": "Tybi",
+      "jour": 19,
+      "texte": "19 Tybi (ΤΥΒΙ)"
+     },
+     "anneau_regle": {
+      "jour_de_l_annee": 303,
+      "mois_grec": "ΕΠΙΦΙ",
+      "mois_fr": "Épiphi",
+      "jour": 3,
+      "texte": "3 Épiphi (ΕΠΙΦΙ)",
+      "decalage_anneau_jours": 164.14,
+      "note": "anneau tourné à la main pour suivre l'année vague égyptienne (1 jour tous les 4 ans environ)"
+     }
+    },
+    "lune": {
+     "longitude_deg": 99.693,
+     "signe_grec": "ΚΑΡΚΙΝΟΣ",
+     "signe_fr": "Cancer",
+     "degre_dans_le_signe": 9.693,
+     "texte": "9°42′ dans ΚΑΡΚΙΝΟΣ (Cancer)",
+     "elongation_deg": 323.227,
+     "phase": "dernier croissant",
+     "fraction_eclairee": 0.0995,
+     "age_jours": 26.51,
+     "croissante": false
+    },
+    "planetes": {
+     "Mercure": {
+      "longitude_deg": 143.4107,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 23.411,
+      "texte": "23°25′ dans ΛΕΩΝ (Lion)",
+      "vitesse_deg_par_jour": -0.8668,
+      "retrograde": true,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Vénus": {
+      "longitude_deg": 105.014,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 15.014,
+      "texte": "15°01′ dans ΚΑΡΚΙΝΟΣ (Cancer)",
+      "vitesse_deg_par_jour": 1.2123,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Mars": {
+      "longitude_deg": 3.3509,
+      "signe_grec": "ΚΡΙΟΣ",
+      "signe_fr": "Bélier",
+      "degre_dans_le_signe": 3.351,
+      "texte": "3°21′ dans ΚΡΙΟΣ (Bélier)",
+      "vitesse_deg_par_jour": 0.0383,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Jupiter": {
+      "longitude_deg": 99.9435,
+      "signe_grec": "ΚΑΡΚΙΝΟΣ",
+      "signe_fr": "Cancer",
+      "degre_dans_le_signe": 9.944,
+      "texte": "9°57′ dans ΚΑΡΚΙΝΟΣ (Cancer)",
+      "vitesse_deg_par_jour": 0.2045,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     },
+     "Saturne": {
+      "longitude_deg": 120.172,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 0.172,
+      "texte": "0°10′ dans ΛΕΩΝ (Lion)",
+      "vitesse_deg_par_jour": 0.1202,
+      "retrograde": false,
+      "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+     }
+    },
+    "aiguille_du_dragon": {
+     "noeud_ascendant": {
+      "longitude_deg": 310.851,
+      "signe_grec": "ΥΔΡΟΧΟΟΣ",
+      "signe_fr": "Verseau",
+      "degre_dans_le_signe": 10.851,
+      "texte": "10°51′ dans ΥΔΡΟΧΟΟΣ (Verseau)"
+     },
+     "noeud_descendant": {
+      "longitude_deg": 130.851,
+      "signe_grec": "ΛΕΩΝ",
+      "signe_fr": "Lion",
+      "degre_dans_le_signe": 10.851,
+      "texte": "10°51′ dans ΛΕΩΝ (Lion)"
+     },
+     "lune_distance_au_noeud_deg": 31.158,
+     "lune_au_nord_de_l_ecliptique": true,
+     "statut": "HYPOTHÉTIQUE (Freeth et al. 2021)"
+    },
+    "metonique": {
+     "case": 125,
+     "spire": 3,
+     "annee_du_cycle": 11,
+     "mois_dans_l_annee": 1,
+     "rayon_curseur_mm": 55.5099,
+     "note": "année = année solaire du modèle où le mois commence (convention moyenne, pas le schéma d'intercalation historique)",
+     "cycle_numero": 7
+    },
+    "callippique": {
+     "secteur": 3,
+     "note": "chaque secteur = un cycle de Méton de 19 ans (76 ans en tout)"
+    },
+    "jeux": {
+     "secteur": 4,
+     "inscription": "ΙΣΘΜΙΑ ΠΥΘΙΑ",
+     "nom_fr": "Jeux isthmiques (Corinthe) et Jeux pythiques (Delphes)",
+     "annee_de_l_olympiade": 3,
+     "olympiade_numero": 143
+    },
+    "saros": {
+     "case": 214,
+     "spire": 4,
+     "glyphe": null,
+     "rayon_curseur_mm": 68.3541,
+     "glyphe_note": "Σ = éclipse de Lune possible à la pleine lune de ce mois, Η = éclipse de Soleil possible à la nouvelle lune qui termine ce mois (mois commençant au 1er croissant, Freeth 2014) ; glyphes CALCULÉS PAR NOTRE MODÈLE (règle des limites écliptiques)",
+     "cycle_numero": 0
+    },
+    "exeligmos": {
+     "secteur": 3,
+     "inscription": "ΙΣΤ",
+     "heures_a_ajouter": 16
+    }
+   }
+  }
+ ]
+}

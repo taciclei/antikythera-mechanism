@@ -1,0 +1,215 @@
+1
+00:00:00,680 --> 00:00:04,780
+Il y a plus de deux mille ans, quelqu'un
+a enfermé le ciel dans une boîte :
+
+2
+00:00:04,920 --> 00:00:09,570
+éclipses, phases de la Lune,
+planètes, et même les Jeux olympiques.
+
+3
+00:00:09,670 --> 00:00:14,160
+En 1900, des pêcheurs d'éponges
+découvrent l'épave d'Anticythère.
+
+4
+00:00:14,220 --> 00:00:19,180
+En 1902, sur un bloc de bronze rongé,
+apparaît une roue dentée.
+
+5
+00:00:19,330 --> 00:00:21,180
+Apprenons à lire cette machine.
+
+6
+00:00:22,670 --> 00:00:26,280
+Voici notre reconstruction.
+Sur le côté, une manivelle.
+
+7
+00:00:26,330 --> 00:00:28,910
+Tournez-la :
+toutes les aiguilles avancent ensemble.
+
+8
+00:00:28,960 --> 00:00:32,150
+En avant, le temps passe ;
+en arrière, il remonte.
+
+9
+00:00:32,240 --> 00:00:34,650
+Un peu plus de quatre tours et demi :
+une année.
+
+10
+00:00:35,810 --> 00:00:37,270
+Devant, deux anneaux :
+
+11
+00:00:37,370 --> 00:00:41,560
+le calendrier égyptien de trois cent
+soixante-cinq jours, et le zodiaque.
+
+12
+00:00:41,610 --> 00:00:46,050
+La sphère dorée, c'est le Soleil :
+il donne la date et son signe.
+
+13
+00:00:46,100 --> 00:00:50,150
+La Lune fait le tour en un mois,
+à vitesse variable, comme la vraie.
+
+14
+00:00:50,200 --> 00:00:52,185
+Sa petite boule montre la phase.
+
+15
+00:00:52,270 --> 00:00:55,650
+Aiguilles superposées :
+noire, nouvelle lune.
+
+16
+00:00:55,700 --> 00:00:58,730
+Opposées : blanche… pleine lune.
+
+17
+00:00:59,760 --> 00:01:04,390
+Autour du centre, cinq petites sphères :
+les planètes, lues sur le zodiaque.
+
+18
+00:01:04,430 --> 00:01:06,630
+Leurs engrenages ont
+presque tous disparu :
+
+19
+00:01:06,670 --> 00:01:08,940
+c'est une reconstruction, une hypothèse.
+
+20
+00:01:09,030 --> 00:01:11,420
+Regardez Mars : sa sphère s'arrête…
+
+21
+00:01:11,700 --> 00:01:14,780
+puis recule, comme dans le ciel
+quand la Terre dépasse Mars.
+
+22
+00:01:17,810 --> 00:01:19,220
+Retournons la machine.
+
+23
+00:01:19,270 --> 00:01:22,630
+En haut, une spirale de deux cent
+trente-cinq mois : dix-neuf ans.
+
+24
+00:01:22,690 --> 00:01:24,850
+Chaque case, un mois, avec son nom.
+
+25
+00:01:24,900 --> 00:01:27,730
+Dedans, un petit cadran
+fait un tour en quatre ans.
+
+26
+00:01:27,850 --> 00:01:29,740
+Tournons… Olympia !
+
+27
+00:01:29,790 --> 00:01:33,350
+Cette année, les Jeux olympiques.
+L'année, pas le jour.
+
+28
+00:01:34,370 --> 00:01:38,940
+En bas, le Saros : deux cent vingt-trois
+mois, puis les éclipses reviennent.
+
+29
+00:01:38,990 --> 00:01:43,125
+La plupart des cases sont vides.
+Tournons… Une case gravée !
+
+30
+00:01:43,200 --> 00:01:46,800
+Sigma : éclipse de Lune. Êta : de Soleil.
+
+31
+00:01:46,850 --> 00:01:50,600
+Puis l'heure ; ce cadran y ajoute zéro,
+huit ou seize heures.
+
+32
+00:01:50,700 --> 00:01:53,710
+Devant, la pleine lune tombe
+sur l'aiguille du Dragon,
+
+33
+00:01:53,750 --> 00:01:56,560
+hypothétique elle aussi :
+une éclipse est possible.
+
+34
+00:01:56,660 --> 00:01:59,680
+Attention :
+ces signes sont calculés par notre modèle.
+
+35
+00:01:59,730 --> 00:02:01,860
+Et la machine ne disait pas où l'observer.
+
+36
+00:02:02,880 --> 00:02:04,460
+Servait-elle à naviguer ?
+
+37
+00:02:04,560 --> 00:02:07,840
+Non : ni viseur,
+ni latitude, ni longitude.
+
+38
+00:02:07,880 --> 00:02:09,620
+C'est un calculateur du ciel.
+
+39
+00:02:09,710 --> 00:02:12,780
+Mais regardez ces plaques :
+un calendrier des étoiles.
+
+40
+00:02:12,820 --> 00:02:17,170
+Quand le Soleil atteint la lettre ksi,
+on lit : « La Pléiade se lève le matin. »
+
+41
+00:02:17,290 --> 00:02:20,750
+Bien plus tard, pour Végèce,
+la mer est sûre après ce lever.
+
+42
+00:02:20,800 --> 00:02:22,640
+Déjà Hésiode avertissait :
+
+43
+00:02:22,700 --> 00:02:26,230
+quand les Pléiades « tombent
+dans la noire mer », rentre tes navires.
+
+44
+00:02:26,300 --> 00:02:29,320
+La machine ne disait pas où aller,
+mais quand partir.
+
+45
+00:02:29,460 --> 00:02:33,850
+La voici reconstruite, ses rapports
+prouvés mathématiquement, en accès libre.
+
+46
+00:02:33,980 --> 00:02:36,390
+Et vous,
+quelle date allez-vous lui demander ?
