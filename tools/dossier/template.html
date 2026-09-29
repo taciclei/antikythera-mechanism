@@ -1,0 +1,457 @@
+<meta charset="utf-8">
+<title>Dossier Anticythère</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#EDF0EC; --surface:#F7F9F6; --ink:#1C2320; --muted:#5A6560; --rule:#CBD3CD;
+  --bronze:#8E5B22; --verdigris:#2A6F63; --hyp:#6A5C95; --warn:#9A3D2A;
+  --display:"Marcellus", "Trajan Pro", Georgia, serif;
+  --sans:"IBM Plex Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101614; --surface:#161E1B; --ink:#E2E7E2; --muted:#98A49E; --rule:#2A3531;
+    --bronze:#D6A35C; --verdigris:#6CBBA9; --hyp:#AE9FDB; --warn:#E08A72; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101614; --surface:#161E1B; --ink:#E2E7E2; --muted:#98A49E; --rule:#2A3531;
+  --bronze:#D6A35C; --verdigris:#6CBBA9; --hyp:#AE9FDB; --warn:#E08A72; color-scheme:dark;
+}
+body{background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.6}
+.wrap{max-width:1120px; margin:0 auto; padding-inline:20px; padding-block:40px 80px}
+a{color:var(--verdigris)} a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--bronze); outline-offset:2px}
+.eyebrow{font-family:var(--mono); font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+h1{font-family:var(--display); font-weight:400; font-size:clamp(2.2rem,5.5vw,3.6rem); line-height:1.05; margin:.35em 0 .3em; text-wrap:balance; letter-spacing:.01em}
+h2{font-family:var(--display); font-weight:400; font-size:clamp(1.55rem,3vw,2rem); line-height:1.15; margin:0 0 .4em; text-wrap:balance}
+h3{font-size:1rem; font-weight:600; margin:1.6em 0 .5em}
+p{margin:0 0 1em} .lede{font-size:1.12rem; max-width:65ch; color:var(--ink)}
+.prose{max-width:70ch}
+header.top{display:grid; gap:18px; border-bottom:1px solid var(--rule); padding-bottom:28px}
+.stats{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:6px; overflow:hidden; margin-top:6px}
+.stat{background:var(--surface); padding:14px 16px; display:grid; gap:2px; align-content:start}
+.stat b{font-family:var(--display); font-weight:400; font-size:2rem; line-height:1.1; font-variant-numeric:tabular-nums}
+.stat span{font-size:.86rem; color:var(--muted)}
+nav.toc{display:flex; flex-wrap:wrap; gap:6px 18px; font-size:.9rem}
+nav.toc a{text-decoration:none; border-bottom:1px solid transparent} nav.toc a:hover{border-color:currentColor}
+section{padding-block:44px 8px; border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:grid; gap:4px; margin-bottom:14px}
+figure{margin:18px 0 0}
+figcaption{font-size:.88rem; color:var(--muted); max-width:78ch; margin-top:10px}
+.fig-scroll{overflow-x:auto; background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:12px}
+svg.plan{display:block; margin:0 auto; width:100%; height:auto; min-width:520px}
+svg.plan.tall{max-width:560px}
+svg.plan.sq{max-width:600px}
+svg.tree{display:block; width:100%; height:auto; min-width:980px}
+.tabs{display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 12px}
+.tabs button, .chips button{font:500 .88rem var(--sans); color:var(--ink); background:transparent; border:1px solid var(--rule); border-radius:999px; padding:6px 14px; cursor:pointer}
+.tabs button[aria-pressed="true"], .chips button[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.legend{display:flex; flex-wrap:wrap; gap:8px 16px; font-size:.84rem; color:var(--muted); margin-top:10px; align-items:center}
+.chip{display:inline-flex; align-items:center; gap:6px; font-size:.78rem; font-weight:500; padding:1px 9px; border-radius:999px; border:1.5px solid var(--c); color:var(--ink); white-space:nowrap}
+.chip.st-h{border-style:dashed}
+.st-s{--c:var(--bronze)} .st-r{--c:var(--verdigris)} .st-h{--c:var(--hyp)}
+/* svg marks */
+.gear{fill:var(--c); fill-opacity:.09; stroke:var(--c); stroke-width:1.2}
+.st-h.gear, .st-h.tnode, .st-h.tout{stroke-dasharray:5 3}
+.ref-ring{fill:none; stroke:var(--muted); stroke-width:1; stroke-dasharray:2 4}
+.spoke{stroke:var(--bronze); stroke-width:7; stroke-opacity:.16; stroke-linecap:round}
+.mesh-line{stroke:var(--ink); stroke-opacity:.55; stroke-width:.9}
+.axis-dot{fill:var(--ink)}
+.lbl{font:500 11.5px var(--sans); fill:var(--ink)} .lbl.muted{fill:var(--muted); font-weight:400}
+.dist{font:10px var(--mono); fill:var(--muted)}
+.tnode{fill:var(--surface); stroke:var(--c); stroke-width:1.5}
+.tout{fill:var(--c); fill-opacity:.13; stroke:var(--c); stroke-width:1.2}
+.tlbl{font:600 11.5px var(--mono); fill:var(--ink)} .tteeth{font:11px var(--mono); fill:var(--muted)}
+.edge{stroke:var(--muted); stroke-width:1.2; fill:none} .edge.lead{stroke-dasharray:2 4}
+.edge.carrier{stroke:var(--verdigris); stroke-dasharray:5 3; stroke-width:1.4}
+.arrowhead{fill:var(--muted)}
+.elbl{font:10.5px var(--mono); fill:var(--muted)} .elbl.strong{fill:var(--verdigris); font-weight:600}
+.olbl{font:600 12.5px var(--sans); fill:var(--ink)} .orate{font:11px var(--mono); fill:var(--ink)}
+/* tables */
+.tbl{overflow-x:auto; border:1px solid var(--rule); border-radius:6px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:.9rem; font-variant-numeric:tabular-nums}
+th{font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:600; text-align:left; padding:10px 12px; border-bottom:1px solid var(--rule); white-space:nowrap; position:sticky; top:0; background:var(--surface)}
+td{padding:8px 12px; border-bottom:1px solid var(--rule); vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num, th.num{text-align:right; white-space:nowrap}
+.mono{font-family:var(--mono); font-size:.86em}
+td.chain{font-family:var(--mono); font-size:.8rem; color:var(--muted); min-width:260px}
+.tbl.tall{max-height:560px; overflow:auto}
+.controls{display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; margin:8px 0 12px}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.controls input{font:inherit; font-size:.9rem; padding:6px 12px; border:1px solid var(--rule); border-radius:6px; background:var(--surface); color:var(--ink); min-width:0; width:min(260px,100%)}
+.count{font-size:.85rem; color:var(--muted)}
+.callout{border:1px solid var(--rule); border-left:3px solid var(--verdigris); background:var(--surface); padding:14px 18px; border-radius:4px; max-width:78ch; margin:16px 0}
+.callout.warn{border-left-color:var(--bronze)}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px 28px}
+.fix{display:grid; gap:4px; align-content:start}
+.grid2.two, .gallery.two, .links{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.fix h3{margin:0}
+.fix p{margin:0; font-size:.94rem}
+ul.plain{padding-left:1.1em; margin:.3em 0 1em} ul.plain li{margin:.25em 0}
+ol.steps{list-style:none; padding:0; margin:0; display:grid; gap:10px; counter-reset:s}
+ol.steps li{counter-increment:s; display:grid; grid-template-columns:2.2rem 1fr auto; gap:12px; align-items:start; background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:12px 14px}
+ol.steps li::before{content:counter(s); font-family:var(--display); font-size:1.5rem; line-height:1; color:var(--bronze)}
+ol.steps li p{margin:.2em 0 0; font-size:.93rem; color:var(--muted)}
+.state{font-family:var(--mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; padding:2px 8px; border-radius:4px; border:1px solid var(--rule); color:var(--muted); white-space:nowrap}
+.state.now{border-color:var(--bronze); color:var(--bronze)}
+.state.done{border-color:var(--verdigris); color:var(--verdigris)}
+pre{font-family:var(--mono); font-size:.82rem; line-height:1.55; background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:14px 16px; overflow-x:auto; margin:10px 0 16px}
+.src li{margin:.3em 0; font-size:.92rem}
+.gallery{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; margin-top:16px}
+.gallery figure{margin:0; background:var(--surface); border:1px solid var(--rule); border-radius:6px; overflow:hidden}
+.gallery img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover}
+.gallery figcaption{padding:8px 12px 10px; margin:0; font-size:.84rem}
+.results{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px 28px; margin:14px 0 0; padding:0; list-style:none}
+.results li{border-top:1px solid var(--rule); padding-top:8px; font-size:.92rem}
+.results li b{display:block; font-weight:600}
+tr.total td{border-top:1px solid var(--rule); background:var(--bg)}
+.miss{color:var(--warn); font-weight:600}
+td.nw, .nw{white-space:nowrap}
+.tbl th.hw{white-space:normal}
+.tbl td .count{white-space:normal}
+.tbl + .count{margin-top:8px}
+/* the new tables stay readable at phone width: tighter cells, long code names may break */
+@media (max-width:560px){ .tbl.compact th, .tbl.compact td{padding-inline:8px} .tbl.compact td.brk{overflow-wrap:anywhere} }
+/* Lean table on phones: module and theorem count on one line, the description full width below */
+@media (max-width:560px){
+  .tbl.stack table, .tbl.stack tbody{display:block}
+  .tbl.stack thead{display:none}
+  .tbl.stack tr{display:grid; grid-template-columns:1fr auto; border-bottom:1px solid var(--rule)}
+  .tbl.stack tr:last-child{border-bottom:0}
+  .tbl.stack td, .tbl.stack tr.total td{border:0}
+  .tbl.stack td:nth-child(2){grid-column:1 / -1; grid-row:2; padding-top:0}
+  .tbl.stack td.thm::after{content:" théorèmes"}
+  .tbl.stack tr.total{background:var(--bg)}
+}
+/* film chapters: the real order of the film */
+ol.chapters{list-style:none; padding:0; margin:12px 0 0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:6px; overflow:hidden; counter-reset:ch}
+ol.chapters li{counter-increment:ch; background:var(--surface); padding:10px 14px; display:grid; grid-template-columns:1.6rem 1fr; gap:2px 8px; align-items:baseline; align-content:start}
+ol.chapters li::before{content:counter(ch); grid-row:span 2; font-family:var(--display); font-size:1.35rem; line-height:1; color:var(--bronze)}
+ol.chapters b{font-weight:600; font-size:.95rem}
+ol.chapters span{font-size:.84rem; color:var(--muted)}
+ol.chapters li.watch{counter-increment:none}
+ol.chapters li.watch::before{content:"↗"; color:var(--verdigris)}
+ol.chapters li.watch a{display:grid; gap:2px; text-decoration:none; color:var(--verdigris)}
+ol.chapters li.watch a:hover b{text-decoration:underline}
+@media (max-width:900px){ ol.chapters{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:500px){ ol.chapters{grid-template-columns:1fr} }
+/* publication links */
+.links{display:grid; gap:14px; margin-top:16px}
+.links a.card{display:grid; gap:4px; align-content:start; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:14px 16px}
+.links a.card:hover{border-color:var(--verdigris)}
+.links .url{font-family:var(--mono); font-size:.8rem; color:var(--verdigris); overflow-wrap:anywhere}
+.links .card b{font-family:var(--display); font-weight:400; font-size:1.25rem; line-height:1.2}
+.links .card span.d{font-size:.88rem; color:var(--muted)}
+.fig-diagram{max-width:760px}
+.fig-diagram img{display:block; width:100%; height:auto; border:1px solid var(--rule); border-radius:6px}
+@media (max-width:760px){ .stats{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ ol.steps li{grid-template-columns:1.8rem 1fr} ol.steps li .state{grid-column:2} }
+@media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto} }
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Reconstruction fonctionnelle · modèle Freeth et al. 2021 · Blender&nbsp;5.2 · Lean&nbsp;4</div>
+  <h1>Mécanisme d'Anticythère</h1>
+  <p class="lede">Dossier de reconstruction : l'inventaire des 69 engrenages, la vérification exacte de chaque train contre son cycle astronomique, les corrections géométriques qui rendent l'ensemble réellement fonctionnel, et le plan de construction dans Blender piloté par un prompt maître unique. Ensuite viennent les preuves formelles en Lean 4, un film explicatif et une page interactive pour apprendre à lire la machine.</p>
+  <div class="stats" role="list">
+    <div class="stat" role="listitem"><b>69</b><span>engrenages : 30 survivants, 7 reconstruits, 32 hypothétiques</span></div>
+    <div class="stat" role="listitem"><b>20 / 20</b><span>trains égaux à leur cible en fractions exactes</span></div>
+    <div class="stat" role="listitem"><b>1</b><span>degré de liberté : la manivelle entraîne tout, sans blocage possible</span></div>
+    <div class="stat" role="listitem"><b>22</b><span>problèmes géométriques trouvés dans les données publiées, tous corrigés</span></div>
+    <div class="stat" role="listitem"><b>193</b><span>théorèmes Lean 4 vérifiés par le noyau, sans <span class="mono">sorry</span> ni axiome ajouté</span></div>
+    <div class="stat" role="listitem"><b>2 min 40</b><span>de film explicatif en français, plus une page interactive pour lire la machine</span></div>
+  </div>
+  <nav class="toc" aria-label="Sections">
+    <a href="#resultat">Résultat</a><a href="#plan">Plan des axes</a><a href="#trains">Trains et cycles</a><a href="#engrenages">Les 69 engrenages</a>
+    <a href="#geometrie">Corrections géométriques</a><a href="#decisions">Décisions</a><a href="#construction">Construction</a>
+    <a href="#preuves">Preuves formelles</a><a href="#apprendre">Apprendre à lire</a><a href="#diffusion">Diffusion</a>
+    <a href="#risques">Risques</a><a href="#sources">Sources</a>
+  </nav>
+</header>
+
+<section id="resultat">
+  <div class="sec-head"><div class="eyebrow">Construction réelle · 24 septembre 2026</div><h2>Le prompt a tout reconstruit d'une traite</h2></div>
+  <p class="prose">Une session Opus 5.5 neuve, lancée dans un dossier vide avec le seul prompt maître, a construit le projet entier en <b>89 minutes</b> (131 tours, environ 23 $). Tous les critères d'acceptation sont verts, et aucun repli n'a été nécessaire. J'ai ensuite tout revérifié moi-même, dont un contrôle croisé indépendant : les 47 corps de <span class="mono">am.blend</span> suivent mon propre solveur à 7·10⁻⁷ rad près.</p>
+  <div class="gallery two">
+    <figure><img src="{{IMG_front34}}" alt="Vue trois-quarts avant : cadran, anneaux planétaires, aiguille lunaire, manivelle" loading="lazy"><figcaption>Vue trois-quarts avant (Cycles, GPU Metal du M4), avec la légende des couleurs.</figcaption></figure>
+    <figure><img src="{{IMG_front}}" alt="Cadran avant de face avec zodiaque et calendrier égyptien en grec" loading="lazy"><figcaption>Cadran avant : chaque astre a sa couleur et son étiquette (Soleil, Lune, Mercure, Vénus, Mars, Jupiter, Saturne), qui le suit en restant lisible.</figcaption></figure>
+    <figure><img src="{{IMG_back}}" alt="Cadrans arrière : spirales Métonique et Saros avec cadrans secondaires" loading="lazy"><figcaption>Cadrans arrière : Métonique (5 tours, 235 cases) et Saros (4 tours, 223 cases), aiguilles à coulisseau.</figcaption></figure>
+    <figure><img src="{{IMG_exploded}}" alt="Vue éclatée montrant les trains d'engrenages entre les plaques" loading="lazy"><figcaption>Vue éclatée (curseur explode) : trains arrière, plateau e3, épicycles sur b1 et sur la plaque CP.</figcaption></figure>
+  </div>
+  <ul class="results">
+    <li><b>Mathématiques</b>1 degré de liberté, 22/22 cycles exacts en fractions, 37 entraxes exacts à 6·10⁻¹¹ mm près.</li>
+    <li><b>Physique</b>0 interpénétration 3D sur tous les échantillons : engrenages, tenons, suiveurs, 168 paires × 240 positions.</li>
+    <li><b>Blender</b>228 maillages fermés, 51 drivers en expressions simples ; le fichier s'anime sans autoriser les scripts.</li>
+    <li><b>Livrables</b><span class="mono">am.blend</span>, rapport, 3 × 230 fichiers d'impression, 4 rendus, vidéo de 480 images.</li>
+  </ul>
+  <p class="count" style="margin-top:12px">Dépôt public : <a href="https://github.com/taciclei/antikythera-mechanism">github.com/taciclei/antikythera-mechanism</a> (README en 9 langues, vidéos, <span class="mono">am.blend</span>, fichiers d'impression, preuves Lean). Éclairage « musée », vidéo principale et vidéo éclatée. Depuis, le projet a gagné des <a href="#preuves">preuves formelles</a>, un <a href="#apprendre">film explicatif et une page interactive</a> ; les liens publics sont dans <a href="#diffusion">Diffusion</a>.</p>
+</section>
+
+<section id="plan">
+  <div class="sec-head"><div class="eyebrow">Plan à l'échelle</div><h2>Où se trouve chaque axe</h2></div>
+  <p class="prose">Aucune coordonnée d'axe n'est publiée. Elles ont été reconstruites à partir des rayons primitifs mesurés au scanner (Freeth 2021, table S8), des distances de Price (1974) et de Voulgaris (2021), puis re-résolues pour que chaque entraxe vaille exactement m·(z₁+z₂)/2 avec le module retenu.</p>
+  <div class="tabs" role="group" aria-label="Vue">
+    <button type="button" id="tab-rear" aria-pressed="true" data-panel="p-rear">Plaque principale et arrière</button>
+    <button type="button" id="tab-b1" aria-pressed="false" data-panel="p-b1">Avant : sur la roue b1</button>
+    <button type="button" id="tab-cp" aria-pressed="false" data-panel="p-cp">Avant : plaque CP</button>
+  </div>
+  <figure id="p-rear" class="panel">
+    <div class="fig-scroll">{{SVG_REAR}}</div>
+    <figcaption>Plaque principale vue de face, par transparence, à l'échelle (mm). Cercles : cercles primitifs avec le module retenu. Traits : engrènements, avec l'entraxe en mm. Le plateau e3 porte k1 et k2 ; leur position angulaire est illustrative puisqu'ils tournent avec lui. b1 et la couronne a1 sont côté avant.</figcaption>
+  </figure>
+  <figure id="p-b1" class="panel" hidden>
+    <div class="fig-scroll">{{SVG_B1}}</div>
+    <figcaption>Entre b1 et la barrette (Strap) : roues fixes au centre, trains des nœuds, de Mercure et de Vénus portés par les rayons de b1. Tout est hypothétique (Freeth 2021) sauf r1, l'épicycle de Vénus, qui a survécu.</figcaption>
+  </figure>
+  <figure id="p-cp" class="panel" hidden>
+    <div class="fig-scroll">{{SVG_CP}}</div>
+    <figcaption>Sur la plaque CP, qui tourne avec b1 : Soleil vrai et planètes supérieures, tous au module 0,48 mm. Chaque planète passe par un tenon-rainure (⇢) décalé de son axe, puis par une roue de sortie égale sur l'axe central.</figcaption>
+  </figure>
+  <div class="legend"><span class="chip st-s">Survivant</span><span class="chip st-r">Reconstruit</span><span class="chip st-h">Hypothétique</span><span>trait = engrènement · nombre = entraxe en mm · point = axe</span></div>
+</section>
+
+<section id="trains">
+  <div class="sec-head"><div class="eyebrow">Vérification mathématique</div><h2>Des dents aux cycles</h2></div>
+  <p class="prose">Chaque rapport est calculé en fractions exactes, avec b1 = 1 tour par an et le signe de chaque engrènement (positif = sens horaire vu de face). Une résolution linéaire globale sur les 49 corps mobiles donne un rang de 48 : il reste exactement un degré de liberté, la manivelle, et aucune contrainte redondante qui pourrait bloquer le mécanisme.</p>
+  <figure>
+    <div class="fig-scroll">{{SVG_TREE}}</div>
+    <figcaption>Trains arrière, tous attestés sauf m3, n et les roues callippiques. Les deux chemins partis de b2 se rejoignent sur le plateau e3 : la Lune moyenne arrive par c‑d‑e2, la rotation des apsides par l‑m‑e3, et le tenon-rainure k1⇢k2 porté par e3 ajoute l'anomalie lunaire sans changer la moyenne 254/19.</figcaption>
+  </figure>
+  <div class="callout"><b>Des engrenages ovales ? Non.</b> Toutes les roues retrouvées sont rondes. La vitesse variable de la Lune (plus rapide au périgée, plus lente à l'apogée) vient d'un <b>tenon-rainure</b>. k1 et k2 sont deux roues identiques de 50 dents, sur des axes décalés de 1,1 mm. Un tenon fixé sur k1, à 9,6 mm de son centre, glisse dans une rainure radiale de k2. k2 avance donc tantôt plus vite, tantôt plus lentement que k1, de ±6,58°, comme dans la théorie d'Hipparque. Le plateau e3 qui les porte fait tourner la ligne des apsides en 8,88 ans. L'effet équivaut à celui de roues ovales, mais avec des pièces rondes et faciles à tailler. Freeth 2021 applique la même astuce à Mars, Jupiter et Saturne.</div>
+  <div class="callout warn"><b>Pourquoi les planètes reculent parfois dans la vidéo.</b> C'est la <b>rétrogradation</b>, un vrai phénomène céleste que le mécanisme est justement conçu pour montrer. Vue depuis la Terre, Mars, Jupiter et Saturne semblent reculer quand la Terre les dépasse (à l'opposition), et Mercure et Vénus quand elles passent entre la Terre et le Soleil. Nos contrôles placent chaque rétrogradation à l'opposition à 0,03° près. La main du dragon (nœuds lunaires) tourne toujours à l'envers, et c'est normal. Sur les roues dentées rapides, un recul apparent peut aussi être un effet stroboscopique de la vidéo.</div>
+  <h3>Les 20 trains vérifiés</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Sortie</th><th>Chaîne d'engrenages</th><th>Rapport exact</th><th>Cycle visé</th><th class="num">Période</th><th>Écart / valeur moderne</th><th>Statut</th></tr></thead>
+    <tbody>{{TRAIN_ROWS}}</tbody>
+  </table></div>
+  <p class="prose" style="margin-top:12px;font-size:.9rem;color:var(--muted)">Les écarts viennent des relations de périodes antiques elles-mêmes (par exemple 254 mois sidéraux en 19 ans), pas de l'engrenage : chaque train reproduit sa relation exactement. Le train draconitique de Voulgaris (b1 = 225) est exclu du modèle : avec b1 = 223 il s'écarte de 0,88 %.</p>
+</section>
+
+<section id="engrenages">
+  <div class="sec-head"><div class="eyebrow">Inventaire</div><h2>Les 69 engrenages</h2></div>
+  <p class="prose">Nombres de dents de Freeth 2021 (table S8), confirmés un par un par un relecteur sceptique pour les 30 roues survivantes. Le module est celui retenu pour un engrènement conjugué ; le rayon primitif en découle.</p>
+  <div class="controls">
+    <div class="chips" role="group" aria-label="Filtrer par statut">
+      <button type="button" id="f-all" aria-pressed="true" data-f="">Tous</button>
+      <button type="button" id="f-s" aria-pressed="false" data-f="S">Survivants</button>
+      <button type="button" id="f-r" aria-pressed="false" data-f="R">Reconstruits</button>
+      <button type="button" id="f-h" aria-pressed="false" data-f="H">Hypothétiques</button>
+    </div>
+    <input id="q" type="search" placeholder="Chercher : Vénus, Saros, e3…" aria-label="Chercher un engrenage">
+    <span class="count" id="count"></span>
+  </div>
+  <div class="tbl tall"><table>
+    <thead><tr><th>Roue</th><th class="num">Dents</th><th class="num">Module (mm)</th><th class="num">Rayon primitif</th><th>Axe</th><th>Statut</th><th>Rôle</th></tr></thead>
+    <tbody id="gear-body"></tbody>
+  </table></div>
+</section>
+
+<section id="geometrie">
+  <div class="sec-head"><div class="eyebrow">Faisabilité physique</div><h2>Corrections géométriques</h2></div>
+  <p class="prose">Les rapports justes ne suffisent pas : construites telles quelles avec les rayons mesurés, plusieurs paires se coinceraient. Un vérificateur a contrôlé chaque engrènement, chaque couche et chaque zone de passage. Voici ce qui a été corrigé.</p>
+  <div class="grid2">
+    <div class="fix"><h3>Un module par groupe d'engrènement</h3><p>b2 engrène c1 et l1, qui ont tous deux 38 dents, avec des entraxes publiés de 25,1 et 23,9 mm : c'est impossible. Les trois roues passent au module 0,480 mm (24,48 mm pour les deux entraxes). Même traitement pour fx51, vn44 et me72 (0,5389), pour les nœuds (0,4865 et 0,4821, valeurs exactes de Freeth) et pour k1/k2 (0,512 et 0,534, décalage radial de 1,1 mm).</p></div>
+    <div class="fix"><h3>Plaque CP au module 0,48</h3><p>Au module 0,5, la roue à rainure de Saturne atteint r = 65 mm et heurte les dents de la couronne a1. Aucune implantation ne fonctionne. À 0,48, une disposition complète a été trouvée par recherche systématique.</p></div>
+    <div class="fix"><h3>Axes re-résolus</h3><p>La boucle B‑C‑D‑E refermée exactement (angle BCD de 18,8° au lieu des 14° de Price). F placé côté +x, car l'autre solution tombe dans d2. H, I, O et P choisis hors des zones interdites. Les résidus par rapport aux distances du scanner sont reportés, pas cachés.</p></div>
+    <div class="fix"><h3>Empilement en profondeur</h3><p>9 couches entre b1 et la barrette (12,2 mm sur 15,0 disponibles), 6 entre la barrette et la plaque CP (7,4 sur 9,7). b2 amincie à 2,0 mm. Jeux axiaux de 0,1 à 0,2 mm partout. Faisceau de tubes central de rayon 7,5 mm.</p></div>
+    <div class="fix"><h3>Couronnes calculées par enveloppe</h3><p>Axe de a1 à z = 19,16 mm, et non 22 mm : à cette hauteur, a1 ne toucherait pas b1 et heurterait la plaque CP. La revue a montré qu'une dent de couronne classique s'interpénètre avec b1 de 0,1 à 0,2 mm, parce que l'anneau de la couronne est courbe alors que les dents de b1 sont droites. Les dents de a1 et q1 sont donc calculées comme la région que les dents d'en face ne balaient jamais. Vérifiées dans Blender : 0 interpénétration sur 60 positions par pas, et une dent toujours en prise, à 0,013 à 0,041 mm près.</p></div>
+    <div class="fix"><h3>Zones de passage et tenons-rainures</h3><p>Tout ce que porte b1 entre z = 6,4 et 32,8 mm reste à r ≤ 63,3 mm pour laisser passer a1. Chaque tenon-rainure devient un bossage excentré étagé (rayons 2,3 · 2,7 · 2,8 · 7,8 mm), avec une rainure de longueur 2 × excentricité + diamètre du tenon.</p></div>
+  </div>
+  <h3>Modules retenus</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Groupe</th><th class="num">Module (mm)</th><th>Entraxes (mm)</th></tr></thead>
+    <tbody>{{MODULE_ROWS}}</tbody>
+  </table></div>
+  <h3>Erreurs de citation corrigées</h3>
+  <ul class="plain prose">
+    <li>Chez Price, e5 et k1 ont 32 dents, pas 48.</li>
+    <li>Freeth 2021 (SI 6.4.2) ne mentionne que 365 trous pour l'anneau calendrier ; 355 est l'estimation « toutes données » de Woan &amp; Bayley 2024, 354 leur estimation filtrée.</li>
+    <li>La limite de 56,2 mm est le diamètre maximal d'un épicycle sur b1, pas sa portée depuis l'axe.</li>
+    <li>Szigety &amp; Arenas 2025 concluent que la forme triangulaire seule cause des erreurs négligeables ; ce sont les erreurs de fabrication qui bloqueraient.</li>
+    <li>La règle « un module par paire » ne tient pas pour une roue qui engrène deux partenaires : il faut un module par roue.</li>
+    <li>La publication « Malin &amp; Dickens 2024 » (352 trous) est introuvable ; elle est retirée.</li>
+  </ul>
+</section>
+
+<section id="decisions">
+  <div class="sec-head"><div class="eyebrow">Choix tranchés</div><h2>Décisions de conception</h2></div>
+  <ul class="plain prose">
+    <li><b>Profil à développante à 30°</b> (saillie 1 m, creux 1,25 m, congé 0,2 m). Sa crémaillère est exactement le triangle équilatéral des dents antiques : aspect historique, engrènement conjugué, aucune interférence de taillage dès 8 dents, rapport de conduite de 1,3 à 1,4.</li>
+    <li><b>Phase lunaire non linéaire</b> : la sphère de phase tourne de θ_Soleil − θ_Lune. Comme la Lune porte l'anomalie, une loi linéaire ferait dériver les dents de q1 jusqu'à 11° contre celles de b0 (bloquant trouvé par la revue).</li>
+    <li><b>Marqueurs planétaires recalés</b> : élongation de Vénus ±46,04°, de Mercure ±22,95° et du Soleil vrai ±2,39° autour du Soleil moyen ; rétrogradation des planètes supérieures à l'opposition, à 0,03° près ; apogée solaire à 65,5° (Hipparque).</li>
+    <li><b>Cadran des Jeux aux paires historiques</b> : chaque secteur porte les deux fêtes de son année, comme l'original (Freeth et al. 2008, informations supplémentaires ; Iversen 2017) : an 1 ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ, an 2 ΝΕΜΕΑ ΝΑΑ, an 3 ΙΣΘΜΙΑ ΠΥΘΙΑ, an 4 ΝΕΜΕΑ ΑΛΙΕΙΑ. La première version ne portait qu'un nom par secteur, et celui de l'an 2 (ΙΣΘΜΙΑ) était historiquement faux. La spec et <span class="mono">am.blend</span> portent désormais les paires.</li>
+    <li><b>Jeu obtenu en amincissant les dents</b> : 0,03 mm pour la version savante, 0,15 mm pour l'impression. Les axes ne bougent jamais.</li>
+    <li><b>Mouvement piloté par une seule manivelle</b> : un objet de contrôle avec une propriété « crank » en années. Chaque roue a un driver en expression simple (moins de 255 caractères, sans exécution de script), donc le fichier s'anime à l'ouverture.</li>
+    <li><b>Pas de physique rigide</b> : Bullet glisse et dérive, et ne peut pas reproduire des rapports exacts sur 76 ans. La fonctionnalité est prouvée par la géométrie (engrènement conjugué, zéro interférence) et par le calcul exact.</li>
+    <li><b>Calques par statut</b> : survivant, reconstruit et hypothétique dans des collections Blender séparées, avec un mode d'affichage coloré.</li>
+    <li><b>Valeurs par défaut pour l'incertain</b>, avec l'alternative gardée dans les données : anneau calendrier à 354 trous (option 365) ; spirales à deux centres d'Anastasiou (option Archimède) ; entraxe Métonique–Saros de 145,5 mm ; excentricité du Soleil vrai = i/24 (Hipparque) ; tenon lunaire à r = 9,6 mm, soit une anomalie de 6,58°.</li>
+    <li><b>1 unité Blender = 1 mm</b>, repère de Freeth : x à droite vu de face, y vers le haut, z vers l'observateur ; rotation Blender = −2π × rapport × années.</li>
+  </ul>
+</section>
+
+<section id="construction">
+  <div class="sec-head"><div class="eyebrow">Plan d'exécution</div><h2>Construction et prompt maître</h2></div>
+  <div class="callout"><b>Prompt maître v1 : validé par une construction réelle.</b> <span class="mono">prompts/PROMPT_OPUS_v1_validated.md</span> (131 Ko) est la version exacte qui a produit ce build d'une traite. Il contient la mission, les règles, les décisions tranchées, les formules exactes de chaque corps, l'arborescence, 10 étapes avec points de contrôle, les replis autorisés, 10 critères d'acceptation, les pièges vérifiés de Blender 5.2, et la spec complète (environ 90 Ko, couronnes précalculées comprises) avec son empreinte SHA-256 et une empreinte par section, pour qu'Opus vérifie qu'il l'a recopiée sans erreur.</div>
+  <div class="callout warn"><b>Prompt maître v1.3 : régénéré, pas encore rejoué.</b> <span class="mono">PROMPT_OPUS.md</span> est maintenant en v1.3. La v1.2 y a ajouté les couleurs et étiquettes des planètes, la mise en scène « musée », le curseur d'éclaté et la vidéo éclatée ; la v1.3 remplace les étiquettes du cadran des Jeux par les paires historiques. Ces ajouts ont été appliqués au build existant avec les scripts de <span class="mono">tools/</span>. La v1.3 n'a pas été relancée de zéro : seule la v1 est validée par une exécution.</div>
+  <ol class="steps">
+    <li><div><b>Consolider la spécification corrigée</b><p>Un fichier JSON unique : 69 roues avec alésage et montage, 48 corps, 39 engrènements, 4 tenons-rainures, 3 suiveurs, 22 cibles, 47 arbres, goujons et bossages, couronnes par enveloppe, cadrans et profils d'impression. Validation indépendante : résolution exacte (un seul degré de liberté), entraxes exacts à 10⁻⁶ mm, 165 objets et 13 530 paires sans conflit, Willis vérifié sur les angles à 10⁻¹² rad près, tenons toujours dans leurs rainures. Les tests par mutation détectent toutes les erreurs injectées.</p></div><span class="state done">Terminé</span></li>
+    <li><div><b>Rédiger le prompt maître</b><p>Mission, règles (pas d'internet, pas de questions), décisions tranchées, données complètes, formules, pièges de l'API Blender 5.2, arborescence, commandes et critères d'acceptation.</p></div><span class="state done">Terminé</span></li>
+    <li><div><b>Revue adversariale du prompt</b><p>Quatre relecteurs indépendants ont trouvé 58 constats, dont 5 bloquants, tous corrigés : loi de phase lunaire, couronnes, marqueurs planétaires, largeur en tête, et pièges Blender vérifiés en direct (vidéo en .mkv, propriété entière, textes non variétés, relecture float32). Il y a désormais une table explicite des arbres, goujons, bossages et tenons, et un contrôle de la cinématique non linéaire. Un second tour a confirmé les corrections et en a ajouté 12 (triangulation fiable, disques des couronnes, encodage de la vidéo).</p></div><span class="state done">Terminé</span></li>
+    <li><div><b>Exécution à blanc, qui est la vraie construction</b><p>Une session Opus 5.5 neuve (effort xhigh, 1M de contexte), sans contexte, dans un dossier vide, avec le prompt seul : 89 minutes, 131 tours, 129 appels d'outils, environ 5 000 lignes de code. La spec de 87 Ko a été recopiée exactement du premier coup.</p></div><span class="state done">Terminé</span></li>
+    <li><div><b>Contrôle et itération</b><p>Tout est revérifié indépendamment : tests, vérification exacte, BVH complet (55 s), contrôle croisé de <span class="mono">am.blend</span> contre mon solveur, animation sans scripts, vidéo de 480 images. Aucune itération n'a été nécessaire.</p></div><span class="state done">Terminé</span></li>
+    <li><div><b>Prouver en Lean 4</b><p>Les rapports, les cibles et les entraxes sont traduits depuis la spec et prouvés par le noyau de Lean, avec les tenons-rainures et l'astronomie écrits à la main : 193 théorèmes, revérifiés à chaque modification. <a href="#preuves">Détails</a>.</p></div><span class="state done">Terminé</span></li>
+    <li><div><b>Apprendre à lire la machine</b><p>Un moteur astronomique identique aux drivers de Blender, un film explicatif de 2 min 40 s en français et une page interactive. <a href="#apprendre">Détails</a>.</p></div><span class="state done">Terminé</span></li>
+  </ol>
+  <h3>Projet généré</h3>
+<pre>antikythera/
+  spec/antikythera.json      source de vérité unique
+  am/                        Python pur : cinématique exacte, développante, implantation,
+                             interférences 2D, volumes balayés, spirales, rapport, verify
+  blender_scripts/           build · animate · materials · dials · check · export_print · render
+  tests/                     unittest avec le Python de Blender
+  out/                       am.blend · report.md/html · print/*.stl|3mf · renders/</pre>
+  <h3>Critères d'acceptation</h3>
+  <ul class="plain prose">
+    <li>Les 20 rapports égaux à leur cible en fractions exactes ; 1 seul degré de liberté ; chaque entraxe = m·(z₁+z₂)/2 à 10⁻⁹ près ; rapport de conduite ≥ 1,2 ; jeu positif ; aucun recouvrement dans une même couche.</li>
+    <li>Dans Blender : relecture des drivers sur 50 positions de manivelle (écart &lt; 10⁻⁴ rad) ; retour exact des aiguilles après 19 ans, 76 ans et un Saros ; zéro paire en interférence (BVH) sur 50 échantillons par pas de dent ; maillages fermés à volume positif.</li>
+    <li>Livrables présents : am.blend qui s'anime sans autorisation de scripts, rapport de vérification, STL/3MF par pièce relus à la bonne échelle, rendus Cycles (Metal) et courte animation.</li>
+  </ul>
+</section>
+
+<section id="preuves">
+  <div class="sec-head"><div class="eyebrow">Lean 4 + Mathlib · vérifié par le noyau</div><h2>Preuves formelles</h2></div>
+  <p class="prose">Les contrôles précédents sont des calculs et des tests. Le dossier <span class="mono">lean/</span> va plus loin : c'est un projet Lean 4 construit sur Mathlib, dont les <b>193 théorèmes</b> (environ 2 300 lignes) sont vérifiés par le noyau de Lean. Trois modules sont générés depuis la spec par <span class="mono">tools/make_lean.py</span>, deux sont écrits à la main. Si <span class="mono">lake build</span> réussit, tout ce qui suit est prouvé.</p>
+  <div class="tbl compact stack"><table>
+    <thead><tr><th>Module</th><th class="hw">Ce qui est prouvé</th><th class="num">Théorèmes</th></tr></thead>
+    <tbody>{{LEAN_ROWS}}</tbody>
+  </table></div>
+  <div class="grid2 two" style="margin-top:22px">
+    <div class="fix"><h3>Aucune preuve laissée en suspens</h3><p>Les avertissements sont traités comme des erreurs, donc aucun <span class="mono">sorry</span> ne passe. <span class="mono">Audit.lean</span> fait échouer la construction si un théorème dépend de <span class="mono">sorryAx</span> ou d'un axiome autre que les trois axiomes standard de Lean.</p></div>
+    <div class="fix"><h3>Tests par mutation : 9 refus sur 9</h3><p>Lean doit refuser 9 mécanismes volontairement faux : un nombre de dents, le signe d'une équation de Willis, le porte-satellites d'un engrènement, une vitesse, deux valeurs de cible (Lune, Saros), un axe déplacé de 10⁻⁵ mm, et deux mutations de bout en bout dans la spec : une dent de plus sur n1 (train Métonique), puis sur o1 (train des Jeux). Les 9 sont refusés, et la version intacte compile.</p></div>
+    <div class="fix"><h3>Revérifié à chaque modification</h3><p>À chaque modification des preuves, de la spec ou du générateur, GitHub Actions régénère les modules depuis la spec, vérifie qu'ils sont identiques à ceux du dépôt, puis revérifie chaque preuve. Le badge « Lean proofs: passing » du README affiche le résultat.</p></div>
+    <div class="fix"><h3>Ce que Lean ne couvre pas</h3><p>Le rapport de conduite, le recouvrement axial des dentures, l'interférence de taillage, la géométrie des couronnes et les collisions sont vérifiés par les outils Python et dans Blender (BVH), pas par Lean. Pour les planètes, les nœuds et le Soleil vrai, Lean prouve ce que calcule le modèle de Freeth 2021, pas que la machine antique était construite ainsi.</p></div>
+  </div>
+</section>
+
+<section id="apprendre">
+  <div class="sec-head"><div class="eyebrow">Film explicatif · page interactive · moteur astronomique</div><h2>Apprendre à lire la machine</h2></div>
+  <p class="prose">Une reconstruction qui tourne ne dit pas comment on la lisait. Le film <a href="https://youtu.be/eXvYkouJy_w"><i>Le ciel dans une boîte : comment lire la machine d'Anticythère</i></a> (en français, 2 min 40 s, 1920 × 1080, en ligne sur YouTube) l'explique en sept chapitres, de l'épave jusqu'à la lecture de chaque cadran.</p>
+  <ol class="chapters" aria-label="Chapitres du film">
+    <li><b>Le ciel dans une boîte</b><span>L'épave, les fragments, la machine se remonte.</span></li>
+    <li><b>La manivelle, c'est le temps</b><span>En avant, le temps passe ; en arrière, il remonte.</span></li>
+    <li><b>Lire la face avant</b><span>Le Soleil et la date, la Lune et sa phase.</span></li>
+    <li><b>Les planètes, une hypothèse</b><span>Et la rétrogradation de Mars.</span></li>
+    <li><b>Le dos : les mois et les Jeux</b><span>Le calendrier de 19 ans, l'année des Jeux.</span></li>
+    <li><b>Prédire une éclipse</b><span>La spirale du Saros et ses signes Σ et Η.</span></li>
+    <li><b>Et la navigation ?</b><span>Le parapegme et la saison de navigation.</span></li>
+    <li class="watch"><a href="https://youtu.be/eXvYkouJy_w"><b>Voir le film</b><span>YouTube · 2 min 40 s · en français</span></a></li>
+  </ol>
+  <div class="gallery two">
+    <figure><img src="{{IMG_film_ch1}}" alt="Vue éclatée de la machine patinée sur un établi en bois, avec les mentions 82 fragments et 30 roues dentées conservées" loading="lazy"><figcaption>Chapitre 1 : la machine éclatée et encore corrodée, juste avant de se remonter.</figcaption></figure>
+    <figure><img src="{{IMG_film_ch5}}" alt="Cadran des Jeux en gros plan, secteur ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ surligné, bandeau des quatre années de l'original" loading="lazy"><figcaption>Chapitre 5 : sur le mot « Olympia », l'aiguille des Jeux entre dans ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ. Le bandeau rappelle les quatre années de l'original.</figcaption></figure>
+    <figure><img src="{{IMG_film_ch6}}" alt="Spirale du Saros, l'aiguille entre dans une case marquée Σ Η" loading="lazy"><figcaption>Chapitre 6 : l'aiguille du Saros entre dans la case 112, dont le signe « Σ&nbsp;Η » est calculé par notre modèle.</figcaption></figure>
+    <figure><img src="{{IMG_film_ch7}}" alt="Face avant avec les deux plaques du parapegme et la lettre Ξ sous le Soleil" loading="lazy"><figcaption>Chapitre 7 : le parapegme, calendrier des étoiles. Le Ξ et la ligne « La Pléiade se lève » sont des illustrations.</figcaption></figure>
+  </div>
+  <h3>Comment le film a été fait et vérifié</h3>
+  <ul class="results">
+    <li><b>Décor</b>Atelier en lumière du jour (<span class="mono">tools/staging_atelier.py</span>), bronze clair, graphismes crème et encre.</li>
+    <li><b>Voix</b>Voix off française générée localement sur le Mac avec Voxtral TTS de Mistral (voix fr_female), à −16 LUFS. Deux modèles locaux de reconnaissance vocale, Whisper large-v3-turbo et Parakeet, la retranscrivent avec 0 % d'erreur phonétique.</li>
+    <li><b>Images</b>4 009 images à 25 i/s, dont 3 743 rendues avec EEVEE (environ 4 s chacune) ; 5 schémas animés, 17 incrustations 2D, 46 sous-titres incrustés.</li>
+    <li><b>Synchronisation</b>La ligne de temps suit les mots de la voix. Chaque moment clé est vérifié avec le moteur astronomique : nouvelle et pleine lune, station et rétrogradation de Mars, ΙΣΘΜΙΑ ΟΛΥΜΠΙΑ sur « Olympia », case 112 « Σ&nbsp;Η », pleine lune sur l'aiguille du Dragon.</li>
+    <li><b>Relecture</b>Le montage final a été relu à raison de 2 images par seconde de film.</li>
+  </ul>
+  <div class="callout"><b>Page interactive « Lire la machine ».</b> Sur <a href="https://taciclei.github.io/antikythera-mechanism/lire/">taciclei.github.io/antikythera-mechanism/lire/</a> (GitHub Pages), on choisit une date, on tourne la manivelle, et la page lit chaque aiguille en français. Elle trouve la prochaine pleine lune, la prochaine éclipse selon la machine et les prochains Jeux. Elle propose aussi six dates à demander à la machine, une section sur la navigation et un tableau qui compare la machine au ciel réel.</div>
+  <h3>Le moteur astronomique</h3>
+  <p class="prose"><span class="mono">tools/explainer/engine.py</span> calcule ce que montre la machine et le traduit en lectures en français ; le film et la page s'en servent. Il reproduit les drivers de Blender à 6,4·10⁻⁷ rad près (contrôle sur 22 valeurs de manivelle). Pour comparer au vrai ciel, on le cale sur J2000 : seules les phases de départ changent, jamais les rapports d'engrenages. Les rapports antiques dérivent lentement : la Lune de la machine prend 5,55° d'avance par siècle sur la longitude moyenne réelle, et ses phases 0,46 jour d'avance par siècle.</p>
+  <h3>Éclipses 2026-2028 : la machine calée face au catalogue de la NASA</h3>
+  <div class="tbl compact"><table>
+    <thead><tr><th>Date</th><th>Éclipse (NASA)</th><th class="num hw">Machine − NASA</th></tr></thead>
+    <tbody>{{ECLIPSE_ROWS}}</tbody>
+  </table></div>
+  <p class="count">Règle des limites physiques : Lune à 10,8° au plus du nœud à la pleine lune, 17,0° à la nouvelle lune. La machine annonce les 6 éclipses de Soleil à la bonne syzygie, 4 des 5 éclipses de Lune par l'ombre (partielles ou totales) et 1 des 3 pénombrales, sans fausse alerte. Écart négatif : la machine est en avance. Les écarts d'horaire viennent de la Lune d'Hipparque, sans évection, et du Soleil moyen. Catalogues NASA/GSFC (F.&nbsp;Espenak).</p>
+  <h3>Signes d'éclipse : calculés, pas copiés</h3>
+  <p class="prose">Les signes Σ (éclipse de Lune) et Η (éclipse de Soleil) de la spirale du Saros, dans le film et sur la page, sont calculés par notre modèle : pour chaque mois, la distance de la Lune au nœud à la pleine et à la nouvelle lune. Le cadran antique suivait d'autres règles, et nous ne le recopions pas.</p>
+  <figure class="fig-diagram"><img src="{{IMG_diag_eclipse}}" alt="Schéma : le Soleil éclaire la Terre, la Lune pleine passe près d'un nœud et entre dans l'ombre de la Terre" loading="lazy"><figcaption>Un des 5 schémas animés du film : une pleine lune près d'un nœud donne une éclipse de Lune. L'aiguille du Dragon, qui montre les nœuds, est une hypothèse.</figcaption></figure>
+  <div class="tbl compact" style="margin-top:16px"><table>
+    <thead><tr><th class="hw">Un Saros (223 cases)</th><th class="num hw">Cases à signe</th><th class="num">Σ</th><th class="num">Η</th><th class="num hw">Σ et Η</th></tr></thead>
+    <tbody>{{GLYPH_ROWS}}</tbody>
+  </table></div>
+  <p class="count">Nos deux lignes portent sur un cycle de la machine non calée, celle du film. Appliquée à notre machine, la règle de Freeth donne aussi 38 Σ, comme le cadran antique, mais 26 Η au lieu de 28. La limite physique compte moins d'éclipses de Lune (l'ombre seule) et plus d'éclipses de Soleil (visibles n'importe où sur Terre) que le cadran antique, qui annonçait les « possibilités » d'éclipse de Lune des Babyloniens et seulement les éclipses de Soleil visibles depuis la Grèce.</p>
+  <h3>Et la navigation ?</h3>
+  <div class="callout warn"><b>Ce n'était pas un instrument de navigation.</b> La machine n'a ni viseur, ni latitude, ni longitude : c'est un calculateur du ciel. Son lien avec la mer passe par le parapegme, le calendrier des étoiles gravé sur les plaques avant, qui marquait les saisons, dont celle de la navigation. Hésiode (<i>Les Travaux et les Jours</i>) conseille de rentrer les navires quand les Pléiades « tombent dans la noire mer ». Bien plus tard, Végèce (IV, 39) juge la mer sûre du 27 mai au 14 septembre, et fermée du 11 novembre au 10 mars. Comme le dit le film, la machine ne disait pas où aller, mais quand partir.</div>
+</section>
+
+<section id="diffusion">
+  <div class="sec-head"><div class="eyebrow">Publications</div><h2>Diffusion</h2></div>
+  <p class="prose">Le code, le modèle, les preuves, le film et la page sont publics.</p>
+  <div class="links">
+    <a class="card" href="https://github.com/taciclei/antikythera-mechanism"><span class="eyebrow">Dépôt GitHub</span><b>antikythera-mechanism</b><span class="url">github.com/taciclei/antikythera-mechanism</span><span class="d">README en 9 langues avec lecteurs vidéo et badge « Lean proofs: passing » ; <span class="mono">am.blend</span>, fichiers d'impression, preuves Lean, moteur et chaîne du film.</span></a>
+    <a class="card" href="https://taciclei.github.io/antikythera-mechanism/lire/"><span class="eyebrow">Page interactive · GitHub Pages</span><b>Lire la machine</b><span class="url">taciclei.github.io/antikythera-mechanism/lire/</span><span class="d">Une date, la manivelle, et la lecture de chaque aiguille en français.</span></a>
+    <a class="card" href="https://youtu.be/eXvYkouJy_w"><span class="eyebrow">YouTube · 2 min 40 s</span><b>Le ciel dans une boîte</b><span class="url">youtu.be/eXvYkouJy_w</span><span class="d">Le film explicatif en français, en sept chapitres.</span></a>
+    <a class="card" href="https://youtu.be/D_U_XaaIicQ"><span class="eyebrow">YouTube · 43 s</span><b>La machine en mouvement</b><span class="url">youtu.be/D_U_XaaIicQ</span><span class="d">Courte vidéo de la reconstruction qui tourne.</span></a>
+  </div>
+  <p class="count" style="margin-top:12px">Deux publications LinkedIn présentent aussi le projet.</p>
+  <div class="callout warn"><b>Licences.</b> Le code est sous licence MIT ; les rendus, les vidéos de la machine, le modèle 3D, les fichiers d'impression et les textes sous <span class="nw">CC BY 4.0</span>. Exception : la voix off du film explicatif est générée avec Voxtral TTS, dont les poids sont sous licence <span class="nw">CC BY-NC 4.0</span> ; le film est donc réservé à un usage non commercial.</div>
+</section>
+
+<section id="risques">
+  <div class="sec-head"><div class="eyebrow">Limites</div><h2>Risques et inconnues</h2></div>
+  <ul class="plain prose">
+    <li>Les trains planétaires, les nœuds et le Soleil vrai viennent du modèle de Freeth 2021 : ils restent étiquetés hypothétiques. Une animation qui fonctionne ne prouve pas la reconstruction historique.</li>
+    <li>Non publiés, donc fixés par défaut : angles des axes H, I et O, rayons des anneaux planétaires (estimés d'après la figure 7 de Freeth 2021), phases de départ de chaque train, latéralité de l'implantation arrière (d'après Price, à confirmer sur le scanner).</li>
+    <li>Plusieurs nombres de dents survivants gardent une marge de mesure (b1 de 223 à 229, e3 de 217 à 235, e4 de 180 à 192). Les valeurs retenues sont celles qu'imposent les rapports.</li>
+    <li>Impression : le module 0,5 à l'échelle 1 demande de la résine. En FDM à l'échelle 2, b1 fait environ 260 mm et dépasse la plupart des plateaux ; il faudra le segmenter.</li>
+    <li>Seule la v1 du prompt maître est validée par une construction réelle (89 minutes, d'une traite). La v1.3 (paires historiques des Jeux, couleurs, mise en scène, éclaté) a été régénérée mais pas rejouée de zéro.</li>
+    <li>Les preuves Lean portent sur les vitesses moyennes, les cibles, les entraxes, les lois des tenons-rainures et des suiveurs, et les cycles astronomiques. Le rapport de conduite, l'interférence de taillage, les couronnes et les collisions restent vérifiés par les outils Python et dans Blender.</li>
+    <li>Les signes d'éclipse du film et de la page sont calculés par notre modèle, pas relevés sur l'original : sur un cycle de la machine non calée, 55 cases à signe avec nos limites, contre 51 sur le cadran antique reconstruit par Freeth 2014.</li>
+    <li>Le calage sur le ciel réel (J2000) sert à la démonstration. Les rapports antiques dérivent (Lune +5,55° par siècle) : au-delà de quelques siècles, il faut recaler. Les constructeurs antiques calaient la machine sur leur propre époque.</li>
+    <li>Dans le film, le Ξ et la ligne « La Pléiade se lève » sont des illustrations : les plaques du parapegme du modèle portent un texte provisoire.</li>
+    <li>La voix off du film vient de Voxtral TTS, dont les poids sont sous licence <span class="nw">CC BY-NC 4.0</span> : le film ne peut pas être exploité commercialement sans refaire la voix.</li>
+  </ul>
+</section>
+
+<section id="sources">
+  <div class="sec-head"><div class="eyebrow">Références</div><h2>Sources</h2></div>
+  <ul class="plain src">{{SOURCES}}</ul>
+  <h3>Données ouvertes utiles</h3>
+  <ul class="plain src">
+    <li>Scanner du fragment A, CC0 : <a href="https://doi.org/10.7910/DVN/UCXZWU">Harvard Dataverse</a></li>
+    <li>Surface du fragment principal (GLB), CC BY 4.0 : <a href="https://zenodo.org/records/10284672">Zenodo 10284672</a></li>
+    <li>Modèle CAO de Shambaugh (implantation seulement), CC BY-NC-SA : <a href="https://theshamblog.com/cad-files-for-the-antikythera-mechanism/">theshamblog.com</a></li>
+    <li>Analyse des trous de l'anneau calendrier : <a href="https://github.com/jcbayley/antikythera_holecount">jcbayley/antikythera_holecount</a></li>
+  </ul>
+  <p class="count">Recherche du 24 septembre 2026 : 9 agents, 680 consultations de sources. Données brutes archivées dans ~/antikythera/research/.</p>
+</section>
+</div>
+
+<script>
+const GEARS = {{GEARS_JSON}};
+const ST = {S:["st-s","Survivant"], R:["st-r","Reconstruit"], H:["st-h","Hypothétique"]};
+const body = document.getElementById("gear-body"), countEl = document.getElementById("count"), q = document.getElementById("q");
+let filt = "";
+function fmt(n, d){ return n.toFixed(d).replace(".", ","); }
+function render(){
+  const term = q.value.trim().toLowerCase();
+  const rows = GEARS.filter(g => (!filt || g.st === filt) && (!term || (g.n + " " + g.axis + " " + g.role).toLowerCase().includes(term)));
+  body.innerHTML = rows.map(g => `<tr><td class="mono"><b>${g.n}</b></td><td class="num">${g.z}</td><td class="num mono">${fmt(g.m,4)}</td><td class="num mono">${fmt(g.m*g.z/2,2)}</td><td>${g.axis}</td><td><span class="chip ${ST[g.st][0]}">${ST[g.st][1]}</span></td><td>${g.role}</td></tr>`).join("");
+  countEl.textContent = rows.length + " / " + GEARS.length + " roues";
+}
+document.querySelectorAll(".chips button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".chips button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  filt = b.dataset.f; render();
+}));
+q.addEventListener("input", render);
+render();
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".tabs button").forEach(x => {
+    x.setAttribute("aria-pressed", String(x === b));
+    document.getElementById(x.dataset.panel).hidden = (x !== b);
+  });
+}));
+</script>
