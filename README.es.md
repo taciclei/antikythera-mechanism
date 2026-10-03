@@ -20,6 +20,17 @@ El mecanismo de Anticitera es una calculadora astronómica de bronce accionada p
 
 Toda la construcción la realizó Claude Opus 5.5 en una sola pasada a partir de un único prompt maestro autocontenido ([`PROMPT_OPUS.md`](PROMPT_OPUS.md)), y después se verificó de forma independiente.
 
+## Dos máquinas en este repositorio
+
+| | v1: reconstrucción histórica | v2: Anticythère 2.0 |
+|---|---|---|
+| Qué es | La máquina antigua, tal como la reconstruyeron Freeth et al. 2021 | Una evolución moderna calculada con la astronomía de 2026 |
+| Dónde | Todo lo que está en la raíz de este repositorio | La carpeta [`v2/`](v2/README.md) |
+| Estado | Terminada y verificada; congelada en la etiqueta [`v1-historique`](https://github.com/taciclei/antikythera-mechanism/releases/tag/v1-historique) | Estudio de diseño en curso |
+| ¿Histórica? | Sí; las piezas hipotéticas están señaladas | **No**: es una evolución, no una reconstrucción |
+
+El resto de este README describe la v1.
+
 ## Aspectos destacados
 
 - **69 engranajes**, etiquetados según su grado de certeza:

@@ -23,6 +23,17 @@ The Antikythera Mechanism is a hand-cranked bronze astronomical calculator built
 
 The whole build was produced in a single pass by Claude Opus 5.5 from one self-contained master prompt ([`PROMPT_OPUS.md`](PROMPT_OPUS.md)), then verified independently.
 
+## Two machines in this repository
+
+| | v1: historical reconstruction | v2: Anticythère 2.0 |
+|---|---|---|
+| What it is | The ancient machine, as reconstructed by Freeth et al. 2021 | A modern evolution computed with 2026 astronomy |
+| Where | Everything at the root of this repository | The [`v2/`](v2/README.md) folder |
+| Status | Finished and verified; frozen at the [`v1-historique`](https://github.com/taciclei/antikythera-mechanism/releases/tag/v1-historique) tag | Design study in progress |
+| Historical? | Yes; hypothetical parts are marked | **No**: it is an evolution, not a reconstruction |
+
+The rest of this README describes v1.
+
 ## Highlights
 
 - **69 gears**, tagged by how certain they are:

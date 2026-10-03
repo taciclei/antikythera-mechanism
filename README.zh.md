@@ -20,6 +20,17 @@ https://github.com/user-attachments/assets/40b1f61b-5fb0-4b54-bd1c-1ba1f423a424
 
 整个构建由 Claude Opus 5.5 根据一份自成一体的主提示词（[`PROMPT_OPUS.md`](PROMPT_OPUS.md)）一次性完成，随后经过独立验证。
 
+## 本仓库中的两台机械
+
+| | v1：历史重建 | v2：Anticythère 2.0 |
+|---|---|---|
+| 是什么 | 古代原件，依据 Freeth et al. 2021 的重建 | 一次现代演进，采用 2026 年的天文学数据计算 |
+| 位置 | 本仓库根目录下的全部内容 | [`v2/`](v2/README.md) 文件夹 |
+| 状态 | 已完成并经过验证；冻结于 [`v1-historique`](https://github.com/taciclei/antikythera-mechanism/releases/tag/v1-historique) 标签 | 设计研究进行中 |
+| 是否符合历史？ | 是；假设部分均已标注 | **否**：它是一次演进，而非重建 |
+
+本 README 的其余部分介绍的是 v1。
+
 ## 亮点
 
 - **69 个齿轮**，按确定程度分类标注：

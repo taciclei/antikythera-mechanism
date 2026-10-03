@@ -20,6 +20,17 @@ https://github.com/user-attachments/assets/40b1f61b-5fb0-4b54-bd1c-1ba1f423a424
 
 ビルド全体は、それ単体で完結した1つのマスタープロンプト（[`PROMPT_OPUS.md`](PROMPT_OPUS.md)）から Claude Opus 5.5 が1回のパスで生成し、その後、独立に検証しました。
 
+## このリポジトリにある2つの機械
+
+| | v1：歴史的復元 | v2：Anticythère 2.0 |
+|---|---|---|
+| 概要 | Freeth et al. 2021 が復元したとおりの古代の機械 | 2026年の天文学で計算した現代的な発展形 |
+| 場所 | このリポジトリのルートにあるすべてのもの | [`v2/`](v2/README.md) フォルダー |
+| 状態 | 完成・検証済み。[`v1-historique`](https://github.com/taciclei/antikythera-mechanism/releases/tag/v1-historique) タグの時点で凍結 | 設計検討中 |
+| 史実に基づくか | はい。仮説的な部品には印を付けています | **いいえ**：これは復元ではなく、発展形です |
+
+この README の以降の部分では v1 について説明します。
+
 ## 主な特徴
 
 - **69枚の歯車**。確実性の度合いによって分類しています。

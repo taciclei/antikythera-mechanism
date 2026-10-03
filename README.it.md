@@ -20,6 +20,17 @@ Il Meccanismo di Antikythera è un calcolatore astronomico in bronzo azionato a 
 
 L'intero modello è stato realizzato in un solo passaggio da Claude Opus 5.5 a partire da un unico prompt principale autosufficiente ([`PROMPT_OPUS.md`](PROMPT_OPUS.md)), e poi verificato in modo indipendente.
 
+## Due macchine in questo repository
+
+| | v1: ricostruzione storica | v2: Anticythère 2.0 |
+|---|---|---|
+| Che cos'è | La macchina antica, così come è stata ricostruita da Freeth et al. 2021 | Un'evoluzione moderna, calcolata con l'astronomia del 2026 |
+| Dove | Tutto ciò che si trova nella radice di questo repository | La cartella [`v2/`](v2/README.md) |
+| Stato | Completata e verificata; congelata al tag [`v1-historique`](https://github.com/taciclei/antikythera-mechanism/releases/tag/v1-historique) | Studio di progettazione in corso |
+| Storica? | Sì; le parti ipotetiche sono segnalate | **No**: è un'evoluzione, non una ricostruzione |
+
+Il resto di questo README descrive la v1.
+
 ## Punti salienti
 
 - **69 ruote dentate**, classificate in base al loro grado di certezza:

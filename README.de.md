@@ -20,6 +20,17 @@ Der Mechanismus von Antikythera ist ein von Hand gekurbelter astronomischer Rech
 
 Der gesamte Aufbau wurde von Claude Opus 5.5 in einem einzigen Durchlauf aus einem einzigen, in sich geschlossenen Master-Prompt ([`PROMPT_OPUS.md`](PROMPT_OPUS.md)) erzeugt und anschließend unabhängig verifiziert.
 
+## Zwei Maschinen in diesem Repository
+
+| | v1: historische Rekonstruktion | v2: Anticythère 2.0 |
+|---|---|---|
+| Was es ist | Die antike Maschine, wie sie Freeth et al. 2021 rekonstruiert haben | Eine moderne Weiterentwicklung, berechnet mit der Astronomie von 2026 |
+| Wo | Alles im Wurzelverzeichnis dieses Repositorys | Der Ordner [`v2/`](v2/README.md) |
+| Status | Fertig und verifiziert; eingefroren beim Tag [`v1-historique`](https://github.com/taciclei/antikythera-mechanism/releases/tag/v1-historique) | Entwurfsstudie in Arbeit |
+| Historisch? | Ja; hypothetische Teile sind gekennzeichnet | **Nein**: eine Weiterentwicklung, keine Rekonstruktion |
+
+Der Rest dieser README beschreibt v1.
+
 ## Besonderheiten
 
 - **69 Zahnräder**, gekennzeichnet nach dem Grad ihrer Gewissheit:
