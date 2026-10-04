@@ -80,6 +80,14 @@ def main():
                 + html.replace("<div class=\"wrap\">", "</head>\n<body>\n<div class=\"wrap\">", 1)
                 + "</body>\n</html>\n")
     print("écrit", os.path.relpath(pages, os.path.dirname(V2)))
+    import shutil
+    src = os.path.join(V2, "study", "img")
+    if os.path.isdir(src):
+        dst = os.path.join(os.path.dirname(pages), "img")
+        os.makedirs(dst, exist_ok=True)
+        for f in sorted(os.listdir(src)):
+            shutil.copy2(os.path.join(src, f), os.path.join(dst, f))
+        print("copié", len(os.listdir(src)), "images vers", os.path.relpath(dst, os.path.dirname(V2)))
 
 
 if __name__ == "__main__":

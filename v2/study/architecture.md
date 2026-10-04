@@ -226,7 +226,7 @@ donc dans le sens anti-horaire vu de dos. Les graduations sont gravées pour le 
 |---|---|---|---|---|---|---|---|
 | Mercure | (157 ; 102) | 60 | résolveur de Kepler + ellipse à deux bras | 73:79 · 64:31 · 37:17 | AB | 24 → fou 24 (tenon) → 24 | Y4a |
 | Vénus | (−147 ; 92) | 70 | équant bissecté | 124:67 · 166:189 | A | 24 → fou 96 (tenon) → 24 | Y4a |
-| Mars | (5 ; 92) | 70 | équant + épicyclet | 97:88 · 41:85 | A | 24 → fou 64 (tenon) → 24 | Y4b |
+| Mars | (5 ; 92) | 70 | équant + épicyclet | 97:88 · 41:85 | B | 24 → fou 64 (tenon) → 24 | Y4b |
 | Jupiter | (−168 ; −112) | 50 | équant bissecté | 10:26 · 16:73 | A | 24 → fou 32 (tenon) → 24 | Y4a |
 | Saturne | (−56 ; −112) | 50 | équant bissecté | 10:41 · 11:79 | A | 24 → fou 32 (tenon) → 24 | Y4b |
 | Uranus | (168 ; −112) | 50 | équant bissecté | 10:84 · 10:100 | A | 24 → fou 64 (tenon) → 24 | Y4b |
@@ -247,13 +247,13 @@ donc dans le sens anti-horaire vu de dos. Les graduations sont gravées pour le 
 | Train | Étage / sous-étage | Moyeu | Arbres (entrée → sortie) |
 |---|---|---|---|
 | `Y` | E4 / A | — | (−50 ; −20) → (−50 ; 3) → (−34 ; 41) → (0 ; 0) |
-| `venus_L` | E4 / A | Y4a | (−96 ; 77) → (−60 ; 107) → (−147 ; 92) → (−126 ; 71) |
+| `venus_L` | E4 / A | Y4a | (−100 ; 68) → (−58 ; 92) → (−147 ; 92) → (−130 ; 68) |
 | `precession_ring` | E5 / T2 (coq + plan + tringle) | — | (56 ; −112) → (91 ; −106) |
-| `neptune_L` | E4 / B | Y4a | (106 ; −144) → (99 ; −104) → (56 ; −112) → (78 ; −132) |
+| `neptune_L` | E4 / B | Y4a | (92 ; −65) → (99 ; −104) → (56 ; −112) → (70 ; −85) |
 | `mercury_L` | E4 / AB | Y4a | (145 ; 82) → (184 ; 97) → (166 ; 112) → (157 ; 102) → (168 ; 78) → (148 ; 94) |
-| `mars_L` | E4 / A | Y4b | (37 ; 117) → (29 ; 72) → (5 ; 92) → (26 ; 98) |
+| `mars_L` | E4 / B | Y4b | (37 ; 117) → (29 ; 72) → (5 ; 92) → (26 ; 98) |
 | `uranus_L` | E4 / A | Y4b | (134 ; −125) → (142 ; −103) → (168 ; −112) → (155 ; −130) |
-| `saturn_L` | E4 / A | Y4b | (−69 ; −134) → (−75 ; −123) → (−56 ; −112) → (−58 ; −126) |
+| `saturn_L` | E4 / A | Y4b | (−65 ; −88) → (−52 ; −90) → (−56 ; −112) → (−65 ; −102) |
 | `jupiter_L` | E4 / A | Y4a | (−194 ; −112) → (−187 ; −101) → (−168 ; −112) → (−181 ; −118) |
 | `moon_perigee` | E4 / A | Y4b | (48 ; 10) → (48 ; −22) → (81 ; −3) |
 | `saros` | E5 / m1 | Y5 | (154 ; −84) → (159 ; −98) → (170 ; −128) |

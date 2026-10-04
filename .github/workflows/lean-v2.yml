@@ -1,0 +1,51 @@
+name: Lean proofs v2 (Anticythère 2.0)
+
+on:
+  push:
+    paths:
+      - 'v2/lean/**'
+      - 'v2/spec/trains.json'
+      - 'v2/spec/architecture.json'
+      - 'v2/tools/make_lean_v2.py'
+      - 'v2/tools/lean_v2/**'
+      - 'lean/lean-toolchain'
+      - 'lean/lake-manifest.json'
+      - '.github/workflows/lean-v2.yml'
+  pull_request:
+    paths:
+      - 'v2/lean/**'
+      - 'v2/spec/trains.json'
+      - 'v2/spec/architecture.json'
+      - 'v2/tools/make_lean_v2.py'
+      - 'v2/tools/lean_v2/**'
+      - 'lean/lean-toolchain'
+      - 'lean/lake-manifest.json'
+      - '.github/workflows/lean-v2.yml'
+  workflow_dispatch:
+
+jobs:
+  proofs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan (the toolchain comes from lean-toolchain)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan-init.sh
+          sh elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      # v2/lean prend Mathlib par chemin dans lean/.lake/packages : on la fournit avec le cache compilé.
+      - name: Compiled Mathlib for lean/ (used by path from v2/lean)
+        working-directory: lean
+        run: lake exe cache get
+
+      - name: Generated Lean files match the spec
+        run: |
+          python3 v2/tools/make_lean_v2.py
+          git diff --exit-code v2/lean
+          test -z "$(git status --porcelain v2/lean)"
+
+      - name: Check every proof (warnings are errors, Audit checks the axioms)
+        working-directory: v2/lean
+        run: lake build

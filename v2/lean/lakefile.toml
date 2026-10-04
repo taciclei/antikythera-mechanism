@@ -1,0 +1,20 @@
+name = "anticythere_v2"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["AnticythereV2"]
+
+[leanOptions]
+pp.unicode.fun = true # affiche `fun a ↦ b`
+relaxedAutoImplicit = false
+warningAsError = true
+maxSynthPendingDepth = 3
+
+# Mathlib par chemin : celle, déjà compilée, du projet v1 (lean/). Aucun téléchargement.
+# Les dépendances de Mathlib (batteries, Qq, aesop…) sont résolues, elles aussi par chemin,
+# grâce à lake-manifest.json.
+[[require]]
+name = "mathlib"
+path = "../../lean/.lake/packages/mathlib"
+
+[[lean_lib]]
+name = "AnticythereV2"

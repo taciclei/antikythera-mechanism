@@ -2,7 +2,13 @@
 
 
 def tail(A, review, verdict, repo, fr, review2=None, review3=None):
+    import os
     j = A["jeu"]
+    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    video = ('<figure><video src="img/annee.mp4" controls muted loop playsinline preload="metadata" '
+             'poster="img/front34.jpg"></video><figcaption><b>Une année en 15 secondes</b> (2026, un jour toutes les '
+             'deux images) : les aiguilles, l\'orrery et les cadrans tournent aux vitesses exactes.</figcaption></figure>'
+             if os.path.exists(os.path.join(here, "study", "img", "annee.mp4")) else "")
     P = [f"""<h2><span class="n">08</span>Ce qui n'est pas encore prouvé</h2>
 <ul class="tight">
 <li><b>Les blocs-mécanismes sont des enveloppes estimées.</b> C'est le cas de la cascade lunaire, du calendrier, du
@@ -56,6 +62,29 @@ est au § 1 de <a href="{repo}/blob/main/v2/study/architecture.md">architecture.
 <li>L'arbre de précession est relié.</li>
 </ul>
 <p><a href="{repo}/blob/main/v2/study/review3.md">Lire la troisième revue</a>.</p>""")
+    P.append(f"""<h2><span class="n">09</span>La machine en 3D</h2>
+<p>La maquette Blender suit l'architecture vérifiée, pièce par pièce :</p>
+<ul class="tight">
+<li>415 pièces de mécanique, dont 153 roues droites à dents vraies (développante de 30°, jeu de 0,03 mm),
+72 coniques, 19 couronnes, 40 tringles et 6 platines percées ;</li>
+<li>28 blocs translucides et étiquetés pour les mécanismes encore à dessiner ;</li>
+<li>les trois faces, la caisse et la manivelle.</li></ul>
+<p><b>Contrôle d'interférence</b> : 133 contacts d'engrenage, chacun vérifié à 24 instants d'un tour, sans aucun
+recouvrement ; 183 paires de pièces voisines, sans collision. Chaque pièce tourne au taux exact de
+<code>trains.json</code> ; les aiguilles suivent des éphémérides à moins de 0,4° de JPL Horizons sur 2000–2100.</p>
+<div class="shots">
+<figure><img src="img/front.jpg" alt="Face avant de la maquette : grand cadran du ciel, dix aiguilles, quatre petits cadrans" loading="lazy"><figcaption><b>Face avant</b>, le 4 octobre 2026.</figcaption></figure>
+<figure><img src="img/back.jpg" alt="Face arrière : cadran des éclipses, calendrier grégorien, Saros" loading="lazy"><figcaption><b>Face arrière</b>, vue de dos.</figcaption></figure>
+<figure><img src="img/front34.jpg" alt="Vue de trois quarts : la caisse et l'orrery sur le couvercle" loading="lazy"><figcaption><b>Trois quarts</b> : l'orrery sur le couvercle.</figcaption></figure>
+<figure><img src="img/lid.jpg" alt="Le couvercle vu d'en haut : orbites et planètes" loading="lazy"><figcaption><b>Le couvercle</b>, vu d'en haut.</figcaption></figure>
+</div>
+<figure><img src="img/etages.jpg" alt="Les cinq étages vus de face, puis l'intérieur sans la caisse" loading="lazy"><figcaption><b>Les cinq
+étages</b> (E5 à E1), vus de face, puis l'intérieur sans la caisse ni les cadrans avant. Les blocs translucides sont
+les mécanismes encore à dessiner.</figcaption></figure>
+{video}
+<p><b>Preuves Lean 4</b> : 201 théorèmes générés depuis <code>trains.json</code> et <code>architecture.json</code>
+(rapports, vitesses, identités, architecture), compilés sans avertissement et audités : ils ne reposent que sur les
+trois axiomes standard. Voir <a href="{repo}/blob/main/v2/blender/README.md">la maquette et les preuves</a>.</p>""".replace("{video}", video))
     files = [("research/mechanisms.md", "la meilleure réalisation de chaque sous-système, chiffrée"),
              ("research/precedents.md", "les machines qui l'ont déjà fait : Strasbourg, Olsen, Hahn…"),
              ("research/constants.md", "les constantes modernes et leurs sources"),
@@ -63,13 +92,16 @@ est au § 1 de <a href="{repo}/blob/main/v2/study/architecture.md">architecture.
              ("study/trains.md", "l'étude des trains d'engrenages"),
              ("spec/architecture.json", "l'architecture vérifiée (positions, étages, renvois)"),
              ("study/architecture.md", "l'architecture expliquée"),
+             ("blender/README.md", "la maquette 3D, ses contrôles et les preuves Lean"),
+             ("lean/", "les 201 théorèmes Lean 4 de la v2"),
              ("tools/", "les scripts qui produisent et vérifient tout")]
     lis = "".join(f'<li><a href="{repo}/blob/main/v2/{p}"><code>v2/{p}</code></a> : {d}</li>' for p, d in files)
-    P.append(f"""<h2><span class="n">09</span>Les fichiers</h2><ul class="tight">{lis}</ul>
-<h2><span class="n">10</span>La suite</h2>
-<ol class="tight"><li><b>La machine en 3D</b> dans Blender, à partir de <code>spec/architecture.json</code>, avec un contrôle
-d'interférence pièce par pièce, comme pour la v1.</li>
-<li><b>Les preuves Lean 4</b> des rapports exacts et des identités : Laplace, Hooke, calendrier.</li></ol>
+    P.append(f"""<h2><span class="n">10</span>Les fichiers</h2><ul class="tight">{lis}</ul>
+<h2><span class="n">11</span>La suite</h2>
+<ol class="tight"><li><b>Dessiner l'intérieur des blocs</b> pièce par pièce : unités de Kepler, modules vectoriels,
+cascade de la Lune, bloc du temps, calendrier, boîte de Laplace.</li>
+<li><b>Prolonger les preuves Lean</b> aux mécanismes non linéaires (identité du module vectoriel, joint de Hooke).</li>
+<li><b>Un prototype</b>, pour mesurer l'effort de manivelle et le jeu réel.</li></ol>
 <footer>Page générée par <code>v2/tools/build_etude.py</code> à partir des fichiers vérifiés du dépôt.
 Anticythère 2.0 est une évolution moderne, pas une reconstruction historique. ·
 <a href="{repo}">github.com/taciclei/antikythera-mechanism</a></footer>""")

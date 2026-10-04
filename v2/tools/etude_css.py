@@ -55,6 +55,10 @@ figure .art{border:1px solid var(--rule);background:var(--sheet);padding:10px;ov
 figure svg{display:block;width:100%;height:auto;min-width:560px;font-family:var(--sans)}
 figure.narrow .art{max-width:600px}
 figure.narrow svg{min-width:420px}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;margin:18px 0}
+.shots figure{margin:0}
+@media (max-width:640px){.shots{grid-template-columns:1fr}}
+figure img,figure video{display:block;width:100%;height:auto;max-width:100%;border:1px solid var(--rule);background:var(--sheet)}
 figcaption{font-size:14px;color:var(--muted);margin-top:8px;max-width:80ch}
 figcaption b{color:var(--ink-2)}
 .tbl{overflow-x:auto;margin:14px 0 22px;border:1px solid var(--rule)}

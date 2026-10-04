@@ -73,13 +73,15 @@ def train_items(tid, M, pos, fid, subz, axis_idx=None, axis_id=None, spans=None,
         if k == axis_idx and axis_id:
             continue
         own = [wid[i] for i, w in enumerate(M["wheels"]) if w["arbor"] == k]
-        items.append(cyl(names[k], pos[k], L.SHAFT_R, spans.get(k, span), links=own))
+        items.append(cyl(names[k], pos[k], L.SHAFT_R, spans.get(k, span), links=own, train=tid, arbor=M["arbors"][k]))
     for i, w in enumerate(M["wheels"]):
         # une roue touche son arbre et engrène sa partenaire jusqu'au fond de dent (pignon taillé dans l'arbre)
         p_arb = [names[M["wheels"][wid_k]["arbor"]] for wid_k in
                  [int(x.split("#w")[1]) for x in partners.get(i, [])]]
         items.append(cyl(wid[i], pos[w["arbor"]], w["r"], plane_z(subz, w["plane"]),
-                         links=[names[w["arbor"]]] + partners.get(i, []) + p_arb, wheel=wheel_tag, teeth=w["z"]))
+                         links=[names[w["arbor"]]] + partners.get(i, []) + p_arb, wheel=wheel_tag, teeth=w["z"],
+                         m=w.get("m"), role=w.get("role"), stage=w.get("stage"), mesh_kind=w.get("kind", "external"),
+                         train=tid, arbor=M["arbors"][w["arbor"]], partners=partners.get(i, [])))
     return items
 
 

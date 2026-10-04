@@ -35,27 +35,30 @@ def model(stages, modules, idler=None, transfer=None, idler_stage=0):
     if transfer and transfer[0] == "direct":
         tcd = transfer[1]
         r = tcd / 2 + 0.5
-        wheels += [{"arbor": n, "plane": 0, "r": r, "z": int(2 * tcd)},
-                   {"arbor": 0, "plane": 0, "r": r, "z": int(2 * tcd)}]
+        wheels += [{"arbor": n, "plane": 0, "r": r, "z": int(2 * tcd), "m": 0.5, "role": "reprise"},
+                   {"arbor": 0, "plane": 0, "r": r, "z": int(2 * tcd), "m": 0.5, "role": "reprise"}]
         meshes.append((0, 1, tcd))
     elif transfer:
         zi = transfer[1]
         arb.append("T")
         t_idx = len(arb) - 1
         ci = 0.5 * (24 + zi) / 2
-        wheels += [{"arbor": n, "plane": 0, "r": 6.5, "z": 24}, {"arbor": t_idx, "plane": 0, "r": zi / 4 + 0.5, "z": zi},
-                   {"arbor": 0, "plane": 0, "r": 6.5, "z": 24}]
+        wheels += [{"arbor": n, "plane": 0, "r": 6.5, "z": 24, "m": 0.5, "role": "reprise"},
+                   {"arbor": t_idx, "plane": 0, "r": zi / 4 + 0.5, "z": zi, "m": 0.5, "role": "reprise_fou"},
+                   {"arbor": 0, "plane": 0, "r": 6.5, "z": 24, "m": 0.5, "role": "reprise"}]
         meshes += [(0, 1, ci), (1, 2, ci)]
         stud = {t_idx: 0}  # pignon fou sur un tenon porté par le pont : son arbre ne descend pas sous le plan 0
     for k, (z1, z2, kind) in enumerate(stages):
         m = Fraction(modules[k])
         p = off + k
         wd = len(wheels)
-        wheels.append({"arbor": k, "plane": p, "r": wr(m, z1), "z": z1})
-        wheels.append({"arbor": k + 1, "plane": p, "r": wr(m, z2, kind), "z": z2})
+        wheels.append({"arbor": k, "plane": p, "r": wr(m, z1), "z": z1, "m": float(m), "role": "menante", "stage": k})
+        wheels.append({"arbor": k + 1, "plane": p, "r": wr(m, z2, kind), "z": z2, "m": float(m), "role": "menee",
+                       "stage": k, "kind": kind})
         if idler and k == idler_stage:
             wi = len(wheels)
-            wheels.append({"arbor": n + 1, "plane": p, "r": wr(m, idler), "z": idler})
+            wheels.append({"arbor": n + 1, "plane": p, "r": wr(m, idler), "z": idler, "m": float(m), "role": "fou",
+                           "stage": k})
             meshes.append((wd, wi, cdist(m, z1, idler)))
             meshes.append((wi, wd + 1, cdist(m, idler, z2)))
         else:

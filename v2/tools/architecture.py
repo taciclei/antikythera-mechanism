@@ -91,6 +91,7 @@ def route_items(route, car=None, takeoff=None, zr=None):
     """Pièces d'un renvoi. Liens : blocs déclarés aux extrémités, puis pièce à pièce aux jonctions (revue N9)."""
     rid, items = route["id"], []
     base = list(route.get("links", []))
+    meta = {"route": rid, "shaft": route.get("shaft")}
     if route.get("chain"):  # prise par roue, pignon fou et roue (λ_T sur l'UAK maîtresse)
         ch = route["chain"]
         uz = L.sub(ch["floor"], ch["sub"])
@@ -138,6 +139,9 @@ def route_items(route, car=None, takeoff=None, zr=None):
                 r_end = L.HUB_R  # au bout d'une tringle de moyeu (1:4), une couronne 4:1
             items.append(P.cyl(f"{rid}#m{k}{e}", pt, r_end, z, wheel="renvoi",
                                links=base + ([route["hub"]] if at_hub else [])))
+    for x in items:
+        for k_, v_ in meta.items():
+            x.setdefault(k_, v_)
     for x in items:  # jonctions internes au renvoi
         for y in items:
             if x is not y and _touch(x, y) and y["id"] not in x["links"]:

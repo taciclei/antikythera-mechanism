@@ -49,3 +49,6 @@ build/out/explainer/film/qa_*/
 build/out/explainer/film/film.mp4
 build/out/explainer/film/film.mp4.check.json
 build/out/explainer/publish/yt_*
+
+# Anticythère 2.0 : sorties lourdes de la maquette 3D
+v2/out/
