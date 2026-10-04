@@ -1,0 +1,128 @@
+{
+ "moon_errors": {
+  "mean_only": {
+   "max_deg": 8.0321,
+   "rms_deg": 4.5662
+  },
+  "antikythera_pinslot_anomaly": {
+   "max_deg": 2.5239,
+   "rms_deg": 1.0339
+  },
+  "equant_anomaly": {
+   "max_deg": 2.4999,
+   "rms_deg": 1.0299
+  },
+  "parallel_sines_1": {
+   "max_deg": 2.556,
+   "rms_deg": 1.0404
+  },
+  "parallel_sines_2": {
+   "max_deg": 1.3895,
+   "rms_deg": 0.5207
+  },
+  "parallel_sines_3": {
+   "max_deg": 0.7659,
+   "rms_deg": 0.2335
+  },
+  "parallel_sines_4": {
+   "max_deg": 0.6261,
+   "rms_deg": 0.1786
+  },
+  "parallel_sines_5": {
+   "max_deg": 0.4608,
+   "rms_deg": 0.1217
+  },
+  "parallel_sines_6": {
+   "max_deg": 0.3466,
+   "rms_deg": 0.091
+  },
+  "parallel_sines_8": {
+   "max_deg": 0.2589,
+   "rms_deg": 0.0702
+  },
+  "parallel_sines_10": {
+   "max_deg": 0.179,
+   "rms_deg": 0.0496
+  },
+  "parallel_sines_13": {
+   "max_deg": 0.0976,
+   "rms_deg": 0.0233
+  },
+  "parallel_sines_20": {
+   "max_deg": 0.0399,
+   "rms_deg": 0.0107
+  },
+  "parallel_sines_30": {
+   "max_deg": 0.0201,
+   "rms_deg": 0.0051
+  },
+  "parallel_sines_59": {
+   "max_deg": 0.0062,
+   "rms_deg": 0.0027
+  },
+  "cascade_A(an,ev,va,ann)": {
+   "max_deg": 0.6473,
+   "rms_deg": 0.1838
+  },
+  "cascade_B(ev,va,ann,an)": {
+   "max_deg": 0.5057,
+   "rms_deg": 0.1516
+  },
+  "cascade_C(an,ev,va,ann,red)": {
+   "max_deg": 0.5344,
+   "rms_deg": 0.1652
+  },
+  "cascade_D(anEQE,ev,va,ann,red)": {
+   "max_deg": 0.3867,
+   "rms_deg": 0.136
+  },
+  "RECOMMENDED cascade(red,ann,ev,anEQ,va)": {
+   "max_deg": 0.2609,
+   "rms_deg": 0.1001
+  },
+  "LAT 5.128 sin F_mean": {
+   "max_deg": 0.8093,
+   "rms_deg": 0.3099
+  },
+  "LAT asin(sin i sin F_true) i=5.145": {
+   "max_deg": 0.1792,
+   "rms_deg": 0.1029
+  },
+  "LAT + 0.173 sin(2D-F)": {
+   "max_deg": 0.0746,
+   "rms_deg": 0.0265
+  },
+  "LAT asin(sin 5.0 sin F_true) [eclipse scale]": {
+   "max_deg": 0.3034,
+   "rms_deg": 0.1484
+  },
+  "LAT @syzygy 5.128 sin F_mean": {
+   "max_deg": 0.5225,
+   "rms_deg": 0.2544
+  },
+  "LAT @syzygy asin(sin i sin F_true) i=5.145": {
+   "max_deg": 0.1637,
+   "rms_deg": 0.1002
+  },
+  "LAT @syzygy + 0.173 sin(2D-F)": {
+   "max_deg": 0.0504,
+   "rms_deg": 0.0253
+  },
+  "LAT @syzygy asin(sin 5.0 sin F_true) [eclipse scale]": {
+   "max_deg": 0.0519,
+   "rms_deg": 0.0152
+  }
+ },
+ "periods_days_and_rates": {
+  "M_prime (anomalistic month)": 27.55455,
+  "2D-M_prime (evection)": 31.81194,
+  "2D (variation)": 14.76529,
+  "M (anomalistic year)": 365.25964,
+  "2F (reduction)": 13.60611,
+  "D (synodic month)": 29.53059,
+  "F (draconic month)": 27.21222,
+  "carrier_evection_rev_per_year": 1.887015,
+  "carrier_perigee_rev_per_year": 0.113028,
+  "carrier_node_rev_per_year": -0.053726
+ }
+}

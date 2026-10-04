@@ -1,0 +1,534 @@
+{
+ "budget": {
+  "circle": {
+   "mercury": {
+    "helio_model": 23.68195908402495,
+    "geo_model": 12.054383353179011,
+    "geo_inclination": 0.24927858997048175,
+    "geo_secular": 0.016771098599693068,
+    "helio_total": 23.89193137668285,
+    "geo_total": 12.009237760339893
+   },
+   "venus": {
+    "helio_model": 0.7742058215775417,
+    "geo_model": 5.222637771605289,
+    "geo_inclination": 0.18557395142908145,
+    "geo_secular": 0.02075155062123078,
+    "helio_total": 0.8243240803052891,
+    "geo_total": 5.2788204254799425
+   },
+   "mars": {
+    "helio_model": 10.717449392948456,
+    "geo_model": 33.22649722556958,
+    "geo_inclination": 0.06756152077829382,
+    "geo_secular": 0.1758685982302109,
+    "helio_total": 10.728513713190832,
+    "geo_total": 33.2434204981556
+   },
+   "jupiter": {
+    "helio_model": 5.538544373635081,
+    "geo_model": 6.8687336233077865,
+    "geo_inclination": 0.00997653437008718,
+    "geo_secular": 0.015122214810590087,
+    "helio_total": 5.545454643890929,
+    "geo_total": 6.8678356619203935
+   },
+   "saturn": {
+    "helio_model": 6.144916484480738,
+    "geo_model": 6.645446997788502,
+    "geo_inclination": 0.03161451374567838,
+    "geo_secular": 0.04116134787093729,
+    "helio_total": 6.178832638925991,
+    "geo_total": 6.6819635432297
+   },
+   "uranus": {
+    "helio_model": 5.414169823902122,
+    "geo_model": 5.677806175584281,
+    "geo_inclination": 0.0028000499993148047,
+    "geo_secular": 0.01803965543835838,
+    "helio_total": 5.4156016586212266,
+    "geo_total": 5.677952467134118
+   },
+   "neptune": {
+    "helio_model": 0.9873298441315915,
+    "geo_model": 1.00052307242606,
+    "geo_inclination": 0.014328553464643649,
+    "geo_secular": 0.003609173123184757,
+    "helio_total": 0.9882433316179524,
+    "geo_total": 1.0031503456328887
+   }
+  },
+  "ps": {
+   "mercury": {
+    "helio_model": 2.790447479862489,
+    "geo_model": 5.465929784921889,
+    "geo_inclination": 0.24927858997048175,
+    "geo_secular": 0.016771098599693068,
+    "helio_total": 2.953332148609371,
+    "geo_total": 5.410248541956475
+   },
+   "venus": {
+    "helio_model": 0.0019846590505548443,
+    "geo_model": 1.1948442163124204,
+    "geo_inclination": 0.18557395142908145,
+    "geo_secular": 0.02075155062123078,
+    "helio_total": 0.0519757829737812,
+    "geo_total": 1.165124397231978
+   },
+   "mars": {
+    "helio_model": 0.4467146212557934,
+    "geo_model": 8.902557866969605,
+    "geo_inclination": 0.06756152077829382,
+    "geo_secular": 0.1758685982302109,
+    "helio_total": 0.4695321155672132,
+    "geo_total": 8.978182815587488
+   },
+   "jupiter": {
+    "helio_model": 0.10943671221957647,
+    "geo_model": 0.8206359046772707,
+    "geo_inclination": 0.00997653437008718,
+    "geo_secular": 0.015122214810590087,
+    "helio_total": 0.11421586562100206,
+    "geo_total": 0.8252099325988459
+   },
+   "saturn": {
+    "helio_model": 0.13603912907248455,
+    "geo_model": 0.4766119543315181,
+    "geo_inclination": 0.03161451374567838,
+    "geo_secular": 0.04116134787093729,
+    "helio_total": 0.18606391895574906,
+    "geo_total": 0.5325012540568648
+   },
+   "uranus": {
+    "helio_model": 0.10436759562177234,
+    "geo_model": 0.2720343415242575,
+    "geo_inclination": 0.0028000499993148047,
+    "geo_secular": 0.01803965543835838,
+    "helio_total": 0.10534735003530087,
+    "geo_total": 0.2727665180162583
+   },
+   "neptune": {
+    "helio_model": 0.0032382323145121097,
+    "geo_model": 0.049262029404843644,
+    "geo_inclination": 0.014328553464643649,
+    "geo_secular": 0.003609173123184757,
+    "helio_total": 0.011671194484930293,
+    "geo_total": 0.04821642990765413
+   }
+  },
+  "eq": {
+   "mercury": {
+    "helio_model": 0.8949624767160111,
+    "geo_model": 0.6598528002809756,
+    "geo_inclination": 0.24927858997048175,
+    "geo_secular": 0.016771098599693068,
+    "helio_total": 0.9658607589408357,
+    "geo_total": 0.8544130339817763
+   },
+   "venus": {
+    "helio_model": 0.0006622256125413251,
+    "geo_model": 0.01753728808770198,
+    "geo_inclination": 0.18557395142908145,
+    "geo_secular": 0.02075155062123078,
+    "helio_total": 0.05287770952101246,
+    "geo_total": 0.20886078070425304
+   },
+   "mars": {
+    "helio_model": 0.1494642141646937,
+    "geo_model": 0.6010752225450544,
+    "geo_inclination": 0.06756152077829382,
+    "geo_secular": 0.1758685982302109,
+    "helio_total": 0.19629799023262418,
+    "geo_total": 0.7107338270685685
+   },
+   "jupiter": {
+    "helio_model": 0.03666168949855749,
+    "geo_model": 0.04874264052881294,
+    "geo_inclination": 0.00997653437008718,
+    "geo_secular": 0.015122214810590087,
+    "helio_total": 0.056808635296404494,
+    "geo_total": 0.07266516825243582
+   },
+   "saturn": {
+    "helio_model": 0.04558211208876029,
+    "geo_model": 0.05291901899833052,
+    "geo_inclination": 0.03161451374567838,
+    "geo_secular": 0.04116134787093729,
+    "helio_total": 0.06516811231927713,
+    "geo_total": 0.07737121321818413
+   },
+   "uranus": {
+    "helio_model": 0.03496183409641583,
+    "geo_model": 0.037696510389382216,
+    "geo_inclination": 0.0028000499993148047,
+    "geo_secular": 0.01803965543835838,
+    "helio_total": 0.04523264785733393,
+    "geo_total": 0.04706385238021917
+   },
+   "neptune": {
+    "helio_model": 0.0010807928540608742,
+    "geo_model": 0.0013044784756398586,
+    "geo_inclination": 0.014328553464643649,
+    "geo_secular": 0.003609173123184757,
+    "helio_total": 0.015986644166980684,
+    "geo_total": 0.01679066621539842
+   }
+  },
+  "eqe": {
+   "mercury": {
+    "helio_model": 0.19471054387643974,
+    "geo_model": 0.14900853437309555,
+    "geo_inclination": 0.24927858997048175,
+    "geo_secular": 0.016771098599693068,
+    "helio_total": 0.3233377261469886,
+    "geo_total": 0.3399993895106496
+   },
+   "venus": {
+    "helio_model": 7.361807104244837e-06,
+    "geo_model": 0.0004027366487397279,
+    "geo_inclination": 0.18557395142908145,
+    "geo_secular": 0.02075155062123078,
+    "helio_total": 0.052624589566308284,
+    "geo_total": 0.20161902809035614
+   },
+   "mars": {
+    "helio_model": 0.019206355006556156,
+    "geo_model": 0.06126415059545452,
+    "geo_inclination": 0.06756152077829382,
+    "geo_secular": 0.1758685982302109,
+    "helio_total": 0.06730011914895365,
+    "geo_total": 0.23808855476156587
+   },
+   "jupiter": {
+    "helio_model": 0.0026833768278931437,
+    "geo_model": 0.0033289445176489067,
+    "geo_inclination": 0.00997653437008718,
+    "geo_secular": 0.015122214810590087,
+    "helio_total": 0.022227064712202205,
+    "geo_total": 0.02559467941449985
+   },
+   "saturn": {
+    "helio_model": 0.003660932895891719,
+    "geo_model": 0.00407533490689275,
+    "geo_inclination": 0.03161451374567838,
+    "geo_secular": 0.04116134787093729,
+    "helio_total": 0.0525980811231921,
+    "geo_total": 0.05994585574773528
+   },
+   "uranus": {
+    "helio_model": 0.0025071316333515133,
+    "geo_model": 0.00264398236438079,
+    "geo_inclination": 0.0028000499993148047,
+    "geo_secular": 0.01803965543835838,
+    "helio_total": 0.018379069369552806,
+    "geo_total": 0.019217214003043513
+   },
+   "neptune": {
+    "helio_model": 1.5267850446365062e-05,
+    "geo_model": 2.0409816407230577e-05,
+    "geo_inclination": 0.014328553464643649,
+    "geo_secular": 0.003609173123184757,
+    "helio_total": 0.01491224836267786,
+    "geo_total": 0.015599714771372635
+   }
+  },
+  "kes": {
+   "mercury": {
+    "helio_model": 0.0,
+    "geo_model": 0.0,
+    "geo_inclination": 0.24927858997048175,
+    "geo_secular": 0.016771098599693068,
+    "helio_total": 0.25647600489993055,
+    "geo_total": 0.2573716861114905
+   },
+   "venus": {
+    "helio_model": 0.0,
+    "geo_model": 0.0,
+    "geo_inclination": 0.18557395142908145,
+    "geo_secular": 0.02075155062123078,
+    "helio_total": 0.05263109964211494,
+    "geo_total": 0.2015255887437113
+   },
+   "mars": {
+    "helio_model": 0.0,
+    "geo_model": 0.0,
+    "geo_inclination": 0.06756152077829382,
+    "geo_secular": 0.1758685982302109,
+    "helio_total": 0.056066201680028786,
+    "geo_total": 0.20657623112147913
+   },
+   "jupiter": {
+    "helio_model": 0.0,
+    "geo_model": 0.0,
+    "geo_inclination": 0.00997653437008718,
+    "geo_secular": 0.015122214810590087,
+    "helio_total": 0.02069031350295386,
+    "geo_total": 0.024114841338472755
+   },
+   "saturn": {
+    "helio_model": 0.0,
+    "geo_model": 0.0,
+    "geo_inclination": 0.03161451374567838,
+    "geo_secular": 0.04116134787093729,
+    "helio_total": 0.054832835342376623,
+    "geo_total": 0.06228438263530228
+   },
+   "uranus": {
+    "helio_model": 0.0,
+    "geo_model": 0.0,
+    "geo_inclination": 0.0028000499993148047,
+    "geo_secular": 0.01803965543835838,
+    "helio_total": 0.019643035765349457,
+    "geo_total": 0.020566031683818237
+   },
+   "neptune": {
+    "helio_model": 0.0,
+    "geo_model": 0.0,
+    "geo_inclination": 0.014328553464643649,
+    "geo_secular": 0.003609173123184757,
+    "helio_total": 0.014907149390590067,
+    "geo_total": 0.01559667846186864
+   }
+  },
+  "eqe_earth_const_radius": {
+   "mercury": {
+    "helio_model": 0.19471054387643974,
+    "geo_model": 0.5585744254731311,
+    "geo_inclination": 0.24927858997048175,
+    "geo_secular": 0.016771098599693068,
+    "helio_total": 0.3233377261469886,
+    "geo_total": 0.63921025095858
+   },
+   "venus": {
+    "helio_model": 7.361807104244837e-06,
+    "geo_model": 1.4416815938385836,
+    "geo_inclination": 0.18557395142908145,
+    "geo_secular": 0.02075155062123078,
+    "helio_total": 0.052624589566308284,
+    "geo_total": 1.554466698016215
+   },
+   "mars": {
+    "helio_model": 0.019206355006556156,
+    "geo_model": 1.4124497982894073,
+    "geo_inclination": 0.06756152077829382,
+    "geo_secular": 0.1758685982302109,
+    "helio_total": 0.06730011914895365,
+    "geo_total": 1.5339760507156777
+   },
+   "jupiter": {
+    "helio_model": 0.0026833768278931437,
+    "geo_model": 0.20174573975428955,
+    "geo_inclination": 0.00997653437008718,
+    "geo_secular": 0.015122214810590087,
+    "helio_total": 0.022227064712202205,
+    "geo_total": 0.21882100341546404
+   },
+   "saturn": {
+    "helio_model": 0.003660932895891719,
+    "geo_model": 0.1054137294804171,
+    "geo_inclination": 0.03161451374567838,
+    "geo_secular": 0.04116134787093729,
+    "helio_total": 0.0525980811231921,
+    "geo_total": 0.15013707123673867
+   },
+   "uranus": {
+    "helio_model": 0.0025071316333515133,
+    "geo_model": 0.05158977771378029,
+    "geo_inclination": 0.0028000499993148047,
+    "geo_secular": 0.01803965543835838,
+    "helio_total": 0.018379069369552806,
+    "geo_total": 0.06613566361617515
+   },
+   "neptune": {
+    "helio_model": 1.5267850446365062e-05,
+    "geo_model": 0.032063188923841544,
+    "geo_inclination": 0.014328553464643649,
+    "geo_secular": 0.003609173123184757,
+    "helio_total": 0.01491224836267786,
+    "geo_total": 0.041182368901407654
+   }
+  }
+ },
+ "compression": {
+  "equal_spacing_20mm": {
+   "earth_r_mm": 70.0,
+   "mercury": {
+    "r_mm": 30.0,
+    "max_err_deg": 2.85
+   },
+   "venus": {
+    "r_mm": 50.0,
+    "max_err_deg": 1.07
+   },
+   "mars": {
+    "r_mm": 90.0,
+    "max_err_deg": 14.37
+   },
+   "jupiter": {
+    "r_mm": 110.0,
+    "max_err_deg": 30.4
+   },
+   "saturn": {
+    "r_mm": 130.0,
+    "max_err_deg": 27.36
+   },
+   "uranus": {
+    "r_mm": 150.0,
+    "max_err_deg": 25.14
+   },
+   "neptune": {
+    "r_mm": 170.0,
+    "max_err_deg": 22.57
+   }
+  },
+  "sqrt": {
+   "earth_r_mm": 60.0,
+   "mercury": {
+    "r_mm": 37.3,
+    "max_err_deg": 18.04
+   },
+   "venus": {
+    "r_mm": 51.0,
+    "max_err_deg": 19.3
+   },
+   "mars": {
+    "r_mm": 74.1,
+    "max_err_deg": 19.18
+   },
+   "jupiter": {
+    "r_mm": 136.9,
+    "max_err_deg": 15.6
+   },
+   "saturn": {
+    "r_mm": 185.3,
+    "max_err_deg": 13.1
+   },
+   "uranus": {
+    "r_mm": 262.8,
+    "max_err_deg": 10.27
+   },
+   "neptune": {
+    "r_mm": 329.0,
+    "max_err_deg": 8.63
+   }
+  },
+  "log": {
+   "earth_r_mm": 70.0,
+   "mercury": {
+    "r_mm": 32.0,
+    "max_err_deg": 4.92
+   },
+   "venus": {
+    "r_mm": 57.0,
+    "max_err_deg": 12.89
+   },
+   "mars": {
+    "r_mm": 86.8,
+    "max_err_deg": 18.54
+   },
+   "jupiter": {
+    "r_mm": 136.0,
+    "max_err_deg": 20.98
+   },
+   "saturn": {
+    "r_mm": 160.2,
+    "max_err_deg": 20.37
+   },
+   "uranus": {
+    "r_mm": 188.2,
+    "max_err_deg": 19.04
+   },
+   "neptune": {
+    "r_mm": 206.1,
+    "max_err_deg": 18.05
+   }
+  }
+ },
+ "earth_planet_distance_AU": {
+  "mercury": [
+   0.5485821158120011,
+   1.4513724295757668
+  ],
+  "venus": [
+   0.26414778997010513,
+   1.735651031738379
+  ],
+  "mars": [
+   0.3704975261024148,
+   2.675743414209274
+  ],
+  "jupiter": [
+   3.9503091716914254,
+   6.452776273767993
+  ],
+  "saturn": [
+   8.03969433793666,
+   11.03085050835684
+  ],
+  "uranus": [
+   17.286436008256754,
+   21.087641653680706
+  ],
+  "neptune": [
+   28.80534346980005,
+   31.198090674559317
+  ]
+ },
+ "geo_minus_helio_max_deg": {
+  "mercury": 179.99796216843188,
+  "venus": 179.998787483486,
+  "mars": 47.40648569448503,
+  "jupiter": 11.847757647530056,
+  "saturn": 6.387886047541554,
+  "uranus": 3.1845385575115785,
+  "neptune": 1.9533616509146252
+ },
+ "tolerance_follower_deg": {
+  "R40_d0.02": {
+   "mercury": 0.076,
+   "venus": 0.188,
+   "mars": 0.207,
+   "jupiter": 0.047,
+   "saturn": 0.039,
+   "uranus": 0.035,
+   "neptune": 0.031
+  },
+  "R40_d0.05": {
+   "mercury": 0.189,
+   "venus": 0.471,
+   "mars": 0.517,
+   "jupiter": 0.117,
+   "saturn": 0.098,
+   "uranus": 0.087,
+   "neptune": 0.078
+  },
+  "R60_d0.02": {
+   "mercury": 0.051,
+   "venus": 0.125,
+   "mars": 0.138,
+   "jupiter": 0.031,
+   "saturn": 0.026,
+   "uranus": 0.023,
+   "neptune": 0.021
+  },
+  "R60_d0.05": {
+   "mercury": 0.126,
+   "venus": 0.314,
+   "mars": 0.345,
+   "jupiter": 0.078,
+   "saturn": 0.066,
+   "uranus": 0.058,
+   "neptune": 0.052
+  }
+ },
+ "jpl_table1_lon_err_arcsec_1800_2050": {
+  "mercury": 15,
+  "venus": 20,
+  "earth": 20,
+  "mars": 40,
+  "jupiter": 400,
+  "saturn": 600,
+  "uranus": 50,
+  "neptune": 10
+ }
+}

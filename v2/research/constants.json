@@ -1,0 +1,6611 @@
+{
+ "meta": {
+  "title": "Anticythère 2.0 -- constantes astronomiques modernes",
+  "generated_by": "v2/tools/build_constants.py",
+  "accessed": "2026-10-03",
+  "checks_summary": {
+   "total": 255,
+   "ok": 238,
+   "explained": 17,
+   "attention": 0
+  }
+ },
+ "conventions": {
+  "epoch": "J2000.0 = JD 2451545.0 TT = 2000-01-01 12:00 TT",
+  "time_argument": "T = (JD_TT - 2451545.0) / 36525 (siècles juliens) ; t (Simon 1994) = millénaires juliens",
+  "time_scale": "TT (~TDB). La machine compte des jours solaires moyens (UT1) : TT - UT1 = DeltaT ~ 69,1 s en 2026 (USNO_DT), effet < 0,01 deg sur la Lune.",
+  "frames": {
+   "sidereal": "écliptique et équinoxe moyens fixes J2000 (inertiel ; pour l'orrery)",
+   "tropical": "équinoxe moyen de la date (pour le cadran zodiacal avant ; différence = précession p_A)"
+  },
+  "units": "deg, '' (seconde d'arc), jours de 86400 s, siècles juliens de 36525 j, au, km",
+  "values_as_strings": "Les valeurs transcrites des sources sont conservées en chaînes décimales exactes (exact_strings) pour des conversions Fraction / Lean sans perte."
+ },
+ "sources": {
+  "JPL_APPROX": {
+   "cite": "E.M. Standish & J.G. Williams, 'Keplerian Elements for Approximate Positions of the Major Planets', JPL Solar System Dynamics (tables 1, 2a, 2b)",
+   "url": "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+   "snapshot": "v2/research/sources/jpl_approx_pos_2026-10-03.txt"
+  },
+  "JPL_APPROX_2019": {
+   "cite": "Same JPL tables, archived text version that still contained Pluto (Wayback Machine, 2019)",
+   "url": "https://web.archive.org/web/2019/https://ssd.jpl.nasa.gov/txt/p_elem_t1.txt",
+   "url2": "https://web.archive.org/web/2019/https://ssd.jpl.nasa.gov/txt/p_elem_t2.txt",
+   "snapshot": "v2/research/sources/jpl_p_elem_t1_archived_2019.txt"
+  },
+  "SIMON1994": {
+   "cite": "J.-L. Simon, P. Bretagnon, J. Chapront, M. Chapront-Touzé, G. Francou, J. Laskar, 'Numerical expressions for precession formulae and mean elements for the Moon and the planets', A&A 282, 663-683 (1994) -- sect. 3.4-3.5 (Moon), 5.8 (planets, J2000), 5.9 (planets, of date). VSOP87 / JASON84 / ELP 2000-82 mean elements.",
+   "url": "https://articles.adsabs.harvard.edu/pdf/1994A%26A...282..663S",
+   "url2": "https://ui.adsabs.harvard.edu/abs/1994A&A...282..663S"
+  },
+  "IERS2010": {
+   "cite": "IERS Conventions (2010), IERS Technical Note 36, chapter 5 (G. Petit & B. Luzum eds.): eq. 5.14 (ERA), 5.32 (GMST), 5.39-5.40 (IAU 2006 precession, obliquity), 5.43 (Delaunay arguments, Simon et al. 1994), 5.44 (planetary mean longitudes), table 5.1a (lunar periods), table 5.3a (nutation)",
+   "url": "https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf"
+  },
+  "MEEUS1998": {
+   "cite": "J. Meeus, Astronomical Algorithms, 2nd ed., Willmann-Bell (1998): ch. 12, 22, 25, 28, 31 (table 31.A), 44, 47 (tables 47.A/47.B), 49, 54. Book not online: coefficients transcribed through the open-source (MIT) implementation soniakeys/meeus, files planetelements.go, moonposition.go, jupitermoons.go, eqtime.go, nutation.go, solar.go, sidereal.go, moonphase.go, eclipse.go",
+   "url": "https://github.com/soniakeys/meeus/tree/master/v3"
+  },
+  "CAPITAINE2003": {
+   "cite": "N. Capitaine, P.T. Wallace, J. Chapront, 'Expressions for IAU 2000 precession quantities', A&A 412, 567 (2003) = IAU 2006 precession (P03); general precession p_A quoted through Wikipedia 'Axial precession'",
+   "url": "https://en.wikipedia.org/wiki/Axial_precession",
+   "url2": "https://doi.org/10.1051/0004-6361:20031539"
+  },
+  "LASKAR1986_TY": {
+   "cite": "Mean tropical year polynomial (McCarthy & Seidelmann 2009, from Laskar 1986), quoted by Wikipedia 'Tropical year'; also the equinox/solstice years of Meeus & Savoie (1992)",
+   "url": "https://en.wikipedia.org/wiki/Tropical_year"
+  },
+  "CHAPRONT2002": {
+   "cite": "J. Chapront, M. Chapront-Touzé, G. Francou, 'A new determination of lunar orbital parameters, precession constant and tidal acceleration from LLR measurements', A&A 387, 700 (2002); month lengths quoted by Wikipedia 'Lunar month'",
+   "url": "https://en.wikipedia.org/wiki/Lunar_month",
+   "url2": "https://doi.org/10.1051/0004-6361:20020420"
+  },
+  "NSSDC": {
+   "cite": "NASA NSSDCA Planetary Fact Sheets (D.R. Williams; pages updated Jan 2024 - May 2025)",
+   "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+   "snapshot": "v2/research/sources/nssdc_factsheets_extract_2026-10-03.json"
+  },
+  "NSSDC_MOON": {
+   "cite": "NASA NSSDCA Moon Fact Sheet",
+   "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+  },
+  "NSSDC_JOVSAT": {
+   "cite": "NASA NSSDCA Jovian Satellite Fact Sheet",
+   "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/joviansatfact.html"
+  },
+  "JPL_SAT": {
+   "cite": "JPL SSD, Planetary Satellite Mean Elements (ephemeris JUP365, Jacobson 2021)",
+   "url": "https://ssd.jpl.nasa.gov/sats/elem/sep.html",
+   "snapshot": "v2/research/sources/jpl_sat_mean_elements_galilean_2026-10-03.txt"
+  },
+  "LIESKE_E5": {
+   "cite": "J.H. Lieske, 'Galilean satellite ephemerides E5', A&A Suppl. 129, 205 (1998); mean longitudes l1..l4 as given in Meeus ch. 44 (soniakeys jupitermoons.go)",
+   "url": "https://github.com/soniakeys/meeus/blob/master/v3/jupitermoons/jupitermoons.go"
+  },
+  "CELLETTI2021": {
+   "cite": "A. Celletti et al., 'Laplace-like resonances with tidal effects', A&A (2021), arXiv:2109.02694 -- 'Lieske (1998) observed ... Phi_L = 180 deg up to a libration with small amplitude and period of about 2071 days'",
+   "url": "https://arxiv.org/abs/2109.02694"
+  },
+  "WIKI_RESONANCE": {
+   "cite": "Wikipedia 'Orbital resonance' (Laplace resonance; libration amplitude 0.03 deg, period ~2000 d, citing Sinclair 1975)",
+   "url": "https://en.wikipedia.org/wiki/Orbital_resonance"
+  },
+  "NASA_ECL": {
+   "cite": "F. Espenak (NASA GSFC eclipse web site): 'Periodicity of Solar Eclipses', 'Periodicity of Lunar Eclipses', 'Saros', 'Eclipses and the Moon's Orbit'",
+   "url": "https://eclipse.gsfc.nasa.gov/SEsaros/SEperiodicity.html",
+   "url2": "https://eclipse.gsfc.nasa.gov/SEhelp/moonorbit.html",
+   "url3": "https://eclipse.gsfc.nasa.gov/SEsaros/SEsaros.html",
+   "url4": "https://eclipse.gsfc.nasa.gov/LEsaros/LEperiodicity.html"
+  },
+  "WIKI_ECL_CYCLE": {
+   "cite": "Wikipedia 'Eclipse cycle' (table from Meeus 1991/1997)",
+   "url": "https://en.wikipedia.org/wiki/Eclipse_cycle"
+  },
+  "WIKI_SOLAR_ECLIPSE": {
+   "cite": "Wikipedia 'Solar eclipse' (Sun within about 15 to 18 deg of a node; 10 to 12 deg for central eclipses -- Littmann, Espenak & Willcox, Totality)",
+   "url": "https://en.wikipedia.org/wiki/Solar_eclipse"
+  },
+  "WIKI_GAMMA": {
+   "cite": "Wikipedia 'Gamma (eclipse)' (central limit 0.9972; partial limit 1.525-1.571; sign conventions; Meeus)",
+   "url": "https://en.wikipedia.org/wiki/Gamma_(eclipse)"
+  },
+  "HOLMES_ECL": {
+   "cite": "S. Holmes, 'Eclipses - the theory' (quotes Meeus' major ecliptic limits 18 deg 24' solar, 12 deg 08' lunar). Secondary, non-academic source: used only as an indicator.",
+   "url": "https://freehostspace.firstcloudit.com/steveholmes/eclfact1.htm"
+  },
+  "WIKI_EOT": {
+   "cite": "Wikipedia 'Equation of time' (two-sine approximation; component amplitudes 7.66 and 9.87 min; extremes; Hughes et al. 1989, MNRAS 238, 1529)",
+   "url": "https://en.wikipedia.org/wiki/Equation_of_time"
+  },
+  "WIKI_SIDEREAL": {
+   "cite": "Wikipedia 'Sidereal time' (Urban & Seidelmann 2013, Explanatory Supplement 3rd ed.)",
+   "url": "https://en.wikipedia.org/wiki/Sidereal_time"
+  },
+  "WIKI_GREGORIAN": {
+   "cite": "Wikipedia 'Gregorian calendar'",
+   "url": "https://en.wikipedia.org/wiki/Gregorian_calendar"
+  },
+  "WIKI_AXIAL_TILT": {
+   "cite": "Wikipedia 'Axial tilt' (IAU 2006 and IAU 1976/1980 obliquity polynomials; long-term range and 41,040-yr period, Laskar)",
+   "url": "https://en.wikipedia.org/wiki/Axial_tilt"
+  },
+  "WIKI_YEAR": {
+   "cite": "Wikipedia 'Year' (sidereal year 365.256363004 d, anomalistic year 365.259636 d, draconic year 346.620075883 d)",
+   "url": "https://en.wikipedia.org/wiki/Year"
+  },
+  "WIKI_LUNAR_THEORY": {
+   "cite": "Wikipedia 'Lunar theory' (main longitude terms of E.W. Brown, Tables of the Motion of the Moon, 1919)",
+   "url": "https://en.wikipedia.org/wiki/Lunar_theory"
+  },
+  "AA_LOWPREC": {
+   "cite": "Astronomical Almanac low-precision lunar formulae (Brown-based), quoted in D.G. Simpson, 'An alternative lunar ephemeris model for on-board flight software use', NASA GSFC Flight Mechanics Symposium (1999), eq. 1-3",
+   "url": "https://caps.gsfc.nasa.gov/simpson/pubs/slunar.pdf"
+  },
+  "SCHLYTER": {
+   "cite": "P. Schlyter, 'Computing planetary positions' (sect. 9-10: lunar perturbations; Jupiter-Saturn great inequality)",
+   "url": "https://stjarnhimlen.se/comp/ppcomp.html"
+  },
+  "JPL_HORIZONS": {
+   "cite": "JPL Horizons API, ephemeris DE441: osculating elements of the planetary system barycenters (heliocentric and SSB-centred), ecliptic & equinox J2000, TDB, 2000-01-01 to 2100-01-01 every 10 d; linear least-squares fit of L = Omega + omega + M (v2/tools/fetch_horizons_rates.py)",
+   "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+   "snapshot": "v2/research/sources/horizons/horizons_rates_2000_2100.json (+ raw rows *.csv.gz)"
+  },
+  "USNO_DT": {
+   "cite": "USNO, TT-UT predictions (deltat.preds)",
+   "url": "https://maia.usno.navy.mil/ser7/deltat.preds",
+   "snapshot": "v2/research/sources/usno_deltat_preds.txt"
+  },
+  "accessed": "2026-10-03"
+ },
+ "earth": {
+  "years_days": {
+   "tropical_mean_laskar": {
+    "value": 365.2421896698,
+    "poly_T": [
+     365.2421896698,
+     -6.15359e-06,
+     -7.29e-10,
+     2.64e-10
+    ],
+    "source": "LASKAR1986_TY",
+    "note": "jours de 86400 s SI (TT) ; ~365,24217 jours solaires moyens"
+   },
+   "tropical_from_simon_of_date": 365.2421904021,
+   "tropical_from_simon_plus_pA_IAU2006": 365.2421904692,
+   "tropical_from_jpl_table1_plus_pA": 365.2421945953,
+   "vernal_equinox_year_2000": {
+    "value": 365.242374,
+    "source": "LASKAR1986_TY (Meeus & Savoie 1992)",
+    "others": {
+     "june_solstice": 365.241626,
+     "september_equinox": 365.242018,
+     "december_solstice": 365.24274
+    }
+   },
+   "sidereal": {
+    "value": 365.2563630042,
+    "source": "SIMON1994",
+    "check": 365.256363004
+   },
+   "sidereal_from_jpl_table1": 365.2563671306,
+   "anomalistic": {
+    "value": 365.259635842,
+    "source": "IERS2010 (l')"
+   },
+   "draconic_eclipse_year": 346.620075881,
+   "gregorian": {
+    "value": 365.2425,
+    "exact": "146097/400"
+   },
+   "julian": 365.25
+  },
+  "precession": {
+   "pA_arcsec_per_cy_IAU2006": 5028.796195,
+   "pA_T2_arcsec_per_cy2": 1.1054348,
+   "pA_arcsec_per_year": 50.28796195,
+   "pA_deg_per_cy": 1.39688783194,
+   "period_julian_years": 25771.575,
+   "turns_per_tropical_year": 3.880161004e-05,
+   "alternatives": {
+    "Simon1994_Williams1991": 5028.82,
+    "IAU1976": 5029.0966,
+    "IERS_F14_rad_per_cy": 0.02438175
+   },
+   "psi_A_arcsec_per_cy": 5038.481507,
+   "chi_A_arcsec_per_cy": 10.556403,
+   "source": "CAPITAINE2003 / IERS2010",
+   "sidereal_minus_tropical_year_minutes": 20.4096
+  },
+  "obliquity": {
+   "eps0_arcsec_IAU2006": 84381.406,
+   "eps0_deg_IAU2006": 23.4392794444,
+   "poly_arcsec_T1_to_T5_IAU2006": [
+    -46.836769,
+    -0.0001831,
+    0.0020034,
+    -5.76e-07,
+    -4.34e-08
+   ],
+   "eps0_arcsec_IAU1980": 84381.448,
+   "poly_IAU1980": [
+    -46.815,
+    -0.00059,
+    0.001813
+   ],
+   "rate_deg_per_cy": -0.01301021361,
+   "long_term_range_deg": [
+    22.0425,
+    24.5044
+   ],
+   "long_term_period_years": 41040,
+   "source": "IERS2010 ; WIKI_AXIAL_TILT ; MEEUS1998"
+  },
+  "rotation": {
+   "era_turns_per_ut1_day": 1.0027378119113546,
+   "gmst_ratio_sidereal_per_solar": 1.002737909344969,
+   "mean_sidereal_day_s": 86164.0905313,
+   "stellar_day_s": 86164.0989037,
+   "sidereal_days_per_tropical_year": 366.24218967,
+   "gmst_IAU2006": "GMST = ERA(UT1) + 0,014506'' + 4612,156534'' t + 1,3915817'' t^2 - ... (IERS 5.32)",
+   "era_formula": "ERA = 2 pi (0,7790572732640 + 1,00273781191135448 Tu), Tu = JD(UT1) - 2451545,0 (IERS 5.14)",
+   "delta_T_2026_s": 69.1,
+   "delta_T_source": "USNO_DT",
+   "source": "IERS2010 ; MEEUS1998 ; WIKI_SIDEREAL"
+  },
+  "equation_of_time": {
+   "model": "E = y sin 2L0 - 2e sin M + 4ey sin M cos 2L0 - y^2/2 sin 4L0 - 5/4 e^2 sin 2M (radians ; x 720/pi -> minutes) ; y = tan^2(eps/2) ; E = temps solaire vrai - temps solaire moyen",
+   "source": "MEEUS1998 (28.3, Smart) ; WIKI_EOT",
+   "y": 0.04303448521,
+   "e": 0.0167086342,
+   "term_amplitudes_min": {
+    "y_sin_2L0": 9.86278,
+    "minus_2e_sin_M": 7.65867,
+    "4ey_sinM_cos2L0": 0.659174,
+    "minus_half_y2_sin_4L0": 0.21222,
+    "minus_5_4_e2_sin_2M": 0.0799787
+   },
+   "two_sine_approx_wiki": "Dt = -7,659 sin D + 9,863 sin(2D + 3,5932) min, D = 6,240040 + 0,01720197 (365,25 (y - 2000) + d)",
+   "extremes_2026": {
+    "min_minutes": -14.224,
+    "min_date": "2026-02-11",
+    "max_minutes": 16.491,
+    "max_date": "2026-11-03"
+   },
+   "secular_drift": "Le périhélie avance de 1,72 deg/siècle par rapport à l'équinoxe (Meeus 31.A : 1,7195) : la courbe se déforme lentement ; e baisse de 4,2e-5/siècle (-0,02 min d'amplitude).",
+   "perihelion_longitude_deg_J2000": 102.93734808,
+   "perihelion_rate_deg_per_cy_of_date": 1.7194598
+  },
+  "sun_equation_of_centre_meeus_deg": {
+   "c1": "1.914602 - 0.004817 T - 0.000014 T^2",
+   "c2": "0.019993 - 0.000101 T",
+   "c3": "0.000289"
+  },
+  "calendar": {
+   "rule": "année bissextile si divisible par 4, sauf si divisible par 100 et non par 400",
+   "cycle_400y_days": 146097,
+   "cycle_400y_weeks": 20871,
+   "leap_years_per_400": 97,
+   "mean_year_days": 365.2425,
+   "drift_vs_mean_tropical_years_per_day": 3222.37,
+   "drift_vs_vernal_equinox_year_years_per_day": 7936.51,
+   "day_of_week": "dow = floor(JD + 1,5) mod 7 (0 = dimanche) ; 2000-01-01 = samedi",
+   "source": "WIKI_GREGORIAN ; MEEUS1998 ch. 7"
+  }
+ },
+ "planets": {
+  "mercury": {
+   "name_fr": "Mercure",
+   "optional_flag": false,
+   "jpl_table1_1800_2050": {
+    "source": "JPL_APPROX",
+    "frame": "écliptique et équinoxe moyens J2000",
+    "elements": {
+     "a_au": 0.38709927,
+     "e": 0.20563593,
+     "i_deg": 7.00497902,
+     "L_deg": 252.2503235,
+     "varpi_deg": 77.45779628,
+     "Omega_deg": 48.33076593
+    },
+    "rates_per_century": {
+     "a_au": 3.7e-07,
+     "e": 1.906e-05,
+     "i_deg": -0.00594749,
+     "L_deg": 149472.67411175,
+     "varpi_deg": 0.16047689,
+     "Omega_deg": -0.12534081
+    },
+    "exact_strings": {
+     "elements": [
+      "0.38709927",
+      "0.20563593",
+      "7.00497902",
+      "252.25032350",
+      "77.45779628",
+      "48.33076593"
+     ],
+     "rates": [
+      "0.00000037",
+      "0.00001906",
+      "-0.00594749",
+      "149472.67411175",
+      "0.16047689",
+      "-0.12534081"
+     ]
+    }
+   },
+   "jpl_table2a_3000BC_3000AD": {
+    "source": "JPL_APPROX",
+    "elements": {
+     "a_au": 0.38709843,
+     "e": 0.20563661,
+     "i_deg": 7.00559432,
+     "L_deg": 252.25166724,
+     "varpi_deg": 77.45771895,
+     "Omega_deg": 48.33961819
+    },
+    "rates_per_century": {
+     "a_au": 0.0,
+     "e": 2.123e-05,
+     "i_deg": -0.00590158,
+     "L_deg": 149472.67486623,
+     "varpi_deg": 0.15940013,
+     "Omega_deg": -0.12214182
+    },
+    "table2b_M_terms": null
+   },
+   "mean_motion": {
+    "basis": "JPL_HORIZONS (DE441, éléments héliocentriques, ajustement 2000-2100) ; tropique = sidéral + p_A (IAU 2006)",
+    "rate_uncertainty_deg_per_century": 0.005,
+    "deg_per_century_sidereal": 149472.67472588,
+    "deg_per_century_tropical": 149474.07161371,
+    "deg_per_day_sidereal": 4.0923388015299,
+    "turns_per_day_sidereal": 0.011367607782027,
+    "turns_per_day_tropical": 0.011367714017318,
+    "turns_per_tropical_year_sidereal": 4.1519299576151,
+    "turns_per_tropical_year_tropical": 4.1519687592252,
+    "sidereal_period_days": 87.9692560805,
+    "tropical_period_days": 87.9684339768,
+    "sidereal_period_tropical_years": 0.240851847263,
+    "relative_ratio_precision_for_1deg_per_century": 6.69e-06,
+    "synodic_period_days": 115.8774776
+   },
+   "mean_motion_jpl_table1": {
+    "deg_per_century_sidereal": 149472.67411175,
+    "turns_per_day_sidereal": 0.011367607735322,
+    "sidereal_period_days": 87.9692564419
+   },
+   "horizons_DE441_fit_2000_2100": {
+    "source": "JPL_HORIZONS",
+    "heliocentric": {
+     "L_rate_deg_per_cy": 149472.6747258782,
+     "L_at_J2000_deg": 252.25083364746163,
+     "L_fit_rms_deg": 0.0015991796638798285,
+     "varpi_rate_deg_per_cy": 0.15894483826818284,
+     "Omega_rate_deg_per_cy": -0.12554332388831174,
+     "e_mean": 0.2056419078841248,
+     "i_mean_deg": 7.001998903017424,
+     "a_mean_au": 0.387098307088858
+    },
+    "barycentric": null
+   },
+   "simon1994_secular_J2000": {
+    "source": "SIMON1994",
+    "a_au": 0.3870983098,
+    "e": 0.2056317526,
+    "e_rate_per_cy": 2.040653e-05,
+    "i_deg": 7.00498625,
+    "i_rate_arcsec_per_cy": -21.425629,
+    "lambda_deg": 252.25090552,
+    "lambda_rate_deg_per_cy": 149472.67463583,
+    "lambda_t2_arcsec_per_millennium2": -1.92789,
+    "varpi_deg": 77.45611904,
+    "varpi_rate_deg_per_cy": 0.1588643306,
+    "Omega_deg": 48.33089304,
+    "Omega_rate_deg_per_cy": -0.1254227019,
+    "exact_strings_arcsec_per_millennium": {
+     "lambda": "5381016286.88982",
+     "varpi": "5719.11590",
+     "Omega": "-4515.21727"
+    },
+    "sidereal_period_days": 87.9692561335
+   },
+   "simon1994_of_date": {
+    "source": "SIMON1994",
+    "lambda_rate_deg_per_cy": 149474.07217223,
+    "varpi_rate_deg_per_cy": 1.556400735,
+    "Omega_rate_deg_per_cy": 1.186111512,
+    "tropical_period_days": 87.9684336481
+   },
+   "rate_fit_2000_2100_from_jpl_table2": {
+    "deg_per_century_sidereal": 149472.674866,
+    "max_residual_from_linear_deg": 3.186e-11,
+    "note": "Pente moyenne 2000-2100 de L(T) des tables JPL 2a+2b (inclut le terme périodique de M) ; résidu = écart maximal à une droite (ce qu'un engrenage à rapport constant ne peut pas suivre)."
+   },
+   "rate_candidates_deg_per_century_sidereal": {
+    "recommended_de441_fit_2000_2100": 149472.674726,
+    "jpl_table1_1800_2050": 149472.674112,
+    "jpl_table2_fit_2000_2100": 149472.674866,
+    "simon1994_secular": 149472.674636,
+    "spread_deg_per_century": 0.0007545,
+    "t1_minus_recommended": -0.0006141,
+    "secular_minus_recommended": -9.005e-05
+   },
+   "nssdc": {
+    "source": "NSSDC",
+    "sidereal_period_days": 87.969,
+    "tropical_period_days": 87.968,
+    "synodic_period_days": 115.88,
+    "mean_elements_J2000": {
+     "a_au": 0.38709893,
+     "e": 0.20563069,
+     "i_deg": 7.00487,
+     "Omega_deg": 48.33167,
+     "varpi_deg": 77.45645,
+     "L_deg": 252.25084
+    }
+   },
+   "equation_of_centre": {
+    "exact_max_deg": 23.6809,
+    "pin_and_slot_k_2e_max_err_deg": 2.79,
+    "bisected_equant_max_err_deg": 0.8949,
+    "first_harmonic_only_max_err_deg": 3.339,
+    "series_deg": {
+     "c1": 23.44068,
+     "c2": 2.981564,
+     "c3": 0.5255816,
+     "c4": 0.109922
+    },
+    "pin_and_slot_series_deg": {
+     "c1": 23.56414,
+     "c2": 4.845634,
+     "c3": 1.328582
+    }
+   }
+  },
+  "venus": {
+   "name_fr": "Vénus",
+   "optional_flag": false,
+   "jpl_table1_1800_2050": {
+    "source": "JPL_APPROX",
+    "frame": "écliptique et équinoxe moyens J2000",
+    "elements": {
+     "a_au": 0.72333566,
+     "e": 0.00677672,
+     "i_deg": 3.39467605,
+     "L_deg": 181.9790995,
+     "varpi_deg": 131.60246718,
+     "Omega_deg": 76.67984255
+    },
+    "rates_per_century": {
+     "a_au": 3.9e-06,
+     "e": -4.107e-05,
+     "i_deg": -0.0007889,
+     "L_deg": 58517.81538729,
+     "varpi_deg": 0.00268329,
+     "Omega_deg": -0.27769418
+    },
+    "exact_strings": {
+     "elements": [
+      "0.72333566",
+      "0.00677672",
+      "3.39467605",
+      "181.97909950",
+      "131.60246718",
+      "76.67984255"
+     ],
+     "rates": [
+      "0.00000390",
+      "-0.00004107",
+      "-0.00078890",
+      "58517.81538729",
+      "0.00268329",
+      "-0.27769418"
+     ]
+    }
+   },
+   "jpl_table2a_3000BC_3000AD": {
+    "source": "JPL_APPROX",
+    "elements": {
+     "a_au": 0.72332102,
+     "e": 0.00676399,
+     "i_deg": 3.39777545,
+     "L_deg": 181.9797085,
+     "varpi_deg": 131.76755713,
+     "Omega_deg": 76.67261496
+    },
+    "rates_per_century": {
+     "a_au": -2.6e-07,
+     "e": -5.107e-05,
+     "i_deg": 0.00043494,
+     "L_deg": 58517.8156026,
+     "varpi_deg": 0.05679648,
+     "Omega_deg": -0.27274174
+    },
+    "table2b_M_terms": null
+   },
+   "mean_motion": {
+    "basis": "JPL_HORIZONS (DE441, éléments héliocentriques, ajustement 2000-2100) ; tropique = sidéral + p_A (IAU 2006)",
+    "rate_uncertainty_deg_per_century": 0.005,
+    "deg_per_century_sidereal": 58517.815231014,
+    "deg_per_century_tropical": 58519.212118846,
+    "deg_per_day_sidereal": 1.6021304649148,
+    "turns_per_day_sidereal": 0.0044503624025412,
+    "turns_per_day_tropical": 0.0044504686378315,
+    "turns_per_tropical_year_sidereal": 1.6254601087283,
+    "turns_per_tropical_year_tropical": 1.6254989103383,
+    "sidereal_period_days": 224.700801766,
+    "tropical_period_days": 224.695438026,
+    "sidereal_period_tropical_years": 0.615210422348,
+    "relative_ratio_precision_for_1deg_per_century": 1.709e-05,
+    "synodic_period_days": 583.9213826
+   },
+   "mean_motion_jpl_table1": {
+    "deg_per_century_sidereal": 58517.81538729,
+    "turns_per_day_sidereal": 0.0044503624144262,
+    "sidereal_period_days": 224.700801166
+   },
+   "horizons_DE441_fit_2000_2100": {
+    "source": "JPL_HORIZONS",
+    "heliocentric": {
+     "L_rate_deg_per_cy": 58517.81523101433,
+     "L_at_J2000_deg": 181.9805356469556,
+     "L_fit_rms_deg": 0.0015218646996330942,
+     "varpi_rate_deg_per_cy": -0.003590369652035945,
+     "Omega_rate_deg_per_cy": -0.2781096393318896,
+     "e_mean": 0.006747648055365691,
+     "i_mean_deg": 3.394209861044541,
+     "a_mean_au": 0.7233298159145681
+    },
+    "barycentric": null
+   },
+   "simon1994_secular_J2000": {
+    "source": "SIMON1994",
+    "a_au": 0.72332982,
+    "e": 0.0067719164,
+    "e_rate_per_cy": -4.776521e-05,
+    "i_deg": 3.39466189,
+    "i_rate_arcsec_per_cy": -3.084437,
+    "lambda_deg": 181.97980085,
+    "lambda_rate_deg_per_cy": 58517.815675986,
+    "lambda_t2_arcsec_per_millennium2": 0.59381,
+    "varpi_deg": 131.563703,
+    "varpi_rate_deg_per_cy": 0.004874622222,
+    "Omega_deg": 76.67992019,
+    "Omega_rate_deg_per_cy": -0.2780133761,
+    "exact_strings_arcsec_per_millennium": {
+     "lambda": "2106641364.33548",
+     "varpi": "175.48640",
+     "Omega": "-10008.48154"
+    },
+    "sidereal_period_days": 224.700800057
+   },
+   "simon1994_of_date": {
+    "source": "SIMON1994",
+    "lambda_rate_deg_per_cy": 58519.21295333,
+    "varpi_rate_deg_per_cy": 1.402151967,
+    "Omega_rate_deg_per_cy": 0.9010437878,
+    "tropical_period_days": 224.695434822
+   },
+   "rate_fit_2000_2100_from_jpl_table2": {
+    "deg_per_century_sidereal": 58517.8156026,
+    "max_residual_from_linear_deg": 1.455e-11,
+    "note": "Pente moyenne 2000-2100 de L(T) des tables JPL 2a+2b (inclut le terme périodique de M) ; résidu = écart maximal à une droite (ce qu'un engrenage à rapport constant ne peut pas suivre)."
+   },
+   "rate_candidates_deg_per_century_sidereal": {
+    "recommended_de441_fit_2000_2100": 58517.815231,
+    "jpl_table1_1800_2050": 58517.8153873,
+    "jpl_table2_fit_2000_2100": 58517.8156026,
+    "simon1994_secular": 58517.815676,
+    "spread_deg_per_century": 0.000445,
+    "t1_minus_recommended": 0.0001563,
+    "secular_minus_recommended": 0.000445
+   },
+   "nssdc": {
+    "source": "NSSDC",
+    "sidereal_period_days": 224.701,
+    "tropical_period_days": 224.695,
+    "synodic_period_days": 583.92,
+    "mean_elements_J2000": {
+     "a_au": 0.72333199,
+     "e": 0.00677323,
+     "i_deg": 3.39471,
+     "Omega_deg": 76.68069,
+     "varpi_deg": 131.53298,
+     "L_deg": 181.97973
+    }
+   },
+   "equation_of_centre": {
+    "exact_max_deg": 0.776559,
+    "pin_and_slot_k_2e_max_err_deg": 0.001997,
+    "bisected_equant_max_err_deg": 0.0006663,
+    "first_harmonic_only_max_err_deg": 0.0033,
+    "series_deg": {
+     "c1": 0.7765505,
+     "c2": 0.003289004,
+     "c3": 1.931661e-05,
+     "c4": 1.296483e-07
+    },
+    "pin_and_slot_series_deg": {
+     "c1": 0.7765549,
+     "c2": 0.005262495,
+     "c3": 4.754994e-05
+    }
+   }
+  },
+  "earth": {
+   "name_fr": "Terre (barycentre Terre-Lune)",
+   "optional_flag": false,
+   "jpl_table1_1800_2050": {
+    "source": "JPL_APPROX",
+    "frame": "écliptique et équinoxe moyens J2000",
+    "elements": {
+     "a_au": 1.00000261,
+     "e": 0.01671123,
+     "i_deg": -1.531e-05,
+     "L_deg": 100.46457166,
+     "varpi_deg": 102.93768193,
+     "Omega_deg": 0.0
+    },
+    "rates_per_century": {
+     "a_au": 5.62e-06,
+     "e": -4.392e-05,
+     "i_deg": -0.01294668,
+     "L_deg": 35999.37244981,
+     "varpi_deg": 0.32327364,
+     "Omega_deg": 0.0
+    },
+    "exact_strings": {
+     "elements": [
+      "1.00000261",
+      "0.01671123",
+      "-0.00001531",
+      "100.46457166",
+      "102.93768193",
+      "0.0"
+     ],
+     "rates": [
+      "0.00000562",
+      "-0.00004392",
+      "-0.01294668",
+      "35999.37244981",
+      "0.32327364",
+      "0.0"
+     ]
+    }
+   },
+   "jpl_table2a_3000BC_3000AD": {
+    "source": "JPL_APPROX",
+    "elements": {
+     "a_au": 1.00000018,
+     "e": 0.01673163,
+     "i_deg": -0.00054346,
+     "L_deg": 100.46691572,
+     "varpi_deg": 102.93005885,
+     "Omega_deg": -5.11260389
+    },
+    "rates_per_century": {
+     "a_au": -3e-08,
+     "e": -3.661e-05,
+     "i_deg": -0.01337178,
+     "L_deg": 35999.37306329,
+     "varpi_deg": 0.3179526,
+     "Omega_deg": -0.24123856
+    },
+    "table2b_M_terms": null
+   },
+   "mean_motion": {
+    "basis": "JPL_HORIZONS (DE441, éléments héliocentriques, ajustement 2000-2100) ; tropique = sidéral + p_A (IAU 2006)",
+    "rate_uncertainty_deg_per_century": 0.005,
+    "deg_per_century_sidereal": 35999.372865316,
+    "deg_per_century_tropical": 36000.769753148,
+    "deg_per_day_sidereal": 0.98560911335567,
+    "turns_per_day_sidereal": 0.0027378030926546,
+    "turns_per_day_tropical": 0.0027379093279449,
+    "turns_per_tropical_year_sidereal": 0.99996119644593,
+    "turns_per_tropical_year_tropical": 0.99999999805597,
+    "sidereal_period_days": 365.256362915,
+    "tropical_period_days": 365.24219038,
+    "sidereal_period_tropical_years": 1.00003880506,
+    "relative_ratio_precision_for_1deg_per_century": 2.778e-05
+   },
+   "mean_motion_jpl_table1": {
+    "deg_per_century_sidereal": 35999.37244981,
+    "turns_per_day_sidereal": 0.0027378030610548,
+    "sidereal_period_days": 365.256367131
+   },
+   "horizons_DE441_fit_2000_2100": {
+    "source": "JPL_HORIZONS",
+    "heliocentric": {
+     "L_rate_deg_per_cy": 35999.372865315854,
+     "L_at_J2000_deg": 100.46392525028716,
+     "L_fit_rms_deg": 0.0015093624108323464,
+     "varpi_rate_deg_per_cy": 0.3287654340683212,
+     "Omega_rate_deg_per_cy": -0.3297850157567354,
+     "e_mean": 0.016686798015653363,
+     "i_mean_deg": 0.006539740488184903,
+     "a_mean_au": 1.0000009456868832
+    },
+    "barycentric": null
+   },
+   "simon1994_secular_J2000": {
+    "source": "SIMON1994",
+    "a_au": 1.0000010178,
+    "e": 0.0167086342,
+    "e_rate_per_cy": -4.203654e-05,
+    "i_deg": 0.0,
+    "i_rate_arcsec_per_cy": 46.997289,
+    "lambda_deg": 100.46645683,
+    "lambda_rate_deg_per_cy": 35999.372856508,
+    "lambda_t2_arcsec_per_millennium2": -2.04411,
+    "varpi_deg": 102.93734808,
+    "varpi_rate_deg_per_cy": 0.3225653583,
+    "Omega_deg": 174.87317577,
+    "Omega_rate_deg_per_cy": -0.2410908428,
+    "exact_strings_arcsec_per_millennium": {
+     "lambda": "1295977422.83429",
+     "varpi": "11612.35290",
+     "Omega": "-8679.27034"
+    },
+    "sidereal_period_days": 365.256363004
+   },
+   "simon1994_of_date": {
+    "source": "SIMON1994",
+    "lambda_rate_deg_per_cy": 36000.769750953,
+    "varpi_rate_deg_per_cy": 1.719459803,
+    "Omega_rate_deg_per_cy": null,
+    "tropical_period_days": 365.242190402
+   },
+   "rate_fit_2000_2100_from_jpl_table2": {
+    "deg_per_century_sidereal": 35999.3730633,
+    "max_residual_from_linear_deg": 1.455e-11,
+    "note": "Pente moyenne 2000-2100 de L(T) des tables JPL 2a+2b (inclut le terme périodique de M) ; résidu = écart maximal à une droite (ce qu'un engrenage à rapport constant ne peut pas suivre)."
+   },
+   "rate_candidates_deg_per_century_sidereal": {
+    "recommended_de441_fit_2000_2100": 35999.3728653,
+    "jpl_table1_1800_2050": 35999.3724498,
+    "jpl_table2_fit_2000_2100": 35999.3730633,
+    "simon1994_secular": 35999.3728565,
+    "spread_deg_per_century": 0.0006135,
+    "t1_minus_recommended": -0.0004155,
+    "secular_minus_recommended": -8.808e-06
+   },
+   "nssdc": {
+    "source": "NSSDC",
+    "sidereal_period_days": 365.256,
+    "tropical_period_days": 365.242,
+    "synodic_period_days": null,
+    "mean_elements_J2000": {
+     "a_au": 1.00000011,
+     "e": 0.01671022,
+     "i_deg": 5e-05,
+     "Omega_deg": -11.26064,
+     "varpi_deg": 102.94719,
+     "L_deg": 100.46435
+    }
+   },
+   "equation_of_centre": {
+    "exact_max_deg": 1.91503,
+    "pin_and_slot_k_2e_max_err_deg": 0.01236,
+    "bisected_equant_max_err_deg": 0.004129,
+    "first_harmonic_only_max_err_deg": 0.02016,
+    "series_deg": {
+     "c1": 1.914899,
+     "c2": 0.01999885,
+     "c3": 0.0002896241,
+     "c4": 4.794268e-06
+    },
+    "pin_and_slot_series_deg": {
+     "c1": 1.914966,
+     "c2": 0.03200144,
+     "c3": 0.0007130445
+    }
+   }
+  },
+  "mars": {
+   "name_fr": "Mars",
+   "optional_flag": false,
+   "jpl_table1_1800_2050": {
+    "source": "JPL_APPROX",
+    "frame": "écliptique et équinoxe moyens J2000",
+    "elements": {
+     "a_au": 1.52371034,
+     "e": 0.0933941,
+     "i_deg": 1.84969142,
+     "L_deg": -4.55343205,
+     "varpi_deg": -23.94362959,
+     "Omega_deg": 49.55953891
+    },
+    "rates_per_century": {
+     "a_au": 1.847e-05,
+     "e": 7.882e-05,
+     "i_deg": -0.00813131,
+     "L_deg": 19140.30268499,
+     "varpi_deg": 0.44441088,
+     "Omega_deg": -0.29257343
+    },
+    "exact_strings": {
+     "elements": [
+      "1.52371034",
+      "0.09339410",
+      "1.84969142",
+      "-4.55343205",
+      "-23.94362959",
+      "49.55953891"
+     ],
+     "rates": [
+      "0.00001847",
+      "0.00007882",
+      "-0.00813131",
+      "19140.30268499",
+      "0.44441088",
+      "-0.29257343"
+     ]
+    }
+   },
+   "jpl_table2a_3000BC_3000AD": {
+    "source": "JPL_APPROX",
+    "elements": {
+     "a_au": 1.52371243,
+     "e": 0.09336511,
+     "i_deg": 1.85181869,
+     "L_deg": -4.56813164,
+     "varpi_deg": -23.91744784,
+     "Omega_deg": 49.71320984
+    },
+    "rates_per_century": {
+     "a_au": 9.7e-07,
+     "e": 9.149e-05,
+     "i_deg": -0.00724757,
+     "L_deg": 19140.29934243,
+     "varpi_deg": 0.45223625,
+     "Omega_deg": -0.26852431
+    },
+    "table2b_M_terms": null
+   },
+   "mean_motion": {
+    "basis": "JPL_HORIZONS (DE441, éléments héliocentriques, ajustement 2000-2100) ; tropique = sidéral + p_A (IAU 2006)",
+    "rate_uncertainty_deg_per_century": 0.005,
+    "deg_per_century_sidereal": 19140.302043819,
+    "deg_per_century_tropical": 19141.698931651,
+    "deg_per_day_sidereal": 0.52403291016616,
+    "turns_per_day_sidereal": 0.0014556469726838,
+    "turns_per_day_tropical": 0.0014557532079741,
+    "turns_per_tropical_year_sidereal": 0.53166368768924,
+    "turns_per_tropical_year_tropical": 0.53170248929928,
+    "sidereal_period_days": 686.979754546,
+    "tropical_period_days": 686.929621396,
+    "sidereal_period_tropical_years": 1.88088828174,
+    "relative_ratio_precision_for_1deg_per_century": 5.225e-05,
+    "synodic_period_days": 779.9362218
+   },
+   "mean_motion_jpl_table1": {
+    "deg_per_century_sidereal": 19140.30268499,
+    "turns_per_day_sidereal": 0.0014556470214457,
+    "sidereal_period_days": 686.979731533
+   },
+   "horizons_DE441_fit_2000_2100": {
+    "source": "JPL_HORIZONS",
+    "heliocentric": {
+     "L_rate_deg_per_cy": 19140.30204381896,
+     "L_at_J2000_deg": 355.4460438252175,
+     "L_fit_rms_deg": 0.005656910713803247,
+     "varpi_rate_deg_per_cy": 0.4443844896352982,
+     "Omega_rate_deg_per_cy": -0.2956716013688974,
+     "e_mean": 0.09344980396198715,
+     "i_mean_deg": 1.8456315322832406,
+     "a_mean_au": 1.5236799692377447
+    },
+    "barycentric": null
+   },
+   "simon1994_secular_J2000": {
+    "source": "SIMON1994",
+    "a_au": 1.5236793419,
+    "e": 0.0934006477,
+    "e_rate_per_cy": 9.048438e-05,
+    "i_deg": 1.84972648,
+    "i_rate_arcsec_per_cy": -29.331722,
+    "lambda_deg": 355.43299958,
+    "lambda_rate_deg_per_cy": 19140.299303886,
+    "lambda_t2_arcsec_per_millennium2": 0.94264,
+    "varpi_deg": 336.06023395,
+    "varpi_rate_deg_per_cy": 0.4439016411,
+    "Omega_deg": 49.55809321,
+    "Omega_rate_deg_per_cy": -0.2950250244,
+    "exact_strings_arcsec_per_millennium": {
+     "lambda": "689050774.93988",
+     "varpi": "15980.45908",
+     "Omega": "-10620.90088"
+    },
+    "sidereal_period_days": 686.979852887
+   },
+   "simon1994_of_date": {
+    "source": "SIMON1994",
+    "lambda_rate_deg_per_cy": 19141.696370297,
+    "varpi_rate_deg_per_cy": 1.840968053,
+    "Omega_rate_deg_per_cy": 0.7720190933,
+    "tropical_period_days": 686.929713314
+   },
+   "rate_fit_2000_2100_from_jpl_table2": {
+    "deg_per_century_sidereal": 19140.2993424,
+    "max_residual_from_linear_deg": 7.276e-12,
+    "note": "Pente moyenne 2000-2100 de L(T) des tables JPL 2a+2b (inclut le terme périodique de M) ; résidu = écart maximal à une droite (ce qu'un engrenage à rapport constant ne peut pas suivre)."
+   },
+   "rate_candidates_deg_per_century_sidereal": {
+    "recommended_de441_fit_2000_2100": 19140.3020438,
+    "jpl_table1_1800_2050": 19140.302685,
+    "jpl_table2_fit_2000_2100": 19140.2993424,
+    "simon1994_secular": 19140.2993039,
+    "spread_deg_per_century": 0.003381,
+    "t1_minus_recommended": 0.0006412,
+    "secular_minus_recommended": -0.00274
+   },
+   "nssdc": {
+    "source": "NSSDC",
+    "sidereal_period_days": 686.98,
+    "tropical_period_days": 686.972,
+    "synodic_period_days": 779.94,
+    "mean_elements_J2000": {
+     "a_au": 1.52366231,
+     "e": 0.09341233,
+     "i_deg": 1.85061,
+     "Omega_deg": 49.57854,
+     "varpi_deg": 336.04084,
+     "L_deg": 355.45332
+    }
+   },
+   "equation_of_centre": {
+    "exact_max_deg": 10.7129,
+    "pin_and_slot_k_2e_max_err_deg": 0.4463,
+    "bisected_equant_max_err_deg": 0.1493,
+    "first_harmonic_only_max_err_deg": 0.6529,
+    "series_deg": {
+     "c1": 10.69053,
+     "c2": 0.6227021,
+     "c3": 0.05029066,
+     "c4": 0.004676989
+    },
+    "pin_and_slot_series_deg": {
+     "c1": 10.70218,
+     "c2": 0.9995201,
+     "c3": 0.1244657
+    }
+   }
+  },
+  "jupiter": {
+   "name_fr": "Jupiter",
+   "optional_flag": false,
+   "jpl_table1_1800_2050": {
+    "source": "JPL_APPROX",
+    "frame": "écliptique et équinoxe moyens J2000",
+    "elements": {
+     "a_au": 5.202887,
+     "e": 0.04838624,
+     "i_deg": 1.30439695,
+     "L_deg": 34.39644051,
+     "varpi_deg": 14.72847983,
+     "Omega_deg": 100.47390909
+    },
+    "rates_per_century": {
+     "a_au": -0.00011607,
+     "e": -0.00013253,
+     "i_deg": -0.00183714,
+     "L_deg": 3034.74612775,
+     "varpi_deg": 0.21252668,
+     "Omega_deg": 0.20469106
+    },
+    "exact_strings": {
+     "elements": [
+      "5.20288700",
+      "0.04838624",
+      "1.30439695",
+      "34.39644051",
+      "14.72847983",
+      "100.47390909"
+     ],
+     "rates": [
+      "-0.00011607",
+      "-0.00013253",
+      "-0.00183714",
+      "3034.74612775",
+      "0.21252668",
+      "0.20469106"
+     ]
+    }
+   },
+   "jpl_table2a_3000BC_3000AD": {
+    "source": "JPL_APPROX",
+    "elements": {
+     "a_au": 5.20248019,
+     "e": 0.0485359,
+     "i_deg": 1.29861416,
+     "L_deg": 34.33479152,
+     "varpi_deg": 14.27495244,
+     "Omega_deg": 100.29282654
+    },
+    "rates_per_century": {
+     "a_au": -2.864e-05,
+     "e": 0.00018026,
+     "i_deg": -0.00322699,
+     "L_deg": 3034.90371757,
+     "varpi_deg": 0.18199196,
+     "Omega_deg": 0.13024619
+    },
+    "table2b_M_terms": {
+     "b_deg_per_cy2": -0.00012452,
+     "c_deg": 0.0606406,
+     "s_deg": -0.35635438,
+     "f_deg_per_cy": 38.35125
+    }
+   },
+   "mean_motion": {
+    "basis": "JPL_HORIZONS (DE441, éléments barycentriques, ajustement 2000-2100) ; tropique = sidéral + p_A (IAU 2006)",
+    "rate_uncertainty_deg_per_century": 0.002859790571164922,
+    "deg_per_century_sidereal": 3034.722761612,
+    "deg_per_century_tropical": 3036.1196494439,
+    "deg_per_day_sidereal": 0.08308618101607,
+    "turns_per_day_sidereal": 0.00023079494726686,
+    "turns_per_day_tropical": 0.00023090118255714,
+    "turns_per_tropical_year_sidereal": 0.084296051904474,
+    "turns_per_tropical_year_tropical": 0.084334853514518,
+    "sidereal_period_days": 4332.85048846,
+    "tropical_period_days": 4330.85698793,
+    "sidereal_period_tropical_years": 11.862951792,
+    "relative_ratio_precision_for_1deg_per_century": 0.0003295,
+    "synodic_period_days": 398.8818313
+   },
+   "mean_motion_jpl_table1": {
+    "deg_per_century_sidereal": 3034.74612775,
+    "turns_per_day_sidereal": 0.00023079672429462,
+    "sidereal_period_days": 4332.81712752
+   },
+   "horizons_DE441_fit_2000_2100": {
+    "source": "JPL_HORIZONS",
+    "heliocentric": {
+     "L_rate_deg_per_cy": 3034.7199018213814,
+     "L_at_J2000_deg": 34.38124353359126,
+     "L_fit_rms_deg": 0.03140095944710785,
+     "varpi_rate_deg_per_cy": -0.13517849148784986,
+     "Omega_rate_deg_per_cy": 0.18046069858674135,
+     "e_mean": 0.04844370776162379,
+     "i_mean_deg": 1.3030715813192308,
+     "a_mean_au": 5.202797760041706
+    },
+    "barycentric": {
+     "query_url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%275%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27ELEMENTS%27&CENTER=%27500%400%27&START_TIME=%272000-01-01%27&STOP_TIME=%272100-01-01%27&STEP_SIZE=%2710%20d%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&CSV_FORMAT=%27YES%27&OUT_UNITS=%27AU-D%27",
+     "L_rate_deg_per_cy": 3034.7227616119526,
+     "L_at_J2000_deg": 34.38010699198168,
+     "L_fit_rms_deg": 0.03409443795633012
+    }
+   },
+   "simon1994_secular_J2000": {
+    "source": "SIMON1994",
+    "a_au": 5.2026032092,
+    "e": 0.0484979255,
+    "e_rate_per_cy": 0.00016322542,
+    "i_deg": 1.30326698,
+    "i_rate_arcsec_per_cy": -7.15589,
+    "lambda_deg": 34.35151874,
+    "lambda_rate_deg_per_cy": 3034.9056605531,
+    "lambda_t2_arcsec_per_millennium2": -30.60378,
+    "varpi_deg": 14.33120687,
+    "varpi_rate_deg_per_cy": 0.2155208786,
+    "Omega_deg": 100.46440702,
+    "Omega_rate_deg_per_cy": 0.1767232114,
+    "exact_strings_arcsec_per_millennium": {
+     "lambda": "109256603.77991",
+     "varpi": "7758.75163",
+     "Omega": "6362.03561"
+    },
+    "sidereal_period_days": 4332.58936873
+   },
+   "simon1994_of_date": {
+    "source": "SIMON1994",
+    "lambda_rate_deg_per_cy": 3036.3027748481,
+    "varpi_rate_deg_per_cy": 1.612635174,
+    "Omega_rate_deg_per_cy": 1.02097743,
+    "tropical_period_days": 4330.59578541
+   },
+   "rate_fit_2000_2100_from_jpl_table2": {
+    "deg_per_century_sidereal": 3034.66763207,
+    "max_residual_from_linear_deg": 0.003068,
+    "note": "Pente moyenne 2000-2100 de L(T) des tables JPL 2a+2b (inclut le terme périodique de M) ; résidu = écart maximal à une droite (ce qu'un engrenage à rapport constant ne peut pas suivre)."
+   },
+   "rate_candidates_deg_per_century_sidereal": {
+    "recommended_de441_fit_2000_2100": 3034.72276161,
+    "jpl_table1_1800_2050": 3034.74612775,
+    "jpl_table2_fit_2000_2100": 3034.66763207,
+    "simon1994_secular": 3034.90566055,
+    "spread_deg_per_century": 0.238,
+    "t1_minus_recommended": 0.02337,
+    "secular_minus_recommended": 0.1829
+   },
+   "nssdc": {
+    "source": "NSSDC",
+    "sidereal_period_days": 4332.589,
+    "tropical_period_days": 4330.595,
+    "synodic_period_days": 398.88,
+    "mean_elements_J2000": {
+     "a_au": 5.20336301,
+     "e": 0.04839266,
+     "i_deg": 1.3053,
+     "Omega_deg": 100.55615,
+     "varpi_deg": 14.75385,
+     "L_deg": 34.40438
+    }
+   },
+   "equation_of_centre": {
+    "exact_max_deg": 5.54614,
+    "pin_and_slot_k_2e_max_err_deg": 0.1098,
+    "bisected_equant_max_err_deg": 0.03677,
+    "first_harmonic_only_max_err_deg": 0.1716,
+    "series_deg": {
+     "c1": 5.543033,
+     "c2": 0.1675342,
+     "c3": 0.007021329,
+     "c4": 0.0003369583
+    },
+    "pin_and_slot_series_deg": {
+     "c1": 5.544655,
+     "c2": 0.268285,
+     "c3": 0.0173084
+    }
+   }
+  },
+  "saturn": {
+   "name_fr": "Saturne",
+   "optional_flag": false,
+   "jpl_table1_1800_2050": {
+    "source": "JPL_APPROX",
+    "frame": "écliptique et équinoxe moyens J2000",
+    "elements": {
+     "a_au": 9.53667594,
+     "e": 0.05386179,
+     "i_deg": 2.48599187,
+     "L_deg": 49.95424423,
+     "varpi_deg": 92.59887831,
+     "Omega_deg": 113.66242448
+    },
+    "rates_per_century": {
+     "a_au": -0.0012506,
+     "e": -0.00050991,
+     "i_deg": 0.00193609,
+     "L_deg": 1222.49362201,
+     "varpi_deg": -0.41897216,
+     "Omega_deg": -0.28867794
+    },
+    "exact_strings": {
+     "elements": [
+      "9.53667594",
+      "0.05386179",
+      "2.48599187",
+      "49.95424423",
+      "92.59887831",
+      "113.66242448"
+     ],
+     "rates": [
+      "-0.00125060",
+      "-0.00050991",
+      "0.00193609",
+      "1222.49362201",
+      "-0.41897216",
+      "-0.28867794"
+     ]
+    }
+   },
+   "jpl_table2a_3000BC_3000AD": {
+    "source": "JPL_APPROX",
+    "elements": {
+     "a_au": 9.54149883,
+     "e": 0.05550825,
+     "i_deg": 2.49424102,
+     "L_deg": 50.07571329,
+     "varpi_deg": 92.86136063,
+     "Omega_deg": 113.63998702
+    },
+    "rates_per_century": {
+     "a_au": -3.065e-05,
+     "e": -0.00032044,
+     "i_deg": 0.00451969,
+     "L_deg": 1222.11494724,
+     "varpi_deg": 0.54179478,
+     "Omega_deg": -0.25015002
+    },
+    "table2b_M_terms": {
+     "b_deg_per_cy2": 0.00025899,
+     "c_deg": -0.13434469,
+     "s_deg": 0.87320147,
+     "f_deg_per_cy": 38.35125
+    }
+   },
+   "mean_motion": {
+    "basis": "JPL_HORIZONS (DE441, éléments barycentriques, ajustement 2000-2100) ; tropique = sidéral + p_A (IAU 2006)",
+    "rate_uncertainty_deg_per_century": 0.04448454791781842,
+    "deg_per_century_sidereal": 1222.5742261528,
+    "deg_per_century_tropical": 1223.9711139847,
+    "deg_per_day_sidereal": 0.033472258073997,
+    "turns_per_day_sidereal": 9.2978494649993e-05,
+    "turns_per_day_tropical": 9.3084729940277e-05,
+    "turns_per_tropical_year_sidereal": 0.033959668978165,
+    "turns_per_tropical_year_tropical": 0.033998470588209,
+    "sidereal_period_days": 10755.1752022,
+    "tropical_period_days": 10742.9005879,
+    "sidereal_period_tropical_years": 29.4466945671,
+    "relative_ratio_precision_for_1deg_per_century": 0.0008179,
+    "synodic_period_days": 378.096907
+   },
+   "mean_motion_jpl_table1": {
+    "deg_per_century_sidereal": 1222.49362201,
+    "turns_per_day_sidereal": 9.2972364591224e-05,
+    "sidereal_period_days": 10755.8843361
+   },
+   "horizons_DE441_fit_2000_2100": {
+    "source": "JPL_HORIZONS",
+    "heliocentric": {
+     "L_rate_deg_per_cy": 1222.5297416048365,
+     "L_at_J2000_deg": 50.0310093462075,
+     "L_fit_rms_deg": 0.12662215917011008,
+     "varpi_rate_deg_per_cy": 0.1489311871363145,
+     "Omega_rate_deg_per_cy": -0.2708059719411982,
+     "e_mean": 0.05437565742809344,
+     "i_mean_deg": 2.4881333790665385,
+     "a_mean_au": 9.552672011571547
+    },
+    "barycentric": {
+     "query_url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%276%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27ELEMENTS%27&CENTER=%27500%400%27&START_TIME=%272000-01-01%27&STOP_TIME=%272100-01-01%27&STEP_SIZE=%2710%20d%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&CSV_FORMAT=%27YES%27&OUT_UNITS=%27AU-D%27",
+     "L_rate_deg_per_cy": 1222.5742261527544,
+     "L_at_J2000_deg": 50.00920635095258,
+     "L_fit_rms_deg": 0.0745364077240534
+    }
+   },
+   "simon1994_secular_J2000": {
+    "source": "SIMON1994",
+    "a_au": 9.5549091915,
+    "e": 0.0555481426,
+    "e_rate_per_cy": -0.00034664062,
+    "i_deg": 2.48887878,
+    "i_rate_arcsec_per_cy": 9.185195,
+    "lambda_deg": 50.0774443,
+    "lambda_rate_deg_per_cy": 1222.1138488144,
+    "lambda_t2_arcsec_per_millennium2": 75.61614,
+    "varpi_deg": 93.05723748,
+    "varpi_rate_deg_per_cy": 0.5665415108,
+    "Omega_deg": 113.66550252,
+    "Omega_rate_deg_per_cy": -0.2566722061,
+    "exact_strings_arcsec_per_millennium": {
+     "lambda": "43996098.55732",
+     "varpi": "20395.49439",
+     "Omega": "-9240.19942"
+    },
+    "sidereal_period_days": 10759.2267388
+   },
+   "simon1994_of_date": {
+    "source": "SIMON1994",
+    "lambda_rate_deg_per_cy": 1223.5110686217,
+    "varpi_rate_deg_per_cy": 1.963761318,
+    "Omega_rate_deg_per_cy": 0.8770880208,
+    "tropical_period_days": 10746.9399642
+   },
+   "rate_fit_2000_2100_from_jpl_table2": {
+    "deg_per_century_sidereal": 1222.6903014,
+    "max_residual_from_linear_deg": 0.008009,
+    "note": "Pente moyenne 2000-2100 de L(T) des tables JPL 2a+2b (inclut le terme périodique de M) ; résidu = écart maximal à une droite (ce qu'un engrenage à rapport constant ne peut pas suivre)."
+   },
+   "rate_candidates_deg_per_century_sidereal": {
+    "recommended_de441_fit_2000_2100": 1222.57422615,
+    "jpl_table1_1800_2050": 1222.49362201,
+    "jpl_table2_fit_2000_2100": 1222.6903014,
+    "simon1994_secular": 1222.11384881,
+    "spread_deg_per_century": 0.5765,
+    "t1_minus_recommended": -0.0806,
+    "secular_minus_recommended": -0.4604
+   },
+   "nssdc": {
+    "source": "NSSDC",
+    "sidereal_period_days": 10755.699,
+    "tropical_period_days": 10746.94,
+    "synodic_period_days": 378.09,
+    "mean_elements_J2000": {
+     "a_au": 9.53707032,
+     "e": 0.0541506,
+     "i_deg": 2.48446,
+     "Omega_deg": 113.71504,
+     "varpi_deg": 92.43194,
+     "L_deg": 49.94432
+    }
+   },
+   "equation_of_centre": {
+    "exact_max_deg": 6.17416,
+    "pin_and_slot_k_2e_max_err_deg": 0.1374,
+    "bisected_equant_max_err_deg": 0.04604,
+    "first_harmonic_only_max_err_deg": 0.2131,
+    "series_deg": {
+     "c1": 6.16987,
+     "c2": 0.2075544,
+     "c3": 0.009681552,
+     "c4": 0.0005173825
+    },
+    "pin_and_slot_series_deg": {
+     "c1": 6.172106,
+     "c2": 0.3324407,
+     "c3": 0.02387447
+    }
+   }
+  },
+  "uranus": {
+   "name_fr": "Uranus",
+   "optional_flag": false,
+   "jpl_table1_1800_2050": {
+    "source": "JPL_APPROX",
+    "frame": "écliptique et équinoxe moyens J2000",
+    "elements": {
+     "a_au": 19.18916464,
+     "e": 0.04725744,
+     "i_deg": 0.77263783,
+     "L_deg": 313.23810451,
+     "varpi_deg": 170.9542763,
+     "Omega_deg": 74.01692503
+    },
+    "rates_per_century": {
+     "a_au": -0.00196176,
+     "e": -4.397e-05,
+     "i_deg": -0.00242939,
+     "L_deg": 428.48202785,
+     "varpi_deg": 0.40805281,
+     "Omega_deg": 0.04240589
+    },
+    "exact_strings": {
+     "elements": [
+      "19.18916464",
+      "0.04725744",
+      "0.77263783",
+      "313.23810451",
+      "170.95427630",
+      "74.01692503"
+     ],
+     "rates": [
+      "-0.00196176",
+      "-0.00004397",
+      "-0.00242939",
+      "428.48202785",
+      "0.40805281",
+      "0.04240589"
+     ]
+    }
+   },
+   "jpl_table2a_3000BC_3000AD": {
+    "source": "JPL_APPROX",
+    "elements": {
+     "a_au": 19.18797948,
+     "e": 0.0468574,
+     "i_deg": 0.77298127,
+     "L_deg": 314.20276625,
+     "varpi_deg": 172.43404441,
+     "Omega_deg": 73.96250215
+    },
+    "rates_per_century": {
+     "a_au": -0.00020455,
+     "e": -1.55e-05,
+     "i_deg": -0.00180155,
+     "L_deg": 428.49512595,
+     "varpi_deg": 0.09266985,
+     "Omega_deg": 0.05739699
+    },
+    "table2b_M_terms": {
+     "b_deg_per_cy2": 0.00058331,
+     "c_deg": -0.97731848,
+     "s_deg": 0.17689245,
+     "f_deg_per_cy": 7.67025
+    }
+   },
+   "mean_motion": {
+    "basis": "JPL_HORIZONS (DE441, éléments barycentriques, ajustement 2000-2100) ; tropique = sidéral + p_A (IAU 2006)",
+    "rate_uncertainty_deg_per_century": 0.03450263085244387,
+    "deg_per_century_sidereal": 428.55870851516,
+    "deg_per_century_tropical": 429.95559634711,
+    "deg_per_day_sidereal": 0.011733297974406,
+    "turns_per_day_sidereal": 3.2592494373349e-05,
+    "turns_per_day_tropical": 3.2698729663633e-05,
+    "turns_per_tropical_year_sidereal": 0.011904154011723,
+    "turns_per_tropical_year_tropical": 0.011942955621766,
+    "sidereal_period_days": 30681.9106431,
+    "tropical_period_days": 30582.2278201,
+    "sidereal_period_tropical_years": 84.0042895123,
+    "relative_ratio_precision_for_1deg_per_century": 0.002333,
+    "synodic_period_days": 369.6569874
+   },
+   "mean_motion_jpl_table1": {
+    "deg_per_century_sidereal": 428.48202785,
+    "turns_per_day_sidereal": 3.2586662700586e-05,
+    "sidereal_period_days": 30687.4014436
+   },
+   "horizons_DE441_fit_2000_2100": {
+    "source": "JPL_HORIZONS",
+    "heliocentric": {
+     "L_rate_deg_per_cy": 428.59321114601545,
+     "L_at_J2000_deg": 313.2109310466488,
+     "L_fit_rms_deg": 0.14389394416002024,
+     "varpi_rate_deg_per_cy": 2.346602190712294,
+     "Omega_rate_deg_per_cy": 0.024517261507677416,
+     "e_mean": 0.04727903896234613,
+     "i_mean_deg": 0.771586928067575,
+     "a_mean_au": 19.212760247847914
+    },
+    "barycentric": {
+     "query_url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%277%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27ELEMENTS%27&CENTER=%27500%400%27&START_TIME=%272000-01-01%27&STOP_TIME=%272100-01-01%27&STEP_SIZE=%2710%20d%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&CSV_FORMAT=%27YES%27&OUT_UNITS=%27AU-D%27",
+     "L_rate_deg_per_cy": 428.558708515163,
+     "L_at_J2000_deg": 313.22033256992273,
+     "L_fit_rms_deg": 0.007646900047577831
+    }
+   },
+   "simon1994_secular_J2000": {
+    "source": "SIMON1994",
+    "a_au": 19.2184460618,
+    "e": 0.0463812221,
+    "e_rate_per_cy": -2.729293e-05,
+    "i_deg": 0.77319689,
+    "i_rate_arcsec_per_cy": -6.072723,
+    "lambda_deg": 314.05500511,
+    "lambda_rate_deg_per_cy": 428.46699831472,
+    "lambda_t2_arcsec_per_millennium2": -1.75083,
+    "varpi_deg": 173.00529106,
+    "varpi_rate_deg_per_cy": 0.08932117722,
+    "Omega_deg": 74.00595701,
+    "Omega_rate_deg_per_cy": 0.07414306472,
+    "exact_strings_arcsec_per_millennium": {
+     "lambda": "15424811.93933",
+     "varpi": "3215.56238",
+     "Omega": "2669.15033"
+    },
+    "sidereal_period_days": 30688.4778798
+   },
+   "simon1994_of_date": {
+    "source": "SIMON1994",
+    "lambda_rate_deg_per_cy": 429.86405610028,
+    "varpi_rate_deg_per_cy": 1.486378963,
+    "Omega_rate_deg_per_cy": 0.5211277506,
+    "tropical_period_days": 30588.740355
+   },
+   "rate_fit_2000_2100_from_jpl_table2": {
+    "deg_per_century_sidereal": 428.528073458,
+    "max_residual_from_linear_deg": 0.001539,
+    "note": "Pente moyenne 2000-2100 de L(T) des tables JPL 2a+2b (inclut le terme périodique de M) ; résidu = écart maximal à une droite (ce qu'un engrenage à rapport constant ne peut pas suivre)."
+   },
+   "rate_candidates_deg_per_century_sidereal": {
+    "recommended_de441_fit_2000_2100": 428.558708515,
+    "jpl_table1_1800_2050": 428.48202785,
+    "jpl_table2_fit_2000_2100": 428.528073458,
+    "simon1994_secular": 428.466998315,
+    "spread_deg_per_century": 0.09171,
+    "t1_minus_recommended": -0.07668,
+    "secular_minus_recommended": -0.09171
+   },
+   "nssdc": {
+    "source": "NSSDC",
+    "sidereal_period_days": 30685.4,
+    "tropical_period_days": 30588.74,
+    "synodic_period_days": 369.66,
+    "mean_elements_J2000": {
+     "a_au": 19.19126393,
+     "e": 0.04716771,
+     "i_deg": 0.76986,
+     "Omega_deg": 74.22988,
+     "varpi_deg": 170.96424,
+     "L_deg": 313.23218
+    }
+   },
+   "equation_of_centre": {
+    "exact_max_deg": 5.41669,
+    "pin_and_slot_k_2e_max_err_deg": 0.1045,
+    "bisected_equant_max_err_deg": 0.035,
+    "first_harmonic_only_max_err_deg": 0.1636,
+    "series_deg": {
+     "c1": 5.413793,
+     "c2": 0.1598149,
+     "c3": 0.006541741,
+     "c4": 0.0003065981
+    },
+    "pin_and_slot_series_deg": {
+     "c1": 5.415304,
+     "c2": 0.2559134,
+     "c3": 0.01612508
+    }
+   }
+  },
+  "neptune": {
+   "name_fr": "Neptune",
+   "optional_flag": false,
+   "jpl_table1_1800_2050": {
+    "source": "JPL_APPROX",
+    "frame": "écliptique et équinoxe moyens J2000",
+    "elements": {
+     "a_au": 30.06992276,
+     "e": 0.00859048,
+     "i_deg": 1.77004347,
+     "L_deg": -55.12002969,
+     "varpi_deg": 44.96476227,
+     "Omega_deg": 131.78422574
+    },
+    "rates_per_century": {
+     "a_au": 0.00026291,
+     "e": 5.105e-05,
+     "i_deg": 0.00035372,
+     "L_deg": 218.45945325,
+     "varpi_deg": -0.32241464,
+     "Omega_deg": -0.00508664
+    },
+    "exact_strings": {
+     "elements": [
+      "30.06992276",
+      "0.00859048",
+      "1.77004347",
+      "-55.12002969",
+      "44.96476227",
+      "131.78422574"
+     ],
+     "rates": [
+      "0.00026291",
+      "0.00005105",
+      "0.00035372",
+      "218.45945325",
+      "-0.32241464",
+      "-0.00508664"
+     ]
+    }
+   },
+   "jpl_table2a_3000BC_3000AD": {
+    "source": "JPL_APPROX",
+    "elements": {
+     "a_au": 30.06952752,
+     "e": 0.00895439,
+     "i_deg": 1.7700552,
+     "L_deg": 304.22289287,
+     "varpi_deg": 46.68158724,
+     "Omega_deg": 131.78635853
+    },
+    "rates_per_century": {
+     "a_au": 6.447e-05,
+     "e": 8.18e-06,
+     "i_deg": 0.000224,
+     "L_deg": 218.46515314,
+     "varpi_deg": 0.01009938,
+     "Omega_deg": -0.00606302
+    },
+    "table2b_M_terms": {
+     "b_deg_per_cy2": -0.00041348,
+     "c_deg": 0.68346318,
+     "s_deg": -0.10162547,
+     "f_deg_per_cy": 7.67025
+    }
+   },
+   "mean_motion": {
+    "basis": "JPL_HORIZONS (DE441, éléments barycentriques, ajustement 2000-2100) ; tropique = sidéral + p_A (IAU 2006)",
+    "rate_uncertainty_deg_per_century": 0.04748555560158252,
+    "deg_per_century_sidereal": 218.42764007231,
+    "deg_per_century_tropical": 219.82452790425,
+    "deg_per_day_sidereal": 0.0059802228630337,
+    "turns_per_day_sidereal": 1.6611730175094e-05,
+    "turns_per_day_tropical": 1.6717965465378e-05,
+    "turns_per_tropical_year_sidereal": 0.0060673047033551,
+    "turns_per_tropical_year_tropical": 0.0061061063133986,
+    "sidereal_period_days": 60198.4254174,
+    "tropical_period_days": 59815.8909989,
+    "sidereal_period_tropical_years": 164.817830798,
+    "relative_ratio_precision_for_1deg_per_century": 0.004578,
+    "synodic_period_days": 367.4860996
+   },
+   "mean_motion_jpl_table1": {
+    "deg_per_century_sidereal": 218.45945325,
+    "turns_per_day_sidereal": 1.6614149612138e-05,
+    "sidereal_period_days": 60189.6590163
+   },
+   "horizons_DE441_fit_2000_2100": {
+    "source": "JPL_HORIZONS",
+    "heliocentric": {
+     "L_rate_deg_per_cy": 218.38015451670364,
+     "L_at_J2000_deg": 304.9095106439487,
+     "L_fit_rms_deg": 0.18029122571999015,
+     "varpi_rate_deg_per_cy": 15.316799468090348,
+     "Omega_rate_deg_per_cy": -0.0030176327654838093,
+     "e_mean": 0.009838511606325765,
+     "i_mean_deg": 1.7703027583222786,
+     "a_mean_au": 30.110754007339477
+    },
+    "barycentric": {
+     "query_url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%278%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27ELEMENTS%27&CENTER=%27500%400%27&START_TIME=%272000-01-01%27&STOP_TIME=%272100-01-01%27&STEP_SIZE=%2710%20d%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&CSV_FORMAT=%27YES%27&OUT_UNITS=%27AU-D%27",
+     "L_rate_deg_per_cy": 218.42764007230522,
+     "L_at_J2000_deg": 304.8915631100484,
+     "L_fit_rms_deg": 0.0019209537129050824
+    }
+   },
+   "simon1994_secular_J2000": {
+    "source": "SIMON1994",
+    "a_au": 30.1103868694,
+    "e": 0.009455747,
+    "e_rate_per_cy": 6.03263e-06,
+    "i_deg": 1.76995259,
+    "i_rate_arcsec_per_cy": 0.812333,
+    "lambda_deg": 304.34866548,
+    "lambda_rate_deg_per_cy": 218.48620020667,
+    "lambda_t2_arcsec_per_millennium2": 0.21103,
+    "varpi_deg": 48.12027554,
+    "varpi_rate_deg_per_cy": 0.02918664222,
+    "Omega_deg": 131.78405702,
+    "Omega_rate_deg_per_cy": -0.006165089444,
+    "exact_strings_arcsec_per_millennium": {
+     "lambda": "7865503.20744",
+     "varpi": "1050.71912",
+     "Omega": "-221.94322"
+    },
+    "sidereal_period_days": 60182.2906324
+   },
+   "simon1994_of_date": {
+    "source": "SIMON1994",
+    "lambda_rate_deg_per_cy": 219.88330924361,
+    "varpi_rate_deg_per_cy": 1.426295682,
+    "Omega_rate_deg_per_cy": 1.102203933,
+    "tropical_period_days": 59799.9004346
+   },
+   "rate_fit_2000_2100_from_jpl_table2": {
+    "deg_per_century_sidereal": 218.445054479,
+    "max_residual_from_linear_deg": 0.001079,
+    "note": "Pente moyenne 2000-2100 de L(T) des tables JPL 2a+2b (inclut le terme périodique de M) ; résidu = écart maximal à une droite (ce qu'un engrenage à rapport constant ne peut pas suivre)."
+   },
+   "rate_candidates_deg_per_century_sidereal": {
+    "recommended_de441_fit_2000_2100": 218.427640072,
+    "jpl_table1_1800_2050": 218.45945325,
+    "jpl_table2_fit_2000_2100": 218.445054479,
+    "simon1994_secular": 218.486200207,
+    "spread_deg_per_century": 0.05856,
+    "t1_minus_recommended": 0.03181,
+    "secular_minus_recommended": 0.05856
+   },
+   "nssdc": {
+    "source": "NSSDC",
+    "sidereal_period_days": 60189.018,
+    "tropical_period_days": 59799.9,
+    "synodic_period_days": 367.49,
+    "mean_elements_J2000": {
+     "a_au": 30.06896348,
+     "e": 0.00858587,
+     "i_deg": 1.76917,
+     "Omega_deg": 131.72169,
+     "varpi_deg": 44.97135,
+     "L_deg": 304.88003
+    }
+   },
+   "equation_of_centre": {
+    "exact_max_deg": 0.984405,
+    "pin_and_slot_k_2e_max_err_deg": 0.003219,
+    "bisected_equant_max_err_deg": 0.001074,
+    "first_harmonic_only_max_err_deg": 0.005307,
+    "series_deg": {
+     "c1": 0.9843874,
+     "c2": 0.005285131,
+     "c3": 3.93475e-05,
+     "c4": 3.347791e-07
+    },
+    "pin_and_slot_series_deg": {
+     "c1": 0.9843965,
+     "c2": 0.008456438,
+     "c3": 9.685982e-05
+    }
+   }
+  },
+  "pluto": {
+   "name_fr": "Pluton",
+   "optional_flag": true,
+   "jpl_table1_1800_2050": {
+    "source": "JPL_APPROX_2019",
+    "frame": "écliptique et équinoxe moyens J2000",
+    "elements": {
+     "a_au": 39.48211675,
+     "e": 0.2488273,
+     "i_deg": 17.14001206,
+     "L_deg": 238.92903833,
+     "varpi_deg": 224.06891629,
+     "Omega_deg": 110.30393684
+    },
+    "rates_per_century": {
+     "a_au": -0.00031596,
+     "e": 5.17e-05,
+     "i_deg": 4.818e-05,
+     "L_deg": 145.20780515,
+     "varpi_deg": -0.04062942,
+     "Omega_deg": -0.01183482
+    },
+    "exact_strings": {
+     "elements": [
+      "39.48211675",
+      "0.24882730",
+      "17.14001206",
+      "238.92903833",
+      "224.06891629",
+      "110.30393684"
+     ],
+     "rates": [
+      "-0.00031596",
+      "0.00005170",
+      "0.00004818",
+      "145.20780515",
+      "-0.04062942",
+      "-0.01183482"
+     ]
+    }
+   },
+   "jpl_table2a_3000BC_3000AD": {
+    "source": "JPL_APPROX_2019",
+    "elements": {
+     "a_au": 39.48686035,
+     "e": 0.24885238,
+     "i_deg": 17.1410426,
+     "L_deg": 238.96535011,
+     "varpi_deg": 224.09702598,
+     "Omega_deg": 110.30167986
+    },
+    "rates_per_century": {
+     "a_au": 0.00449751,
+     "e": 6.016e-05,
+     "i_deg": 5.01e-06,
+     "L_deg": 145.18042903,
+     "varpi_deg": -0.00968827,
+     "Omega_deg": -0.00809981
+    },
+    "table2b_M_terms": {
+     "b_deg_per_cy2": -0.01262724,
+     "c_deg": 0.0,
+     "s_deg": 0.0,
+     "f_deg_per_cy": 0.0
+    }
+   },
+   "mean_motion": {
+    "basis": "JPL_HORIZONS (DE441, éléments barycentriques, ajustement 2000-2100) ; tropique = sidéral + p_A (IAU 2006)",
+    "rate_uncertainty_deg_per_century": 0.08906076495310344,
+    "deg_per_century_sidereal": 145.16465353534,
+    "deg_per_century_tropical": 146.56154136728,
+    "deg_per_day_sidereal": 0.0039743916094549,
+    "turns_per_day_sidereal": 1.103997669293e-05,
+    "turns_per_day_tropical": 1.1146211983214e-05,
+    "turns_per_tropical_year_sidereal": 0.0040322652612294,
+    "turns_per_tropical_year_tropical": 0.0040710668712729,
+    "sidereal_period_days": 90579.9013725,
+    "tropical_period_days": 89716.5782874,
+    "sidereal_period_tropical_years": 247.999557374,
+    "relative_ratio_precision_for_1deg_per_century": 0.006889,
+    "synodic_period_days": 366.7351939
+   },
+   "mean_motion_jpl_table1": {
+    "deg_per_century_sidereal": 145.20780515,
+    "turns_per_day_sidereal": 1.1043258434101e-05,
+    "sidereal_period_days": 90552.9836114
+   },
+   "horizons_DE441_fit_2000_2100": {
+    "source": "JPL_HORIZONS",
+    "heliocentric": {
+     "L_rate_deg_per_cy": 145.25371430029276,
+     "L_at_J2000_deg": 238.88024009056608,
+     "L_fit_rms_deg": 0.21516696440347735,
+     "varpi_rate_deg_per_cy": -0.12936710139244176,
+     "Omega_rate_deg_per_cy": 0.03562459182442367,
+     "e_mean": 0.2489100340746177,
+     "i_mean_deg": 17.141043224495025,
+     "a_mean_au": 39.539000785654096
+    },
+    "barycentric": {
+     "query_url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%279%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27ELEMENTS%27&CENTER=%27500%400%27&START_TIME=%272000-01-01%27&STOP_TIME=%272100-01-01%27&STEP_SIZE=%2710%20d%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&CSV_FORMAT=%27YES%27&OUT_UNITS=%27AU-D%27",
+     "L_rate_deg_per_cy": 145.16465353533965,
+     "L_at_J2000_deg": 238.92513491349285,
+     "L_fit_rms_deg": 0.0009701721753004873
+    }
+   },
+   "nssdc": {
+    "source": "NSSDC",
+    "sidereal_period_days": 90560.0,
+    "tropical_period_days": null,
+    "synodic_period_days": 366.73,
+    "mean_elements_J2000": {
+     "a_au": 39.48168677,
+     "e": 0.24880766,
+     "i_deg": 17.14175,
+     "Omega_deg": 110.30347,
+     "varpi_deg": 224.06676,
+     "L_deg": 238.92881
+    }
+   },
+   "equation_of_centre": {
+    "exact_max_deg": 28.7225,
+    "pin_and_slot_k_2e_max_err_deg": 4.588,
+    "bisected_equant_max_err_deg": 1.417,
+    "first_harmonic_only_max_err_deg": 4.992,
+    "series_deg": {
+     "c1": 28.29568,
+     "c2": 4.333668,
+     "c3": 0.9195464,
+     "c4": 0.2356572
+    },
+    "pin_and_slot_series_deg": {
+     "c1": 28.51351,
+     "c2": 7.094939,
+     "c3": 2.353886
+    }
+   },
+   "neptune_resonance_ratio": 1.50469,
+   "flag_fr": "OPTIONNEL : planète naine (UAI 2006) ; e = 0,249 et i = 17,1 deg ; 3:2 avec Neptune. Retirée des tables JPL actuelles."
+  }
+ },
+ "great_inequalities_jpl_table2b": {
+  "jupiter": {
+   "amplitude_deg": 0.3615,
+   "period_years": 938.69,
+   "max_rate_deg_per_century": 0.242
+  },
+  "saturn": {
+   "amplitude_deg": 0.8835,
+   "period_years": 938.69,
+   "max_rate_deg_per_century": 0.5914
+  },
+  "uranus": {
+   "amplitude_deg": 0.9932,
+   "period_years": 4693.5,
+   "max_rate_deg_per_century": 0.133
+  },
+  "neptune": {
+   "amplitude_deg": 0.691,
+   "period_years": 4693.5,
+   "max_rate_deg_per_century": 0.0925
+  }
+ },
+ "moon": {
+  "frame_note": "Meeus ch. 47 : équinoxe moyen de la date (tropique). Retirer p_A pour le repère sidéral (orrery).",
+  "mean_arguments_meeus47_deg": {
+   "L_prime": {
+    "c0": "218.3164477",
+    "c1_deg_per_cy": "481267.88123421",
+    "c2": "-0.0015786",
+    "c3": "1/538841",
+    "c4": "-1/65194000"
+   },
+   "D": {
+    "c0": "297.8501921",
+    "c1_deg_per_cy": "445267.1114034",
+    "c2": "-0.0018819",
+    "c3": "1/545868",
+    "c4": "-1/113065000"
+   },
+   "M_sun": {
+    "c0": "357.5291092",
+    "c1_deg_per_cy": "35999.0502909",
+    "c2": "-0.0001536",
+    "c3": "1/24490000",
+    "c4": "0"
+   },
+   "M_prime": {
+    "c0": "134.9633964",
+    "c1_deg_per_cy": "477198.8675055",
+    "c2": "0.0087414",
+    "c3": "1/69699",
+    "c4": "-1/14712000"
+   },
+   "F": {
+    "c0": "93.2720950",
+    "c1_deg_per_cy": "483202.0175233",
+    "c2": "-0.0036539",
+    "c3": "-1/3526000",
+    "c4": "1/863310000"
+   },
+   "Omega": {
+    "c0": "125.0445479",
+    "c1_deg_per_cy": "-1934.1362891",
+    "c2": "0.0020754",
+    "c3": "1/467441",
+    "c4": "-1/60616000"
+   },
+   "perigee": {
+    "c0": "83.3532465",
+    "c1_deg_per_cy": "4069.0137287",
+    "c2": "-0.01032",
+    "c3": "-1/80053",
+    "c4": "1/18999000"
+   }
+  },
+  "delaunay_iers2010_arcsec": {
+   "l": {
+    "c0_deg": "134.96340251",
+    "c1_arcsec_per_cy": "1717915923.2178",
+    "c2_arcsec_per_cy2": "31.8792"
+   },
+   "l_prime": {
+    "c0_deg": "357.52910918",
+    "c1_arcsec_per_cy": "129596581.0481",
+    "c2_arcsec_per_cy2": "-0.5532"
+   },
+   "F": {
+    "c0_deg": "93.27209062",
+    "c1_arcsec_per_cy": "1739527262.8478",
+    "c2_arcsec_per_cy2": "-12.7512"
+   },
+   "D": {
+    "c0_deg": "297.85019547",
+    "c1_arcsec_per_cy": "1602961601.2090",
+    "c2_arcsec_per_cy2": "-6.3706"
+   },
+   "Omega": {
+    "c0_deg": "125.04455501",
+    "c1_arcsec_per_cy": "-6962890.5431",
+    "c2_arcsec_per_cy2": "7.4722"
+   }
+  },
+  "simon1994_mean_elements": {
+   "lambda_J2000": [
+    "218.31664563",
+    "1732559343.48470"
+   ],
+   "lambda_date": [
+    "218.31664563",
+    "1732564372.30470"
+   ],
+   "varpi_J2000": [
+    "83.35324312",
+    "14643420.2669"
+   ],
+   "varpi_date": [
+    "83.35324312",
+    "14648449.0869"
+   ],
+   "Omega_J2000": [
+    "125.04455501",
+    "-6967919.3631"
+   ],
+   "Omega_date": [
+    "125.04455501",
+    "-6962890.5431"
+   ],
+   "i_mean_deg": "5.15668983",
+   "a_km": "383397.7725",
+   "e": "0.055545526"
+  },
+  "mean_motion": {
+   "L_deg_per_day_tropical": 13.176396474585,
+   "L_turns_per_day_tropical": 0.036601101318291,
+   "L_turns_per_day_sidereal": 0.036600995079573,
+   "L_turns_per_tropical_year_tropical": 13.368266389819,
+   "L_turns_per_tropical_year_sidereal": 13.368227586957,
+   "relative_ratio_precision_for_1deg_per_century": 2.078e-06
+  },
+  "months_days": {
+   "sidereal": 27.321661551166,
+   "tropical": 27.321582249225,
+   "synodic": 29.53058885771,
+   "anomalistic": 27.554549882357,
+   "draconic": 27.212220820561
+  },
+  "months_chapront2002_days": {
+   "draconic": {
+    "value": 27.212220815,
+    "T_coeff_days_per_cy": 4.14e-07
+   },
+   "tropical": {
+    "value": 27.321582252,
+    "T_coeff_days_per_cy": 1.82e-07
+   },
+   "sidereal": {
+    "value": 27.321661554,
+    "T_coeff_days_per_cy": 2.17e-07
+   },
+   "anomalistic": {
+    "value": 27.554549886,
+    "T_coeff_days_per_cy": -1.007e-06
+   },
+   "synodic": {
+    "value": 29.530588861,
+    "T_coeff_days_per_cy": 2.52e-07
+   }
+  },
+  "node_period_days": {
+   "tropical": 6798.383474,
+   "sidereal": 6793.47701,
+   "tropical_years": 18.613358
+  },
+  "perigee_period_days": {
+   "tropical": 3231.495684,
+   "sidereal": 3232.605439,
+   "tropical_years": 8.8475422
+  },
+  "eclipse_year_days": 346.620075881,
+  "evection_period_days": 31.811941,
+  "periodic_terms_longitude": [
+   {
+    "name": "equation_du_centre",
+    "argument_D_M_Mp_F": [
+     0,
+     0,
+     1,
+     0
+    ],
+    "amplitude_deg_meeus": 6.288774,
+    "amplitude_deg_brown": 6.28861,
+    "amplitude_deg_almanac": 6.29,
+    "amplitude_deg_schlyter": null,
+    "argument_period_days": 27.55455
+   },
+   {
+    "name": "evection",
+    "argument_D_M_Mp_F": [
+     2,
+     0,
+     -1,
+     0
+    ],
+    "amplitude_deg_meeus": 1.274027,
+    "amplitude_deg_brown": 1.27389,
+    "amplitude_deg_almanac": 1.27,
+    "amplitude_deg_schlyter": 1.274,
+    "argument_period_days": 31.811941
+   },
+   {
+    "name": "variation",
+    "argument_D_M_Mp_F": [
+     2,
+     0,
+     0,
+     0
+    ],
+    "amplitude_deg_meeus": 0.658314,
+    "amplitude_deg_brown": 0.658333,
+    "amplitude_deg_almanac": 0.66,
+    "amplitude_deg_schlyter": 0.658,
+    "argument_period_days": 14.765294
+   },
+   {
+    "name": "equation_du_centre_2e_harmonique",
+    "argument_D_M_Mp_F": [
+     0,
+     0,
+     2,
+     0
+    ],
+    "amplitude_deg_meeus": 0.213618,
+    "amplitude_deg_brown": 0.213611,
+    "amplitude_deg_almanac": 0.21,
+    "amplitude_deg_schlyter": null,
+    "argument_period_days": 13.777275
+   },
+   {
+    "name": "equation_annuelle",
+    "argument_D_M_Mp_F": [
+     0,
+     1,
+     0,
+     0
+    ],
+    "amplitude_deg_meeus": -0.185116,
+    "amplitude_deg_brown": -0.185556,
+    "amplitude_deg_almanac": -0.19,
+    "amplitude_deg_schlyter": -0.186,
+    "argument_period_days": 365.25964
+   },
+   {
+    "name": "reduction_a_l_ecliptique",
+    "argument_D_M_Mp_F": [
+     0,
+     0,
+     0,
+     2
+    ],
+    "amplitude_deg_meeus": -0.11433199999999999,
+    "amplitude_deg_brown": -0.114444,
+    "amplitude_deg_almanac": -0.11,
+    "amplitude_deg_schlyter": null,
+    "argument_period_days": 13.60611
+   },
+   {
+    "name": "terme_2D_moins_2Mp",
+    "argument_D_M_Mp_F": [
+     2,
+     0,
+     -2,
+     0
+    ],
+    "amplitude_deg_meeus": 0.058793,
+    "amplitude_deg_brown": null,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": 0.059,
+    "argument_period_days": 205.89222
+   },
+   {
+    "name": "terme_2D_moins_M_moins_Mp",
+    "argument_D_M_Mp_F": [
+     2,
+     -1,
+     -1,
+     0
+    ],
+    "amplitude_deg_meeus": 0.057066,
+    "amplitude_deg_brown": null,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": 0.057,
+    "argument_period_days": 34.846899
+   },
+   {
+    "name": "terme_2D_plus_Mp",
+    "argument_D_M_Mp_F": [
+     2,
+     0,
+     1,
+     0
+    ],
+    "amplitude_deg_meeus": 0.053321999999999994,
+    "amplitude_deg_brown": null,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": 0.053,
+    "argument_period_days": 9.6137178
+   },
+   {
+    "name": "terme_2D_moins_M",
+    "argument_D_M_Mp_F": [
+     2,
+     -1,
+     0,
+     0
+    ],
+    "amplitude_deg_meeus": 0.045758,
+    "amplitude_deg_brown": null,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": 0.046,
+    "argument_period_days": 15.387313
+   },
+   {
+    "name": "terme_M_moins_Mp",
+    "argument_D_M_Mp_F": [
+     0,
+     1,
+     -1,
+     0
+    ],
+    "amplitude_deg_meeus": -0.040923,
+    "amplitude_deg_brown": null,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": -0.041,
+    "argument_period_days": 29.802823
+   },
+   {
+    "name": "inegalite_parallactique",
+    "argument_D_M_Mp_F": [
+     1,
+     0,
+     0,
+     0
+    ],
+    "amplitude_deg_meeus": -0.03472,
+    "amplitude_deg_brown": -0.0347222,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": -0.035,
+    "argument_period_days": 29.530589
+   },
+   {
+    "name": "terme_M_plus_Mp",
+    "argument_D_M_Mp_F": [
+     0,
+     1,
+     1,
+     0
+    ],
+    "amplitude_deg_meeus": -0.030383,
+    "amplitude_deg_brown": null,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": -0.031,
+    "argument_period_days": 25.621694
+   }
+  ],
+  "periodic_terms_latitude": [
+   {
+    "name": "terme_principal_sinF",
+    "argument_D_M_Mp_F": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "amplitude_deg_meeus": 5.128121999999999,
+    "amplitude_deg_almanac": 5.13,
+    "amplitude_deg_schlyter": null,
+    "argument_period_days": 27.212221
+   },
+   {
+    "name": "Mp_plus_F",
+    "argument_D_M_Mp_F": [
+     0,
+     0,
+     1,
+     1
+    ],
+    "amplitude_deg_meeus": 0.28060199999999996,
+    "amplitude_deg_almanac": 0.28,
+    "amplitude_deg_schlyter": null,
+    "argument_period_days": 13.691158
+   },
+   {
+    "name": "Mp_moins_F",
+    "argument_D_M_Mp_F": [
+     0,
+     0,
+     1,
+     -1
+    ],
+    "amplitude_deg_meeus": 0.27769299999999997,
+    "amplitude_deg_almanac": 0.28,
+    "amplitude_deg_schlyter": null,
+    "argument_period_days": 2190.3501
+   },
+   {
+    "name": "evection_en_latitude_2D_moins_F",
+    "argument_D_M_Mp_F": [
+     2,
+     0,
+     0,
+     -1
+    ],
+    "amplitude_deg_meeus": 0.173237,
+    "amplitude_deg_almanac": 0.17,
+    "amplitude_deg_schlyter": 0.173,
+    "argument_period_days": 32.280777
+   },
+   {
+    "name": "2D_moins_Mp_plus_F",
+    "argument_D_M_Mp_F": [
+     2,
+     0,
+     -1,
+     1
+    ],
+    "amplitude_deg_meeus": 0.055413,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": 0.055,
+    "argument_period_days": 14.666427
+   },
+   {
+    "name": "2D_moins_Mp_moins_F",
+    "argument_D_M_Mp_F": [
+     2,
+     0,
+     -1,
+     -1
+    ],
+    "amplitude_deg_meeus": 0.046271,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": 0.046,
+    "argument_period_days": 188.20135
+   },
+   {
+    "name": "2D_plus_F",
+    "argument_D_M_Mp_F": [
+     2,
+     0,
+     0,
+     1
+    ],
+    "amplitude_deg_meeus": 0.032573,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": 0.033,
+    "argument_period_days": 9.5717064
+   },
+   {
+    "name": "2Mp_plus_F",
+    "argument_D_M_Mp_F": [
+     0,
+     0,
+     2,
+     1
+    ],
+    "amplitude_deg_meeus": 0.017197999999999998,
+    "amplitude_deg_almanac": null,
+    "amplitude_deg_schlyter": 0.017,
+    "argument_period_days": 9.1464957
+   }
+  ],
+  "annual_equation_E_factor": "E = 1 - 0.002516 T - 0.0000074 T^2 (Meeus 47.6), multiplie les termes en M (|M|=1) ; E^2 pour |M|=2",
+  "meeus_table_47A_full": [
+   [
+    0,
+    0,
+    1,
+    0,
+    6288774
+   ],
+   [
+    2,
+    0,
+    -1,
+    0,
+    1274027
+   ],
+   [
+    2,
+    0,
+    0,
+    0,
+    658314
+   ],
+   [
+    0,
+    0,
+    2,
+    0,
+    213618
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    -185116
+   ],
+   [
+    0,
+    0,
+    0,
+    2,
+    -114332
+   ],
+   [
+    2,
+    0,
+    -2,
+    0,
+    58793
+   ],
+   [
+    2,
+    -1,
+    -1,
+    0,
+    57066
+   ],
+   [
+    2,
+    0,
+    1,
+    0,
+    53322
+   ],
+   [
+    2,
+    -1,
+    0,
+    0,
+    45758
+   ],
+   [
+    0,
+    1,
+    -1,
+    0,
+    -40923
+   ],
+   [
+    1,
+    0,
+    0,
+    0,
+    -34720
+   ],
+   [
+    0,
+    1,
+    1,
+    0,
+    -30383
+   ],
+   [
+    2,
+    0,
+    0,
+    -2,
+    15327
+   ],
+   [
+    0,
+    0,
+    1,
+    2,
+    -12528
+   ],
+   [
+    0,
+    0,
+    1,
+    -2,
+    10980
+   ],
+   [
+    4,
+    0,
+    -1,
+    0,
+    10675
+   ],
+   [
+    0,
+    0,
+    3,
+    0,
+    10034
+   ],
+   [
+    4,
+    0,
+    -2,
+    0,
+    8548
+   ],
+   [
+    2,
+    1,
+    -1,
+    0,
+    -7888
+   ],
+   [
+    2,
+    1,
+    0,
+    0,
+    -6766
+   ],
+   [
+    1,
+    0,
+    -1,
+    0,
+    -5163
+   ],
+   [
+    1,
+    1,
+    0,
+    0,
+    4987
+   ],
+   [
+    2,
+    -1,
+    1,
+    0,
+    4036
+   ],
+   [
+    2,
+    0,
+    2,
+    0,
+    3994
+   ],
+   [
+    4,
+    0,
+    0,
+    0,
+    3861
+   ],
+   [
+    2,
+    0,
+    -3,
+    0,
+    3665
+   ],
+   [
+    0,
+    1,
+    -2,
+    0,
+    -2689
+   ],
+   [
+    2,
+    0,
+    -1,
+    2,
+    -2602
+   ],
+   [
+    2,
+    -1,
+    -2,
+    0,
+    2390
+   ],
+   [
+    1,
+    0,
+    1,
+    0,
+    -2348
+   ],
+   [
+    2,
+    -2,
+    0,
+    0,
+    2236
+   ],
+   [
+    0,
+    1,
+    2,
+    0,
+    -2120
+   ],
+   [
+    0,
+    2,
+    0,
+    0,
+    -2069
+   ],
+   [
+    2,
+    -2,
+    -1,
+    0,
+    2048
+   ],
+   [
+    2,
+    0,
+    1,
+    -2,
+    -1773
+   ],
+   [
+    2,
+    0,
+    0,
+    2,
+    -1595
+   ],
+   [
+    4,
+    -1,
+    -1,
+    0,
+    1215
+   ],
+   [
+    0,
+    0,
+    2,
+    2,
+    -1110
+   ],
+   [
+    3,
+    0,
+    -1,
+    0,
+    -892
+   ],
+   [
+    2,
+    1,
+    1,
+    0,
+    -810
+   ],
+   [
+    4,
+    -1,
+    -2,
+    0,
+    759
+   ],
+   [
+    0,
+    2,
+    -1,
+    0,
+    -713
+   ],
+   [
+    2,
+    2,
+    -1,
+    0,
+    -700
+   ],
+   [
+    2,
+    1,
+    -2,
+    0,
+    691
+   ],
+   [
+    2,
+    -1,
+    0,
+    -2,
+    596
+   ],
+   [
+    4,
+    0,
+    1,
+    0,
+    549
+   ],
+   [
+    0,
+    0,
+    4,
+    0,
+    537
+   ],
+   [
+    4,
+    -1,
+    0,
+    0,
+    520
+   ],
+   [
+    1,
+    0,
+    -2,
+    0,
+    -487
+   ],
+   [
+    2,
+    1,
+    0,
+    -2,
+    -399
+   ],
+   [
+    0,
+    0,
+    2,
+    -2,
+    -381
+   ],
+   [
+    1,
+    1,
+    1,
+    0,
+    351
+   ],
+   [
+    3,
+    0,
+    -2,
+    0,
+    -340
+   ],
+   [
+    4,
+    0,
+    -3,
+    0,
+    330
+   ],
+   [
+    2,
+    -1,
+    2,
+    0,
+    327
+   ],
+   [
+    0,
+    2,
+    1,
+    0,
+    -323
+   ],
+   [
+    1,
+    1,
+    -1,
+    0,
+    299
+   ],
+   [
+    2,
+    0,
+    3,
+    0,
+    294
+   ]
+  ],
+  "meeus_table_47A_additive": "+3958 sin A1 + 1962 sin(L'-F) + 318 sin A2 (1e-6 deg), A1 = 119.75 + 131.849 T, A2 = 53.09 + 479264.29 T",
+  "meeus_table_47B_first30": [
+   [
+    0,
+    0,
+    0,
+    1,
+    5128122
+   ],
+   [
+    0,
+    0,
+    1,
+    1,
+    280602
+   ],
+   [
+    0,
+    0,
+    1,
+    -1,
+    277693
+   ],
+   [
+    2,
+    0,
+    0,
+    -1,
+    173237
+   ],
+   [
+    2,
+    0,
+    -1,
+    1,
+    55413
+   ],
+   [
+    2,
+    0,
+    -1,
+    -1,
+    46271
+   ],
+   [
+    2,
+    0,
+    0,
+    1,
+    32573
+   ],
+   [
+    0,
+    0,
+    2,
+    1,
+    17198
+   ],
+   [
+    2,
+    0,
+    1,
+    -1,
+    9266
+   ],
+   [
+    0,
+    0,
+    2,
+    -1,
+    8822
+   ],
+   [
+    2,
+    -1,
+    0,
+    -1,
+    8216
+   ],
+   [
+    2,
+    0,
+    -2,
+    -1,
+    4324
+   ],
+   [
+    2,
+    0,
+    1,
+    1,
+    4200
+   ],
+   [
+    2,
+    1,
+    0,
+    -1,
+    -3359
+   ],
+   [
+    2,
+    -1,
+    -1,
+    1,
+    2463
+   ],
+   [
+    2,
+    -1,
+    0,
+    1,
+    2211
+   ],
+   [
+    2,
+    -1,
+    -1,
+    -1,
+    2065
+   ],
+   [
+    0,
+    1,
+    -1,
+    -1,
+    -1870
+   ],
+   [
+    4,
+    0,
+    -1,
+    -1,
+    1828
+   ],
+   [
+    0,
+    1,
+    0,
+    1,
+    -1794
+   ],
+   [
+    0,
+    0,
+    0,
+    3,
+    -1749
+   ],
+   [
+    0,
+    1,
+    -1,
+    1,
+    -1565
+   ],
+   [
+    1,
+    0,
+    0,
+    1,
+    -1491
+   ],
+   [
+    0,
+    1,
+    1,
+    1,
+    -1475
+   ],
+   [
+    0,
+    1,
+    1,
+    -1,
+    -1410
+   ],
+   [
+    0,
+    1,
+    0,
+    -1,
+    -1344
+   ],
+   [
+    1,
+    0,
+    0,
+    -1,
+    -1335
+   ],
+   [
+    0,
+    0,
+    3,
+    1,
+    1107
+   ],
+   [
+    4,
+    0,
+    0,
+    -1,
+    1021
+   ],
+   [
+    4,
+    0,
+    -1,
+    1,
+    833
+   ]
+  ],
+  "error_budget_longitude_2000_2100": [
+   {
+    "model": "longitude moyenne seule",
+    "max_abs_err_deg": 8.03,
+    "rms_err_deg": 4.57
+   },
+   {
+    "model": "+ équation du centre (6,289 sin M′)",
+    "max_abs_err_deg": 2.56,
+    "rms_err_deg": 1.04
+   },
+   {
+    "model": "+ 2ᵉ harmonique (0,214 sin 2M′)",
+    "max_abs_err_deg": 2.5,
+    "rms_err_deg": 1.03
+   },
+   {
+    "model": "+ évection (1,274)",
+    "max_abs_err_deg": 1.23,
+    "rms_err_deg": 0.499
+   },
+   {
+    "model": "+ variation (0,658)",
+    "max_abs_err_deg": 0.626,
+    "rms_err_deg": 0.179
+   },
+   {
+    "model": "+ équation annuelle (0,186)",
+    "max_abs_err_deg": 0.461,
+    "rms_err_deg": 0.122
+   },
+   {
+    "model": "+ réduction à l'écliptique (0,114)",
+    "max_abs_err_deg": 0.347,
+    "rms_err_deg": 0.091
+   },
+   {
+    "model": "+ 4 termes suivants (2D − 2M′, 2D − M − M′, 2D + M′, 2D − M)",
+    "max_abs_err_deg": 0.179,
+    "rms_err_deg": 0.0496
+   },
+   {
+    "model": "+ M − M′, inégalité parallactique, M + M′",
+    "max_abs_err_deg": 0.0981,
+    "rms_err_deg": 0.0233
+   },
+   {
+    "model": "tenon-mortaise (k = 6,2888°) + évection + variation + annuelle + réduction",
+    "max_abs_err_deg": 0.415,
+    "rms_err_deg": 0.13
+   }
+  ],
+  "error_budget_latitude_2000_2100": [
+   {
+    "model": "5,128 sin F seul",
+    "max_abs_err_deg": 0.81,
+    "rms_err_deg": 0.31
+   },
+   {
+    "model": "+ M′ + F, M′ − F",
+    "max_abs_err_deg": 0.352,
+    "rms_err_deg": 0.136
+   },
+   {
+    "model": "+ 2D − F (évection en latitude)",
+    "max_abs_err_deg": 0.179,
+    "rms_err_deg": 0.0587
+   }
+  ],
+  "inclination_deg": {
+   "classic_mean_inclination": 5.145396,
+   "classic_source": "NSSDC_MOON (5.145) / NASA_ECL (5.145)",
+   "sinF_coefficient": 5.128122,
+   "sinF_source": "MEEUS1998 (5.13 AA_LOWPREC)",
+   "simon_mean_osculating": 5.15668983,
+   "osculating_range": [
+    5.0,
+    5.3
+   ],
+   "range_source": "NASA_ECL (moonorbit.html, fig. 4-10)",
+   "note": "Trois 'inclinaisons' différentes : 5,128 deg est le coefficient à utiliser pour beta = a sin F (les termes M'+-F et 2D-F complètent) ; 5,145 deg est l'inclinaison moyenne classique ; 5,157 deg la moyenne de l'inclinaison osculatrice (Simon). L'inclinaison oscille entre ~5,0 et 5,3 deg (période 173 j, demi-année draconitique)."
+  },
+  "parallax_deg": {
+   "mean": 0.9508,
+   "first_term_cosMp": 0.0518,
+   "second_cos_2D_minus_Mp": 0.0095,
+   "third_cos_2D": 0.0078,
+   "range_deg": [
+    0.898,
+    1.025
+   ],
+   "source": "AA_LOWPREC (eq. 3)",
+   "note": "Parallaxe horizontale ~53,9' à 61,5' ; demi-diamètre ~0,2725 x parallaxe (14,7' à 16,8')."
+  }
+ },
+ "eclipses": {
+  "cycles": {
+   "saros": {
+    "synodic_months": 223,
+    "days": 6585.32131527,
+    "draconic_months": 241.99867,
+    "anomalistic_months": 238.99216,
+    "eclipse_years": 18.998673,
+    "tropical_years": 18.030013,
+    "day_fraction": 0.321315,
+    "geographic_shift_deg_west": 115.7,
+    "node_mismatch_deg": -0.4779
+   },
+   "inex": {
+    "synodic_months": 358,
+    "days": 10571.9508111,
+    "draconic_months": 388.50011,
+    "anomalistic_months": 383.67351,
+    "eclipse_years": 30.500111,
+    "tropical_years": 28.945043,
+    "day_fraction": 0.950811,
+    "geographic_shift_deg_west": -17.71,
+    "node_mismatch_deg": -180.0
+   },
+   "exeligmos": {
+    "synodic_months": 669,
+    "days": 19755.9639458,
+    "draconic_months": 725.99602,
+    "anomalistic_months": 716.97647,
+    "eclipse_years": 56.996018,
+    "tropical_years": 54.090038,
+    "day_fraction": 0.963946,
+    "geographic_shift_deg_west": -12.98,
+    "node_mismatch_deg": -1.434
+   },
+   "metonic": {
+    "synodic_months": 235,
+    "days": 6939.68838156,
+    "draconic_months": 255.02102,
+    "anomalistic_months": 251.85272,
+    "eclipse_years": 20.021023,
+    "tropical_years": 19.000238,
+    "day_fraction": 0.688382,
+    "geographic_shift_deg_west": -112.2,
+    "node_mismatch_deg": 7.568
+   },
+   "tritos": {
+    "synodic_months": 135,
+    "days": 3986.62949579,
+    "draconic_months": 146.50144,
+    "anomalistic_months": 144.68135,
+    "eclipse_years": 11.501439,
+    "tropical_years": 10.91503,
+    "day_fraction": 0.629496,
+    "geographic_shift_deg_west": -133.4,
+    "node_mismatch_deg": -179.5
+   },
+   "callippic": {
+    "synodic_months": 940,
+    "days": 27758.7535262,
+    "draconic_months": 1020.0841,
+    "anomalistic_months": 1007.4109,
+    "eclipse_years": 80.084091,
+    "tropical_years": 76.00095,
+    "day_fraction": 0.753526,
+    "geographic_shift_deg_west": -88.73,
+    "node_mismatch_deg": 30.27
+   }
+  },
+  "eclipse_year_days": 346.620075881,
+  "eclipse_season_mean_interval_days": 173.31004,
+  "ecliptic_limits_deg": {
+   "solar_partial": {
+    "min": 15.39,
+    "max": 18.59,
+    "source": "NASA_ECL",
+    "also": "WIKI_SOLAR_ECLIPSE : ~15 à 18 deg ; HOLMES_ECL (Meeus) : max 18 deg 24'"
+   },
+   "solar_central": {
+    "min": 10.0,
+    "max": 12.0,
+    "approx": true,
+    "source": "WIKI_SOLAR_ECLIPSE"
+   },
+   "lunar_umbral_partial": {
+    "min": 9.6,
+    "max": 12.2,
+    "source": "calcul geometrique (ci-dessous)",
+    "also": "HOLMES_ECL (Meeus) : max 12 deg 08' ; valeur classique ~9,5 à 12,2 deg"
+   },
+   "lunar_penumbral": {
+    "min": 15.3,
+    "max": 17.1,
+    "source": "NASA_ECL (LEperiodicity.html)",
+    "note": "La page NASA lunaire donne 15,3-17,1 deg pour 'une éclipse de Lune visible' : il s'agit des éclipses pénombrales (incluses dans le catalogue NASA)."
+   },
+   "geometric_estimate": {
+    "solar": [
+     15.32,
+     18.35
+    ],
+    "lunar_umbral": [
+     9.605,
+     12.23
+    ],
+    "formula": "sin(dLambda) = tan(beta_lim)/tan(i) ; beta_lim(sol) = pi_L - pi_S + s_L + s_S ; beta_lim(lune, ombre) = 1,02 (pi_L + pi_S - s_S) + s_L",
+    "inputs": "pi_L 53,9'-61,5', pi_S 0,15', s_L 14,7'-16,8', s_S 15,8'-16,3', i 4,99-5,30 deg"
+   }
+  },
+  "gamma_model_meeus54": {
+   "source": "MEEUS1998 (ch. 54, eclipse.go) ; seuils confirmes par WIKI_GAMMA",
+   "gamma_approx": "gamma ~ (P cos F1 + Q sin F1)(1 - 0,0048 |cos F1|), Q = 5,2207 - 0,3299 cos M' + ..., P = 0,207 sin M - 0,0392 sin M' + ... ; soit gamma ~ 5,22 sin F (rayons terrestres)",
+   "Q0_earth_radii": 5.2207,
+   "Q_cosMp_coeff": -0.3299,
+   "P_sinM_coeff": 0.207,
+   "no_eclipse_if_abs_sinF_gt": 0.36,
+   "solar_central_if_abs_gamma_lt": 0.9972,
+   "solar_any_if_abs_gamma_lt": "1,5433 + u (u ~ 0,0059 + 0,0046 cos M - 0,0182 cos M')",
+   "solar_partial_magnitude": "(1,5433 + u - |gamma|) / (0,5461 + 2u)",
+   "lunar_umbral_magnitude": "(1,0128 - u - |gamma|) / 0,5450",
+   "lunar_penumbral_magnitude": "(1,5573 + u - |gamma|) / 0,5450",
+   "sign_convention": "Éclipse de Soleil : gamma > 0 = axe de l'ombre au nord du centre de la Terre (hémisphère nord) ; éclipse de Lune : gamma > 0 = Lune au sud de l'axe de l'ombre (WIKI_GAMMA). gamma a le signe de sin F au voisinage du nœud.",
+   "partial_limit_range_wiki": [
+    1.525,
+    1.571
+   ]
+  },
+  "saros_longitude_shift_note": "Chaque Saros décale l'éclipse de ~0,32 j (~8 h) donc d'environ 116 deg vers l'ouest ; l'Exeligmos (3 Saros) ramène à ~-14 deg près la même longitude."
+ },
+ "galilean": {
+  "moons": {
+   "io": {
+    "mean_motion_deg_per_day_E5": 203.48895579,
+    "sidereal_period_days": 1.76913778245,
+    "synodic_period_days_vs_sun": 1.7698604363,
+    "turns_per_day_sidereal": 0.56524709941667,
+    "a_km": 421800.0,
+    "e_jpl": 0.004,
+    "jpl_mean_elements_P_days": 1.762732,
+    "apsidal_period_years": 1.333,
+    "nodal_period_years": 0.0,
+    "note_jpl_P": "P (JPL) = période anomalistique, à ne pas utiliser comme période sidérale."
+   },
+   "europa": {
+    "mean_motion_deg_per_day_E5": 101.374724735,
+    "sidereal_period_days": 3.55118103591,
+    "synodic_period_days_vs_sun": 3.55409397471,
+    "turns_per_day_sidereal": 0.28159645759722,
+    "a_km": 671100.0,
+    "e_jpl": 0.009,
+    "jpl_mean_elements_P_days": 3.525463,
+    "apsidal_period_years": 1.394,
+    "nodal_period_years": 30.202,
+    "note_jpl_P": "P (JPL) = période anomalistique, à ne pas utiliser comme période sidérale."
+   },
+   "ganymede": {
+    "mean_motion_deg_per_day_E5": 50.317609207,
+    "sidereal_period_days": 7.15455296215,
+    "synodic_period_days_vs_sun": 7.16638643903,
+    "turns_per_day_sidereal": 0.13977113668611,
+    "a_km": 1070400.0,
+    "e_jpl": 0.001,
+    "jpl_mean_elements_P_days": 7.155588,
+    "apsidal_period_years": 68.301,
+    "nodal_period_years": 137.812,
+    "note_jpl_P": "P (JPL) = période anomalistique, à ne pas utiliser comme période sidérale."
+   },
+   "callisto": {
+    "mean_motion_deg_per_day_E5": 21.571071177,
+    "sidereal_period_days": 16.6890182247,
+    "synodic_period_days_vs_sun": 16.7535490547,
+    "turns_per_day_sidereal": 0.059919642158333,
+    "a_km": 1882700.0,
+    "e_jpl": 0.007,
+    "jpl_mean_elements_P_days": 16.69044,
+    "apsidal_period_years": 277.921,
+    "nodal_period_years": 577.264,
+    "note_jpl_P": "P (JPL) = période anomalistique, à ne pas utiliser comme période sidérale."
+   }
+  },
+  "laplace": {
+   "relation": "n_Io - 3 n_Europe + 2 n_Ganymede = 0 ; Phi_L = lambda_Io - 3 lambda_Europe + 2 lambda_Ganymede = 180 deg (libration)",
+   "residual_deg_per_day_E5": -1e-09,
+   "n1_minus_2n2_deg_per_day": 0.73950632,
+   "n2_minus_2n3_deg_per_day": 0.739506321,
+   "period_ratios": {
+    "europa_over_io": 2.00729478,
+    "ganymede_over_europa": 2.01469677,
+    "callisto_over_ganymede": 2.332643047
+   },
+   "io_europa_synodic_days": 3.525463555,
+   "europa_ganymede_synodic_days": 7.050927109,
+   "conjunction_line_regression_period_days": 486.8112554,
+   "conjunction_note": "Les conjonctions Io-Europe ont lieu tous les 3,5255 j ; leur longitude rétrograde de 0,7395 deg/j (tour complet en 486,8 j), entraînant le périjove forcé d'Io et d'Europe : c'est pourquoi la période anomalistique d'Europe (JPL 'P' = 3,525463 j) égale la période synodique Io-Europe. Une triple conjonction est impossible (Phi_L = 180 deg).",
+   "libration": {
+    "period_days": 2071,
+    "period_source": "CELLETTI2021 (Lieske 1998) ; terme Phi_lambda = 199,6766 + 0,1737919 t de E5 (Meeus 44) => 2071,4 j",
+    "amplitude_deg": [
+     0.03,
+     0.066
+    ],
+    "amplitude_sources": "0,03 deg : WIKI_RESONANCE (Sinclair 1975, période ~2000 j) ; 0,066 deg : Lieske (cité par Celletti et al., non vérifié dans le texte original)",
+    "note": "Libration hors de portée d'un engrenage (< 0,1 deg) : la machine réalise Phi_L = 180 deg exactement."
+   }
+  },
+  "earth_view": {
+   "light_time_minutes_range": [
+    32.72,
+    53.82
+   ],
+   "max_sun_earth_angle_at_jupiter_deg": 11.85,
+   "note": "Vu de la Terre, les phénomènes (éclipses, passages) sont décalés par le temps de lumière (Rømer, ~+-8 min) et par l'angle Soleil-Terre vu de Jupiter (jusqu'à ~12 deg) : pour Io (8,5 deg/h) cela fait jusqu'à ~1,4 h. La période synodique moyenne (/Soleil) est la référence."
+  }
+ },
+ "negligible_or_out_of_reach": [
+  {
+   "effect": "nutation en longitude",
+   "amplitude": "17,2'' (18,6 ans)",
+   "deg": 0.0048,
+   "source": "IERS2010 table 5.3a"
+  },
+  {
+   "effect": "aberration annuelle",
+   "amplitude": "20,5''",
+   "deg": 0.0057,
+   "source": "MEEUS1998"
+  },
+  {
+   "effect": "Terre vs barycentre Terre-Lune",
+   "amplitude": "~6'' sur la longitude du Soleil",
+   "deg": 0.002,
+   "source": "calcul (4670 km / 1 au)"
+  },
+  {
+   "effect": "DeltaT (TT - UT1) en 2026",
+   "amplitude": "69 s -> 0,6' sur la Lune",
+   "deg": 0.0105,
+   "source": "USNO_DT"
+  },
+  {
+   "effect": "libration de la résonance de Laplace",
+   "amplitude": "0,03-0,066 deg",
+   "deg": 0.066,
+   "source": "WIKI_RESONANCE / CELLETTI2021"
+  },
+  {
+   "effect": "termes lunaires < 0,03 deg (au-delà des 13 premiers)",
+   "amplitude": "somme quadratique ~0,05 deg",
+   "deg": 0.05,
+   "source": "MEEUS1998"
+  },
+  {
+   "effect": "écart repère de date vs (J2000 + p_A) pour lambda planétaire",
+   "amplitude": "≤ 2,3''/siècle",
+   "deg": 0.0007,
+   "source": "SIMON1994"
+  },
+  {
+   "effect": "perturbations planétaires autres que les grandes inégalités",
+   "amplitude": "< 0,06 deg (Jupiter), < 0,23 deg (Saturne)",
+   "deg": 0.23,
+   "source": "SCHLYTER"
+  }
+ ],
+ "cross_checks": [
+  {
+   "id": "precession.pA_vs_psiA_chiA",
+   "label": "p_A IAU 2006 vs psi_A - chi_A cos eps0 (IERS 2010)",
+   "unit": "''/siècle",
+   "a": 5028.796195,
+   "source_a": "CAPITAINE2003",
+   "b": 5028.79619575,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -7.525e-07,
+   "tolerance": 0.01,
+   "status": "ok",
+   "note": "Relation géométrique au 1er ordre entre précession lunisolaire (psi_A), précession planétaire (chi_A) et précession générale."
+  },
+  {
+   "id": "precession.pA_vs_Simon",
+   "label": "p_A IAU 2006 vs Simon 1994 (Williams 1991)",
+   "unit": "''/siècle",
+   "a": 5028.796195,
+   "source_a": "CAPITAINE2003",
+   "b": 5028.82,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.023805,
+   "tolerance": 0.05,
+   "status": "ok",
+   "note": "Écart de 0,024''/siècle = 2,4 ms d'arc par an : négligeable pour la machine."
+  },
+  {
+   "id": "precession.pA_vs_IAU1976",
+   "label": "p_A IAU 2006 vs IAU 1976",
+   "unit": "''/siècle",
+   "a": 5028.796195,
+   "source_a": "CAPITAINE2003",
+   "b": 5029.0966,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.300405,
+   "tolerance": 0.05,
+   "status": "explique",
+   "note": "IAU 1976 (Lieske 1977) était trop grande de ~0,3''/siècle ; c'est la constante utilisée par Meeus table 31.A (voir écart Meeus/Simon ci-dessous). Effet : 0,3''/siècle, négligeable."
+  },
+  {
+   "id": "precession.pA_vs_IERS_F14",
+   "label": "p_A IAU 2006 vs IERS 2010 F14 (Kinoshita & Souchay 1990, rad/siècle)",
+   "unit": "''/siècle",
+   "a": 5028.796195,
+   "source_a": "CAPITAINE2003",
+   "b": 5029.09693972,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -0.300745,
+   "tolerance": 0.05,
+   "status": "explique",
+   "note": "F14 de l'IERS est la valeur ancienne (~IAU 1976) utilisée seulement comme argument de nutation planétaire."
+  },
+  {
+   "id": "year.tropical_laskar_vs_simon",
+   "label": "Année tropique moyenne : Laskar (J2000) vs Simon 1994 (taux de date)",
+   "unit": "jours",
+   "a": 365.24218967,
+   "source_a": "LASKAR1986_TY",
+   "b": 365.242190402,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -7.32312e-07,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "year.tropical_laskar_vs_iau2006",
+   "label": "Année tropique : Laskar vs (taux sidéral Simon + p_A IAU 2006)",
+   "unit": "jours",
+   "a": 365.24218967,
+   "source_a": "LASKAR1986_TY",
+   "b": 365.242190469,
+   "source_b": "SIMON1994+CAPITAINE2003",
+   "diff_a_minus_b": -7.99399e-07,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "year.tropical_laskar_vs_jpl",
+   "label": "Année tropique : Laskar vs JPL table 1 (EMB, ajustement 1800-2050) + p_A",
+   "unit": "jours",
+   "a": 365.24218967,
+   "source_a": "LASKAR1986_TY",
+   "b": 365.242194595,
+   "source_b": "JPL_APPROX",
+   "diff_a_minus_b": -4.92551e-06,
+   "tolerance": 2e-05,
+   "status": "ok",
+   "note": "Le taux JPL est un ajustement local 1800-2050 (inclut des perturbations à longue période) : écart ~1 s/an attendu."
+  },
+  {
+   "id": "year.sidereal_simon_vs_wiki",
+   "label": "Année sidérale : Simon 1994 vs Wikipedia 'Year'",
+   "unit": "jours",
+   "a": 365.256363004,
+   "source_a": "SIMON1994",
+   "b": 365.256363004,
+   "source_b": "WIKI_YEAR",
+   "diff_a_minus_b": 1.9304e-10,
+   "tolerance": 2e-08,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "year.sidereal_simon_vs_nssdc",
+   "label": "Année sidérale : Simon 1994 vs NSSDC (3 décimales)",
+   "unit": "jours",
+   "a": 365.256363004,
+   "source_a": "SIMON1994",
+   "b": 365.256,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.000363004,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "year.anomalistic_iers_vs_simon",
+   "label": "Année anomalistique : l' IERS vs (lambda - varpi) Simon",
+   "unit": "jours",
+   "a": 365.259635842,
+   "source_a": "IERS2010",
+   "b": 365.259635842,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 1.09935e-10,
+   "tolerance": 1e-07,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "year.anomalistic_iers_vs_wiki",
+   "label": "Année anomalistique : IERS vs Wikipedia 'Year'",
+   "unit": "jours",
+   "a": 365.259635842,
+   "source_a": "IERS2010",
+   "b": 365.259636,
+   "source_b": "WIKI_YEAR",
+   "diff_a_minus_b": -1.57979e-07,
+   "tolerance": 1e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "obliquity.eps0_2006_vs_1980",
+   "label": "Obliquité J2000 : IAU 2006 (84381,406'') vs IAU 1980 (84381,448'')",
+   "unit": "''",
+   "a": 84381.406,
+   "source_a": "IERS2010",
+   "b": 84381.448,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -0.042,
+   "tolerance": 0.05,
+   "status": "ok",
+   "note": "Écart de 0,042'' : redéfinition (écliptique inertielle vs rotationnelle, Chapront 2002). Négligeable."
+  },
+  {
+   "id": "obliquity.rate_2006_vs_1980",
+   "label": "Taux d'obliquité : IAU 2006 vs IAU 1980",
+   "unit": "''/siècle",
+   "a": -46.836769,
+   "source_a": "IERS2010",
+   "b": -46.815,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -0.021769,
+   "tolerance": 0.05,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "rotation.gmst_ratio",
+   "label": "Rapport temps sidéral moyen / temps solaire moyen : IERS (ERA + précession en AR) vs Meeus",
+   "unit": "sans unité",
+   "a": 1.00273790934,
+   "source_a": "IERS2010",
+   "b": 1.00273790935,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -5.03131e-12,
+   "tolerance": 2e-12,
+   "status": "explique",
+   "note": "Écart 5e-12 (0,4 microseconde par jour) : Meeus arrondit à 11 décimales le rapport d'Aoki et al. 1982 (GMST fonction de UT1), alors que le GMST IAU 2006 sépare ERA(UT1) et précession(TT). Sans effet mécanique."
+  },
+  {
+   "id": "rotation.sidereal_day",
+   "label": "Jour sidéral moyen (s) : dérivé IERS vs Wikipedia 86164,0905 s",
+   "unit": "s",
+   "a": 86164.0905313,
+   "source_a": "IERS2010",
+   "b": 86164.0905,
+   "source_b": "WIKI_SIDEREAL",
+   "diff_a_minus_b": 3.13335e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eot.obliquity_amp",
+   "label": "EdT : amplitude du terme d'obliquité (min) -- tan^2(eps/2) vs Wikipedia",
+   "unit": "min",
+   "a": 9.86277750523,
+   "source_a": "MEEUS1998",
+   "b": 9.863,
+   "source_b": "WIKI_EOT",
+   "diff_a_minus_b": -0.000222495,
+   "tolerance": 0.01,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eot.eccentricity_amp",
+   "label": "EdT : amplitude du terme d'excentricité (min) -- 2e vs Wikipedia",
+   "unit": "min",
+   "a": 7.6586737687,
+   "source_a": "MEEUS1998",
+   "b": 7.659,
+   "source_b": "WIKI_EOT",
+   "diff_a_minus_b": -0.000326231,
+   "tolerance": 0.01,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eot.min",
+   "label": "EdT minimum (min) : formule de Smart 2026 vs Wikipedia (-14 min 15 s, 11 févr.)",
+   "unit": "min",
+   "a": -14.2243215593,
+   "source_a": "MEEUS1998",
+   "b": -14.25,
+   "source_b": "WIKI_EOT",
+   "diff_a_minus_b": 0.0256784,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eot.max",
+   "label": "EdT maximum (min) : formule de Smart 2026 vs Wikipedia (+16 min 25 s, 3 nov.)",
+   "unit": "min",
+   "a": 16.4905736448,
+   "source_a": "MEEUS1998",
+   "b": 16.4166666667,
+   "source_b": "WIKI_EOT",
+   "diff_a_minus_b": 0.073907,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "calendar.gregorian_cycle",
+   "label": "Cycle grégorien : 146097 j = 20871 semaines exactement",
+   "unit": "semaines",
+   "a": 20871.0,
+   "source_a": "WIKI_GREGORIAN",
+   "b": 20871.0,
+   "source_b": "WIKI_GREGORIAN",
+   "diff_a_minus_b": 0.0,
+   "tolerance": 0,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "calendar.j2000_weekday",
+   "label": "Jour de la semaine de JD 2451545.0 (2000-01-01) : 6 = samedi",
+   "unit": "indice (0 = dimanche)",
+   "a": 6.0,
+   "source_a": "MEEUS1998",
+   "b": 6.0,
+   "source_b": "WIKI_GREGORIAN",
+   "diff_a_minus_b": 0.0,
+   "tolerance": 0,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "year.tropical_laskar_vs_de441",
+   "label": "Année tropique : Laskar vs (taux EMB DE441 2000-2100 + p_A)",
+   "unit": "jours",
+   "a": 365.24218967,
+   "source_a": "LASKAR1986_TY",
+   "b": 365.24219038,
+   "source_b": "JPL_HORIZONS+CAPITAINE2003",
+   "diff_a_minus_b": -7.1004e-07,
+   "tolerance": 2e-05,
+   "status": "ok",
+   "note": "Ajustement d'éléments osculateurs sur 100 ans : écart attendu ~1e-6 j."
+  },
+  {
+   "id": "mercury.L_rate_t1_vs_de441",
+   "label": "Mercure : taux de L (deg/siècle), JPL T1 (1800-2050) vs DE441 ajusté 2000-2100",
+   "unit": "deg/siècle",
+   "a": 149472.674112,
+   "source_a": "JPL_APPROX",
+   "b": 149472.674726,
+   "source_b": "JPL_HORIZONS",
+   "diff_a_minus_b": -0.000614128,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": "Tolérance 0,1 deg/siècle = 1/10 de l'objectif de la machine."
+  },
+  {
+   "id": "mercury.L_rate_de441_vs_simon",
+   "label": "Mercure : taux de L (deg/siècle), DE441 2000-2100 vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 149472.674726,
+   "source_a": "JPL_HORIZONS",
+   "b": 149472.674636,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 9.00499e-05,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mercury.L_rate_jpl_vs_simon",
+   "label": "Mercure : taux de L (deg/siècle), JPL T1 (local 1800-2050) vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 149472.674112,
+   "source_a": "JPL_APPROX",
+   "b": 149472.674636,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.000524078,
+   "tolerance": 0.01,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mercury.L_rate_simon_vs_iers",
+   "label": "Mercure : taux de L Simon 5.8 vs IERS 2010 eq. 5.44",
+   "unit": "deg/siècle",
+   "a": 149472.674636,
+   "source_a": "SIMON1994",
+   "b": 149472.674636,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": 1.16415e-09,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mercury.L_rate_date_simon_vs_meeus",
+   "label": "Mercure : taux de L de date, Simon 5.9 vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 149474.072172,
+   "source_a": "SIMON1994",
+   "b": 149474.072249,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.68675e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Meeus 31.A ajoute ici la différence de constante de précession IAU 1976 - Williams 1991 (+0,277''/siècle = +7,7e-5 deg/siècle) ; pour Jupiter-Neptune il reprend Simon à l'identique."
+  },
+  {
+   "id": "mercury.L_rate_date_minus_J2000",
+   "label": "Mercure : (taux de date - taux J2000) Simon vs constante de précession de Simon",
+   "unit": "''/siècle",
+   "a": 5031.131055,
+   "source_a": "SIMON1994",
+   "b": 5028.82,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 2.31106,
+   "tolerance": 2.5,
+   "status": "ok",
+   "note": "Passer du repère J2000 au repère de date n'ajoute pas exactement p_A à lambda (mouvement de l'écliptique, inclinaison et nœud) : jusqu'à 2,3''/siècle (Mercure). Négligeable (<0,001 deg/siècle)."
+  },
+  {
+   "id": "mercury.transcription_L0",
+   "label": "Mercure : L0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 252.25090552,
+   "source_a": "SIMON1994",
+   "b": 252.250906,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -4.8e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "mercury.transcription_e0",
+   "label": "Mercure : e0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "",
+   "a": 0.2056317526,
+   "source_a": "SIMON1994",
+   "b": 0.20563175,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2.6e-09,
+   "tolerance": 6e-09,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "mercury.transcription_i0",
+   "label": "Mercure : i0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 7.00498625,
+   "source_a": "SIMON1994",
+   "b": 7.004986,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2.5e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "mercury.transcription_Omega0",
+   "label": "Mercure : Omega0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 48.33089304,
+   "source_a": "SIMON1994",
+   "b": 48.330893,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 4e-08,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "mercury.transcription_varpi0",
+   "label": "Mercure : varpi0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 77.45611904,
+   "source_a": "SIMON1994",
+   "b": 77.456119,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 4e-08,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "mercury.transcription_e1",
+   "label": "Mercure : de/dT, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "/siècle",
+   "a": 2.040653e-05,
+   "source_a": "SIMON1994",
+   "b": 2.0407e-05,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -4.7e-10,
+   "tolerance": 1.5e-09,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mercury.transcription_varpi1",
+   "label": "Mercure : taux de varpi de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.55640073472,
+   "source_a": "SIMON1994",
+   "b": 1.5564776,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.68653e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "mercury.transcription_Omega1",
+   "label": "Mercure : taux de Omega de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.18611151222,
+   "source_a": "SIMON1994",
+   "b": 1.1861883,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.67878e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "mercury.sidereal_period_jpl_vs_nssdc",
+   "label": "Mercure : période sidérale (j), JPL T1 vs NSSDC",
+   "unit": "jours",
+   "a": 87.9692564419,
+   "source_a": "JPL_APPROX",
+   "b": 87.969,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.000256442,
+   "tolerance": 0.0017593851288389257,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mercury.synodic_period_vs_nssdc",
+   "label": "Mercure : période synodique (j), calculée (DE441 2000-2100) vs NSSDC",
+   "unit": "jours",
+   "a": 115.8774776,
+   "source_a": "JPL_HORIZONS",
+   "b": 115.88,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.0025224,
+   "tolerance": 0.02,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mercury.tropical_period_jpl_vs_nssdc",
+   "label": "Mercure : période tropique (j), JPL T1 + p_A vs NSSDC",
+   "unit": "jours",
+   "a": 87.9684343383,
+   "source_a": "JPL_APPROX+CAPITAINE2003",
+   "b": 87.968,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.000434338,
+   "tolerance": 0.0017593686867653155,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mercury.e_jpl_vs_nssdc",
+   "label": "Mercure : excentricité J2000, JPL T1 vs NSSDC",
+   "unit": "",
+   "a": 0.20563593,
+   "source_a": "JPL_APPROX",
+   "b": 0.20563069,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 5.24e-06,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mercury.L_jpl_vs_nssdc",
+   "label": "Mercure : longitude moyenne J2000 (deg), JPL T1 vs NSSDC",
+   "unit": "deg",
+   "a": 252.2503235,
+   "source_a": "JPL_APPROX",
+   "b": 252.25084,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.0005165,
+   "tolerance": 0.7,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "venus.L_rate_t1_vs_de441",
+   "label": "Vénus : taux de L (deg/siècle), JPL T1 (1800-2050) vs DE441 ajusté 2000-2100",
+   "unit": "deg/siècle",
+   "a": 58517.8153873,
+   "source_a": "JPL_APPROX",
+   "b": 58517.815231,
+   "source_b": "JPL_HORIZONS",
+   "diff_a_minus_b": 0.000156276,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": "Tolérance 0,1 deg/siècle = 1/10 de l'objectif de la machine."
+  },
+  {
+   "id": "venus.L_rate_de441_vs_simon",
+   "label": "Vénus : taux de L (deg/siècle), DE441 2000-2100 vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 58517.815231,
+   "source_a": "JPL_HORIZONS",
+   "b": 58517.815676,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.000444971,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "venus.L_rate_jpl_vs_simon",
+   "label": "Vénus : taux de L (deg/siècle), JPL T1 (local 1800-2050) vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 58517.8153873,
+   "source_a": "JPL_APPROX",
+   "b": 58517.815676,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.000288696,
+   "tolerance": 0.01,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "venus.L_rate_simon_vs_iers",
+   "label": "Vénus : taux de L Simon 5.8 vs IERS 2010 eq. 5.44",
+   "unit": "deg/siècle",
+   "a": 58517.815676,
+   "source_a": "SIMON1994",
+   "b": 58517.815676,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -4.36557e-11,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "venus.L_rate_date_simon_vs_meeus",
+   "label": "Vénus : taux de L de date, Simon 5.9 vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 58519.2129533,
+   "source_a": "SIMON1994",
+   "b": 58519.2130302,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.68697e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Meeus 31.A ajoute ici la différence de constante de précession IAU 1976 - Williams 1991 (+0,277''/siècle = +7,7e-5 deg/siècle) ; pour Jupiter-Neptune il reprend Simon à l'identique."
+  },
+  {
+   "id": "venus.L_rate_date_minus_J2000",
+   "label": "Vénus : (taux de date - taux J2000) Simon vs constante de précession de Simon",
+   "unit": "''/siècle",
+   "a": 5030.198441,
+   "source_a": "SIMON1994",
+   "b": 5028.82,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 1.37844,
+   "tolerance": 2.5,
+   "status": "ok",
+   "note": "Passer du repère J2000 au repère de date n'ajoute pas exactement p_A à lambda (mouvement de l'écliptique, inclinaison et nœud) : jusqu'à 2,3''/siècle (Mercure). Négligeable (<0,001 deg/siècle)."
+  },
+  {
+   "id": "venus.transcription_L0",
+   "label": "Vénus : L0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 181.97980085,
+   "source_a": "SIMON1994",
+   "b": 181.979801,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -1.5e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "venus.transcription_e0",
+   "label": "Vénus : e0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "",
+   "a": 0.0067719164,
+   "source_a": "SIMON1994",
+   "b": 0.00677192,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -3.6e-09,
+   "tolerance": 6e-09,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "venus.transcription_i0",
+   "label": "Vénus : i0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 3.39466189,
+   "source_a": "SIMON1994",
+   "b": 3.394662,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -1.1e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "venus.transcription_Omega0",
+   "label": "Vénus : Omega0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 76.67992019,
+   "source_a": "SIMON1994",
+   "b": 76.67992,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 1.9e-07,
+   "tolerance": 5e-06,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "venus.transcription_varpi0",
+   "label": "Vénus : varpi0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 131.563703,
+   "source_a": "SIMON1994",
+   "b": 131.563703,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 0.0,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "venus.transcription_e1",
+   "label": "Vénus : de/dT, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "/siècle",
+   "a": -4.776521e-05,
+   "source_a": "SIMON1994",
+   "b": -4.7765e-05,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -2.1e-10,
+   "tolerance": 1.5e-09,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "venus.transcription_varpi1",
+   "label": "Vénus : taux de varpi de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.40215196694,
+   "source_a": "SIMON1994",
+   "b": 1.4022288,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.68331e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "venus.transcription_Omega1",
+   "label": "Vénus : taux de Omega de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 0.901043787778,
+   "source_a": "SIMON1994",
+   "b": 0.9011206,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.68122e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "venus.sidereal_period_jpl_vs_nssdc",
+   "label": "Vénus : période sidérale (j), JPL T1 vs NSSDC",
+   "unit": "jours",
+   "a": 224.700801166,
+   "source_a": "JPL_APPROX",
+   "b": 224.701,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.000198834,
+   "tolerance": 0.004494016023317216,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "venus.synodic_period_vs_nssdc",
+   "label": "Vénus : période synodique (j), calculée (DE441 2000-2100) vs NSSDC",
+   "unit": "jours",
+   "a": 583.9213826,
+   "source_a": "JPL_HORIZONS",
+   "b": 583.92,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.0013826,
+   "tolerance": 0.02,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "venus.tropical_period_jpl_vs_nssdc",
+   "label": "Vénus : période tropique (j), JPL T1 + p_A vs NSSDC",
+   "unit": "jours",
+   "a": 224.695437426,
+   "source_a": "JPL_APPROX+CAPITAINE2003",
+   "b": 224.695,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.000437426,
+   "tolerance": 0.004493908748525648,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "venus.e_jpl_vs_nssdc",
+   "label": "Vénus : excentricité J2000, JPL T1 vs NSSDC",
+   "unit": "",
+   "a": 0.00677672,
+   "source_a": "JPL_APPROX",
+   "b": 0.00677323,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 3.49e-06,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "venus.L_jpl_vs_nssdc",
+   "label": "Vénus : longitude moyenne J2000 (deg), JPL T1 vs NSSDC",
+   "unit": "deg",
+   "a": 181.9790995,
+   "source_a": "JPL_APPROX",
+   "b": 181.97973,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.0006305,
+   "tolerance": 0.7,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "earth.L_rate_t1_vs_de441",
+   "label": "Terre (barycentre Terre-Lune) : taux de L (deg/siècle), JPL T1 (1800-2050) vs DE441 ajusté 2000-2100",
+   "unit": "deg/siècle",
+   "a": 35999.3724498,
+   "source_a": "JPL_APPROX",
+   "b": 35999.3728653,
+   "source_b": "JPL_HORIZONS",
+   "diff_a_minus_b": -0.000415506,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": "Tolérance 0,1 deg/siècle = 1/10 de l'objectif de la machine."
+  },
+  {
+   "id": "earth.L_rate_de441_vs_simon",
+   "label": "Terre (barycentre Terre-Lune) : taux de L (deg/siècle), DE441 2000-2100 vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 35999.3728653,
+   "source_a": "JPL_HORIZONS",
+   "b": 35999.3728565,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 8.8078e-06,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "earth.L_rate_jpl_vs_simon",
+   "label": "Terre (barycentre Terre-Lune) : taux de L (deg/siècle), JPL T1 (local 1800-2050) vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 35999.3724498,
+   "source_a": "JPL_APPROX",
+   "b": 35999.3728565,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.000406698,
+   "tolerance": 0.01,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "earth.L_rate_simon_vs_iers",
+   "label": "Terre (barycentre Terre-Lune) : taux de L Simon 5.8 vs IERS 2010 eq. 5.44",
+   "unit": "deg/siècle",
+   "a": 35999.3728565,
+   "source_a": "SIMON1994",
+   "b": 35999.3728565,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": 2.38651e-09,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "earth.L_rate_date_simon_vs_meeus",
+   "label": "Terre (barycentre Terre-Lune) : taux de L de date, Simon 5.9 vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 36000.769751,
+   "source_a": "SIMON1994",
+   "b": 36000.7698278,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.68475e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Meeus 31.A ajoute ici la différence de constante de précession IAU 1976 - Williams 1991 (+0,277''/siècle = +7,7e-5 deg/siècle) ; pour Jupiter-Neptune il reprend Simon à l'identique."
+  },
+  {
+   "id": "earth.L_rate_date_minus_J2000",
+   "label": "Terre (barycentre Terre-Lune) : (taux de date - taux J2000) Simon vs constante de précession de Simon",
+   "unit": "''/siècle",
+   "a": 5028.82,
+   "source_a": "SIMON1994",
+   "b": 5028.82,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.0,
+   "tolerance": 2.5,
+   "status": "ok",
+   "note": "Passer du repère J2000 au repère de date n'ajoute pas exactement p_A à lambda (mouvement de l'écliptique, inclinaison et nœud) : jusqu'à 2,3''/siècle (Mercure). Négligeable (<0,001 deg/siècle)."
+  },
+  {
+   "id": "earth.transcription_L0",
+   "label": "Terre (barycentre Terre-Lune) : L0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 100.46645683,
+   "source_a": "SIMON1994",
+   "b": 100.466457,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -1.7e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "earth.transcription_e0",
+   "label": "Terre (barycentre Terre-Lune) : e0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "",
+   "a": 0.0167086342,
+   "source_a": "SIMON1994",
+   "b": 0.01670863,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 4.2e-09,
+   "tolerance": 6e-09,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "earth.transcription_varpi0",
+   "label": "Terre (barycentre Terre-Lune) : varpi0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 102.93734808,
+   "source_a": "SIMON1994",
+   "b": 102.937348,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 8e-08,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "earth.transcription_e1",
+   "label": "Terre (barycentre Terre-Lune) : de/dT, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "/siècle",
+   "a": -4.203654e-05,
+   "source_a": "SIMON1994",
+   "b": -4.2037e-05,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 4.6e-10,
+   "tolerance": 1.5e-09,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "earth.transcription_varpi1",
+   "label": "Terre (barycentre Terre-Lune) : taux de varpi de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.71945980278,
+   "source_a": "SIMON1994",
+   "b": 1.7195366,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.67972e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "earth.sidereal_period_jpl_vs_nssdc",
+   "label": "Terre (barycentre Terre-Lune) : période sidérale (j), JPL T1 vs NSSDC",
+   "unit": "jours",
+   "a": 365.256367131,
+   "source_a": "JPL_APPROX",
+   "b": 365.256,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.000367131,
+   "tolerance": 0.007305127342612552,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "earth.tropical_period_jpl_vs_nssdc",
+   "label": "Terre (barycentre Terre-Lune) : période tropique (j), JPL T1 + p_A vs NSSDC",
+   "unit": "jours",
+   "a": 365.242194595,
+   "source_a": "JPL_APPROX+CAPITAINE2003",
+   "b": 365.242,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.000194595,
+   "tolerance": 0.0073048438919062625,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "earth.e_jpl_vs_nssdc",
+   "label": "Terre (barycentre Terre-Lune) : excentricité J2000, JPL T1 vs NSSDC",
+   "unit": "",
+   "a": 0.01671123,
+   "source_a": "JPL_APPROX",
+   "b": 0.01671022,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 1.01e-06,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "earth.L_jpl_vs_nssdc",
+   "label": "Terre (barycentre Terre-Lune) : longitude moyenne J2000 (deg), JPL T1 vs NSSDC",
+   "unit": "deg",
+   "a": 100.46457166,
+   "source_a": "JPL_APPROX",
+   "b": 100.46435,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.00022166,
+   "tolerance": 0.7,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mars.L_rate_t1_vs_de441",
+   "label": "Mars : taux de L (deg/siècle), JPL T1 (1800-2050) vs DE441 ajusté 2000-2100",
+   "unit": "deg/siècle",
+   "a": 19140.302685,
+   "source_a": "JPL_APPROX",
+   "b": 19140.3020438,
+   "source_b": "JPL_HORIZONS",
+   "diff_a_minus_b": 0.000641171,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": "Tolérance 0,1 deg/siècle = 1/10 de l'objectif de la machine."
+  },
+  {
+   "id": "mars.L_rate_de441_vs_simon",
+   "label": "Mars : taux de L (deg/siècle), DE441 2000-2100 vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 19140.3020438,
+   "source_a": "JPL_HORIZONS",
+   "b": 19140.2993039,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.00273993,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mars.L_rate_jpl_vs_simon",
+   "label": "Mars : taux de L (deg/siècle), JPL T1 (local 1800-2050) vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 19140.302685,
+   "source_a": "JPL_APPROX",
+   "b": 19140.2993039,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.0033811,
+   "tolerance": 0.01,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mars.L_rate_simon_vs_iers",
+   "label": "Mars : taux de L Simon 5.8 vs IERS 2010 eq. 5.44",
+   "unit": "deg/siècle",
+   "a": 19140.2993039,
+   "source_a": "SIMON1994",
+   "b": 19140.2993039,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -1.05138e-09,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mars.L_rate_date_simon_vs_meeus",
+   "label": "Mars : taux de L de date, Simon 5.9 vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 19141.6963703,
+   "source_a": "SIMON1994",
+   "b": 19141.6964471,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.68031e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Meeus 31.A ajoute ici la différence de constante de précession IAU 1976 - Williams 1991 (+0,277''/siècle = +7,7e-5 deg/siècle) ; pour Jupiter-Neptune il reprend Simon à l'identique."
+  },
+  {
+   "id": "mars.L_rate_date_minus_J2000",
+   "label": "Mars : (taux de date - taux J2000) Simon vs constante de précession de Simon",
+   "unit": "''/siècle",
+   "a": 5029.439081,
+   "source_a": "SIMON1994",
+   "b": 5028.82,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.619081,
+   "tolerance": 2.5,
+   "status": "ok",
+   "note": "Passer du repère J2000 au repère de date n'ajoute pas exactement p_A à lambda (mouvement de l'écliptique, inclinaison et nœud) : jusqu'à 2,3''/siècle (Mercure). Négligeable (<0,001 deg/siècle)."
+  },
+  {
+   "id": "mars.transcription_L0",
+   "label": "Mars : L0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 355.43299958,
+   "source_a": "SIMON1994",
+   "b": 355.433,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -4.2e-07,
+   "tolerance": 0.0005,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "mars.transcription_e0",
+   "label": "Mars : e0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "",
+   "a": 0.0934006477,
+   "source_a": "SIMON1994",
+   "b": 0.09340065,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -2.3e-09,
+   "tolerance": 6e-09,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "mars.transcription_i0",
+   "label": "Mars : i0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 1.84972648,
+   "source_a": "SIMON1994",
+   "b": 1.849726,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 4.8e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "mars.transcription_Omega0",
+   "label": "Mars : Omega0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 49.55809321,
+   "source_a": "SIMON1994",
+   "b": 49.558093,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2.1e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "mars.transcription_varpi0",
+   "label": "Mars : varpi0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 336.06023395,
+   "source_a": "SIMON1994",
+   "b": 336.060234,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -5e-08,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "mars.transcription_e1",
+   "label": "Mars : de/dT, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "/siècle",
+   "a": 9.048438e-05,
+   "source_a": "SIMON1994",
+   "b": 9.0484e-05,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 3.8e-10,
+   "tolerance": 1.5e-09,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mars.transcription_varpi1",
+   "label": "Mars : taux de varpi de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.84096805278,
+   "source_a": "SIMON1994",
+   "b": 1.8410449,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.68472e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "mars.transcription_Omega1",
+   "label": "Mars : taux de Omega de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 0.772019093333,
+   "source_a": "SIMON1994",
+   "b": 0.7720959,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -7.68067e-05,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "mars.sidereal_period_jpl_vs_nssdc",
+   "label": "Mars : période sidérale (j), JPL T1 vs NSSDC",
+   "unit": "jours",
+   "a": 686.979731533,
+   "source_a": "JPL_APPROX",
+   "b": 686.98,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.000268467,
+   "tolerance": 0.013739594630665446,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mars.synodic_period_vs_nssdc",
+   "label": "Mars : période synodique (j), calculée (DE441 2000-2100) vs NSSDC",
+   "unit": "jours",
+   "a": 779.9362218,
+   "source_a": "JPL_HORIZONS",
+   "b": 779.94,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.0037782,
+   "tolerance": 0.02,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mars.tropical_period_jpl_vs_nssdc",
+   "label": "Mars : période tropique (j), JPL T1 + p_A vs NSSDC",
+   "unit": "jours",
+   "a": 686.929598387,
+   "source_a": "JPL_APPROX+CAPITAINE2003",
+   "b": 686.972,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.0424016,
+   "tolerance": 0.013738591967736672,
+   "status": "explique",
+   "note": "Définition différente : la 'période tropique' NSSDC de Mars (686,972 j) est l'année tropique martienne, rapportée à l'équinoxe de Mars (précession propre ~170 000 ans) ; rapportée à l'équinoxe terrestre elle vaut 686,930 j."
+  },
+  {
+   "id": "mars.e_jpl_vs_nssdc",
+   "label": "Mars : excentricité J2000, JPL T1 vs NSSDC",
+   "unit": "",
+   "a": 0.0933941,
+   "source_a": "JPL_APPROX",
+   "b": 0.09341233,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -1.823e-05,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "mars.L_jpl_vs_nssdc",
+   "label": "Mars : longitude moyenne J2000 (deg), JPL T1 vs NSSDC",
+   "unit": "deg",
+   "a": 355.44656795,
+   "source_a": "JPL_APPROX",
+   "b": 355.45332,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.00675205,
+   "tolerance": 0.7,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "jupiter.L_rate_t1_vs_de441",
+   "label": "Jupiter : taux de L (deg/siècle), JPL T1 (1800-2050) vs DE441 ajusté 2000-2100",
+   "unit": "deg/siècle",
+   "a": 3034.74612775,
+   "source_a": "JPL_APPROX",
+   "b": 3034.72276161,
+   "source_b": "JPL_HORIZONS",
+   "diff_a_minus_b": 0.0233661,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": "Tolérance 0,1 deg/siècle = 1/10 de l'objectif de la machine."
+  },
+  {
+   "id": "jupiter.L_rate_de441_vs_simon",
+   "label": "Jupiter : taux de L (deg/siècle), DE441 2000-2100 vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 3034.72276161,
+   "source_a": "JPL_HORIZONS",
+   "b": 3034.90566055,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.182899,
+   "tolerance": 0.1,
+   "status": "explique",
+   "note": "Sur 2000-2100 la grande inégalité Jupiter-Saturne accélère Saturne et ralentit Jupiter par rapport à leur mouvement séculaire."
+  },
+  {
+   "id": "jupiter.L_rate_jpl_vs_simon",
+   "label": "Jupiter : taux de L (deg/siècle), JPL T1 (local 1800-2050) vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 3034.74612775,
+   "source_a": "JPL_APPROX",
+   "b": 3034.90566055,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.159533,
+   "tolerance": 0.01,
+   "status": "explique",
+   "note": "Écart = pente locale des grandes inégalités (Jupiter-Saturne ~900 ans, Uranus-Neptune ~4700 ans)."
+  },
+  {
+   "id": "jupiter.L_rate_simon_vs_iers",
+   "label": "Jupiter : taux de L Simon 5.8 vs IERS 2010 eq. 5.44",
+   "unit": "deg/siècle",
+   "a": 3034.90566055,
+   "source_a": "SIMON1994",
+   "b": 3034.90566056,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -2.05091e-09,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "jupiter.L_rate_date_simon_vs_meeus",
+   "label": "Jupiter : taux de L de date, Simon 5.9 vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 3036.30277485,
+   "source_a": "SIMON1994",
+   "b": 3036.3027748,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 4.80554e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "jupiter.L_rate_date_minus_J2000",
+   "label": "Jupiter : (taux de date - taux J2000) Simon vs constante de précession de Simon",
+   "unit": "''/siècle",
+   "a": 5029.611462,
+   "source_a": "SIMON1994",
+   "b": 5028.82,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.791462,
+   "tolerance": 2.5,
+   "status": "ok",
+   "note": "Passer du repère J2000 au repère de date n'ajoute pas exactement p_A à lambda (mouvement de l'écliptique, inclinaison et nœud) : jusqu'à 2,3''/siècle (Mercure). Négligeable (<0,001 deg/siècle)."
+  },
+  {
+   "id": "jupiter.transcription_L0",
+   "label": "Jupiter : L0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 34.35151874,
+   "source_a": "SIMON1994",
+   "b": 34.351519,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -2.6e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "jupiter.transcription_e0",
+   "label": "Jupiter : e0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "",
+   "a": 0.0484979255,
+   "source_a": "SIMON1994",
+   "b": 0.04849793,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -4.5e-09,
+   "tolerance": 6e-09,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "jupiter.transcription_i0",
+   "label": "Jupiter : i0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 1.30326698,
+   "source_a": "SIMON1994",
+   "b": 1.303267,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -2e-08,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "jupiter.transcription_Omega0",
+   "label": "Jupiter : Omega0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 100.46440702,
+   "source_a": "SIMON1994",
+   "b": 100.464407,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2e-08,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "jupiter.transcription_varpi0",
+   "label": "Jupiter : varpi0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 14.33120687,
+   "source_a": "SIMON1994",
+   "b": 14.331207,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -1.3e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "jupiter.transcription_e1",
+   "label": "Jupiter : de/dT, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "/siècle",
+   "a": 0.00016322542,
+   "source_a": "SIMON1994",
+   "b": 0.000163225,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 4.2e-10,
+   "tolerance": 1.5e-09,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "jupiter.transcription_varpi1",
+   "label": "Jupiter : taux de varpi de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.61263517361,
+   "source_a": "SIMON1994",
+   "b": 1.6126352,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -2.63889e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "jupiter.transcription_Omega1",
+   "label": "Jupiter : taux de Omega de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.02097742972,
+   "source_a": "SIMON1994",
+   "b": 1.0209774,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2.97222e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "jupiter.sidereal_period_jpl_vs_nssdc",
+   "label": "Jupiter : période sidérale (j), JPL T1 vs NSSDC",
+   "unit": "jours",
+   "a": 4332.81712752,
+   "source_a": "JPL_APPROX",
+   "b": 4332.589,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.228128,
+   "tolerance": 0.0866563425504646,
+   "status": "explique",
+   "note": "NSSDC donne la période séculaire (Simon 1994 : 4332,589 j), pas le taux local 1800-2050."
+  },
+  {
+   "id": "jupiter.sidereal_period_nssdc_vs_simon",
+   "label": "Jupiter : période sidérale (j), NSSDC vs Simon 1994 séculaire",
+   "unit": "jours",
+   "a": 4332.589,
+   "source_a": "NSSDC",
+   "b": 4332.58936873,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.000368726,
+   "tolerance": 0.01,
+   "status": "ok",
+   "note": "Les périodes NSSDC des planètes géantes ne suivent pas une règle unique (Jupiter = séculaire ; Saturne, Uranus, Neptune = ni séculaire ni exactement le taux JPL T1) : origine non documentée. Pour la machine, utiliser les taux JPL explicites, pas ces périodes."
+  },
+  {
+   "id": "jupiter.synodic_period_vs_nssdc",
+   "label": "Jupiter : période synodique (j), calculée (DE441 2000-2100) vs NSSDC",
+   "unit": "jours",
+   "a": 398.8818313,
+   "source_a": "JPL_HORIZONS",
+   "b": 398.88,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.0018313,
+   "tolerance": 0.02,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "jupiter.tropical_period_jpl_vs_nssdc",
+   "label": "Jupiter : période tropique (j), JPL T1 + p_A vs NSSDC",
+   "unit": "jours",
+   "a": 4330.82365769,
+   "source_a": "JPL_APPROX+CAPITAINE2003",
+   "b": 4330.595,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.228658,
+   "tolerance": 0.08661647315371739,
+   "status": "explique",
+   "note": "NSSDC donne pour Jupiter la période séculaire (Simon 1994 : 4332,589 j) et non le taux local 1800-2050 (4332,817 j) ; voir le contrôle jupiter.sidereal_period_nssdc_vs_simon."
+  },
+  {
+   "id": "jupiter.e_jpl_vs_nssdc",
+   "label": "Jupiter : excentricité J2000, JPL T1 vs NSSDC",
+   "unit": "",
+   "a": 0.04838624,
+   "source_a": "JPL_APPROX",
+   "b": 0.04839266,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -6.42e-06,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "jupiter.L_jpl_vs_nssdc",
+   "label": "Jupiter : longitude moyenne J2000 (deg), JPL T1 vs NSSDC",
+   "unit": "deg",
+   "a": 34.39644051,
+   "source_a": "JPL_APPROX",
+   "b": 34.40438,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.00793949,
+   "tolerance": 0.7,
+   "status": "ok",
+   "note": "Les deux sont des ajustements (pas des éléments moyens au sens strict) ; les grandes inégalités expliquent les écarts pour les planètes géantes."
+  },
+  {
+   "id": "saturn.L_rate_t1_vs_de441",
+   "label": "Saturne : taux de L (deg/siècle), JPL T1 (1800-2050) vs DE441 ajusté 2000-2100",
+   "unit": "deg/siècle",
+   "a": 1222.49362201,
+   "source_a": "JPL_APPROX",
+   "b": 1222.57422615,
+   "source_b": "JPL_HORIZONS",
+   "diff_a_minus_b": -0.0806041,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": "Tolérance 0,1 deg/siècle = 1/10 de l'objectif de la machine."
+  },
+  {
+   "id": "saturn.L_rate_de441_vs_simon",
+   "label": "Saturne : taux de L (deg/siècle), DE441 2000-2100 vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 1222.57422615,
+   "source_a": "JPL_HORIZONS",
+   "b": 1222.11384881,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.460377,
+   "tolerance": 0.1,
+   "status": "explique",
+   "note": "Sur 2000-2100 la grande inégalité Jupiter-Saturne accélère Saturne et ralentit Jupiter par rapport à leur mouvement séculaire."
+  },
+  {
+   "id": "saturn.L_rate_jpl_vs_simon",
+   "label": "Saturne : taux de L (deg/siècle), JPL T1 (local 1800-2050) vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 1222.49362201,
+   "source_a": "JPL_APPROX",
+   "b": 1222.11384881,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.379773,
+   "tolerance": 0.01,
+   "status": "explique",
+   "note": "Écart = pente locale des grandes inégalités (Jupiter-Saturne ~900 ans, Uranus-Neptune ~4700 ans)."
+  },
+  {
+   "id": "saturn.L_rate_simon_vs_iers",
+   "label": "Saturne : taux de L Simon 5.8 vs IERS 2010 eq. 5.44",
+   "unit": "deg/siècle",
+   "a": 1222.11384881,
+   "source_a": "SIMON1994",
+   "b": 1222.11384881,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": 1.84809e-09,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "saturn.L_rate_date_simon_vs_meeus",
+   "label": "Saturne : taux de L de date, Simon 5.9 vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1223.51106862,
+   "source_a": "SIMON1994",
+   "b": 1223.5110686,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2.16667e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "saturn.L_rate_date_minus_J2000",
+   "label": "Saturne : (taux de date - taux J2000) Simon vs constante de précession de Simon",
+   "unit": "''/siècle",
+   "a": 5029.991306,
+   "source_a": "SIMON1994",
+   "b": 5028.82,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 1.17131,
+   "tolerance": 2.5,
+   "status": "ok",
+   "note": "Passer du repère J2000 au repère de date n'ajoute pas exactement p_A à lambda (mouvement de l'écliptique, inclinaison et nœud) : jusqu'à 2,3''/siècle (Mercure). Négligeable (<0,001 deg/siècle)."
+  },
+  {
+   "id": "saturn.transcription_L0",
+   "label": "Saturne : L0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 50.0774443,
+   "source_a": "SIMON1994",
+   "b": 50.077444,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 3e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "saturn.transcription_e0",
+   "label": "Saturne : e0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "",
+   "a": 0.0555481426,
+   "source_a": "SIMON1994",
+   "b": 0.05554814,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2.6e-09,
+   "tolerance": 6e-09,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "saturn.transcription_i0",
+   "label": "Saturne : i0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 2.48887878,
+   "source_a": "SIMON1994",
+   "b": 2.488879,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -2.2e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "saturn.transcription_Omega0",
+   "label": "Saturne : Omega0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 113.66550252,
+   "source_a": "SIMON1994",
+   "b": 113.665503,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -4.8e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "saturn.transcription_varpi0",
+   "label": "Saturne : varpi0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 93.05723748,
+   "source_a": "SIMON1994",
+   "b": 93.057237,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 4.8e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "saturn.transcription_e1",
+   "label": "Saturne : de/dT, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "/siècle",
+   "a": -0.00034664062,
+   "source_a": "SIMON1994",
+   "b": -0.000346641,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 3.8e-10,
+   "tolerance": 1.5e-09,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "saturn.transcription_varpi1",
+   "label": "Saturne : taux de varpi de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.96376131806,
+   "source_a": "SIMON1994",
+   "b": 1.9637613,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 1.80556e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "saturn.transcription_Omega1",
+   "label": "Saturne : taux de Omega de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 0.877088020833,
+   "source_a": "SIMON1994",
+   "b": 0.877088,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2.08333e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "saturn.sidereal_period_jpl_vs_nssdc",
+   "label": "Saturne : période sidérale (j), JPL T1 vs NSSDC",
+   "unit": "jours",
+   "a": 10755.8843361,
+   "source_a": "JPL_APPROX",
+   "b": 10755.699,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.185336,
+   "tolerance": 10.755884336133118,
+   "status": "ok",
+   "note": "NSSDC (mise à jour 2025) : 10755,70 j, proche du taux local JPL (10755,93 j) ; l'ancienne valeur NSSDC 10759,22 j (utilisée dans la v1) est la période séculaire (Simon : 10759,23 j)."
+  },
+  {
+   "id": "saturn.sidereal_period_nssdc_vs_simon",
+   "label": "Saturne : période sidérale (j), NSSDC vs Simon 1994 séculaire",
+   "unit": "jours",
+   "a": 10755.699,
+   "source_a": "NSSDC",
+   "b": 10759.2267388,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -3.52774,
+   "tolerance": 0.01,
+   "status": "explique",
+   "note": "Les périodes NSSDC des planètes géantes ne suivent pas une règle unique (Jupiter = séculaire ; Saturne, Uranus, Neptune = ni séculaire ni exactement le taux JPL T1) : origine non documentée. Pour la machine, utiliser les taux JPL explicites, pas ces périodes."
+  },
+  {
+   "id": "saturn.synodic_period_vs_nssdc",
+   "label": "Saturne : période synodique (j), calculée (DE441 2000-2100) vs NSSDC",
+   "unit": "jours",
+   "a": 378.096907,
+   "source_a": "JPL_HORIZONS",
+   "b": 378.09,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.006907,
+   "tolerance": 0.02,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "saturn.tropical_period_jpl_vs_nssdc",
+   "label": "Saturne : période tropique (j), JPL T1 + p_A vs NSSDC",
+   "unit": "jours",
+   "a": 10743.608104,
+   "source_a": "JPL_APPROX+CAPITAINE2003",
+   "b": 10746.94,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -3.3319,
+   "tolerance": 10.743608104043625,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "saturn.e_jpl_vs_nssdc",
+   "label": "Saturne : excentricité J2000, JPL T1 vs NSSDC",
+   "unit": "",
+   "a": 0.05386179,
+   "source_a": "JPL_APPROX",
+   "b": 0.0541506,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.00028881,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "saturn.L_jpl_vs_nssdc",
+   "label": "Saturne : longitude moyenne J2000 (deg), JPL T1 vs NSSDC",
+   "unit": "deg",
+   "a": 49.95424423,
+   "source_a": "JPL_APPROX",
+   "b": 49.94432,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.00992423,
+   "tolerance": 0.7,
+   "status": "ok",
+   "note": "Les deux sont des ajustements (pas des éléments moyens au sens strict) ; les grandes inégalités expliquent les écarts pour les planètes géantes."
+  },
+  {
+   "id": "uranus.L_rate_t1_vs_de441",
+   "label": "Uranus : taux de L (deg/siècle), JPL T1 (1800-2050) vs DE441 ajusté 2000-2100",
+   "unit": "deg/siècle",
+   "a": 428.48202785,
+   "source_a": "JPL_APPROX",
+   "b": 428.558708515,
+   "source_b": "JPL_HORIZONS",
+   "diff_a_minus_b": -0.0766807,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": "Tolérance 0,1 deg/siècle = 1/10 de l'objectif de la machine."
+  },
+  {
+   "id": "uranus.L_rate_de441_vs_simon",
+   "label": "Uranus : taux de L (deg/siècle), DE441 2000-2100 vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 428.558708515,
+   "source_a": "JPL_HORIZONS",
+   "b": 428.466998315,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.0917102,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "uranus.L_rate_jpl_vs_simon",
+   "label": "Uranus : taux de L (deg/siècle), JPL T1 (local 1800-2050) vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 428.48202785,
+   "source_a": "JPL_APPROX",
+   "b": 428.466998315,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.0150295,
+   "tolerance": 0.01,
+   "status": "explique",
+   "note": "Écart = pente locale des grandes inégalités (Jupiter-Saturne ~900 ans, Uranus-Neptune ~4700 ans)."
+  },
+  {
+   "id": "uranus.L_rate_simon_vs_iers",
+   "label": "Uranus : taux de L Simon 5.8 vs IERS 2010 eq. 5.44",
+   "unit": "deg/siècle",
+   "a": 428.466998315,
+   "source_a": "SIMON1994",
+   "b": 428.466998313,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": 1.65574e-09,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "uranus.L_rate_date_simon_vs_meeus",
+   "label": "Uranus : taux de L de date, Simon 5.9 vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 429.8640561,
+   "source_a": "SIMON1994",
+   "b": 429.8640561,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2.77737e-10,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "uranus.L_rate_date_minus_J2000",
+   "label": "Uranus : (taux de date - taux J2000) Simon vs constante de précession de Simon",
+   "unit": "''/siècle",
+   "a": 5029.408028,
+   "source_a": "SIMON1994",
+   "b": 5028.82,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.588028,
+   "tolerance": 2.5,
+   "status": "ok",
+   "note": "Passer du repère J2000 au repère de date n'ajoute pas exactement p_A à lambda (mouvement de l'écliptique, inclinaison et nœud) : jusqu'à 2,3''/siècle (Mercure). Négligeable (<0,001 deg/siècle)."
+  },
+  {
+   "id": "uranus.transcription_L0",
+   "label": "Uranus : L0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 314.05500511,
+   "source_a": "SIMON1994",
+   "b": 314.055005,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 1.1e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "uranus.transcription_e0",
+   "label": "Uranus : e0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "",
+   "a": 0.0463812221,
+   "source_a": "SIMON1994",
+   "b": 0.04638122,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2.1e-09,
+   "tolerance": 6e-09,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "uranus.transcription_i0",
+   "label": "Uranus : i0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 0.77319689,
+   "source_a": "SIMON1994",
+   "b": 0.773197,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -1.1e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "uranus.transcription_Omega0",
+   "label": "Uranus : Omega0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 74.00595701,
+   "source_a": "SIMON1994",
+   "b": 74.005957,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 1e-08,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "uranus.transcription_varpi0",
+   "label": "Uranus : varpi0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 173.00529106,
+   "source_a": "SIMON1994",
+   "b": 173.005291,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 6e-08,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "uranus.transcription_e1",
+   "label": "Uranus : de/dT, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "/siècle",
+   "a": -2.729293e-05,
+   "source_a": "SIMON1994",
+   "b": -2.7293e-05,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 7e-11,
+   "tolerance": 1.5e-09,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "uranus.transcription_varpi1",
+   "label": "Uranus : taux de varpi de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.48637896278,
+   "source_a": "SIMON1994",
+   "b": 1.486379,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -3.72222e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "uranus.transcription_Omega1",
+   "label": "Uranus : taux de Omega de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 0.521127750556,
+   "source_a": "SIMON1994",
+   "b": 0.5211278,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -4.94444e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "uranus.sidereal_period_jpl_vs_nssdc",
+   "label": "Uranus : période sidérale (j), JPL T1 vs NSSDC",
+   "unit": "jours",
+   "a": 30687.4014436,
+   "source_a": "JPL_APPROX",
+   "b": 30685.4,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 2.00144,
+   "tolerance": 30.68740144359826,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "uranus.sidereal_period_nssdc_vs_simon",
+   "label": "Uranus : période sidérale (j), NSSDC vs Simon 1994 séculaire",
+   "unit": "jours",
+   "a": 30685.4,
+   "source_a": "NSSDC",
+   "b": 30688.4778798,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -3.07788,
+   "tolerance": 0.01,
+   "status": "explique",
+   "note": "Les périodes NSSDC des planètes géantes ne suivent pas une règle unique (Jupiter = séculaire ; Saturne, Uranus, Neptune = ni séculaire ni exactement le taux JPL T1) : origine non documentée. Pour la machine, utiliser les taux JPL explicites, pas ces périodes."
+  },
+  {
+   "id": "uranus.synodic_period_vs_nssdc",
+   "label": "Uranus : période synodique (j), calculée (DE441 2000-2100) vs NSSDC",
+   "unit": "jours",
+   "a": 369.6569874,
+   "source_a": "JPL_HORIZONS",
+   "b": 369.66,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.0030126,
+   "tolerance": 0.02,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "uranus.tropical_period_jpl_vs_nssdc",
+   "label": "Uranus : période tropique (j), JPL T1 + p_A vs NSSDC",
+   "unit": "jours",
+   "a": 30587.6829971,
+   "source_a": "JPL_APPROX+CAPITAINE2003",
+   "b": 30588.74,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -1.057,
+   "tolerance": 30.587682997061858,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "uranus.e_jpl_vs_nssdc",
+   "label": "Uranus : excentricité J2000, JPL T1 vs NSSDC",
+   "unit": "",
+   "a": 0.04725744,
+   "source_a": "JPL_APPROX",
+   "b": 0.04716771,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 8.973e-05,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "uranus.L_jpl_vs_nssdc",
+   "label": "Uranus : longitude moyenne J2000 (deg), JPL T1 vs NSSDC",
+   "unit": "deg",
+   "a": 313.23810451,
+   "source_a": "JPL_APPROX",
+   "b": 313.23218,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.00592451,
+   "tolerance": 0.7,
+   "status": "ok",
+   "note": "Les deux sont des ajustements (pas des éléments moyens au sens strict) ; les grandes inégalités expliquent les écarts pour les planètes géantes."
+  },
+  {
+   "id": "neptune.L_rate_t1_vs_de441",
+   "label": "Neptune : taux de L (deg/siècle), JPL T1 (1800-2050) vs DE441 ajusté 2000-2100",
+   "unit": "deg/siècle",
+   "a": 218.45945325,
+   "source_a": "JPL_APPROX",
+   "b": 218.427640072,
+   "source_b": "JPL_HORIZONS",
+   "diff_a_minus_b": 0.0318132,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": "Tolérance 0,1 deg/siècle = 1/10 de l'objectif de la machine."
+  },
+  {
+   "id": "neptune.L_rate_de441_vs_simon",
+   "label": "Neptune : taux de L (deg/siècle), DE441 2000-2100 vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 218.427640072,
+   "source_a": "JPL_HORIZONS",
+   "b": 218.486200207,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.0585601,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "neptune.L_rate_jpl_vs_simon",
+   "label": "Neptune : taux de L (deg/siècle), JPL T1 (local 1800-2050) vs Simon (séculaire)",
+   "unit": "deg/siècle",
+   "a": 218.45945325,
+   "source_a": "JPL_APPROX",
+   "b": 218.486200207,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -0.026747,
+   "tolerance": 0.01,
+   "status": "explique",
+   "note": "Écart = pente locale des grandes inégalités (Jupiter-Saturne ~900 ans, Uranus-Neptune ~4700 ans)."
+  },
+  {
+   "id": "neptune.L_rate_simon_vs_iers",
+   "label": "Neptune : taux de L Simon 5.8 vs IERS 2010 eq. 5.44",
+   "unit": "deg/siècle",
+   "a": 218.486200207,
+   "source_a": "SIMON1994",
+   "b": 218.486200208,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -1.26917e-09,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "neptune.L_rate_date_simon_vs_meeus",
+   "label": "Neptune : taux de L de date, Simon 5.9 vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 219.883309244,
+   "source_a": "SIMON1994",
+   "b": 219.8833092,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 4.36111e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "neptune.L_rate_date_minus_J2000",
+   "label": "Neptune : (taux de date - taux J2000) Simon vs constante de précession de Simon",
+   "unit": "''/siècle",
+   "a": 5029.592533,
+   "source_a": "SIMON1994",
+   "b": 5028.82,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 0.772533,
+   "tolerance": 2.5,
+   "status": "ok",
+   "note": "Passer du repère J2000 au repère de date n'ajoute pas exactement p_A à lambda (mouvement de l'écliptique, inclinaison et nœud) : jusqu'à 2,3''/siècle (Mercure). Négligeable (<0,001 deg/siècle)."
+  },
+  {
+   "id": "neptune.transcription_L0",
+   "label": "Neptune : L0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 304.34866548,
+   "source_a": "SIMON1994",
+   "b": 304.348665,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 4.8e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "neptune.transcription_e0",
+   "label": "Neptune : e0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "",
+   "a": 0.009455747,
+   "source_a": "SIMON1994",
+   "b": 0.00945575,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -3e-09,
+   "tolerance": 6e-09,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "neptune.transcription_i0",
+   "label": "Neptune : i0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 1.76995259,
+   "source_a": "SIMON1994",
+   "b": 1.769953,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -4.1e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "neptune.transcription_Omega0",
+   "label": "Neptune : Omega0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 131.78405702,
+   "source_a": "SIMON1994",
+   "b": 131.784057,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 2e-08,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "neptune.transcription_varpi0",
+   "label": "Neptune : varpi0 à J2000, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "deg",
+   "a": 48.12027554,
+   "source_a": "SIMON1994",
+   "b": 48.120276,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -4.6e-07,
+   "tolerance": 5.01e-07,
+   "status": "ok",
+   "note": "Tolérance = demi-unité du dernier chiffre de Meeus."
+  },
+  {
+   "id": "neptune.transcription_e1",
+   "label": "Neptune : de/dT, Simon 1994 (transcrit) vs Meeus 31.A",
+   "unit": "/siècle",
+   "a": 6.03263e-06,
+   "source_a": "SIMON1994",
+   "b": 6.033e-06,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -3.7e-10,
+   "tolerance": 1.5e-09,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "neptune.transcription_varpi1",
+   "label": "Neptune : taux de varpi de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.42629568194,
+   "source_a": "SIMON1994",
+   "b": 1.4262957,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -1.80556e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "neptune.transcription_Omega1",
+   "label": "Neptune : taux de Omega de date, Simon 5.9 (transcrit) vs Meeus 31.A",
+   "unit": "deg/siècle",
+   "a": 1.10220393306,
+   "source_a": "SIMON1994",
+   "b": 1.1022039,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 3.30556e-08,
+   "tolerance": 0.0001,
+   "status": "ok",
+   "note": "Écart possible de 7,7e-5 deg/siècle (constante de précession IAU 1976 chez Meeus)."
+  },
+  {
+   "id": "neptune.sidereal_period_jpl_vs_nssdc",
+   "label": "Neptune : période sidérale (j), JPL T1 vs NSSDC",
+   "unit": "jours",
+   "a": 60189.6590163,
+   "source_a": "JPL_APPROX",
+   "b": 60189.018,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.641016,
+   "tolerance": 60.189659016277886,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "neptune.sidereal_period_nssdc_vs_simon",
+   "label": "Neptune : période sidérale (j), NSSDC vs Simon 1994 séculaire",
+   "unit": "jours",
+   "a": 60189.018,
+   "source_a": "NSSDC",
+   "b": 60182.2906324,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 6.72737,
+   "tolerance": 0.01,
+   "status": "explique",
+   "note": "Les périodes NSSDC des planètes géantes ne suivent pas une règle unique (Jupiter = séculaire ; Saturne, Uranus, Neptune = ni séculaire ni exactement le taux JPL T1) : origine non documentée. Pour la machine, utiliser les taux JPL explicites, pas ces périodes."
+  },
+  {
+   "id": "neptune.synodic_period_vs_nssdc",
+   "label": "Neptune : période synodique (j), calculée (DE441 2000-2100) vs NSSDC",
+   "unit": "jours",
+   "a": 367.4860996,
+   "source_a": "JPL_HORIZONS",
+   "b": 367.49,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -0.0039004,
+   "tolerance": 0.02,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "neptune.tropical_period_jpl_vs_nssdc",
+   "label": "Neptune : période tropique (j), JPL T1 + p_A vs NSSDC",
+   "unit": "jours",
+   "a": 59807.2356489,
+   "source_a": "JPL_APPROX+CAPITAINE2003",
+   "b": 59799.9,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 7.33565,
+   "tolerance": 59.80723564893282,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "neptune.e_jpl_vs_nssdc",
+   "label": "Neptune : excentricité J2000, JPL T1 vs NSSDC",
+   "unit": "",
+   "a": 0.00859048,
+   "source_a": "JPL_APPROX",
+   "b": 0.00858587,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 4.61e-06,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "neptune.L_jpl_vs_nssdc",
+   "label": "Neptune : longitude moyenne J2000 (deg), JPL T1 vs NSSDC",
+   "unit": "deg",
+   "a": 304.87997031,
+   "source_a": "JPL_APPROX",
+   "b": 304.88003,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -5.969e-05,
+   "tolerance": 0.7,
+   "status": "ok",
+   "note": "Les deux sont des ajustements (pas des éléments moyens au sens strict) ; les grandes inégalités expliquent les écarts pour les planètes géantes."
+  },
+  {
+   "id": "pluto.L_rate_t1_vs_de441",
+   "label": "Pluton : taux de L (deg/siècle), JPL T1 (1800-2050) vs DE441 ajusté 2000-2100",
+   "unit": "deg/siècle",
+   "a": 145.20780515,
+   "source_a": "JPL_APPROX",
+   "b": 145.164653535,
+   "source_b": "JPL_HORIZONS",
+   "diff_a_minus_b": 0.0431516,
+   "tolerance": 0.1,
+   "status": "ok",
+   "note": "Tolérance 0,1 deg/siècle = 1/10 de l'objectif de la machine."
+  },
+  {
+   "id": "pluto.sidereal_period_jpl_vs_nssdc",
+   "label": "Pluton : période sidérale (j), JPL T1 vs NSSDC",
+   "unit": "jours",
+   "a": 90552.9836114,
+   "source_a": "JPL_APPROX",
+   "b": 90560.0,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": -7.01639,
+   "tolerance": 90.55298361143227,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "pluto.synodic_period_vs_nssdc",
+   "label": "Pluton : période synodique (j), calculée (DE441 2000-2100) vs NSSDC",
+   "unit": "jours",
+   "a": 366.7351939,
+   "source_a": "JPL_HORIZONS",
+   "b": 366.73,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.0051939,
+   "tolerance": 0.02,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "pluto.e_jpl_vs_nssdc",
+   "label": "Pluton : excentricité J2000, JPL T1 vs NSSDC",
+   "unit": "",
+   "a": 0.2488273,
+   "source_a": "JPL_APPROX",
+   "b": 0.24880766,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 1.964e-05,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "pluto.L_jpl_vs_nssdc",
+   "label": "Pluton : longitude moyenne J2000 (deg), JPL T1 vs NSSDC",
+   "unit": "deg",
+   "a": 238.92903833,
+   "source_a": "JPL_APPROX",
+   "b": 238.92881,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 0.00022833,
+   "tolerance": 0.7,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "sun.eoc_c1",
+   "label": "Soleil : 1er terme de l'équation du centre (deg), Meeus vs série de Kepler (e Simon)",
+   "unit": "deg",
+   "a": 1.914602,
+   "source_a": "MEEUS1998",
+   "b": 1.9146016254,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 3.74597e-07,
+   "tolerance": 0.0002,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "sun.eoc_c2",
+   "label": "Soleil : 2e terme de l'équation du centre (deg), Meeus vs 5/4 e^2",
+   "unit": "deg",
+   "a": 0.019993,
+   "source_a": "MEEUS1998",
+   "b": 0.0199946841341,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": -1.68413e-06,
+   "tolerance": 1e-05,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "jupiter.great_inequality_amp",
+   "label": "Jupiter : amplitude de la grande inégalité (deg), JPL 2b vs Schlyter",
+   "unit": "deg",
+   "a": 0.361477145216,
+   "source_a": "JPL_APPROX",
+   "b": 0.332,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": 0.0294771,
+   "tolerance": 0.08,
+   "status": "ok",
+   "note": "JPL 2b est un ajustement de M (perturbation globale) sur 6000 ans ; Schlyter donne le seul terme 2Mj-5Ms. Même ordre de grandeur."
+  },
+  {
+   "id": "saturn.great_inequality_amp",
+   "label": "Saturne : amplitude de la grande inégalité (deg), JPL 2b vs Schlyter",
+   "unit": "deg",
+   "a": 0.883475694596,
+   "source_a": "JPL_APPROX",
+   "b": 0.812,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": 0.0714757,
+   "tolerance": 0.08,
+   "status": "ok",
+   "note": "JPL 2b est un ajustement de M (perturbation globale) sur 6000 ans ; Schlyter donne le seul terme 2Mj-5Ms. Même ordre de grandeur."
+  },
+  {
+   "id": "moon.month_sidereal",
+   "label": "Mois sidereal (j) : Simon 1994 / IERS vs Chapront et al. 2002",
+   "unit": "jours",
+   "a": 27.3216615512,
+   "source_a": "SIMON1994",
+   "b": 27.321661554,
+   "source_b": "CHAPRONT2002",
+   "diff_a_minus_b": -2.83362e-09,
+   "tolerance": 2e-08,
+   "status": "ok",
+   "note": "Simon 1994 (ajustement DE200/LE200) vs Chapront 2002 (tirs laser-Lune) : écart <1e-8 j, soit <1 ms par mois."
+  },
+  {
+   "id": "moon.month_tropical",
+   "label": "Mois tropical (j) : Simon 1994 / IERS vs Chapront et al. 2002",
+   "unit": "jours",
+   "a": 27.3215822492,
+   "source_a": "SIMON1994",
+   "b": 27.321582252,
+   "source_b": "CHAPRONT2002",
+   "diff_a_minus_b": -2.77485e-09,
+   "tolerance": 2e-08,
+   "status": "ok",
+   "note": "Simon 1994 (ajustement DE200/LE200) vs Chapront 2002 (tirs laser-Lune) : écart <1e-8 j, soit <1 ms par mois."
+  },
+  {
+   "id": "moon.month_synodic",
+   "label": "Mois synodic (j) : Simon 1994 / IERS vs Chapront et al. 2002",
+   "unit": "jours",
+   "a": 29.5305888577,
+   "source_a": "SIMON1994",
+   "b": 29.530588861,
+   "source_b": "CHAPRONT2002",
+   "diff_a_minus_b": -3.28967e-09,
+   "tolerance": 2e-08,
+   "status": "ok",
+   "note": "Simon 1994 (ajustement DE200/LE200) vs Chapront 2002 (tirs laser-Lune) : écart <1e-8 j, soit <1 ms par mois."
+  },
+  {
+   "id": "moon.month_anomalistic",
+   "label": "Mois anomalistic (j) : Simon 1994 / IERS vs Chapront et al. 2002",
+   "unit": "jours",
+   "a": 27.5545498824,
+   "source_a": "SIMON1994",
+   "b": 27.554549886,
+   "source_b": "CHAPRONT2002",
+   "diff_a_minus_b": -3.64314e-09,
+   "tolerance": 2e-08,
+   "status": "ok",
+   "note": "Simon 1994 (ajustement DE200/LE200) vs Chapront 2002 (tirs laser-Lune) : écart <1e-8 j, soit <1 ms par mois."
+  },
+  {
+   "id": "moon.month_draconic",
+   "label": "Mois draconic (j) : Simon 1994 / IERS vs Chapront et al. 2002",
+   "unit": "jours",
+   "a": 27.2122208206,
+   "source_a": "SIMON1994",
+   "b": 27.212220815,
+   "source_b": "CHAPRONT2002",
+   "diff_a_minus_b": 5.56078e-09,
+   "tolerance": 2e-08,
+   "status": "ok",
+   "note": "Simon 1994 (ajustement DE200/LE200) vs Chapront 2002 (tirs laser-Lune) : écart <1e-8 j, soit <1 ms par mois."
+  },
+  {
+   "id": "moon.rate_D",
+   "label": "Lune : taux de D (deg/siècle), Meeus ch. 47 vs IERS 2010 (Simon 1994)",
+   "unit": "deg/siècle",
+   "a": 445267.111403,
+   "source_a": "MEEUS1998",
+   "b": 445267.111447,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -4.35445e-05,
+   "tolerance": 0.0002,
+   "status": "ok",
+   "note": "Meeus 47 provient d'ELP 2000-82 / Chapront-Touzé & Chapront 1991 ; écarts de quelques 1e-5 deg/siècle."
+  },
+  {
+   "id": "moon.rate_M_prime",
+   "label": "Lune : taux de M_prime (deg/siècle), Meeus ch. 47 vs IERS 2010 (Simon 1994)",
+   "unit": "deg/siècle",
+   "a": 477198.867505,
+   "source_a": "MEEUS1998",
+   "b": 477198.86756,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -5.5e-05,
+   "tolerance": 0.0002,
+   "status": "ok",
+   "note": "Meeus 47 provient d'ELP 2000-82 / Chapront-Touzé & Chapront 1991 ; écarts de quelques 1e-5 deg/siècle."
+  },
+  {
+   "id": "moon.rate_F",
+   "label": "Lune : taux de F (deg/siècle), Meeus ch. 47 vs IERS 2010 (Simon 1994)",
+   "unit": "deg/siècle",
+   "a": 483202.017523,
+   "source_a": "MEEUS1998",
+   "b": 483202.017458,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": 6.55778e-05,
+   "tolerance": 0.0002,
+   "status": "ok",
+   "note": "Meeus 47 provient d'ELP 2000-82 / Chapront-Touzé & Chapront 1991 ; écarts de quelques 1e-5 deg/siècle."
+  },
+  {
+   "id": "moon.rate_Omega",
+   "label": "Lune : taux de Omega (deg/siècle), Meeus ch. 47 vs IERS 2010 (Simon 1994)",
+   "unit": "deg/siècle",
+   "a": -1934.1362891,
+   "source_a": "MEEUS1998",
+   "b": -1934.13626197,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -2.71278e-05,
+   "tolerance": 0.0002,
+   "status": "ok",
+   "note": "Meeus 47 provient d'ELP 2000-82 / Chapront-Touzé & Chapront 1991 ; écarts de quelques 1e-5 deg/siècle."
+  },
+  {
+   "id": "moon.rate_M_sun",
+   "label": "Lune : taux de M_sun (deg/siècle), Meeus ch. 47 vs IERS 2010 (Simon 1994)",
+   "unit": "deg/siècle",
+   "a": 35999.0502909,
+   "source_a": "MEEUS1998",
+   "b": 35999.0502911,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -2.38892e-07,
+   "tolerance": 0.0002,
+   "status": "ok",
+   "note": "Meeus 47 provient d'ELP 2000-82 / Chapront-Touzé & Chapront 1991 ; écarts de quelques 1e-5 deg/siècle."
+  },
+  {
+   "id": "moon.rate_Lprime",
+   "label": "Lune : taux de L' (deg/siècle, de date), Meeus vs Simon (b.3)",
+   "unit": "deg/siècle",
+   "a": 481267.881234,
+   "source_a": "MEEUS1998",
+   "b": 481267.881196,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 3.846e-05,
+   "tolerance": 0.0002,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.rate_perigee",
+   "label": "Lune : taux du périgée (deg/siècle, de date), Meeus vs Simon (b.3)",
+   "unit": "deg/siècle",
+   "a": 4069.0137287,
+   "source_a": "MEEUS1998",
+   "b": 4069.01363525,
+   "source_b": "SIMON1994",
+   "diff_a_minus_b": 9.345e-05,
+   "tolerance": 0.001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.synodic_meeus49",
+   "label": "Mois synodique de Meeus (49.1) vs Chapront 2002",
+   "unit": "jours",
+   "a": 29.530588861,
+   "source_a": "MEEUS1998",
+   "b": 29.530588861,
+   "source_b": "CHAPRONT2002",
+   "diff_a_minus_b": 0.0,
+   "tolerance": 1e-09,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.sidereal_nssdc",
+   "label": "Mois sidéral : Simon vs NSSDC 27,3217",
+   "unit": "jours",
+   "a": 27.3216615512,
+   "source_a": "SIMON1994",
+   "b": 27.3217,
+   "source_b": "NSSDC_MOON",
+   "diff_a_minus_b": -3.84488e-05,
+   "tolerance": 6e-05,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.node_trop_iers",
+   "label": "Période des nœuds (tropique, j) : Simon vs IERS table 5.1a (6798,3837)",
+   "unit": "jours",
+   "a": 6798.38347407,
+   "source_a": "SIMON1994",
+   "b": 6798.3837,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": -0.000225926,
+   "tolerance": 0.001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.node_sid_nasa",
+   "label": "Période des nœuds (sidérale, j) : Simon vs NASA (6793,48)",
+   "unit": "jours",
+   "a": 6793.47700989,
+   "source_a": "SIMON1994",
+   "b": 6793.48,
+   "source_b": "NASA_ECL",
+   "diff_a_minus_b": -0.00299011,
+   "tolerance": 0.01,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.apse_trop_iers",
+   "label": "Période du périgée (tropique, j) : Simon vs IERS table 5.1a (3231,4956)",
+   "unit": "jours",
+   "a": 3231.49568389,
+   "source_a": "SIMON1994",
+   "b": 3231.4956,
+   "source_b": "IERS2010",
+   "diff_a_minus_b": 8.389e-05,
+   "tolerance": 0.001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.apse_nasa",
+   "label": "Période du périgée (j) : Simon (sidérale) vs NASA (3231,6 j, dite 'par rapport aux étoiles')",
+   "unit": "jours",
+   "a": 3232.60543898,
+   "source_a": "SIMON1994",
+   "b": 3231.6,
+   "source_b": "NASA_ECL",
+   "diff_a_minus_b": 1.00544,
+   "tolerance": 0.1,
+   "status": "explique",
+   "note": "La valeur NASA (0,11140 deg/j) est en fait le taux par rapport à l'équinoxe (tropique : 3231,50 j) ; la période sidérale est 3232,60 j. Incohérence de la page NASA."
+  },
+  {
+   "id": "moon.eclipse_year",
+   "label": "Année draconitique (j) : (F - D) IERS vs Wikipedia 'Year' 346,620075883",
+   "unit": "jours",
+   "a": 346.620075881,
+   "source_a": "IERS2010",
+   "b": 346.620075883,
+   "source_b": "WIKI_YEAR",
+   "diff_a_minus_b": -1.8523e-09,
+   "tolerance": 5e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.equation_du_centre.brown",
+   "label": "Lune, longitude, equation_du_centre (deg) : Meeus 47.A vs Brown (Wikipedia)",
+   "unit": "deg",
+   "a": 6.288774,
+   "source_a": "MEEUS1998",
+   "b": 6.28861111111,
+   "source_b": "WIKI_LUNAR_THEORY",
+   "diff_a_minus_b": 0.000162889,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.equation_du_centre.aa",
+   "label": "Lune, longitude, equation_du_centre (deg) : Meeus 47.A vs Almanach (2 décimales)",
+   "unit": "deg",
+   "a": 6.288774,
+   "source_a": "MEEUS1998",
+   "b": 6.29,
+   "source_b": "AA_LOWPREC",
+   "diff_a_minus_b": -0.001226,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.evection.brown",
+   "label": "Lune, longitude, évection (deg) : Meeus 47.A vs Brown (Wikipedia)",
+   "unit": "deg",
+   "a": 1.274027,
+   "source_a": "MEEUS1998",
+   "b": 1.27388888889,
+   "source_b": "WIKI_LUNAR_THEORY",
+   "diff_a_minus_b": 0.000138111,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.evection.aa",
+   "label": "Lune, longitude, évection (deg) : Meeus 47.A vs Almanach (2 décimales)",
+   "unit": "deg",
+   "a": 1.274027,
+   "source_a": "MEEUS1998",
+   "b": 1.27,
+   "source_b": "AA_LOWPREC",
+   "diff_a_minus_b": 0.004027,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.variation.brown",
+   "label": "Lune, longitude, variation (deg) : Meeus 47.A vs Brown (Wikipedia)",
+   "unit": "deg",
+   "a": 0.658314,
+   "source_a": "MEEUS1998",
+   "b": 0.658333333333,
+   "source_b": "WIKI_LUNAR_THEORY",
+   "diff_a_minus_b": -1.93333e-05,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.variation.aa",
+   "label": "Lune, longitude, variation (deg) : Meeus 47.A vs Almanach (2 décimales)",
+   "unit": "deg",
+   "a": 0.658314,
+   "source_a": "MEEUS1998",
+   "b": 0.66,
+   "source_b": "AA_LOWPREC",
+   "diff_a_minus_b": -0.001686,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.equation_du_centre_2e_harmonique.brown",
+   "label": "Lune, longitude, equation_du_centre_2e_harmonique (deg) : Meeus 47.A vs Brown (Wikipedia)",
+   "unit": "deg",
+   "a": 0.213618,
+   "source_a": "MEEUS1998",
+   "b": 0.213611111111,
+   "source_b": "WIKI_LUNAR_THEORY",
+   "diff_a_minus_b": 6.88889e-06,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.equation_du_centre_2e_harmonique.aa",
+   "label": "Lune, longitude, equation_du_centre_2e_harmonique (deg) : Meeus 47.A vs Almanach (2 décimales)",
+   "unit": "deg",
+   "a": 0.213618,
+   "source_a": "MEEUS1998",
+   "b": 0.21,
+   "source_b": "AA_LOWPREC",
+   "diff_a_minus_b": 0.003618,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.equation_annuelle.brown",
+   "label": "Lune, longitude, equation_annuelle (deg) : Meeus 47.A vs Brown (Wikipedia)",
+   "unit": "deg",
+   "a": -0.185116,
+   "source_a": "MEEUS1998",
+   "b": -0.185555555556,
+   "source_b": "WIKI_LUNAR_THEORY",
+   "diff_a_minus_b": 0.000439556,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": "Équation annuelle : Meeus la multiplie en plus par E = 1 - 0,002516 T."
+  },
+  {
+   "id": "moon.lon.equation_annuelle.aa",
+   "label": "Lune, longitude, equation_annuelle (deg) : Meeus 47.A vs Almanach (2 décimales)",
+   "unit": "deg",
+   "a": -0.185116,
+   "source_a": "MEEUS1998",
+   "b": -0.19,
+   "source_b": "AA_LOWPREC",
+   "diff_a_minus_b": 0.004884,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.reduction_a_l_ecliptique.brown",
+   "label": "Lune, longitude, reduction_a_l_ecliptique (deg) : Meeus 47.A vs Brown (Wikipedia)",
+   "unit": "deg",
+   "a": -0.114332,
+   "source_a": "MEEUS1998",
+   "b": -0.114444444444,
+   "source_b": "WIKI_LUNAR_THEORY",
+   "diff_a_minus_b": 0.000112444,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.reduction_a_l_ecliptique.aa",
+   "label": "Lune, longitude, reduction_a_l_ecliptique (deg) : Meeus 47.A vs Almanach (2 décimales)",
+   "unit": "deg",
+   "a": -0.114332,
+   "source_a": "MEEUS1998",
+   "b": -0.11,
+   "source_b": "AA_LOWPREC",
+   "diff_a_minus_b": -0.004332,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.terme_2D_moins_2Mp.schlyter",
+   "label": "Lune, longitude, terme_2D_moins_2Mp (deg) : Meeus 47.A vs Schlyter (3 décimales)",
+   "unit": "deg",
+   "a": 0.058793,
+   "source_a": "MEEUS1998",
+   "b": 0.059,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": -0.000207,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": "Schlyter n'est pas un simple arrondi de Meeus (autre théorie, éléments osculateurs) : écart de 0,0006 deg, sans conséquence."
+  },
+  {
+   "id": "moon.lon.terme_2D_moins_M_moins_Mp.schlyter",
+   "label": "Lune, longitude, terme_2D_moins_M_moins_Mp (deg) : Meeus 47.A vs Schlyter (3 décimales)",
+   "unit": "deg",
+   "a": 0.057066,
+   "source_a": "MEEUS1998",
+   "b": 0.057,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": 6.6e-05,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": "Schlyter n'est pas un simple arrondi de Meeus (autre théorie, éléments osculateurs) : écart de 0,0006 deg, sans conséquence."
+  },
+  {
+   "id": "moon.lon.terme_2D_plus_Mp.schlyter",
+   "label": "Lune, longitude, terme_2D_plus_Mp (deg) : Meeus 47.A vs Schlyter (3 décimales)",
+   "unit": "deg",
+   "a": 0.053322,
+   "source_a": "MEEUS1998",
+   "b": 0.053,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": 0.000322,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": "Schlyter n'est pas un simple arrondi de Meeus (autre théorie, éléments osculateurs) : écart de 0,0006 deg, sans conséquence."
+  },
+  {
+   "id": "moon.lon.terme_2D_moins_M.schlyter",
+   "label": "Lune, longitude, terme_2D_moins_M (deg) : Meeus 47.A vs Schlyter (3 décimales)",
+   "unit": "deg",
+   "a": 0.045758,
+   "source_a": "MEEUS1998",
+   "b": 0.046,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": -0.000242,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": "Schlyter n'est pas un simple arrondi de Meeus (autre théorie, éléments osculateurs) : écart de 0,0006 deg, sans conséquence."
+  },
+  {
+   "id": "moon.lon.terme_M_moins_Mp.schlyter",
+   "label": "Lune, longitude, terme_M_moins_Mp (deg) : Meeus 47.A vs Schlyter (3 décimales)",
+   "unit": "deg",
+   "a": -0.040923,
+   "source_a": "MEEUS1998",
+   "b": -0.041,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": 7.7e-05,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": "Schlyter n'est pas un simple arrondi de Meeus (autre théorie, éléments osculateurs) : écart de 0,0006 deg, sans conséquence."
+  },
+  {
+   "id": "moon.lon.inegalite_parallactique.brown",
+   "label": "Lune, longitude, inegalite_parallactique (deg) : Meeus 47.A vs Brown (Wikipedia)",
+   "unit": "deg",
+   "a": -0.03472,
+   "source_a": "MEEUS1998",
+   "b": -0.0347222222222,
+   "source_b": "WIKI_LUNAR_THEORY",
+   "diff_a_minus_b": 2.22222e-06,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lon.terme_M_plus_Mp.schlyter",
+   "label": "Lune, longitude, terme_M_plus_Mp (deg) : Meeus 47.A vs Schlyter (3 décimales)",
+   "unit": "deg",
+   "a": -0.030383,
+   "source_a": "MEEUS1998",
+   "b": -0.031,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": 0.000617,
+   "tolerance": 0.0006,
+   "status": "explique",
+   "note": "Schlyter n'est pas un simple arrondi de Meeus (autre théorie, éléments osculateurs) : écart de 0,0006 deg, sans conséquence."
+  },
+  {
+   "id": "moon.lat.terme_principal_sinF.aa",
+   "label": "Lune, latitude, terme_principal_sinF (deg) : Meeus 47.B vs Almanach",
+   "unit": "deg",
+   "a": 5.128122,
+   "source_a": "MEEUS1998",
+   "b": 5.13,
+   "source_b": "AA_LOWPREC",
+   "diff_a_minus_b": -0.001878,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lat.Mp_plus_F.aa",
+   "label": "Lune, latitude, Mp_plus_F (deg) : Meeus 47.B vs Almanach",
+   "unit": "deg",
+   "a": 0.280602,
+   "source_a": "MEEUS1998",
+   "b": 0.28,
+   "source_b": "AA_LOWPREC",
+   "diff_a_minus_b": 0.000602,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lat.Mp_moins_F.aa",
+   "label": "Lune, latitude, Mp_moins_F (deg) : Meeus 47.B vs Almanach",
+   "unit": "deg",
+   "a": 0.277693,
+   "source_a": "MEEUS1998",
+   "b": 0.28,
+   "source_b": "AA_LOWPREC",
+   "diff_a_minus_b": -0.002307,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lat.evection_en_latitude_2D_moins_F.aa",
+   "label": "Lune, latitude, evection_en_latitude_2D_moins_F (deg) : Meeus 47.B vs Almanach",
+   "unit": "deg",
+   "a": 0.173237,
+   "source_a": "MEEUS1998",
+   "b": 0.17,
+   "source_b": "AA_LOWPREC",
+   "diff_a_minus_b": 0.003237,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lat.evection_en_latitude_2D_moins_F.schlyter",
+   "label": "Lune, latitude, evection_en_latitude_2D_moins_F (deg) : Meeus 47.B vs Schlyter",
+   "unit": "deg",
+   "a": 0.173237,
+   "source_a": "MEEUS1998",
+   "b": 0.173,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": 0.000237,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lat.2D_moins_Mp_plus_F.schlyter",
+   "label": "Lune, latitude, 2D_moins_Mp_plus_F (deg) : Meeus 47.B vs Schlyter",
+   "unit": "deg",
+   "a": 0.055413,
+   "source_a": "MEEUS1998",
+   "b": 0.055,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": 0.000413,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lat.2D_moins_Mp_moins_F.schlyter",
+   "label": "Lune, latitude, 2D_moins_Mp_moins_F (deg) : Meeus 47.B vs Schlyter",
+   "unit": "deg",
+   "a": 0.046271,
+   "source_a": "MEEUS1998",
+   "b": 0.046,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": 0.000271,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lat.2D_plus_F.schlyter",
+   "label": "Lune, latitude, 2D_plus_F (deg) : Meeus 47.B vs Schlyter",
+   "unit": "deg",
+   "a": 0.032573,
+   "source_a": "MEEUS1998",
+   "b": 0.033,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": -0.000427,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.lat.2Mp_plus_F.schlyter",
+   "label": "Lune, latitude, 2Mp_plus_F (deg) : Meeus 47.B vs Schlyter",
+   "unit": "deg",
+   "a": 0.017198,
+   "source_a": "MEEUS1998",
+   "b": 0.017,
+   "source_b": "SCHLYTER",
+   "diff_a_minus_b": 0.000198,
+   "tolerance": 0.0006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "moon.parallax_mean",
+   "label": "Lune : parallaxe moyenne (deg), Almanach vs asin(6378,14/385000,56) Meeus",
+   "unit": "deg",
+   "a": 0.9508,
+   "source_a": "AA_LOWPREC",
+   "b": 0.94923815474,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": 0.00156185,
+   "tolerance": 0.002,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eclipse.saros_days_wiki",
+   "label": "Saros (j) : 223 x mois synodique vs Wikipedia 'Éclipse cycle'",
+   "unit": "jours",
+   "a": 6585.32131527,
+   "source_a": "CHAPRONT2002",
+   "b": 6585.32,
+   "source_b": "WIKI_ECL_CYCLE",
+   "diff_a_minus_b": 0.00131527,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eclipse.saros_days_nasa",
+   "label": "Saros (j) : 223 x mois synodique vs NASA (6585,3223)",
+   "unit": "jours",
+   "a": 6585.32131527,
+   "source_a": "CHAPRONT2002",
+   "b": 6585.3223,
+   "source_b": "NASA_ECL",
+   "diff_a_minus_b": -0.00098473,
+   "tolerance": 0.002,
+   "status": "ok",
+   "note": "La page NASA donne 6585,3223 j alors que 223 x 29,530589 = 6585,3213 j : coquille de la page (écart 1,4 min)."
+  },
+  {
+   "id": "eclipse.saros_draconic_nasa",
+   "label": "242 mois draconitiques (j) vs NASA 6585,3575",
+   "unit": "jours",
+   "a": 6585.35743858,
+   "source_a": "SIMON1994",
+   "b": 6585.3575,
+   "source_b": "NASA_ECL",
+   "diff_a_minus_b": -6.14243e-05,
+   "tolerance": 0.001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eclipse.saros_anomalistic_nasa",
+   "label": "239 mois anomalistiques (j) vs NASA 6585,5375",
+   "unit": "jours",
+   "a": 6585.53742188,
+   "source_a": "SIMON1994",
+   "b": 6585.5375,
+   "source_b": "NASA_ECL",
+   "diff_a_minus_b": -7.81167e-05,
+   "tolerance": 0.001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eclipse.inex_nasa",
+   "label": "Inex (j) : 358 x mois synodique vs NASA 10571,9509",
+   "unit": "jours",
+   "a": 10571.9508111,
+   "source_a": "CHAPRONT2002",
+   "b": 10571.9509,
+   "source_b": "NASA_ECL",
+   "diff_a_minus_b": -8.89e-05,
+   "tolerance": 0.001,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eclipse.exeligmos_wiki",
+   "label": "Exeligmos (j) vs Wikipedia 19755,96",
+   "unit": "jours",
+   "a": 19755.9639458,
+   "source_a": "CHAPRONT2002",
+   "b": 19755.96,
+   "source_b": "WIKI_ECL_CYCLE",
+   "diff_a_minus_b": 0.0039458,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eclipse.metonic_wiki",
+   "label": "Cycle de Meton 235 lunaisons (j) vs Wikipedia 6939,69",
+   "unit": "jours",
+   "a": 6939.68838156,
+   "source_a": "CHAPRONT2002",
+   "b": 6939.69,
+   "source_b": "WIKI_ECL_CYCLE",
+   "diff_a_minus_b": -0.00161844,
+   "tolerance": 0.006,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eclipse.solar_limit_max",
+   "label": "Limite écliptique solaire max (deg) : géométrie vs NASA (18,59)",
+   "unit": "deg",
+   "a": 18.3454479758,
+   "source_a": "calcul",
+   "b": 18.59,
+   "source_b": "NASA_ECL",
+   "diff_a_minus_b": -0.244552,
+   "tolerance": 0.4,
+   "status": "ok",
+   "note": "Calcul statique (Lune immobile) ; la NASA tient compte du mouvement relatif pendant l'événement."
+  },
+  {
+   "id": "eclipse.solar_limit_min",
+   "label": "Limite écliptique solaire min (deg) : géométrie vs NASA (15,39)",
+   "unit": "deg",
+   "a": 15.3214369,
+   "source_a": "calcul",
+   "b": 15.39,
+   "source_b": "NASA_ECL",
+   "diff_a_minus_b": -0.0685631,
+   "tolerance": 0.3,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "eclipse.lunar_limit_max",
+   "label": "Limite écliptique lunaire (ombre) max (deg) : géométrie vs Meeus via Holmes (12 deg 08')",
+   "unit": "deg",
+   "a": 12.2279571008,
+   "source_a": "calcul",
+   "b": 12.1333333333,
+   "source_b": "HOLMES_ECL",
+   "diff_a_minus_b": 0.0946238,
+   "tolerance": 0.3,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "galilean.io.sidereal_vs_nssdc",
+   "label": "io : période sidérale (j), Lieske E5 vs NSSDC",
+   "unit": "jours",
+   "a": 1.76913778245,
+   "source_a": "LIESKE_E5",
+   "b": 1.769138,
+   "source_b": "NSSDC_JOVSAT",
+   "diff_a_minus_b": -2.17547e-07,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "galilean.io.synodic_vs_meeus",
+   "label": "io : période synodique / Soleil (j), E5 - Jupiter (JPL) vs Meeus ch. 44",
+   "unit": "jours",
+   "a": 1.7698604363,
+   "source_a": "LIESKE_E5+JPL_APPROX",
+   "b": 1.76986047432,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -3.80174e-08,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": "Tolérance = arrondi du taux de Meeus (7 décimales) + choix du taux de Jupiter."
+  },
+  {
+   "id": "galilean.io.jpl_P_is_anomalistic",
+   "label": "io : 'P' de la table JPL = période anomalistique ? (360/(n - varpi'))",
+   "unit": "jours",
+   "a": 1.76273265562,
+   "source_a": "LIESKE_E5+JPL_SAT",
+   "b": 1.762732,
+   "source_b": "JPL_SAT",
+   "diff_a_minus_b": 6.55624e-07,
+   "tolerance": 0.002,
+   "status": "ok",
+   "note": "La colonne P du JPL est la période de l'anomalie moyenne (ellipse en précession), pas la période sidérale. Pour Io et Europe le périjove forcé rétrograde en ~1,3-1,4 an (lié à la résonance), d'où P plus courte de 0,4-0,7 %."
+  },
+  {
+   "id": "galilean.europa.sidereal_vs_nssdc",
+   "label": "europa : période sidérale (j), Lieske E5 vs NSSDC",
+   "unit": "jours",
+   "a": 3.55118103591,
+   "source_a": "LIESKE_E5",
+   "b": 3.551181,
+   "source_b": "NSSDC_JOVSAT",
+   "diff_a_minus_b": 3.59147e-08,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "galilean.europa.synodic_vs_meeus",
+   "label": "europa : période synodique / Soleil (j), E5 - Jupiter (JPL) vs Meeus ch. 44",
+   "unit": "jours",
+   "a": 3.55409397471,
+   "source_a": "LIESKE_E5+JPL_APPROX",
+   "b": 3.5540941296,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -1.54886e-07,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": "Tolérance = arrondi du taux de Meeus (7 décimales) + choix du taux de Jupiter."
+  },
+  {
+   "id": "galilean.europa.jpl_P_is_anomalistic",
+   "label": "europa : 'P' de la table JPL = période anomalistique ? (360/(n - varpi'))",
+   "unit": "jours",
+   "a": 3.5265844909,
+   "source_a": "LIESKE_E5+JPL_SAT",
+   "b": 3.525463,
+   "source_b": "JPL_SAT",
+   "diff_a_minus_b": 0.00112149,
+   "tolerance": 0.002,
+   "status": "ok",
+   "note": "La colonne P du JPL est la période de l'anomalie moyenne (ellipse en précession), pas la période sidérale. Pour Io et Europe le périjove forcé rétrograde en ~1,3-1,4 an (lié à la résonance), d'où P plus courte de 0,4-0,7 %."
+  },
+  {
+   "id": "galilean.ganymede.sidereal_vs_nssdc",
+   "label": "ganymede : période sidérale (j), Lieske E5 vs NSSDC",
+   "unit": "jours",
+   "a": 7.15455296215,
+   "source_a": "LIESKE_E5",
+   "b": 7.154553,
+   "source_b": "NSSDC_JOVSAT",
+   "diff_a_minus_b": -3.78549e-08,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "galilean.ganymede.synodic_vs_meeus",
+   "label": "ganymede : période synodique / Soleil (j), E5 - Jupiter (JPL) vs Meeus ch. 44",
+   "unit": "jours",
+   "a": 7.16638643903,
+   "source_a": "LIESKE_E5+JPL_APPROX",
+   "b": 7.16638706477,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -6.25737e-07,
+   "tolerance": 2.1e-06,
+   "status": "ok",
+   "note": "Tolérance = arrondi du taux de Meeus (6 décimales) + choix du taux de Jupiter."
+  },
+  {
+   "id": "galilean.ganymede.jpl_P_is_anomalistic",
+   "label": "ganymede : 'P' de la table JPL = période anomalistique ? (360/(n - varpi'))",
+   "unit": "jours",
+   "a": 7.15660541074,
+   "source_a": "LIESKE_E5+JPL_SAT",
+   "b": 7.155588,
+   "source_b": "JPL_SAT",
+   "diff_a_minus_b": 0.00101741,
+   "tolerance": 0.002,
+   "status": "ok",
+   "note": "La colonne P du JPL est la période de l'anomalie moyenne (ellipse en précession), pas la période sidérale. Pour Io et Europe le périjove forcé rétrograde en ~1,3-1,4 an (lié à la résonance), d'où P plus courte de 0,4-0,7 %."
+  },
+  {
+   "id": "galilean.callisto.sidereal_vs_nssdc",
+   "label": "callisto : période sidérale (j), Lieske E5 vs NSSDC",
+   "unit": "jours",
+   "a": 16.6890182247,
+   "source_a": "LIESKE_E5",
+   "b": 16.689017,
+   "source_b": "NSSDC_JOVSAT",
+   "diff_a_minus_b": 1.22473e-06,
+   "tolerance": 2e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "galilean.callisto.synodic_vs_meeus",
+   "label": "callisto : période synodique / Soleil (j), E5 - Jupiter (JPL) vs Meeus ch. 44",
+   "unit": "jours",
+   "a": 16.7535490547,
+   "source_a": "LIESKE_E5+JPL_APPROX",
+   "b": 16.7535524512,
+   "source_b": "MEEUS1998",
+   "diff_a_minus_b": -3.39644e-06,
+   "tolerance": 5.9e-06,
+   "status": "ok",
+   "note": "Tolérance = arrondi du taux de Meeus (5 décimales) + choix du taux de Jupiter."
+  },
+  {
+   "id": "galilean.callisto.jpl_P_is_anomalistic",
+   "label": "callisto : 'P' de la table JPL = période anomalistique ? (360/(n - varpi'))",
+   "unit": "jours",
+   "a": 16.6917624603,
+   "source_a": "LIESKE_E5+JPL_SAT",
+   "b": 16.69044,
+   "source_b": "JPL_SAT",
+   "diff_a_minus_b": 0.00132246,
+   "tolerance": 0.002,
+   "status": "ok",
+   "note": "La colonne P du JPL est la période de l'anomalie moyenne (ellipse en précession), pas la période sidérale. Pour Io et Europe le périjove forcé rétrograde en ~1,3-1,4 an (lié à la résonance), d'où P plus courte de 0,4-0,7 %."
+  },
+  {
+   "id": "galilean.laplace_rates",
+   "label": "Relation de Laplace n1 - 3 n2 + 2 n3 (deg/j), E5",
+   "unit": "deg/jour",
+   "a": -1e-09,
+   "source_a": "LIESKE_E5",
+   "b": 0.0,
+   "source_b": "theorie",
+   "diff_a_minus_b": -1e-09,
+   "tolerance": 1e-06,
+   "status": "ok",
+   "note": ""
+  },
+  {
+   "id": "pluto.sidereal_period",
+   "label": "Pluton : période sidérale (j), JPL T1 (archivée) vs NSSDC",
+   "unit": "jours",
+   "a": 90579.9013725,
+   "source_a": "JPL_APPROX_2019",
+   "b": 90560.0,
+   "source_b": "NSSDC",
+   "diff_a_minus_b": 19.9014,
+   "tolerance": 300,
+   "status": "ok",
+   "note": "Le taux JPL est local (1800-2050) ; Pluton est fortement perturbé par Neptune (résonance 3:2)."
+  }
+ ]
+}

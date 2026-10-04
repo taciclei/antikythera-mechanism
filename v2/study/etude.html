@@ -1,0 +1,1008 @@
+<title>Anticythère 2.0</title>
+<meta name="description" content="Étude de conception d'une évolution moderne de la machine d'Anticythère : 8 planètes képlériennes, Lune moderne, calendrier grégorien, éclipses, lunes de Jupiter. Pas une reconstruction historique.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --paper:#f4f5f1; --sheet:#fbfbf8; --ink:#17212c; --ink-2:#3d4a57; --muted:#66727e; --rule:#cfd5d8; --grid:#e6e9e6;
+  --bronze:#9a5a17; --blue:#2a5a86; --warn-bg:#fbefe2; --warn-ink:#6b3a0c;
+  --k-time:#2f5d8a; --k-planet:#a8641c; --k-moon:#5f6f86; --k-ecl:#b23a2e; --k-jup:#c27a12; --k-sun:#b8860f; --k-bus:#6b5aa6;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --cond:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#0f151c; --sheet:#141c25; --ink:#e4e9ee; --ink-2:#c3ccd5; --muted:#93a0ad; --rule:#2c3a48; --grid:#1b2531;
+    --bronze:#dd9c55; --blue:#86b5e3; --warn-bg:#2b2014; --warn-ink:#f1c89a;
+    --k-time:#86b5e3; --k-planet:#dd9c55; --k-moon:#a9b7cc; --k-ecl:#ef7d6f; --k-jup:#f0a948; --k-sun:#e8c15a; --k-bus:#b3a5ef;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0f151c; --sheet:#141c25; --ink:#e4e9ee; --ink-2:#c3ccd5; --muted:#93a0ad; --rule:#2c3a48; --grid:#1b2531;
+  --bronze:#dd9c55; --blue:#86b5e3; --warn-bg:#2b2014; --warn-ink:#f1c89a;
+  --k-time:#86b5e3; --k-planet:#dd9c55; --k-moon:#a9b7cc; --k-ecl:#ef7d6f; --k-jup:#f0a948; --k-sun:#e8c15a; --k-bus:#b3a5ef;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;background-attachment:fixed}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:28px 64px}
+.sheet{background:var(--sheet);border:1px solid var(--rule);padding:clamp(18px,4vw,48px)}
+header.title{border-bottom:2px solid var(--ink);padding-bottom:22px;margin-bottom:8px}
+.kicker{font:500 13px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--bronze);margin:0 0 10px}
+h1{font:700 clamp(36px,6vw,60px)/1.02 var(--cond);letter-spacing:-.01em;margin:0 0 14px;text-wrap:balance}
+h2{font:700 clamp(24px,3.2vw,32px)/1.15 var(--cond);margin:56px 0 14px;text-wrap:balance;display:flex;gap:14px;align-items:baseline}
+h2 .n{font:500 14px var(--mono);color:var(--bronze);min-width:2.2em}
+h3{font:600 19px/1.3 var(--cond);margin:28px 0 8px;text-wrap:balance}
+p,li{max-width:68ch}
+.lede{font-size:19px;line-height:1.5;color:var(--ink-2);max-width:62ch;margin:0}
+.warn{background:var(--warn-bg);color:var(--warn-ink);border-left:4px solid var(--bronze);padding:12px 16px;margin:22px 0 0;max-width:72ch}
+.warn strong{color:inherit}
+a{color:var(--blue);text-underline-offset:2px}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border:1px solid var(--rule);margin:26px 0 6px}
+.figs div{padding:14px 16px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.figs b{display:block;font:600 26px/1.1 var(--cond);font-variant-numeric:tabular-nums}
+.figs span{font-size:13px;color:var(--muted)}
+figure{margin:22px 0 30px}
+figure .art{border:1px solid var(--rule);background:var(--sheet);padding:10px;overflow-x:auto}
+figure svg{display:block;width:100%;height:auto;min-width:560px;font-family:var(--sans)}
+figure.narrow .art{max-width:600px}
+figure.narrow svg{min-width:420px}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px;max-width:80ch}
+figcaption b{color:var(--ink-2)}
+.tbl{overflow-x:auto;margin:14px 0 22px;border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font:600 13px/1.3 var(--cond);letter-spacing:.02em;background:color-mix(in srgb,var(--rule) 35%,transparent)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+.mech{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 32px;margin-top:10px}
+@media (max-width:720px){.mech{grid-template-columns:1fr}}
+.mech section{border-top:2px solid var(--ink);padding-top:10px}
+.mech h3{margin:0 0 6px}
+.mech .acc{font:500 13px/1.4 var(--mono);color:var(--bronze);margin:6px 0 0}
+.mech p{margin:6px 0;font-size:15px}
+code{font:13.5px var(--mono);background:color-mix(in srgb,var(--rule) 40%,transparent);padding:1px 4px}
+ul.tight li{margin:3px 0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:8px 32px}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted)}
+svg .c-time{stroke:var(--k-time)} svg .c-time:not([fill="none"]){fill:var(--k-time)}
+svg .c-planet{stroke:var(--k-planet)} svg .c-planet:not([fill="none"]){fill:var(--k-planet)}
+svg .c-moon{stroke:var(--k-moon)} svg .c-moon:not([fill="none"]){fill:var(--k-moon)}
+svg .c-ecl{stroke:var(--k-ecl)} svg .c-ecl:not([fill="none"]){fill:var(--k-ecl)}
+svg .c-jup{stroke:var(--k-jup)} svg .c-jup:not([fill="none"]){fill:var(--k-jup)}
+svg .c-sun{stroke:var(--k-sun)} svg .c-sun:not([fill="none"]){fill:var(--k-sun)}
+svg .c-bus{stroke:var(--k-bus)} svg .c-bus:not([fill="none"]){fill:var(--k-bus)}
+svg text.c-bus{stroke:none}
+@media (max-width:520px){ body{font-size:15.5px} .lede{font-size:17px} .figs b{font-size:22px} }
+</style>
+<div class="wrap"><article class="sheet">
+<header class="title">
+<p class="kicker">Étude de conception · v2 · octobre 2026</p>
+<h1>Anticythère 2.0</h1>
+<p class="lede">Et si l'on refaisait la machine d'Anticythère avec l'astronomie d'aujourd'hui ? Huit planètes sur des
+orbites de Kepler, une Lune moderne, le calendrier grégorien, les éclipses et les lunes de Jupiter. Le tout tient dans
+une boîte qu'on fait tourner à la manivelle.</p>
+<p class="warn"><strong>Ce n'est pas une reconstruction historique.</strong> C'est une évolution moderne, dans l'esprit
+de la machine antique. La reconstruction historique (la « v1 ») reste à la racine du
+<a href="https://github.com/taciclei/antikythera-mechanism">dépôt</a>, figée au repère <a href="https://github.com/taciclei/antikythera-mechanism/releases/tag/v1-historique">v1-historique</a>.</p>
+</header>
+<div class="figs">
+<div><b>8</b><span>planètes sur des orbites de Kepler</span></div>
+<div><b>0,26°</b><span>erreur max. de la Lune (v1 : 2,5°)</span></div>
+<div><b>1582–6000</b><span>calendrier grégorien juste chaque année</span></div>
+<div><b>449/452</b><span>éclipses NASA 2001–2100 retrouvées</span></div>
+<div><b>≈ 511</b><span>roues dentées</span></div>
+<div><b>24,2 kg</b><span>caisse de 470 × 360 × 391 mm</span></div>
+</div>
+<h2><span class="n">01</span>Ce qui change</h2>
+<div class="tbl"><table><thead><tr><th class=""></th><th class="">Machine antique (v1)</th><th class="">Anticythère 2.0</th></tr></thead><tbody><tr><td class="">Planètes</td><td class="">5, sur des cercles</td><td class=""><b>8</b>, sur des orbites <b>képlériennes</b></td></tr><tr><td class="">Lune</td><td class="">anomalie d'Hipparque</td><td class="">anomalie, <b>évection</b>, <b>variation</b>, équation annuelle</td></tr><tr><td class="">Rapports</td><td class="">relations babyloniennes</td><td class=""><b>périodes modernes</b>, moins de 0,01° de dérive par siècle</td></tr><tr><td class="">Calendrier</td><td class="">égyptien de 365 jours, Méton</td><td class=""><b>grégorien</b> (4/100/400), jour de la semaine</td></tr><tr><td class="">Temps</td><td class="">—</td><td class=""><b>heure sidérale</b>, <b>équation du temps</b>, <b>précession</b></td></tr><tr><td class="">Éclipses</td><td class="">spirale du Saros, glyphes</td><td class="">géométrie : <b>γ</b>, magnitude, totale ou annulaire, <b>lieu</b> sur un globe</td></tr><tr><td class="">Affichage</td><td class="">le ciel vu de la Terre</td><td class="">le ciel vu de la Terre <b>et</b> le système solaire vu d'en haut</td></tr><tr><td class="">En plus</td><td class="">—</td><td class="">les <b>lunes de Jupiter</b> (résonance de Laplace)</td></tr></tbody></table></div>
+<h2><span class="n">02</span>Comment le mouvement circule</h2>
+<p>Tout part d'un seul arbre : <b>l'arbre-jour J</b>, qui fait un tour par jour solaire moyen. Le calendrier grégorien
+l'impose. Ses cycles (146 097 jours en 400 ans) contiennent le nombre premier 773, impossible à tailler en
+engrenage : on ne peut que <b>compter des jours</b>.</p>
+<p>J mène l'<b>arbre de l'année Y</b>. Deux « bus » de tringles, comme les renvois qui mènent les quatre cadrans d'une
+horloge de clocher, distribuent J et Y. Chaque planète a sa <b>tour</b>, qui empile trois étages :</p>
+<ul class="tight"><li>son train d'engrenages moyen ;</li><li>son unité de Kepler ;</li><li>son module géocentrique.</li></ul>
+<figure class=""><div class="art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 590" role="img" aria-label="Circulation du mouvement : la manivelle mène l'arbre-jour J, qui mène l'année Y ; J et Y alimentent les blocs de calcul (calendrier, temps, Laplace, Lune, UAK, 7 tours, précession) qui mènent les trois faces." font-family="Inter, Helvetica, Arial, sans-serif" font-size="12" fill="currentColor">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect x="16" y="262" width="112" height="52" rx="6" fill="none" fill-opacity="0.10" stroke="currentColor" stroke-width="1.4"/>
+<text x="72.0" y="284.5" text-anchor="middle" font-size="12" font-weight="600">Manivelle</text>
+<text x="72.0" y="299.5" text-anchor="middle" font-size="11">1 tour = 6 h</text>
+<rect x="168" y="262" width="124" height="52" rx="6" fill="#2f5d8a" fill-opacity="0.10" stroke="#2f5d8a" class="c-time" stroke-width="1.4"/>
+<text x="230.0" y="284.5" text-anchor="middle" font-size="12" font-weight="600">Arbre-jour J</text>
+<text x="230.0" y="299.5" text-anchor="middle" font-size="11">1 tour par jour</text>
+<rect x="168" y="420" width="124" height="52" rx="6" fill="#c9961a" fill-opacity="0.10" stroke="#c9961a" class="c-sun" stroke-width="1.4"/>
+<text x="230.0" y="442.5" text-anchor="middle" font-size="12" font-weight="600">Année Y</text>
+<text x="230.0" y="457.5" text-anchor="middle" font-size="11">1 tour par an</text>
+<line x1="128" y1="288" x2="166" y2="288" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="147.0" y="282" text-anchor="middle" font-size="10.5" opacity="0.85">24:96</text>
+<line x1="230" y1="314" x2="230" y2="418" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="236" y="372" text-anchor="start" font-size="10.5" opacity="0.85">3 couples</text>
+<rect x="360" y="14" width="268" height="48" rx="6" fill="#2f5d8a" fill-opacity="0.10" stroke="#2f5d8a" class="c-time" stroke-width="1.4"/>
+<text x="494.0" y="34.5" text-anchor="middle" font-size="12" font-weight="600">Calendrier grégorien</text>
+<text x="494.0" y="49.5" text-anchor="middle" font-size="11">croix de Malte · anneau 366 · cames 4/100/400</text>
+<rect x="360" y="76" width="268" height="48" rx="6" fill="#2f5d8a" fill-opacity="0.10" stroke="#2f5d8a" class="c-time" stroke-width="1.4"/>
+<text x="494.0" y="96.5" text-anchor="middle" font-size="12" font-weight="600">Temps</text>
+<text x="494.0" y="111.5" text-anchor="middle" font-size="11">sidéral · joint de Hooke · équation du temps</text>
+<rect x="360" y="138" width="268" height="48" rx="6" fill="#c27a12" fill-opacity="0.10" stroke="#c27a12" class="c-jup" stroke-width="1.4"/>
+<text x="494.0" y="158.5" text-anchor="middle" font-size="12" font-weight="600">Boîte de Laplace</text>
+<text x="494.0" y="173.5" text-anchor="middle" font-size="11">Io · Europe · Ganymède · Callisto</text>
+<rect x="360" y="200" width="268" height="48" rx="6" fill="#5f6f86" fill-opacity="0.10" stroke="#5f6f86" class="c-moon" stroke-width="1.4"/>
+<text x="494.0" y="220.5" text-anchor="middle" font-size="12" font-weight="600">Lune : cascade à 5 étages</text>
+<text x="494.0" y="235.5" text-anchor="middle" font-size="11">+ coulisse d'éclipse sur le porte-nœuds</text>
+<rect x="360" y="300" width="268" height="48" rx="6" fill="#c9961a" fill-opacity="0.10" stroke="#c9961a" class="c-sun" stroke-width="1.4"/>
+<text x="494.0" y="320.5" text-anchor="middle" font-size="12" font-weight="600">UAK maîtresse de la Terre</text>
+<text x="494.0" y="335.5" text-anchor="middle" font-size="11">Soleil vrai</text>
+<rect x="360" y="372" width="268" height="48" rx="6" fill="#a8641c" fill-opacity="0.10" stroke="#a8641c" class="c-planet" stroke-width="1.4"/>
+<text x="494.0" y="392.5" text-anchor="middle" font-size="12" font-weight="600">7 tours planétaires</text>
+<text x="494.0" y="407.5" text-anchor="middle" font-size="11">train moyen → UAK → module vectoriel</text>
+<rect x="360" y="460" width="268" height="48" rx="6" fill="#2f5d8a" fill-opacity="0.10" stroke="#2f5d8a" class="c-time" stroke-width="1.4"/>
+<text x="494.0" y="480.5" text-anchor="middle" font-size="12" font-weight="600">Précession</text>
+<text x="494.0" y="495.5" text-anchor="middle" font-size="11">depuis le train moyen de Neptune</text>
+<rect x="360" y="522" width="268" height="48" rx="6" fill="#5f6f86" fill-opacity="0.10" stroke="#5f6f86" class="c-moon" stroke-width="1.4"/>
+<text x="494.0" y="542.5" text-anchor="middle" font-size="12" font-weight="600">Périgée, nœuds, Saros</text>
+<text x="494.0" y="557.5" text-anchor="middle" font-size="11">trains depuis Y</text>
+<line x1="292" y1="280" x2="318" y2="280" stroke="currentColor" stroke-width="1.2"/>
+<line x1="318" y1="38" x2="318" y2="280" stroke="currentColor" stroke-width="1.2"/>
+<line x1="318" y1="38" x2="358" y2="38" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="318" y1="100" x2="358" y2="100" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="318" y1="162" x2="358" y2="162" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="318" y1="224" x2="358" y2="224" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="322" y="252" font-size="10.5" opacity="0.85">goupille,</text>
+<text x="322" y="265" font-size="10.5" opacity="0.85">tringles</text>
+<line x1="292" y1="446" x2="334" y2="446" stroke="#6b5aa6" class="c-bus" stroke-width="2"/>
+<line x1="334" y1="112" x2="334" y2="546" stroke="#6b5aa6" class="c-bus" stroke-width="2"/>
+<line x1="334" y1="324" x2="358" y2="324" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="334" y1="396" x2="358" y2="396" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="334" y1="546" x2="358" y2="546" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="334" y1="112" x2="358" y2="112" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="296" y="438" font-size="10.5" class="c-bus" fill="#6b5aa6">bus Y</text>
+<line x1="494.0" y1="420" x2="494.0" y2="458" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="500.0" y="444" font-size="10.5" opacity="0.85">Neptune moyen</text>
+<rect x="744" y="14" width="222" height="176" rx="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<text x="756" y="36" font-weight="600" font-size="13">Face avant</text>
+<text x="756" y="52" font-size="11" opacity="0.8">le ciel vu de la Terre</text>
+<text x="760" y="76" font-size="11.5">· 10 aiguilles sur l'écliptique</text>
+<text x="760" y="94" font-size="11.5">· zodiaque tropique</text>
+<text x="760" y="112" font-size="11.5">· horloge 24 h, équation du temps</text>
+<text x="760" y="130" font-size="11.5">· Jupiter et ses lunes</text>
+<rect x="744" y="214" width="222" height="150" rx="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<text x="756" y="236" font-weight="600" font-size="13">Face arrière</text>
+<text x="756" y="252" font-size="11" opacity="0.8">le temps</text>
+<text x="760" y="276" font-size="11.5">· calendrier grégorien</text>
+<text x="760" y="294" font-size="11.5">· éclipses (γ, magnitude)</text>
+<text x="760" y="312" font-size="11.5">· Saros et Exeligmos</text>
+<rect x="744" y="388" width="222" height="160" rx="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<text x="756" y="410" font-weight="600" font-size="13">Couvercle</text>
+<text x="756" y="426" font-size="11" opacity="0.8">vu d'en haut</text>
+<text x="760" y="450" font-size="11.5">· orrery des 8 planètes</text>
+<text x="760" y="468" font-size="11.5">· tellurion sidéral</text>
+<text x="760" y="486" font-size="11.5">· aiguille d'ombre</text>
+<line x1="662" y1="30" x2="662" y2="484" stroke="currentColor" stroke-width="1.4"/>
+<line x1="662" y1="30" x2="742" y2="30" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="686" y1="38" x2="686" y2="546" stroke="currentColor" stroke-width="1.4"/>
+<line x1="686" y1="230" x2="742" y2="230" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="710" y1="100" x2="710" y2="404" stroke="currentColor" stroke-width="1.4"/>
+<line x1="710" y1="404" x2="742" y2="404" stroke="currentColor" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="628" y1="38" x2="686" y2="38" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+<circle cx="686" cy="38" r="3.2" fill="currentColor"/>
+<line x1="628" y1="100" x2="710" y2="100" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+<circle cx="662" cy="100" r="3.2" fill="currentColor"/>
+<circle cx="710" cy="100" r="3.2" fill="currentColor"/>
+<line x1="628" y1="162" x2="662" y2="162" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+<circle cx="662" cy="162" r="3.2" fill="currentColor"/>
+<line x1="628" y1="224" x2="710" y2="224" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+<circle cx="662" cy="224" r="3.2" fill="currentColor"/>
+<circle cx="686" cy="224" r="3.2" fill="currentColor"/>
+<circle cx="710" cy="224" r="3.2" fill="currentColor"/>
+<line x1="628" y1="324" x2="710" y2="324" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+<circle cx="662" cy="324" r="3.2" fill="currentColor"/>
+<circle cx="686" cy="324" r="3.2" fill="currentColor"/>
+<circle cx="710" cy="324" r="3.2" fill="currentColor"/>
+<line x1="628" y1="396" x2="710" y2="396" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+<circle cx="662" cy="396" r="3.2" fill="currentColor"/>
+<circle cx="710" cy="396" r="3.2" fill="currentColor"/>
+<line x1="628" y1="484" x2="662" y2="484" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+<circle cx="662" cy="484" r="3.2" fill="currentColor"/>
+<line x1="628" y1="546" x2="686" y2="546" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+<circle cx="686" cy="546" r="3.2" fill="currentColor"/>
+<text x="662" y="574" text-anchor="middle" font-size="9.5" transform="rotate(-90 662 574)" opacity="0.85"></text>
+<text x="686" y="574" text-anchor="middle" font-size="9.5" transform="rotate(-90 686 574)" opacity="0.85"></text>
+<text x="710" y="574" text-anchor="middle" font-size="9.5" transform="rotate(-90 710 574)" opacity="0.85"></text>
+</svg></div><figcaption><b>Circulation du mouvement.</b> La manivelle mène J, qui mène Y. J et Y alimentent les blocs de calcul. Trois collecteurs portent leurs sorties vers les trois faces : chaque point noir est une liaison.</figcaption></figure>
+<h2><span class="n">03</span>Les trois faces</h2>
+<div class="two"><div><h3>Devant : le ciel vu de la Terre</h3><ul class="tight">
+<li>dix aiguilles sur l'écliptique : le Soleil, la Lune avec sa boule de phase, les sept planètes et le Dragon, qui montre les nœuds de la Lune ;</li>
+<li>un anneau fixe des constellations ;</li>
+<li>un anneau tropique qui recule d'un tour en 25 772 ans : c'est la précession. Il porte aussi les mois grégoriens ;</li>
+<li>quatre petits cadrans : l'horloge 24 h (temps moyen et sidéral), l'équation du temps, Jupiter et ses lunes, la plaque d'époque.</li></ul></div>
+<div><h3>Derrière : le temps</h3><ul class="tight">
+<li>le calendrier grégorien : un anneau de 366 dates, le jour de la semaine, les années ;</li>
+<li>le cadran des éclipses : le Soleil, la Lune et le disque des nœuds gradué en γ ;</li>
+<li>le Saros, qui annonce le retour d'une éclipse, et l'Exeligmos ;</li>
+<li>une plaque « mode d'emploi ».</li></ul></div></div>
+<figure class=""><div class="art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 363" role="img" aria-label="Les deux faces à l'échelle : devant, le grand cadran du ciel et quatre petits cadrans ; derrière, le calendrier, les éclipses et le Saros." font-family="Inter, Helvetica, Arial, sans-serif" font-size="12" fill="currentColor">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect x="14" y="30" width="414.0" height="312.8" rx="6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<text x="14" y="20" font-weight="600" font-size="13">Face avant (vue de face)</text>
+<circle cx="221.0" cy="186.4" r="138.0" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="221.0" cy="186.4" r="131.6" fill="none" stroke="#2f5d8a" class="c-time" stroke-opacity="0.35" stroke-width="12.9"/>
+<line x1="346.1" y1="186.4" x2="359.0" y2="186.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="344.2" y1="208.1" x2="356.9" y2="210.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="338.6" y1="229.2" x2="350.7" y2="233.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="329.4" y1="249.0" x2="340.5" y2="255.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="316.8" y1="266.8" x2="326.7" y2="275.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="301.4" y1="282.2" x2="309.7" y2="292.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="283.6" y1="294.8" x2="290.0" y2="305.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="263.8" y1="304.0" x2="268.2" y2="316.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="242.7" y1="309.6" x2="245.0" y2="322.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="221.0" y1="311.5" x2="221.0" y2="324.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="199.3" y1="309.6" x2="197.0" y2="322.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="178.2" y1="304.0" x2="173.8" y2="316.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="158.4" y1="294.8" x2="152.0" y2="305.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="140.6" y1="282.2" x2="132.3" y2="292.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="125.2" y1="266.8" x2="115.3" y2="275.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="112.6" y1="249.0" x2="101.5" y2="255.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="103.4" y1="229.2" x2="91.3" y2="233.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="97.8" y1="208.1" x2="85.1" y2="210.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="95.9" y1="186.4" x2="83.0" y2="186.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="97.8" y1="164.7" x2="85.1" y2="162.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="103.4" y1="143.6" x2="91.3" y2="139.2" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="112.6" y1="123.8" x2="101.5" y2="117.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="125.2" y1="106.0" x2="115.3" y2="97.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="140.6" y1="90.6" x2="132.3" y2="80.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="158.4" y1="78.0" x2="152.0" y2="66.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="178.2" y1="68.8" x2="173.8" y2="56.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="199.3" y1="63.2" x2="197.0" y2="50.5" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="221.0" y1="61.3" x2="221.0" y2="48.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="242.7" y1="63.2" x2="245.0" y2="50.5" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="263.8" y1="68.8" x2="268.2" y2="56.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="283.6" y1="78.0" x2="290.0" y2="66.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="301.4" y1="90.6" x2="309.7" y2="80.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="316.8" y1="106.0" x2="326.7" y2="97.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="329.4" y1="123.8" x2="340.5" y2="117.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="338.6" y1="143.6" x2="350.7" y2="139.2" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="344.2" y1="164.7" x2="356.9" y2="162.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<circle cx="221.0" cy="186.4" r="113.2" fill="none" stroke="#c9961a" class="c-sun" stroke-opacity="0.35" stroke-width="20.2"/>
+<line x1="324.0" y1="186.4" x2="344.3" y2="186.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="310.2" y1="237.9" x2="327.8" y2="248.0" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="272.5" y1="275.6" x2="282.6" y2="293.2" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="221.0" y1="289.4" x2="221.0" y2="309.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="169.5" y1="275.6" x2="159.4" y2="293.2" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="131.8" y1="237.9" x2="114.2" y2="248.0" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="118.0" y1="186.4" x2="97.7" y2="186.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="131.8" y1="134.9" x2="114.2" y2="124.8" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="169.5" y1="97.2" x2="159.4" y2="79.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="221.0" y1="83.4" x2="221.0" y2="63.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="272.5" y1="97.2" x2="282.6" y2="79.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="310.2" y1="134.9" x2="327.8" y2="124.8" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="221.0" y1="186.4" x2="272.9" y2="167.5" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="246.3" y2="132.2" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="209.8" y2="123.0" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="161.2" y2="151.9" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="151.8" y2="211.6" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="176.1" y2="250.5" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="235.4" y2="267.9" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="282.8" y2="248.2" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="307.5" y2="217.9" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="317.2" y2="178.0" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<text x="221.0" y="223.2" text-anchor="middle" font-size="10" opacity="0.8">dix aiguilles coaxiales</text>
+<text x="221.0" y="94.4" text-anchor="middle" font-size="9.5" opacity="0.8">zodiaque tropique</text>
+<text x="221.0" y="57.6" text-anchor="middle" font-size="9.5" opacity="0.8">constellations J2000</text>
+<text x="221.0" y="272.0" text-anchor="middle" font-size="11" font-weight="600">Le ciel vu de la Terre</text>
+<circle cx="48.0" cy="77.8" r="31.3" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="48.0" cy="77.8" r="2" fill="currentColor"/>
+<text x="16.8" y="123.1" text-anchor="start" font-size="10.5">Horloge 24 h</text>
+<circle cx="48.0" cy="295.0" r="31.3" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="48.0" cy="295.0" r="2" fill="currentColor"/>
+<text x="16.8" y="257.7" text-anchor="start" font-size="10.5">Jupiter et ses lunes</text>
+<circle cx="394.0" cy="295.0" r="31.3" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="394.0" cy="295.0" r="2" fill="currentColor"/>
+<text x="425.2" y="257.7" text-anchor="end" font-size="10.5">Équation du temps</text>
+<circle cx="394.0" cy="77.8" r="31.3" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="394.0" cy="77.8" r="2" fill="currentColor"/>
+<text x="425.2" y="123.1" text-anchor="end" font-size="10.5">Plaque d'époque</text>
+<rect x="468.0" y="30" width="414.0" height="312.8" rx="6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<text x="468.0" y="20" font-weight="600" font-size="13">Face arrière (vue de dos)</text>
+<circle cx="778.0" cy="172.6" r="96.6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="778.0" cy="172.6" r="89.7" fill="none" stroke="#2f5d8a" class="c-time" stroke-opacity="0.35" stroke-width="13.8"/>
+<line x1="860.8" y1="172.6" x2="874.6" y2="172.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="849.7" y1="214.0" x2="861.7" y2="220.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="819.4" y1="244.3" x2="826.3" y2="256.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="778.0" y1="255.4" x2="778.0" y2="269.2" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="736.6" y1="244.3" x2="729.7" y2="256.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="706.3" y1="214.0" x2="694.4" y2="220.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="695.2" y1="172.6" x2="681.4" y2="172.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="706.3" y1="131.2" x2="694.4" y2="124.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="736.6" y1="100.9" x2="729.7" y2="88.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="778.0" y1="89.8" x2="778.0" y2="76.0" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="819.4" y1="100.9" x2="826.3" y2="88.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="849.7" y1="131.2" x2="861.7" y2="124.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<circle cx="778.0" cy="172.6" r="77.3" fill="none" stroke="currentColor" stroke-dasharray="3 3" stroke-width="0.8"/>
+<circle cx="733.9" cy="195.6" r="18.4" fill="none" stroke="currentColor" stroke-width="0.9"/>
+<text x="733.9" y="198.6" text-anchor="middle" font-size="9">jours</text>
+<circle cx="790.0" cy="223.2" r="22.1" fill="none" stroke="currentColor" stroke-width="0.9"/>
+<text x="790.0" y="226.2" text-anchor="middle" font-size="9">années</text>
+<text x="778.0" y="88.0" text-anchor="middle" font-size="9" opacity="0.8">366 dates</text>
+<text x="778.0" y="134.0" text-anchor="middle" font-size="11" font-weight="600">Calendrier grégorien</text>
+<circle cx="572.0" cy="172.6" r="96.6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="572.0" cy="172.6" r="73.6" fill="#b23a2e" class="c-ecl" fill-opacity="0.08" stroke="#b23a2e" stroke-width="1"/>
+<line x1="506.9" y1="202.9" x2="637.0" y2="142.3" stroke="#b23a2e" class="c-ecl" stroke-width="1.6"/>
+<text x="572.0" y="218.6" text-anchor="middle" font-size="9.5">ligne des nœuds, échelle γ</text>
+<text x="572.0" y="232.5" text-anchor="middle" font-size="11" font-weight="600">Éclipses</text>
+<circle cx="518.6" cy="304.2" r="36.8" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="518.6" cy="304.2" r="32.2" fill="none" stroke="#b23a2e" class="c-ecl" stroke-opacity="0.35" stroke-width="9.2"/>
+<circle cx="518.6" cy="315.2" r="10.1" fill="none" stroke="currentColor" stroke-width="0.8"/>
+<text x="481.8" y="261.4" text-anchor="start" font-size="10.5">Saros</text>
+<circle cx="785.4" cy="310.6" r="27.6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="785.4" y="313.6" text-anchor="middle" font-size="9" opacity="0.8">gravure</text>
+<text x="813.0" y="277.0" text-anchor="end" font-size="10.5">Plaque « mode d'emploi »</text>
+</svg></div><figcaption><b>Les deux faces à l'échelle</b> (450 × 340 mm). La face arrière est dessinée vue de dos. Les aiguilles du grand cadran sont schématiques.</figcaption></figure>
+<h3>Dessus : le système solaire vu d'en haut</h3>
+<p>L'orrery du couvercle est mené par <b>les mêmes arbres</b> que les aiguilles de devant. Les deux affichages sont donc
+toujours d'accord.</p>
+<ul class="tight"><li>Les rayons sont comprimés, mais les angles sont exacts.</li>
+<li>Chaque planète glisse dans une rainure fixe : l'ellipse de Mercure se voit.</li>
+<li>La Terre est un globe incliné qui tourne en un jour sidéral.</li>
+<li>Une <b>aiguille d'ombre</b> touche le globe à l'endroit où l'éclipse sera la plus forte.</li></ul>
+<figure class=""><div class="art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 673" role="img" aria-label="L'orrery du couvercle à l'échelle : huit orbites comprimées autour du Soleil, l'ellipse de Mercure et celle de Mars visibles, la Terre en tellurion avec son aiguille d'ombre." font-family="Inter, Helvetica, Arial, sans-serif" font-size="12" fill="currentColor">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect x="20" y="34" width="728" height="625" rx="6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<text x="20" y="22" font-weight="600" font-size="13">Couvercle vu d'en haut (le dos en haut, la face avant en bas)</text>
+<circle cx="384.2" cy="346.3" r="7" fill="#c9961a" class="c-sun"/>
+<ellipse cx="382.6" cy="353.8" rx="37.2" ry="36.4" transform="rotate(-77.5 382.6 353.8)" fill="none" stroke="#a8641c" class="c-planet" stroke-width="1.3"/>
+<circle cx="384.2" cy="346.3" r="37.2" fill="none" stroke="currentColor" stroke-dasharray="2 3" stroke-width="0.8" opacity="0.7"/>
+<text x="384.2" y="306.1" text-anchor="middle" font-size="10">Mercure</text>
+<circle cx="384.2" cy="346.3" r="58.9" fill="none" stroke="#a8641c" class="c-planet" stroke-width="1"/>
+<text x="384.2" y="284.4" text-anchor="middle" font-size="10">Vénus</text>
+<circle cx="384.2" cy="346.3" r="80.6" fill="none" stroke="#c9961a" class="c-sun" stroke-width="1"/>
+<text x="384.2" y="262.7" text-anchor="middle" font-size="10">Terre</text>
+<ellipse cx="375.5" cy="342.4" rx="102.3" ry="101.9" transform="rotate(-336.0 375.5 342.4)" fill="none" stroke="#a8641c" class="c-planet" stroke-width="1.3"/>
+<text x="384.2" y="241.0" text-anchor="middle" font-size="10">Mars</text>
+<circle cx="384.2" cy="346.3" r="124.0" fill="none" stroke="#a8641c" class="c-planet" stroke-width="1"/>
+<text x="384.2" y="219.3" text-anchor="middle" font-size="10">Jupiter</text>
+<circle cx="384.2" cy="346.3" r="142.6" fill="none" stroke="#a8641c" class="c-planet" stroke-width="1"/>
+<text x="384.2" y="200.7" text-anchor="middle" font-size="10">Saturne</text>
+<circle cx="384.2" cy="346.3" r="158.1" fill="none" stroke="#a8641c" class="c-planet" stroke-width="1"/>
+<text x="384.2" y="185.2" text-anchor="middle" font-size="10">Uranus</text>
+<circle cx="384.2" cy="346.3" r="172.1" fill="none" stroke="#a8641c" class="c-planet" stroke-width="1"/>
+<text x="384.2" y="171.3" text-anchor="middle" font-size="10">Neptune</text>
+<circle cx="308.5" cy="373.9" r="10.8" fill="#2f5d8a" class="c-time" fill-opacity="0.35" stroke="currentColor"/>
+<line x1="384.2" y1="346.3" x2="308.5" y2="373.9" stroke="#b23a2e" class="c-ecl" stroke-dasharray="4 3" stroke-width="1.2"/>
+<text x="302.5" y="397.7" text-anchor="middle" font-size="10">tellurion et aiguille d'ombre</text>
+<circle cx="592.0" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<circle cx="192.1" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<circle cx="427.7" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<circle cx="88.2" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<circle cx="261.8" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<circle cx="680.3" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<circle cx="506.7" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<circle cx="359.4" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<circle cx="567.1" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<circle cx="539.2" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<circle cx="337.8" cy="411.4" r="3" fill="none" stroke="#6b5aa6" class="c-bus" stroke-width="1.4"/>
+<text x="27.8" y="403.4" font-size="10" opacity="0.85">11 tringles montantes</text>
+</svg></div><figcaption><b>Le couvercle vu d'en haut, à l'échelle.</b> Le cercle pointillé centré sur le Soleil fait voir le décalage de l'ellipse de Mercure (e = 0,21). Les petits ronds violets marquent l'arrivée des dix tringles qui montent de l'intérieur.</figcaption></figure>
+<h2><span class="n">04</span>Huit mécanismes qui font la différence</h2><div class="mech">
+<section><h3>Kepler pour chaque planète</h3><p>Une planète va plus vite près du Soleil. Six corps utilisent un <b>équant bissecté</b> : une goupille dans une rainure, décalée de quelques dixièmes de millimètre. Mars ajoute un minuscule <b>épicyclet</b>. Mercure, très excentrique, a un <b>résolveur</b> qui résout mécaniquement M = E − e sin E.</p><p class="acc">géométrie seule : 0,02° (Neptune) à 0,26° (Mercure)</p></section>
+<section><h3>Le module vectoriel</h3><p>Pour passer du Soleil à la Terre, chaque tour contient un petit orrery à deux bras, à l'échelle exacte. Un suiveur rainuré vise de la Terre vers la planète : sa direction est la longitude géocentrique. La goupille dessine même la boucle de rétrogradation.</p><p class="acc">pivot du suiveur en O = P₁ + s·(C_T − C_p)</p></section>
+<section><h3>Une Lune moderne</h3><p>Cinq étages en cascade ajoutent, l'un après l'autre : la réduction à l'écliptique, l'équation annuelle, l'évection, l'anomalie et la variation. Schwilgué avait mécanisé ces termes à Strasbourg en 1842 ; ici, chacun a son amplitude chiffrée.</p><p class="acc">0,26° max, 0,10° rms</p></section>
+<section><h3>Le calendrier grégorien</h3><p>Un anneau de 366 dates avance d'un cran par jour par une croix de Malte. Les années communes, une seconde croix saute le 29 février. Trois cames (4, 100 et 400 ans) décident. Tout dépend de la position : la machine peut tourner à l'envers sans perdre le calendrier.</p><p class="acc">juste chaque année de 1582 à 6000</p></section>
+<section><h3>Le temps sidéral et l'équation du temps</h3><p>Un différentiel ajoute le jour et le Soleil moyen : c'est le temps sidéral. Un <b>joint de Hooke</b> incliné de 23,44° fait exactement tan α = cos ε · tan λ. C'est la réduction à l'équateur, que Hooke avait lui-même remarquée.</p><p class="acc">sidéral −0,063 s/siècle ; EdT 3,1 s (came : 8,0 s)</p></section>
+<section><h3>Les éclipses par la géométrie</h3><p>Une coulisse sur le porte-nœuds est menée par la goupille même de l'unité d'anomalie de la Lune. Sa course vaut r·sin F, proportionnelle à γ, la distance de l'ombre au centre de la Terre. Sur le couvercle, une aiguille d'ombre montre le lieu de l'éclipse.</p><p class="acc">449/452 éclipses ; lieu à 1,4° rms en latitude</p></section>
+<section><h3>Le zodiaque qui recule</h3><p>La machine calcule dans le repère fixe des étoiles : les pivots de Kepler restent ainsi fixes dans la caisse. Un train très lent, pris sur le train moyen de Neptune, fait reculer l'anneau du zodiaque tropique. C'est la précession des équinoxes : Olsen et Schwilgué l'avaient aussi.</p><p class="acc">un tour en 25 772 années tropiques</p></section>
+<section><h3>Les lunes de Jupiter</h3><p>Une <b>boîte de Laplace</b> construit Europe = 2·Ganymède + ν et Io = 2·Europe + ν avec deux doubleurs et deux différentiels. La résonance 1:2:4 est exacte par construction. Une « lunette » montre les lunes à l'est ou à l'ouest de Jupiter, comme aux jumelles.</p><p class="acc">relation de Laplace exacte</p></section>
+</div>
+<h2><span class="n">05</span>Les engrenages</h2>
+<p>Les rapports viennent des périodes modernes (JPL, IAU). Ils ont été cherchés exhaustivement et vérifiés en
+<b>fractions exactes</b> :</p>
+<ul class="tight"><li>38 couples approchés et 18 couples exacts ;</li>
+<li>10 différentiels et 2 mécanismes pas à pas ;</li>
+<li>toutes les dentures entre 10 et 220 ;</li>
+<li><b>les 65 vérifications</b> de <code>trains.py</code> passent.</li></ul>
+<p>Résultat : <b>les engrenages ne limitent nulle part la précision</b>. Leur dérive reste 100 à 1 000 fois sous les
+objectifs ; ce sont la géométrie et la physique qui fixent la limite.</p>
+<div class="tbl"><table><thead><tr><th class="">Sortie</th><th class="num">Dérive due aux engrenages (par siècle)</th></tr></thead><tbody><tr><td class="">Soleil (roue de l'année)</td><td class="num">−0,0004°</td></tr><tr><td class="">Mercure</td><td class="num">−0,0082°</td></tr><tr><td class="">Vénus</td><td class="num">−0,0009°</td></tr><tr><td class="">Mars</td><td class="num">0,0060°</td></tr><tr><td class="">Jupiter</td><td class="num">−0,0022°</td></tr><tr><td class="">Saturne</td><td class="num">0,0040°</td></tr><tr><td class="">Uranus</td><td class="num">0,0052°</td></tr><tr><td class="">Neptune</td><td class="num">−0,0089°</td></tr><tr><td class="">Lune, longitude moyenne</td><td class="num">0,0011°</td></tr><tr><td class="">Lune, élongation D</td><td class="num">0,0016°</td></tr><tr><td class="">Lune, latitude F</td><td class="num">0,0024°</td></tr><tr><td class="">Lune, anomalie M′</td><td class="num">−0,0055°</td></tr></tbody></table></div>
+<h2><span class="n">06</span>L'architecture</h2>
+<p>La machine tient dans une caisse de <b>470 × 360 × 391 mm</b>, avec l'orrery
+sur le couvercle. Elle pèse environ <b>24,2 kg</b> en laiton, 20,7 kg avec
+des platines intérieures en aluminium : c'est la classe de l'éclipsarium de Rømer (27 kg).</p>
+<p>Cinq étages se suivent de l'arrière vers l'avant :</p>
+<ul class="tight"><li>le temps, le calendrier et la Lune ;</li><li>les trains moyens ;</li><li>les unités de Kepler ;</li>
+<li>les modules géocentriques ;</li><li>les renvois vers la pile de tubes du grand cadran.</li></ul>
+<figure class="narrow"><div class="art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 591" role="img" aria-label="Coupe de la caisse : cinq étages entre le cadran arrière et le cadran avant, quatre platines, l'orrery sur le couvercle." font-family="Inter, Helvetica, Arial, sans-serif" font-size="12" fill="currentColor">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<text x="40" y="22" font-size="11" opacity="0.85">arrière ←</text>
+<text x="489.6" y="22" text-anchor="end" font-size="11" opacity="0.85">→ avant</text>
+<rect x="73.3" y="150.5" width="138.0" height="391.0" fill="#2f5d8a" class="c-time" fill-opacity="0.06"/>
+<text x="142.3" y="507.0" text-anchor="middle" font-weight="600" font-size="12">E5</text>
+<text x="142.3" y="525.4" text-anchor="middle" font-size="8.5">3–123</text>
+<rect x="213.6" y="150.5" width="69.0" height="391.0" fill="#2f5d8a" class="c-time" fill-opacity="0.06"/>
+<text x="248.1" y="507.0" text-anchor="middle" font-weight="600" font-size="12">E4</text>
+<text x="248.1" y="536.9" text-anchor="middle" font-size="8.5">125–185</text>
+<rect x="284.9" y="150.5" width="36.8" height="391.0" fill="#2f5d8a" class="c-time" fill-opacity="0.06"/>
+<text x="303.3" y="507.0" text-anchor="middle" font-weight="600" font-size="12">E3</text>
+<text x="303.3" y="525.4" text-anchor="middle" font-size="8.5">187–219</text>
+<rect x="324.0" y="150.5" width="32.2" height="391.0" fill="#2f5d8a" class="c-time" fill-opacity="0.06"/>
+<text x="340.1" y="507.0" text-anchor="middle" font-weight="600" font-size="12">E2</text>
+<text x="340.1" y="536.9" text-anchor="middle" font-size="8.5">221–249</text>
+<rect x="358.5" y="150.5" width="96.6" height="391.0" fill="#2f5d8a" class="c-time" fill-opacity="0.06"/>
+<text x="406.8" y="507.0" text-anchor="middle" font-weight="600" font-size="12">E1</text>
+<text x="406.8" y="525.4" text-anchor="middle" font-size="8.5">251–335</text>
+<rect x="69.9" y="150.5" width="3.4" height="391.0" fill="currentColor" opacity="0.75"/>
+<text x="71.6" y="554.5" text-anchor="middle" font-size="9">arrière</text>
+<rect x="211.3" y="150.5" width="2.3" height="391.0" fill="currentColor" opacity="0.75"/>
+<text x="212.5" y="554.5" text-anchor="middle" font-size="9">P4</text>
+<rect x="282.6" y="150.5" width="2.3" height="391.0" fill="currentColor" opacity="0.75"/>
+<text x="283.8" y="554.5" text-anchor="middle" font-size="9">P3</text>
+<rect x="321.8" y="150.5" width="2.3" height="391.0" fill="currentColor" opacity="0.75"/>
+<text x="322.9" y="554.5" text-anchor="middle" font-size="9">P2</text>
+<rect x="356.2" y="150.5" width="2.3" height="391.0" fill="currentColor" opacity="0.75"/>
+<text x="357.4" y="554.5" text-anchor="middle" font-size="9">P1</text>
+<rect x="455.1" y="150.5" width="3.4" height="391.0" fill="currentColor" opacity="0.75"/>
+<text x="456.9" y="554.5" text-anchor="middle" font-size="9">avant</text>
+<rect x="213.6" y="205.7" width="10.3" height="69.0" fill="#a8641c" class="c-planet" fill-opacity="0.22" stroke="#a8641c" stroke-width="0.8"/>
+<text x="218.8" y="243.2" text-anchor="middle" font-size="9">train</text>
+<rect x="284.9" y="208.0" width="19.5" height="64.4" fill="#a8641c" class="c-planet" fill-opacity="0.22" stroke="#a8641c" stroke-width="0.8"/>
+<text x="294.7" y="243.2" text-anchor="middle" font-size="9">UAK</text>
+<rect x="324.0" y="159.7" width="32.2" height="161.0" fill="#a8641c" class="c-planet" fill-opacity="0.22" stroke="#a8641c" stroke-width="0.8"/>
+<text x="340.1" y="243.2" text-anchor="middle" font-size="9">module</text>
+<text x="215.6" y="286.2" font-size="9.5">tour de Mars (y = 92)</text>
+<rect x="284.9" y="313.8" width="19.5" height="64.4" fill="#c9961a" class="c-sun" fill-opacity="0.22" stroke="#c9961a" stroke-width="0.8"/>
+<text x="294.7" y="349.0" text-anchor="middle" font-size="9">Terre</text>
+<rect x="393.0" y="289.6" width="62.1" height="112.7" fill="#2f5d8a" class="c-time" fill-opacity="0.22" stroke="#2f5d8a" stroke-width="0.8"/>
+<text x="424.1" y="349.0" text-anchor="middle" font-size="9">pile</text>
+<rect x="80.2" y="382.8" width="89.7" height="105.8" fill="#2f5d8a" class="c-time" fill-opacity="0.22" stroke="#2f5d8a" stroke-width="0.8"/>
+<text x="125.1" y="438.7" text-anchor="middle" font-size="9">temps</text>
+<line x1="80.2" y1="346.0" x2="284.9" y2="346.0" stroke="#c9961a" class="c-sun" stroke-width="3"/>
+<line x1="304.5" y1="346.0" x2="479.3" y2="346.0" stroke="currentColor" stroke-width="2"/>
+<text x="463.2" y="340.0" font-size="9.5">Soleil</text>
+<text x="215.6" y="340.0" font-size="9.5">arbre Y</text>
+<rect x="458.6" y="173.5" width="23.0" height="345.0" fill="none" stroke="currentColor" stroke-dasharray="3 3" stroke-width="0.8"/>
+<text x="483.9" y="183.5" font-size="9.5">aiguilles</text>
+<rect x="218.8" y="110.2" width="92.0" height="37.9" fill="#a8641c" class="c-planet" fill-opacity="0.22" stroke="#a8641c" stroke-width="0.8"/>
+<text x="264.8" y="132.2" text-anchor="middle" font-size="9">socle</text>
+<line x1="137.2" y1="87.2" x2="392.5" y2="87.2" stroke="#a8641c" class="c-planet" stroke-width="2"/>
+<line x1="264.8" y1="141.3" x2="264.8" y2="87.2" stroke="currentColor" stroke-width="1.4"/>
+<text x="264.8" y="77.2" text-anchor="middle" font-size="10.5">orrery du couvercle</text>
+<text x="40.0" y="576.7" font-size="10">porte arrière</text>
+<text x="489.6" y="576.7" text-anchor="end" font-size="10">verre avant</text>
+</svg></div><figcaption><b>Coupe schématique</b> (plan x ≈ 0, l'arrière à gauche). Cinq étages entre les deux cadrans. L'axe central porte l'année Y, la Terre maîtresse puis l'aiguille du Soleil. Une tour planétaire, ici celle de Mars, empile son train, son unité de Kepler et son module.</figcaption></figure>
+<figure class=""><div class="art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 596 816" role="img" aria-label="Les cinq étages vus de face, à l'échelle, avec chaque roue, bloc, arbre et tringle placés par le vérificateur." font-family="Inter, Helvetica, Arial, sans-serif" font-size="12" fill="currentColor">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect x="14.0" y="30.0" width="270.0" height="204.0" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="14.0" y="22.0" font-weight="600" font-size="11.5">E5 : étage du temps, du calendrier et de la Lune</text>
+<circle cx="81.8" cy="123.0" r="57.6" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="81.8" cy="123.0" r="27.6" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="110.6" cy="138.0" r="12.0" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="74.0" cy="156.0" r="14.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="216.2" cy="123.0" r="30.0" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="109.6" cy="138.7" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="119.0" cy="144.0" r="10.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="149.0" cy="178.8" r="27.6" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="149.0" cy="132.0" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="119.0" cy="144.0" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="149.0" cy="132.0" r="12.0" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="119.0" cy="144.0" r="12.0" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="228.2" cy="123.0" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="239.0" cy="135.0" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="219.8" cy="108.0" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="209.0" cy="114.0" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<line x1="157.8" y1="126.6" x2="209.0" y2="94.8" stroke="#c27a12" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="157.8" cy="126.6" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="209.0" cy="94.8" r="12.0" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="209.0" cy="94.8" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<line x1="110.0" y1="149.0" x2="92.0" y2="159.0" stroke="#5f6f86" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="110.0" cy="149.0" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="92.0" cy="159.0" r="12.0" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="92.0" cy="159.0" r="1.2" fill="#5f6f86" fill-opacity="0.7" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="136.4" cy="166.8" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="158.0" cy="166.8" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="171.4" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="131.0" cy="187.2" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<line x1="14.0" y1="117.0" x2="109.0" y2="141.4" stroke="#5f6f86" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="109.0" cy="141.4" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<line x1="120.6" y1="154.2" x2="123.8" y2="174.0" stroke="#5f6f86" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="120.6" cy="154.2" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="123.8" cy="174.0" r="12.0" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="123.8" cy="174.0" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<line x1="152.3" y1="141.8" x2="167.0" y2="184.8" stroke="#c27a12" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="152.3" cy="141.8" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="167.0" cy="184.8" r="12.0" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="167.0" cy="184.8" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="182.6" cy="199.2" r="1.2" fill="#5f6f86" fill-opacity="0.7" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="203.4" cy="195.5" r="1.2" fill="#5f6f86" fill-opacity="0.7" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="182.6" cy="199.2" r="1.8" fill="#5f6f86" fill-opacity="0.7" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="203.4" cy="195.5" r="19.9" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<line x1="203.4" y1="195.5" x2="149.0" y2="171.4" stroke="#5f6f86" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="203.4" cy="195.5" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="149.0" cy="171.4" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="197.5" cy="133.8" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="241.4" cy="182.4" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="244.4" cy="190.8" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="251.0" cy="208.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="241.4" cy="182.4" r="2.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="244.4" cy="190.8" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="244.4" cy="190.8" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="251.0" cy="208.8" r="16.3" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="158.1" cy="136.9" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<line x1="158.1" y1="136.9" x2="232.3" y2="177.5" stroke="#c27a12" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="232.3" cy="177.5" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="241.4" cy="182.4" r="12.0" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="155.8" cy="104.6" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="168.8" cy="109.4" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="188.0" cy="112.7" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="159.5" cy="107.7" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="155.8" cy="104.6" r="2.1" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="168.8" cy="109.4" r="6.8" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="159.5" cy="107.7" r="3.3" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="168.8" cy="109.4" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="188.0" cy="112.7" r="16.6" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="151.5" cy="122.0" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<line x1="151.5" y1="122.0" x2="153.3" y2="114.6" stroke="#c27a12" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="153.3" cy="114.6" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="155.8" cy="104.6" r="12.0" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="157.1" cy="144.5" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="162.2" cy="142.6" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="174.3" cy="138.2" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="188.0" cy="133.3" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="157.1" cy="144.5" r="1.9" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="162.2" cy="142.6" r="4.0" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="162.2" cy="142.6" r="3.1" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="174.3" cy="138.2" r="10.3" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="174.3" cy="138.2" r="3.6" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="188.0" cy="133.3" r="11.5" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="129.3" cy="144.1" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<line x1="129.3" y1="144.1" x2="146.8" y2="144.4" stroke="#5f6f86" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="146.8" cy="144.4" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="157.1" cy="144.5" r="12.0" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="188.0" cy="133.3" r="6.3" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="203.6" cy="132.2" r="9.9" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="203.6" cy="132.2" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="216.2" cy="123.0" r="6.3" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="188.0" cy="112.7" r="6.3" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="206.8" cy="104.9" r="14.7" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="206.8" cy="104.9" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="216.2" cy="123.0" r="6.3" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="197.5" cy="133.8" r="6.3" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="209.5" cy="132.9" r="6.3" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="209.5" cy="132.9" r="1.2" fill="#2e8b57" fill-opacity="0.7" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="216.2" cy="123.0" r="6.3" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<text x="18" y="247.0" font-size="9" fill="#b23a2e">anneau 3–9</text>
+<text x="108" y="247.0" font-size="9" fill="#2f5d8a">m1 9–48</text>
+<text x="198" y="247.0" font-size="9" fill="#2e8b57">m2 48–87</text>
+<text x="18" y="259.0" font-size="9" fill="#6b5aa6">ponts 87–90</text>
+<text x="108" y="259.0" font-size="9" fill="#c27a12">T1 90–105</text>
+<text x="198" y="259.0" font-size="9" fill="#5f6f86">T2 105–123</text>
+<rect x="312.0" y="30.0" width="270.0" height="204.0" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="312.0" y="22.0" font-weight="600" font-size="11.5">E4 : étage des trains moyens (bus de l'année)</text>
+<circle cx="358.8" cy="76.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="358.8" cy="76.8" r="2.4" fill="#c27a12" fill-opacity="0.7" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="450.0" cy="76.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="450.0" cy="76.8" r="2.4" fill="#c27a12" fill-opacity="0.7" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="541.2" cy="70.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="541.2" cy="70.8" r="2.4" fill="#c27a12" fill-opacity="0.7" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="346.2" cy="199.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="346.2" cy="199.2" r="2.4" fill="#c27a12" fill-opacity="0.7" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="413.4" cy="199.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="413.4" cy="199.2" r="2.4" fill="#c27a12" fill-opacity="0.7" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="480.6" cy="199.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="480.6" cy="199.2" r="2.4" fill="#c27a12" fill-opacity="0.7" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="547.8" cy="199.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="547.8" cy="199.2" r="2.4" fill="#c27a12" fill-opacity="0.7" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="447.0" cy="132.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="417.0" cy="144.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="447.0" cy="132.0" r="12.0" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="447.0" cy="132.0" r="12.0" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="526.2" cy="123.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="537.0" cy="135.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="517.8" cy="108.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="507.0" cy="114.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="390.0" cy="159.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="434.4" cy="166.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="456.0" cy="166.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="447.0" cy="171.4" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="429.0" cy="187.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="417.0" cy="130.1" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="426.8" cy="107.6" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="417.0" cy="144.0" r="1.8" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="417.0" cy="130.1" r="12.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="417.0" cy="130.1" r="3.1" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="426.8" cy="107.6" r="21.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="426.8" cy="107.6" r="5.0" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="447.0" cy="132.0" r="27.3" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="389.3" cy="86.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="411.2" cy="67.6" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="371.6" cy="89.4" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="358.8" cy="76.8" r="3.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="371.6" cy="89.4" r="14.7" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="389.3" cy="86.0" r="3.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="389.3" cy="86.0" r="18.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="411.2" cy="67.6" r="10.3" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="411.2" cy="67.6" r="25.2" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="358.8" cy="76.8" r="28.6" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="358.8" cy="76.8" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="438.3" cy="126.5" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<line x1="438.3" y1="126.5" x2="367.5" y2="82.3" stroke="#c27a12" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="367.5" cy="82.3" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="358.8" cy="76.8" r="12.0" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="510.4" cy="218.3" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="506.3" cy="194.7" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="493.8" cy="211.4" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="480.6" cy="199.2" r="3.9" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="493.8" cy="211.4" r="14.7" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="510.4" cy="218.3" r="3.9" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="510.4" cy="218.3" r="2.1" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="506.3" cy="194.7" r="22.5" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="506.3" cy="194.7" r="2.1" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="480.6" cy="199.2" r="24.6" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="480.6" cy="199.2" r="2.4" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="451.6" cy="141.2" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<line x1="451.6" y1="141.2" x2="476.0" y2="190.0" stroke="#c27a12" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="476.0" cy="190.0" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="480.6" cy="199.2" r="12.0" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="534.0" cy="82.7" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="557.3" cy="73.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="546.4" cy="64.6" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="547.8" cy="85.1" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="536.0" cy="75.8" r="1.2" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="541.2" cy="70.8" r="3.9" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="536.0" cy="75.8" r="3.9" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="534.0" cy="82.7" r="3.9" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="534.0" cy="82.7" r="11.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="557.3" cy="73.8" r="12.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="547.8" cy="85.1" r="3.3" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="557.3" cy="73.8" r="9.9" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="546.4" cy="64.6" r="5.0" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="546.4" cy="64.6" r="5.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="541.2" cy="70.8" r="2.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="541.2" cy="70.8" r="2.4" fill="#2f5d8a" fill-opacity="0.7" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="455.7" cy="126.4" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<line x1="455.7" y1="126.4" x2="532.5" y2="76.4" stroke="#c27a12" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="532.5" cy="76.4" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="541.2" cy="70.8" r="12.0" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="469.3" cy="61.6" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="464.5" cy="88.9" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="462.6" cy="73.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="450.0" cy="76.8" r="3.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="462.6" cy="73.0" r="9.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="469.3" cy="61.6" r="3.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="469.3" cy="61.6" r="14.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="464.5" cy="88.9" r="13.5" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="464.5" cy="88.9" r="6.5" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="450.0" cy="76.8" r="13.0" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="450.0" cy="76.8" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="447.6" cy="121.7" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<line x1="447.6" y1="121.7" x2="449.4" y2="87.1" stroke="#5f6f86" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="449.4" cy="87.1" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="450.0" cy="76.8" r="12.0" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="527.5" cy="206.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="532.3" cy="193.6" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="540.3" cy="210.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="547.8" cy="199.2" r="3.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="540.3" cy="210.0" r="9.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="527.5" cy="206.8" r="3.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="527.5" cy="206.8" r="1.8" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="532.3" cy="193.6" r="12.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="532.3" cy="193.6" r="1.8" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="547.8" cy="199.2" r="15.3" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="547.8" cy="199.2" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="455.6" cy="137.7" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<line x1="455.6" y1="137.7" x2="539.2" y2="193.5" stroke="#5f6f86" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="539.2" cy="193.5" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="547.8" cy="199.2" r="12.0" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="405.5" cy="212.6" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="401.7" cy="205.9" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="412.2" cy="207.5" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="413.4" cy="199.2" r="3.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="412.2" cy="207.5" r="5.1" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="405.5" cy="212.6" r="3.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="405.5" cy="212.6" r="1.8" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="401.7" cy="205.9" r="6.5" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="401.7" cy="205.9" r="1.9" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="413.4" cy="199.2" r="12.2" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="413.4" cy="199.2" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="442.4" cy="141.2" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<line x1="442.4" y1="141.2" x2="418.0" y2="190.0" stroke="#5f6f86" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="418.0" cy="190.0" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="413.4" cy="199.2" r="12.0" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="330.9" cy="199.1" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="334.6" cy="192.5" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="338.5" cy="202.6" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="346.2" cy="199.2" r="3.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="338.5" cy="202.6" r="5.1" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="330.9" cy="199.1" r="3.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="330.9" cy="199.1" r="2.5" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="334.6" cy="192.5" r="5.9" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="334.6" cy="192.5" r="2.7" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="346.2" cy="199.2" r="11.2" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="346.2" cy="199.2" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="438.4" cy="137.7" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<line x1="438.4" y1="137.7" x2="354.8" y2="193.5" stroke="#c27a12" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="354.8" cy="193.5" r="3.4" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="346.2" cy="199.2" r="12.0" fill="#c27a12" fill-opacity="0.1" stroke="#c27a12" stroke-width="0.7"/>
+<circle cx="475.7" cy="125.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="475.7" cy="145.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="495.5" cy="133.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="475.7" cy="125.8" r="4.2" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="475.7" cy="145.2" r="15.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="475.7" cy="145.2" r="7.3" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="495.5" cy="133.8" r="16.1" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="457.1" cy="129.8" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<line x1="457.1" y1="129.8" x2="465.7" y2="128.0" stroke="#5f6f86" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="465.7" cy="128.0" r="3.4" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<circle cx="475.7" cy="125.8" r="12.0" fill="#5f6f86" fill-opacity="0.1" stroke="#5f6f86" stroke-width="0.7"/>
+<text x="316" y="247.0" font-size="9" fill="#b23a2e">A 125–134</text>
+<text x="406" y="247.0" font-size="9" fill="#2f5d8a">B 134–143</text>
+<text x="496" y="247.0" font-size="9" fill="#2e8b57">C 143–152</text>
+<text x="316" y="259.0" font-size="9" fill="#6b5aa6">ponts 152–155</text>
+<text x="406" y="259.0" font-size="9" fill="#c27a12">T1 155–170</text>
+<text x="496" y="259.0" font-size="9" fill="#5f6f86">T2 170–185</text>
+<rect x="14.0" y="292.0" width="270.0" height="204.0" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="14.0" y="284.0" font-weight="600" font-size="11.5">E3 : étage de Kepler (unités d'anomalie)</text>
+<circle cx="149.0" cy="394.0" r="16.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="60.8" cy="338.8" r="16.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="152.0" cy="338.8" r="16.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="243.2" cy="332.8" r="25.2" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="48.2" cy="461.2" r="16.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="115.4" cy="461.2" r="16.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="182.6" cy="461.2" r="16.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="249.8" cy="461.2" r="16.8" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="60.8" cy="338.8" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="152.0" cy="338.8" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="243.2" cy="332.8" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="48.2" cy="461.2" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="115.4" cy="461.2" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="182.6" cy="461.2" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="249.8" cy="461.2" r="2.4" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="149.0" cy="394.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="149.0" cy="394.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="243.2" cy="332.8" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="229.4" cy="332.8" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<line x1="229.4" y1="332.8" x2="229.4" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="229.4" cy="332.8" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="60.8" cy="338.8" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="74.6" cy="338.8" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<line x1="74.6" y1="338.8" x2="74.6" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="74.6" cy="338.8" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="152.0" cy="338.8" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="165.8" cy="338.8" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<line x1="165.8" y1="338.8" x2="165.8" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="165.8" cy="338.8" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="48.2" cy="461.2" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="34.4" cy="461.2" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<line x1="34.4" y1="461.2" x2="34.4" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="34.4" cy="461.2" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="115.4" cy="461.2" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="101.6" cy="461.2" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<line x1="101.6" y1="461.2" x2="101.6" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="101.6" cy="461.2" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="249.8" cy="461.2" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="263.6" cy="461.2" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<line x1="263.6" y1="461.2" x2="263.6" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="263.6" cy="461.2" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="182.6" cy="461.2" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="196.4" cy="461.2" r="7.2" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<line x1="196.4" y1="461.2" x2="196.4" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="196.4" cy="461.2" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="149.0" cy="394.0" r="5.1" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="139.4" cy="394.0" r="5.1" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<line x1="139.4" y1="394.0" x2="139.4" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="139.4" cy="394.0" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="228.2" cy="385.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="239.0" cy="397.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="219.8" cy="370.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="219.8" y1="370.0" x2="219.8" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="219.8" cy="370.0" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="209.0" cy="376.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="209.0" y1="376.0" x2="209.0" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="209.0" cy="376.0" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="92.0" cy="421.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="136.4" cy="428.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="158.0" cy="428.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="149.0" cy="433.4" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="131.0" cy="449.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="131.0" y1="449.2" x2="131.0" y2="293.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="131.0" cy="449.2" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<text x="18" y="509.0" font-size="9" fill="#b23a2e">uak 187–204</text>
+<text x="108" y="509.0" font-size="9" fill="#2f5d8a">T1 204–219</text>
+<rect x="312.0" y="292.0" width="270.0" height="204.0" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="312.0" y="284.0" font-weight="600" font-size="11.5">E2 : étage des modules géocentriques</text>
+<circle cx="358.8" cy="338.8" r="45.0" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="450.0" cy="338.8" r="45.0" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="541.2" cy="332.8" r="39.0" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="346.2" cy="461.2" r="33.0" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="413.4" cy="461.2" r="33.0" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="480.6" cy="461.2" r="33.0" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="547.8" cy="461.2" r="33.0" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="447.0" cy="394.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="541.2" cy="332.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="358.8" cy="338.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="450.0" cy="338.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="346.2" cy="461.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="413.4" cy="461.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="547.8" cy="461.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="480.6" cy="461.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="526.2" cy="385.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="537.0" cy="397.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="390.0" cy="421.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="434.4" cy="428.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="456.0" cy="428.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="447.0" cy="433.4" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<text x="316" y="509.0" font-size="9" fill="#b23a2e">mod 221–249</text>
+<rect x="14.0" y="554.0" width="270.0" height="204.0" fill="none" stroke="currentColor" stroke-width="1"/>
+<text x="14.0" y="546.0" font-weight="600" font-size="11.5">E1 : étage des renvois avant</text>
+<circle cx="149.0" cy="656.0" r="5.5" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="63.0" cy="709.0" r="47.5" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="36.2" cy="585.2" r="12.0" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="261.8" cy="726.8" r="8.4" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="695.4" r="4.8" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="656.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="243.2" cy="594.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="60.8" cy="600.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="152.0" cy="600.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="48.2" cy="723.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="115.4" cy="723.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="249.8" cy="723.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="182.6" cy="723.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="228.2" cy="647.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="239.0" cy="659.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="92.0" cy="683.0" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="136.4" cy="690.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="136.4" y1="690.8" x2="36.2" y2="585.2" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="136.4" cy="690.8" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="36.2" cy="585.2" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="158.0" cy="690.8" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="158.0" y1="690.8" x2="261.8" y2="726.8" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="158.0" cy="690.8" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="261.8" cy="726.8" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="149.0" cy="695.4" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="48.2" cy="723.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="48.2" y1="723.2" x2="36.2" y2="726.8" stroke="#2f5d8a" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="48.2" cy="723.2" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="36.2" cy="726.8" r="3.4" fill="#2f5d8a" fill-opacity="0.1" stroke="#2f5d8a" stroke-width="0.7"/>
+<circle cx="164.5" cy="644.7" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="164.5" cy="644.7" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="164.5" cy="644.7" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="656.0" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="153.6" cy="637.4" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="153.6" cy="637.4" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="153.6" cy="637.4" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="656.0" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="140.6" cy="638.7" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="140.6" cy="638.7" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="140.6" cy="638.7" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="656.0" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="131.5" cy="648.2" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="131.5" cy="648.2" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="131.5" cy="648.2" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="656.0" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="130.5" cy="661.3" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="130.5" cy="661.3" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="130.5" cy="661.3" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="656.0" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="138.3" cy="671.9" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="138.3" cy="671.9" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="138.3" cy="671.9" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="656.0" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="151.0" cy="675.1" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="151.0" cy="675.1" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="151.0" cy="675.1" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="656.0" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="162.8" cy="669.3" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="162.8" cy="669.3" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="162.8" cy="669.3" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="656.0" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="168.2" cy="657.3" r="1.2" fill="#b23a2e" fill-opacity="0.7" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="168.2" cy="657.3" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="168.2" cy="657.3" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<circle cx="149.0" cy="656.0" r="9.9" fill="#2e8b57" fill-opacity="0.1" stroke="#2e8b57" stroke-width="0.7"/>
+<line x1="243.2" y1="594.8" x2="153.6" y2="637.4" stroke="#b23a2e" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="243.2" cy="594.8" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="153.6" cy="637.4" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="60.8" y1="600.8" x2="131.5" y2="648.2" stroke="#b23a2e" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="60.8" cy="600.8" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="131.5" cy="648.2" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="152.0" y1="600.8" x2="140.6" y2="638.7" stroke="#b23a2e" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="152.0" cy="600.8" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="140.6" cy="638.7" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="48.2" y1="723.2" x2="130.5" y2="661.3" stroke="#b23a2e" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="48.2" cy="723.2" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="130.5" cy="661.3" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="115.4" y1="723.2" x2="138.3" y2="671.9" stroke="#b23a2e" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="115.4" cy="723.2" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="138.3" cy="671.9" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="249.8" y1="723.2" x2="162.8" y2="669.3" stroke="#b23a2e" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="249.8" cy="723.2" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="162.8" cy="669.3" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="182.6" y1="723.2" x2="151.0" y2="675.1" stroke="#b23a2e" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="182.6" cy="723.2" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="151.0" cy="675.1" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="228.2" y1="647.0" x2="164.5" y2="644.7" stroke="#b23a2e" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="228.2" cy="647.0" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="164.5" cy="644.7" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<line x1="239.0" y1="659.0" x2="168.2" y2="657.3" stroke="#b23a2e" stroke-width="1.6" stroke-opacity="0.85"/>
+<circle cx="239.0" cy="659.0" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<circle cx="168.2" cy="657.3" r="3.4" fill="#b23a2e" fill-opacity="0.1" stroke="#b23a2e" stroke-width="0.7"/>
+<text x="18" y="771.0" font-size="9" fill="#b23a2e">T1 251–266</text>
+<text x="108" y="771.0" font-size="9" fill="#2f5d8a">T2 266–281</text>
+<text x="198" y="771.0" font-size="9" fill="#2e8b57">pile 281–335</text>
+<text x="318.0" y="572.0" font-size="11">Cercles pâles : roues, blocs, couronnes.</text>
+<text x="318.0" y="590.0" font-size="11">Points pleins : arbres qui traversent l'étage.</text>
+<text x="318.0" y="608.0" font-size="11">Traits : tringles (renvois 1:1).</text>
+<text x="318.0" y="626.0" font-size="11">Couleur : sous-étage (z en mm).</text>
+<text x="318.0" y="644.0" font-size="11">0 collision sur 379 pièces.</text>
+</svg></div><figcaption><b>Les cinq étages, tels que le vérificateur les a placés.</b> 13 trains posés roue par roue par recherche exhaustive, avec leurs pignons fous, leurs reprises 1:1 et leurs tringles. 379 pièces, 0 collision.</figcaption></figure>
+<div class="tbl"><table><thead><tr><th class="">Contrôle</th><th class="num">Résultat</th></tr></thead><tbody><tr><td class="">Pièces modélisées (roues, arbres, couronnes, tringles, avec leur cote z)</td><td class="num">379</td></tr><tr><td class="">Trains placés roue par roue</td><td class="num">13 (échecs : 0)</td></tr><tr><td class="">Collisions</td><td class="num"><b>0</b></td></tr><tr><td class="">Arbres de <code>trains.json</code> qui ont une place</td><td class="num"><b>70 / 70</b></td></tr><tr><td class="">Interfaces déclarées (pièces qui entrent dans un bloc)</td><td class="num">17</td></tr><tr><td class="">Cadrans dans leur face, sans chevauchement</td><td class="num">oui</td></tr><tr><td class="">Roues dentées (trains + renvois)</td><td class="num">≈ 511</td></tr></tbody></table></div>
+<h2><span class="n">07</span>Budget d'erreur (2000–2100)</h2>
+<p>La précision d'une aiguille dépend de trois choses :</p>
+<ul class="tight"><li>la <b>géométrie</b> du modèle : forme de l'orbite, inclinaison, lente dérive des orbites ;</li>
+<li>la <b>physique</b> que Kepler ignore : les planètes s'attirent entre elles ;</li>
+<li>la <b>fabrication</b> : une tolérance de 0,02 mm.</li></ul>
+<div class="tbl"><table><thead><tr><th class="">Aiguille</th><th class="num">Géométrie</th><th class="num">Physique hors Kepler</th><th class="num">Tolérance 0,02 mm</th></tr></thead><tbody><tr><td class="">Mercure</td><td class="num">0,26°</td><td class="num">15″</td><td class="num">0,05°</td></tr><tr><td class="">Vénus</td><td class="num">0,21°</td><td class="num">20″</td><td class="num">0,11°</td></tr><tr><td class="">Mars</td><td class="num">0,24°</td><td class="num">40″</td><td class="num">0,12°</td></tr><tr><td class="">Jupiter</td><td class="num">0,07°</td><td class="num">0,11°</td><td class="num">0,04°</td></tr><tr><td class="">Saturne</td><td class="num">0,08°</td><td class="num">0,17°</td><td class="num">0,03°</td></tr><tr><td class="">Uranus</td><td class="num">0,05°</td><td class="num">50″</td><td class="num">0,03°</td></tr><tr><td class="">Neptune</td><td class="num">0,02°</td><td class="num">10″</td><td class="num">0,03°</td></tr></tbody></table></div>
+<ul class="tight"><li><b>Lune</b> : 0,26° au maximum.</li>
+<li><b>Calendrier</b> : exact de 1582 à 6000 (0 erreur).</li>
+<li><b>Temps sidéral</b> : −0,063 s par siècle.</li>
+<li><b>Équation du temps</b> : 3,1 s au plus.</li>
+<li><b>Éclipses</b> : 449 sur 452, erreur sur γ d'au plus 0,035.</li></ul>
+<h2><span class="n">08</span>Ce qui n'est pas encore prouvé</h2>
+<ul class="tight">
+<li><b>Les blocs-mécanismes sont des enveloppes estimées.</b> C'est le cas de la cascade lunaire, du calendrier, du
+bloc du temps, de la boîte de Laplace et des unités de Kepler. Leur intérieur sera dessiné pièce par pièce en 3D.</li>
+<li><b>Le jeu des engrenages.</b> Les renvois en aval d'un suiveur laissent environ 0,82° de
+flottement, chaque fois qu'une sortie change de sens : une planète qui rétrograde, l'équation du temps, la coulisse
+d'éclipse. Des roues anti-jeu à ciseaux sont donc prévues sur toute cette chaîne.</li>
+<li><b>La dynamique n'est pas calculée</b> : efforts, frottements, flexion des tringles. L'effort de manivelle se
+mesurera sur prototype.</li>
+<li><b>Les pièces les plus fines.</b> L'épicyclet de Mars mesure 0,087 mm : il faut une bague excentrique réglable ou
+l'électroérosion.</li>
+<li><b>Les phénomènes hors de portée</b> : la bande de centralité d'une éclipse, l'écart ΔT entre temps terrestre et
+rotation de la Terre, les grandes inégalités de Jupiter et Saturne au-delà de quelques siècles.</li>
+</ul>
+<h3>Deux revues adversariales</h3>
+<p>Une première revue indépendante a relu la version 1 de l'architecture. Son verdict :</p><p>L&#x27;arithmétique est juste : rapports 1:1, manivelle, masse, caisse, budget d&#x27;erreur recopié sans faute. Mais le graphe des mouvements est incomplet : les sept copies de l&#x27;UAK Terre, le bloc du temps et le bloc lune n&#x27;ont pas toutes leurs entrées. Et « 0 collision » vaut pour un modèle qui omet les pignons de moyeu, les roues du carrousel, le prolongement des arbres jusqu&#x27;aux platines et les arbres consécutifs d&#x27;un même train. Avec ces pièces, on trouve au moins 20 collisions réelles. L&#x27;architecture n&#x27;est pas prête pour la 3D.</p>
+<p><b>La version 2 a répondu point par point :</b></p>
+<ul class="tight">
+<li>Le bus de l'année arrive sur l'axe de chaque tour.</li>
+<li>Le bloc du temps et celui de la Lune reçoivent toutes leurs entrées.</li>
+<li>Le bloc du temps ramène la précession au bon rapport.</li>
+<li>Chaque roue est dans son plan et chaque arbre va de la platine au pont.</li>
+<li>Les pignons des moyeux et les roues du carrousel sont modélisés.</li>
+<li>Les sens de rotation et le jeu sont traités.</li>
+</ul>
+<p>Résultat : 379 pièces, 0 collision. Le détail
+est au § 1 de <a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/study/architecture.md">architecture.md</a>.</p>
+<p><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/study/review.md">Lire la première revue</a>.</p>
+<p>Une seconde revue a vérifié ces corrections. Son verdict :</p><p>La version 2 corrige l&#x27;essentiel de la v1. Toutes les entrées existent. B2, B3, B4, I4, I6, I9 et I10 sont réglés. Le vérificateur est sain pour les pièces modélisées : le recontrôle strict ne trouve que 2 vrais recouvrements cachés. Mais la reprise 1:1 directe a introduit une erreur de sens : dans 4 tours, la planète tourne à l&#x27;envers de la Terre. Avec un pignon fou, Vénus et Neptune ne se placent plus. Les couples d&#x27;entrée du bloc Lune changent les rapports. L&#x27;arbre de précession n&#x27;atteint pas le bloc du temps. Pas encore prêt pour la 3D : corriger N1 à N4 d&#x27;abord.</p>
+<p><b>La version 3 a répondu à son tour :</b></p>
+<ul class="tight">
+<li>Les reprises de Y passent par un pignon fou sur tenon, qui garde le sens de chaque planète.</li>
+<li>Le bloc Lune a ses couples d'entrée 1:1.</li>
+<li>L'arbre de précession descend vraiment dans le bloc du temps, porté par un coq.</li>
+<li>La roue du suiveur F tourne sur sa bague excentrique, avec une prise à 23 mm.</li>
+<li>Chaque bloc a un budget de hauteur vérifié.</li>
+<li>Les liens se font par identifiant exact.</li>
+</ul>
+<p>Un contrôle strict ne trouve plus aucun recouvrement caché. Ce sont le § 1.2 et le § 6 de
+<a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/study/architecture.md">architecture.md</a>.</p>
+<p><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/study/review2.md">Lire la seconde revue</a>.</p>
+<p>Une troisième revue a vérifié la version 3. Son verdict :</p><p>La version 3 corrige vraiment N1, N3, N4 et N6 à N10. Le sens L/Y vaut +1 dans les 7 tours, comme <code>trains.json</code>. <code>--check</code> est reproduit : 368 objets, 0 collision, 507 roues. Le recontrôle strict ne cache aucun recouvrement réel. Deux points restent ouverts. N2 n&#x27;est corrigé que sur le papier : les couples 1:1 de L et de ϖ n&#x27;ont aucun plan libre. N5 l&#x27;est en partie : le budget du bloc Lune oublie deux différentiels (78 mm pour 60). Pas de bloquant. La 3D peut commencer pour les tours, E4, E3 et E1 ; le bloc Lune doit être repris d&#x27;abord.</p>
+<p><b>La version 4 règle ces deux points.</b></p>
+<ul class="tight">
+<li>Les entrées du bloc Lune (40 → pignon fou → 40) sont modélisées et placées.</li>
+<li>Les budgets de hauteur des blocs sont complets.</li>
+<li>L'arbre de précession est relié.</li>
+</ul>
+<p><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/study/review3.md">Lire la troisième revue</a>.</p>
+<h2><span class="n">09</span>Les fichiers</h2><ul class="tight"><li><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/research/mechanisms.md"><code>v2/research/mechanisms.md</code></a> : la meilleure réalisation de chaque sous-système, chiffrée</li><li><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/research/precedents.md"><code>v2/research/precedents.md</code></a> : les machines qui l'ont déjà fait : Strasbourg, Olsen, Hahn…</li><li><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/research/constants.md"><code>v2/research/constants.md</code></a> : les constantes modernes et leurs sources</li><li><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/spec/trains.json"><code>v2/spec/trains.json</code></a> : les 70 arbres et leurs rapports exacts</li><li><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/study/trains.md"><code>v2/study/trains.md</code></a> : l'étude des trains d'engrenages</li><li><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/spec/architecture.json"><code>v2/spec/architecture.json</code></a> : l'architecture vérifiée (positions, étages, renvois)</li><li><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/study/architecture.md"><code>v2/study/architecture.md</code></a> : l'architecture expliquée</li><li><a href="https://github.com/taciclei/antikythera-mechanism/blob/main/v2/tools/"><code>v2/tools/</code></a> : les scripts qui produisent et vérifient tout</li></ul>
+<h2><span class="n">10</span>La suite</h2>
+<ol class="tight"><li><b>La machine en 3D</b> dans Blender, à partir de <code>spec/architecture.json</code>, avec un contrôle
+d'interférence pièce par pièce, comme pour la v1.</li>
+<li><b>Les preuves Lean 4</b> des rapports exacts et des identités : Laplace, Hooke, calendrier.</li></ol>
+<footer>Page générée par <code>v2/tools/build_etude.py</code> à partir des fichiers vérifiés du dépôt.
+Anticythère 2.0 est une évolution moderne, pas une reconstruction historique. ·
+<a href="https://github.com/taciclei/antikythera-mechanism">github.com/taciclei/antikythera-mechanism</a></footer>
+</article></div>

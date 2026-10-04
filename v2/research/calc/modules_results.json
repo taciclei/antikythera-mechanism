@@ -1,0 +1,162 @@
+{
+ "modules": {
+  "mercury": {
+   "nesting": "inner",
+   "module_radius_mm": 60,
+   "scale_mm_per_AU": 41.34,
+   "kepler_unit": "kes",
+   "planet_arm_mm": 16.0,
+   "sun_arm_mm": 41.34,
+   "planet_centre_offset_mm": 3.291,
+   "earth_centre_offset_mm": 0.691,
+   "G_min_mm": 22.7,
+   "G_max_mm": 60.0,
+   "follower_err_deg_for_0.02mm": 0.051,
+   "ellipse_arms_mm": [
+    15.832,
+    0.171
+   ],
+   "ellipse_centre_offset_mm": 3.291
+  },
+  "venus": {
+   "nesting": "inner",
+   "module_radius_mm": 70,
+   "scale_mm_per_AU": 40.33,
+   "kepler_unit": "eq",
+   "planet_arm_mm": 29.17,
+   "sun_arm_mm": 40.33,
+   "planet_centre_offset_mm": 0.198,
+   "earth_centre_offset_mm": 0.674,
+   "G_min_mm": 10.7,
+   "G_max_mm": 70.0,
+   "follower_err_deg_for_0.02mm": 0.108
+  },
+  "mars": {
+   "nesting": "outer",
+   "module_radius_mm": 70,
+   "scale_mm_per_AU": 26.16,
+   "kepler_unit": "eqe",
+   "planet_arm_mm": 39.86,
+   "sun_arm_mm": 26.16,
+   "planet_centre_offset_mm": 3.723,
+   "earth_centre_offset_mm": 0.437,
+   "G_min_mm": 9.7,
+   "G_max_mm": 70.0,
+   "follower_err_deg_for_0.02mm": 0.118,
+   "epicyclet_mm": 0.087
+  },
+  "jupiter": {
+   "nesting": "outer",
+   "module_radius_mm": 50,
+   "scale_mm_per_AU": 7.75,
+   "kepler_unit": "eq",
+   "planet_arm_mm": 40.32,
+   "sun_arm_mm": 7.75,
+   "planet_centre_offset_mm": 1.951,
+   "earth_centre_offset_mm": 0.129,
+   "G_min_mm": 30.6,
+   "G_max_mm": 50.0,
+   "follower_err_deg_for_0.02mm": 0.037
+  },
+  "saturn": {
+   "nesting": "outer",
+   "module_radius_mm": 50,
+   "scale_mm_per_AU": 4.53,
+   "kepler_unit": "eq",
+   "planet_arm_mm": 43.23,
+   "sun_arm_mm": 4.53,
+   "planet_centre_offset_mm": 2.328,
+   "earth_centre_offset_mm": 0.076,
+   "G_min_mm": 36.4,
+   "G_max_mm": 50.0,
+   "follower_err_deg_for_0.02mm": 0.031
+  },
+  "uranus": {
+   "nesting": "outer",
+   "module_radius_mm": 50,
+   "scale_mm_per_AU": 2.37,
+   "kepler_unit": "eq",
+   "planet_arm_mm": 45.5,
+   "sun_arm_mm": 2.37,
+   "planet_centre_offset_mm": 2.15,
+   "earth_centre_offset_mm": 0.04,
+   "G_min_mm": 41.0,
+   "G_max_mm": 50.0,
+   "follower_err_deg_for_0.02mm": 0.028
+  },
+  "neptune": {
+   "nesting": "outer",
+   "module_radius_mm": 50,
+   "scale_mm_per_AU": 1.6,
+   "kepler_unit": "eq",
+   "planet_arm_mm": 48.19,
+   "sun_arm_mm": 1.6,
+   "planet_centre_offset_mm": 0.414,
+   "earth_centre_offset_mm": 0.027,
+   "G_min_mm": 46.2,
+   "G_max_mm": 50.0,
+   "follower_err_deg_for_0.02mm": 0.025
+  }
+ },
+ "eclipse_limits": {
+  "solar_any (|gamma| < 1.5433+u)": {
+   "apogee": {
+    "beta_deg": 1.4,
+    "F_deg": 16.28
+   },
+   "perigee": {
+    "beta_deg": 1.592,
+    "F_deg": 18.59
+   }
+  },
+  "solar_central (|gamma| < 0.9972)": {
+   "apogee": {
+    "beta_deg": 0.901,
+    "F_deg": 10.4
+   },
+   "perigee": {
+    "beta_deg": 1.025,
+    "F_deg": 11.84
+   }
+  },
+  "lunar_penumbral (|gamma| < 1.5573+u)": {
+   "apogee": {
+    "beta_deg": 1.413,
+    "F_deg": 16.44
+   },
+   "perigee": {
+    "beta_deg": 1.607,
+    "F_deg": 18.77
+   }
+  },
+  "lunar_partial_umbral (|gamma| < 1.0128-u)": {
+   "apogee": {
+    "beta_deg": 0.91,
+    "F_deg": 10.5
+   },
+   "perigee": {
+    "beta_deg": 1.035,
+    "F_deg": 11.96
+   }
+  },
+  "lunar_total (|gamma| < 0.4678-u)": {
+   "apogee": {
+    "beta_deg": 0.417,
+    "F_deg": 4.8
+   },
+   "perigee": {
+    "beta_deg": 0.475,
+    "F_deg": 5.45
+   }
+  }
+ },
+ "saros": {
+  "223_synodic_d": 6585.321314219001,
+  "242_draconic_d": 6585.357437713999,
+  "239_anomalistic_d": 6585.537420842,
+  "node_shift_per_saros_deg": 0.47789036723584116,
+  "anomaly_shift_per_saros_deg": 2.8234315067443507,
+  "longitude_shift_per_saros_deg": -115.67311884024093,
+  "exeligmos_extra_days": -0.03605734300072072
+ }
+}

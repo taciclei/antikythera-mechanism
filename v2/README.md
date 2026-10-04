@@ -7,15 +7,17 @@
 > La reconstruction historique (la « v1 ») est à la racine du dépôt, figée par le repère
 > [`v1-historique`](https://github.com/taciclei/antikythera-mechanism/releases/tag/v1-historique).
 
-**État : étude de conception en cours.** La construction 3D dans Blender et les preuves Lean viendront ensuite.
+**État : étude de conception terminée.** [Lire l'étude](https://taciclei.github.io/antikythera-mechanism/v2/) (page
+illustrée), ou le dossier [`study/`](study/). L'architecture (version 4) est vérifiée pièce par pièce, sans collision, et
+a été relue par trois revues adversariales. Prochaines étapes : la construction 3D dans Blender, puis les preuves Lean.
 
 ## Ce qui change par rapport à l'original
 
 | | Machine antique (v1) | Anticythère 2.0 |
 |---|---|---|
 | Planètes | 5 (Mercure à Saturne), sur des cercles (Hipparque) | **8** : Uranus et Neptune en plus, orbites **képlériennes** |
-| Lune | anomalie d'Hipparque (±6,6°) | anomalie, **évection** et **variation** (précision visée : environ 0,5°) |
-| Rapports d'engrenages | relations babyloniennes | **périodes modernes** (moins de 1° de dérive par siècle visé) |
+| Lune | anomalie d'Hipparque (±6,6°) | anomalie, **évection** et **variation** : 0,26° d'erreur au plus |
+| Rapports d'engrenages | relations babyloniennes | **périodes modernes** : moins de 0,01° de dérive par siècle |
 | Calendrier | égyptien de 365 jours, cycle de Méton | **grégorien** (bissextiles 4/100/400), jour de la semaine |
 | Temps | — | **heure sidérale**, **équation du temps**, **précession** des équinoxes |
 | Éclipses | spirale du Saros, signes Σ / Η | Saros, plus distance au nœud : **magnitude** et indication de l'hémisphère |
@@ -27,9 +29,9 @@
 ```
 v2/
   research/   constantes modernes, mécanismes, précédents historiques (horloges de Strasbourg, de Jens Olsen…)
-  spec/       trains d'engrenages (fractions exactes) et architecture de la machine
-  tools/      outils de calcul (trains d'engrenages, vérifications)
-  study/      dossier d'étude (page HTML) et figures
+  spec/       trains d'engrenages (trains.json) et architecture vérifiée (architecture.json)
+  tools/      scripts qui calculent, placent, vérifient et dessinent tout
+  study/      trains.md, architecture.md, review.md, la page etude.html et ses figures
 ```
 
 Les principes de la v1 restent valables :
@@ -53,4 +55,6 @@ Les principes de la v1 restent valables :
 > The historical reconstruction (v1) is the rest of this repository, frozen at the
 > [`v1-historique`](https://github.com/taciclei/antikythera-mechanism/releases/tag/v1-historique) tag.
 
-**Status:** the design study is in progress. The Blender build and the Lean proofs will follow.
+**Status:** the design study is complete. [Read it](https://taciclei.github.io/antikythera-mechanism/v2/) (illustrated
+page, in French) or browse [`study/`](study/). The architecture (version 4) is checked part by part with no collision
+and was reviewed by three adversarial reviews. Next: the Blender build, then the Lean proofs.

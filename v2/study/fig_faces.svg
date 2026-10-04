@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 363" role="img" aria-label="Les deux faces à l'échelle : devant, le grand cadran du ciel et quatre petits cadrans ; derrière, le calendrier, les éclipses et le Saros." font-family="Inter, Helvetica, Arial, sans-serif" font-size="12" fill="currentColor">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect x="14" y="30" width="414.0" height="312.8" rx="6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<text x="14" y="20" font-weight="600" font-size="13">Face avant (vue de face)</text>
+<circle cx="221.0" cy="186.4" r="138.0" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="221.0" cy="186.4" r="131.6" fill="none" stroke="#2f5d8a" class="c-time" stroke-opacity="0.35" stroke-width="12.9"/>
+<line x1="346.1" y1="186.4" x2="359.0" y2="186.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="344.2" y1="208.1" x2="356.9" y2="210.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="338.6" y1="229.2" x2="350.7" y2="233.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="329.4" y1="249.0" x2="340.5" y2="255.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="316.8" y1="266.8" x2="326.7" y2="275.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="301.4" y1="282.2" x2="309.7" y2="292.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="283.6" y1="294.8" x2="290.0" y2="305.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="263.8" y1="304.0" x2="268.2" y2="316.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="242.7" y1="309.6" x2="245.0" y2="322.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="221.0" y1="311.5" x2="221.0" y2="324.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="199.3" y1="309.6" x2="197.0" y2="322.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="178.2" y1="304.0" x2="173.8" y2="316.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="158.4" y1="294.8" x2="152.0" y2="305.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="140.6" y1="282.2" x2="132.3" y2="292.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="125.2" y1="266.8" x2="115.3" y2="275.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="112.6" y1="249.0" x2="101.5" y2="255.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="103.4" y1="229.2" x2="91.3" y2="233.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="97.8" y1="208.1" x2="85.1" y2="210.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="95.9" y1="186.4" x2="83.0" y2="186.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="97.8" y1="164.7" x2="85.1" y2="162.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="103.4" y1="143.6" x2="91.3" y2="139.2" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="112.6" y1="123.8" x2="101.5" y2="117.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="125.2" y1="106.0" x2="115.3" y2="97.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="140.6" y1="90.6" x2="132.3" y2="80.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="158.4" y1="78.0" x2="152.0" y2="66.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="178.2" y1="68.8" x2="173.8" y2="56.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="199.3" y1="63.2" x2="197.0" y2="50.5" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="221.0" y1="61.3" x2="221.0" y2="48.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="242.7" y1="63.2" x2="245.0" y2="50.5" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="263.8" y1="68.8" x2="268.2" y2="56.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="283.6" y1="78.0" x2="290.0" y2="66.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="301.4" y1="90.6" x2="309.7" y2="80.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="316.8" y1="106.0" x2="326.7" y2="97.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="329.4" y1="123.8" x2="340.5" y2="117.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="338.6" y1="143.6" x2="350.7" y2="139.2" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="344.2" y1="164.7" x2="356.9" y2="162.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<circle cx="221.0" cy="186.4" r="113.2" fill="none" stroke="#c9961a" class="c-sun" stroke-opacity="0.35" stroke-width="20.2"/>
+<line x1="324.0" y1="186.4" x2="344.3" y2="186.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="310.2" y1="237.9" x2="327.8" y2="248.0" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="272.5" y1="275.6" x2="282.6" y2="293.2" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="221.0" y1="289.4" x2="221.0" y2="309.7" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="169.5" y1="275.6" x2="159.4" y2="293.2" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="131.8" y1="237.9" x2="114.2" y2="248.0" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="118.0" y1="186.4" x2="97.7" y2="186.4" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="131.8" y1="134.9" x2="114.2" y2="124.8" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="169.5" y1="97.2" x2="159.4" y2="79.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="221.0" y1="83.4" x2="221.0" y2="63.1" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="272.5" y1="97.2" x2="282.6" y2="79.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="310.2" y1="134.9" x2="327.8" y2="124.8" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="221.0" y1="186.4" x2="272.9" y2="167.5" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="246.3" y2="132.2" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="209.8" y2="123.0" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="161.2" y2="151.9" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="151.8" y2="211.6" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="176.1" y2="250.5" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="235.4" y2="267.9" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="282.8" y2="248.2" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="307.5" y2="217.9" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<line x1="221.0" y1="186.4" x2="317.2" y2="178.0" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+<text x="221.0" y="223.2" text-anchor="middle" font-size="10" opacity="0.8">dix aiguilles coaxiales</text>
+<text x="221.0" y="94.4" text-anchor="middle" font-size="9.5" opacity="0.8">zodiaque tropique</text>
+<text x="221.0" y="57.6" text-anchor="middle" font-size="9.5" opacity="0.8">constellations J2000</text>
+<text x="221.0" y="272.0" text-anchor="middle" font-size="11" font-weight="600">Le ciel vu de la Terre</text>
+<circle cx="48.0" cy="77.8" r="31.3" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="48.0" cy="77.8" r="2" fill="currentColor"/>
+<text x="16.8" y="123.1" text-anchor="start" font-size="10.5">Horloge 24 h</text>
+<circle cx="48.0" cy="295.0" r="31.3" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="48.0" cy="295.0" r="2" fill="currentColor"/>
+<text x="16.8" y="257.7" text-anchor="start" font-size="10.5">Jupiter et ses lunes</text>
+<circle cx="394.0" cy="295.0" r="31.3" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="394.0" cy="295.0" r="2" fill="currentColor"/>
+<text x="425.2" y="257.7" text-anchor="end" font-size="10.5">Équation du temps</text>
+<circle cx="394.0" cy="77.8" r="31.3" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="394.0" cy="77.8" r="2" fill="currentColor"/>
+<text x="425.2" y="123.1" text-anchor="end" font-size="10.5">Plaque d'époque</text>
+<rect x="468.0" y="30" width="414.0" height="312.8" rx="6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<text x="468.0" y="20" font-weight="600" font-size="13">Face arrière (vue de dos)</text>
+<circle cx="778.0" cy="172.6" r="96.6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="778.0" cy="172.6" r="89.7" fill="none" stroke="#2f5d8a" class="c-time" stroke-opacity="0.35" stroke-width="13.8"/>
+<line x1="860.8" y1="172.6" x2="874.6" y2="172.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="849.7" y1="214.0" x2="861.7" y2="220.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="819.4" y1="244.3" x2="826.3" y2="256.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="778.0" y1="255.4" x2="778.0" y2="269.2" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="736.6" y1="244.3" x2="729.7" y2="256.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="706.3" y1="214.0" x2="694.4" y2="220.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="695.2" y1="172.6" x2="681.4" y2="172.6" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="706.3" y1="131.2" x2="694.4" y2="124.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="736.6" y1="100.9" x2="729.7" y2="88.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="778.0" y1="89.8" x2="778.0" y2="76.0" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="819.4" y1="100.9" x2="826.3" y2="88.9" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<line x1="849.7" y1="131.2" x2="861.7" y2="124.3" stroke="currentColor" stroke-width="0.6" opacity="0.6"/>
+<circle cx="778.0" cy="172.6" r="77.3" fill="none" stroke="currentColor" stroke-dasharray="3 3" stroke-width="0.8"/>
+<circle cx="733.9" cy="195.6" r="18.4" fill="none" stroke="currentColor" stroke-width="0.9"/>
+<text x="733.9" y="198.6" text-anchor="middle" font-size="9">jours</text>
+<circle cx="790.0" cy="223.2" r="22.1" fill="none" stroke="currentColor" stroke-width="0.9"/>
+<text x="790.0" y="226.2" text-anchor="middle" font-size="9">années</text>
+<text x="778.0" y="88.0" text-anchor="middle" font-size="9" opacity="0.8">366 dates</text>
+<text x="778.0" y="134.0" text-anchor="middle" font-size="11" font-weight="600">Calendrier grégorien</text>
+<circle cx="572.0" cy="172.6" r="96.6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="572.0" cy="172.6" r="73.6" fill="#b23a2e" class="c-ecl" fill-opacity="0.08" stroke="#b23a2e" stroke-width="1"/>
+<line x1="506.9" y1="202.9" x2="637.0" y2="142.3" stroke="#b23a2e" class="c-ecl" stroke-width="1.6"/>
+<text x="572.0" y="218.6" text-anchor="middle" font-size="9.5">ligne des nœuds, échelle γ</text>
+<text x="572.0" y="232.5" text-anchor="middle" font-size="11" font-weight="600">Éclipses</text>
+<circle cx="518.6" cy="304.2" r="36.8" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<circle cx="518.6" cy="304.2" r="32.2" fill="none" stroke="#b23a2e" class="c-ecl" stroke-opacity="0.35" stroke-width="9.2"/>
+<circle cx="518.6" cy="315.2" r="10.1" fill="none" stroke="currentColor" stroke-width="0.8"/>
+<text x="481.8" y="261.4" text-anchor="start" font-size="10.5">Saros</text>
+<circle cx="785.4" cy="310.6" r="27.6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="785.4" y="313.6" text-anchor="middle" font-size="9" opacity="0.8">gravure</text>
+<text x="813.0" y="277.0" text-anchor="end" font-size="10.5">Plaque « mode d'emploi »</text>
+</svg>

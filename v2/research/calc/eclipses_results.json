@@ -1,0 +1,50 @@
+{
+ "new": {
+  "n": 224,
+  "time_err_h_max": 0.5284249082866177,
+  "time_err_h_rms": 0.22519632930138042,
+  "gamma_err_max": 0.028932290017525952,
+  "gamma_err_rms": 0.013397011651571698,
+  "central_n": 122,
+  "where_lat_err_deg_rms": 1.4232924311094164,
+  "where_lat_err_deg_max": 5.226517771224877,
+  "where_lat_simple_err_deg_rms": 2.7455127043695775,
+  "where_lat_simple_err_deg_max": 15.303911363792182,
+  "where_lon_err_deg_rms": 4.1283659454804384,
+  "where_lon_err_deg_max": 19.954383000531188,
+  "hemisphere_correct_fraction": 0.9918032786885246
+ },
+ "full": {
+  "n": 228,
+  "time_err_h_max": 0.5061305154373752,
+  "time_err_h_rms": 0.22219893960607073,
+  "gamma_err_max": 0.03543506253535411,
+  "gamma_err_rms": 0.013804114986777874,
+  "umbral_mag_err_rms": 0.040879366404334906,
+  "umbral_mag_err_max": 0.09254635818532231,
+  "zenith_lat_err_deg_rms": 0.290035790028377,
+  "zenith_lon_err_deg_rms": 3.3704721917835108,
+  "zenith_lon_err_deg_max": 7.7550001516494085
+ },
+ "detection": {
+  "new": {
+   "hits": 223,
+   "missed": 1,
+   "false_alarms": 1,
+   "gamma_of_errors": [
+    -1.541,
+    -1.556
+   ]
+  },
+  "full": {
+   "hits": 226,
+   "missed": 2,
+   "false_alarms": 1,
+   "gamma_of_errors": [
+    1.55,
+    -1.567,
+    1.568
+   ]
+  }
+ }
+}

@@ -1,0 +1,10769 @@
+{
+ "meta": {
+  "title": "Anticythère 2.0 — architecture de la machine (version 2, après revue)",
+  "generated_by": "v2/tools/architecture.py",
+  "historique": false,
+  "inputs": [
+   "v2/spec/trains.json",
+   "v2/research/calc/*_results.json",
+   "v2/tools/arch_layout.py",
+   "v2/tools/arch_routes.py",
+   "v2/tools/arch_faces.py"
+  ],
+  "repere": "x à droite vu de face, y vers le haut, z vers l'observateur de la face avant ; mm ; z = 0 sur la face extérieure du cadran arrière"
+ },
+ "etages": {
+  "E5": {
+   "z": [
+    3.0,
+    123.0
+   ],
+   "nom": "étage du temps, du calendrier et de la Lune",
+   "sub": {
+    "anneau": [
+     3.0,
+     9.0
+    ],
+    "m1": [
+     9.0,
+     48.0
+    ],
+    "m2": [
+     48.0,
+     87.0
+    ],
+    "ponts": [
+     87.0,
+     90.0
+    ],
+    "T1": [
+     90.0,
+     105.0
+    ],
+    "T2": [
+     105.0,
+     123.0
+    ]
+   }
+  },
+  "E4": {
+   "z": [
+    125.0,
+    185.0
+   ],
+   "nom": "étage des trains moyens (bus de l'année)",
+   "sub": {
+    "A": [
+     125.0,
+     134.0
+    ],
+    "B": [
+     134.0,
+     143.0
+    ],
+    "C": [
+     143.0,
+     152.0
+    ],
+    "ponts": [
+     152.0,
+     155.0
+    ],
+    "T1": [
+     155.0,
+     170.0
+    ],
+    "T2": [
+     170.0,
+     185.0
+    ]
+   }
+  },
+  "E3": {
+   "z": [
+    187.0,
+    219.0
+   ],
+   "nom": "étage de Kepler (unités d'anomalie)",
+   "sub": {
+    "uak": [
+     187.0,
+     204.0
+    ],
+    "T1": [
+     204.0,
+     219.0
+    ]
+   }
+  },
+  "E2": {
+   "z": [
+    221.0,
+    249.0
+   ],
+   "nom": "étage des modules géocentriques",
+   "sub": {
+    "mod": [
+     221.0,
+     249.0
+    ]
+   }
+  },
+  "E1": {
+   "z": [
+    251.0,
+    335.0
+   ],
+   "nom": "étage des renvois avant",
+   "sub": {
+    "T1": [
+     251.0,
+     266.0
+    ],
+    "T2": [
+     266.0,
+     281.0
+    ],
+    "pile": [
+     281.0,
+     335.0
+    ]
+   }
+  }
+ },
+ "platines_z": {
+  "cadran arrière": [
+   0.0,
+   3.0
+  ],
+  "P4": [
+   123.0,
+   125.0
+  ],
+  "P3": [
+   185.0,
+   187.0
+  ],
+  "P2": [
+   219.0,
+   221.0
+  ],
+  "P1": [
+   249.0,
+   251.0
+  ],
+  "cadran avant": [
+   335.0,
+   338.0
+  ]
+ },
+ "z_cadran_avant": 338.0,
+ "faces": {
+  "avant": {
+   "principal": {
+    "c": [
+     0.0,
+     0.0
+    ],
+    "R": 150.0,
+    "titre": "Le ciel vu de la Terre",
+    "anneaux": [
+     [
+      "constellations J2000 et degrés de longitude (fixe, repère des étoiles)",
+      136,
+      150
+     ],
+     [
+      "zodiaque tropique et mois grégoriens (tourne : précession, 1 tour en 25 772 ans)",
+      112,
+      134
+     ]
+    ],
+    "aiguilles": [
+     "Soleil vrai (arbre central)",
+     "Lune vraie et boule de phase",
+     "Mercure",
+     "Vénus",
+     "Mars",
+     "Jupiter",
+     "Saturne",
+     "Uranus",
+     "Neptune",
+     "Dragon (nœuds de la Lune)"
+    ]
+   },
+   "horloge": {
+    "c": [
+     -188.0,
+     118.0
+    ],
+    "R": 34.0,
+    "titre": "Horloge 24 h",
+    "aiguilles": [
+     "temps solaire moyen (arbre-jour J)",
+     "temps sidéral (gmst)"
+    ]
+   },
+   "jupiter": {
+    "c": [
+     -188.0,
+     -118.0
+    ],
+    "R": 34.0,
+    "titre": "Jupiter et ses lunes",
+    "aiguilles": [
+     "Io",
+     "Europe",
+     "Ganymède",
+     "Callisto",
+     "ligne des conjonctions ν",
+     "lunette (barre à λ_J,géo + 90°)"
+    ]
+   },
+   "edt": {
+    "c": [
+     188.0,
+     -118.0
+    ],
+    "R": 34.0,
+    "titre": "Équation du temps (±16,5 min, ×10)",
+    "aiguilles": [
+     "équation du temps"
+    ]
+   },
+   "epoque": {
+    "c": [
+     188.0,
+     118.0
+    ],
+    "R": 34.0,
+    "titre": "Plaque d'époque (fixe)",
+    "aiguilles": [
+     "gravé : orbites figées en 2050, valable 2000–2100, date de mise à l'heure"
+    ]
+   }
+  },
+  "arriere": {
+   "calendrier": {
+    "c": [
+     -112.0,
+     15.0
+    ],
+    "R": 105.0,
+    "titre": "Calendrier grégorien",
+    "aiguilles": [
+     "anneau des 366 dates (lu à l'index du haut)",
+     "guichet du jour de la semaine",
+     "cadran des années 00-99 et guichet des 400 ans",
+     "voyant « bissextile »"
+    ]
+   },
+   "eclipses": {
+    "c": [
+     112.0,
+     15.0
+    ],
+    "R": 105.0,
+    "titre": "Éclipses",
+    "aiguilles": [
+     "Soleil vrai",
+     "Lune vraie",
+     "disque des nœuds gravé en γ et en magnitudes",
+     "index de la coulisse (γ, amplifié)",
+     "secteur total / annulaire"
+    ]
+   },
+   "saros": {
+    "c": [
+     170.0,
+     -128.0
+    ],
+    "R": 40.0,
+    "titre": "Saros (223 lunaisons) et Exeligmos",
+    "aiguilles": [
+     "aiguille du Saros sur 223 cases",
+     "petit cadran de l'Exeligmos (+0 h, +8 h, +16 h)"
+    ]
+   },
+   "mode_emploi": {
+    "c": [
+     -120.0,
+     -135.0
+    ],
+    "R": 30.0,
+    "titre": "Plaque « mode d'emploi » (fixe)",
+    "aiguilles": [
+     "gravé : comment lire chaque cadran, comme les inscriptions de la v1"
+    ]
+   }
+  },
+  "couvercle": {
+   "centre_xz": [
+    0.0,
+    null
+   ],
+   "rayons": {
+    "mercury": 24,
+    "venus": 38,
+    "earth": 52,
+    "mars": 66,
+    "jupiter": 80,
+    "saturn": 92,
+    "uranus": 102,
+    "neptune": 111
+   },
+   "tellurion": {
+    "globe_r": 7.0,
+    "bras_lune": 12.0,
+    "inclinaison_deg": 23.44
+   }
+  }
+ },
+ "tours": {
+  "mercury": {
+   "axe": [
+    157.0,
+    102.0
+   ],
+   "module_R_mm": 60,
+   "uak": "kes",
+   "moyeu": "Y4a"
+  },
+  "venus": {
+   "axe": [
+    -147.0,
+    92.0
+   ],
+   "module_R_mm": 70,
+   "uak": "eq",
+   "moyeu": "Y4a"
+  },
+  "mars": {
+   "axe": [
+    5.0,
+    92.0
+   ],
+   "module_R_mm": 70,
+   "uak": "eqe",
+   "moyeu": "Y4b"
+  },
+  "jupiter": {
+   "axe": [
+    -168.0,
+    -112.0
+   ],
+   "module_R_mm": 50,
+   "uak": "eq",
+   "moyeu": "Y4a"
+  },
+  "saturn": {
+   "axe": [
+    -56.0,
+    -112.0
+   ],
+   "module_R_mm": 50,
+   "uak": "eq",
+   "moyeu": "Y4b"
+  },
+  "uranus": {
+   "axe": [
+    168.0,
+    -112.0
+   ],
+   "module_R_mm": 50,
+   "uak": "eq",
+   "moyeu": "Y4b"
+  },
+  "neptune": {
+   "axe": [
+    56.0,
+    -112.0
+   ],
+   "module_R_mm": 50,
+   "uak": "eq",
+   "moyeu": "Y4a"
+  }
+ },
+ "blocs": {
+  "cal_anneau": {
+   "c": [
+    -112.0,
+    15.0
+   ],
+   "r": 96.0,
+   "r_in": 84.0,
+   "floor": "E5",
+   "subs": [
+    "anneau"
+   ],
+   "contenu": [
+    "cal_sum"
+   ],
+   "role": "anneau des dates : 200 dents intérieures (m 0,9), 366 crans à sautoir"
+  },
+  "cal_meca": {
+   "c": [
+    -112.0,
+    15.0
+   ],
+   "r": 46.0,
+   "floor": "E5",
+   "subs": [
+    "m1",
+    "m2"
+   ],
+   "contenu": [
+    "cal_cross_main",
+    "cal_cross_skip",
+    "cal_prog4",
+    "cal_prog100",
+    "cal_prog400"
+   ],
+   "role": "croix de Malte (principale et de saut), différentiel, roues-programmes 4/100/400, cames"
+  },
+  "semaine": {
+   "c": [
+    -64.0,
+    -10.0
+   ],
+   "r": 20.0,
+   "floor": "E5",
+   "subs": [
+    "anneau"
+   ],
+   "contenu": [],
+   "role": "disque des 7 jours, vu par un guichet du cadran du calendrier"
+  },
+  "annees": {
+   "c": [
+    -125.0,
+    -40.0
+   ],
+   "r": 24.0,
+   "floor": "E5",
+   "subs": [
+    "anneau"
+   ],
+   "contenu": [],
+   "role": "disque du siècle (00-99) et guichet des 400 ans"
+  },
+  "lune": {
+   "c": [
+    112.0,
+    15.0
+   ],
+   "r": 50.0,
+   "floor": "E5",
+   "subs": [
+    "m1",
+    "m2"
+   ],
+   "contenu": [
+    "moon_true",
+    "annual_eq",
+    "evection_carrier"
+   ],
+   "role": "cascade lunaire à 5 étages sur l'axe M, coulisse d'éclipse sur le porte-nœuds coaxial, copie de l'UAK Terre ; 3 couples d'entrée ramènent L, ϖ, Ω sur l'axe, 4 couples de prise en sortent"
+  },
+  "croix": {
+   "c": [
+    -65.7,
+    -11.1
+   ],
+   "r": 12.0,
+   "floor": "E5",
+   "subs": [
+    "m1",
+    "m2"
+   ],
+   "contenu": [],
+   "links": [
+    "jour",
+    "cal_meca"
+   ],
+   "interface": true,
+   "role": "croix de Malte du calendrier, menée par la goupille de J (interface J → calendrier)"
+  },
+  "jour": {
+   "c": [
+    -50.0,
+    -20.0
+   ],
+   "r": 17.0,
+   "floor": "E5",
+   "subs": [
+    "m1",
+    "m2"
+   ],
+   "contenu": [
+    "J",
+    "W"
+   ],
+   "role": "arbre-jour J ; sa goupille mène la croix de Malte du calendrier (6 fentes) et une croix de semaine à 7 positions (même rapport 1:7 que 10:70)"
+  },
+  "temps": {
+   "c": [
+    0.0,
+    -78.0
+   ],
+   "r": 46.0,
+   "floor": "E5",
+   "subs": [
+    "m1",
+    "m2"
+   ],
+   "contenu": [
+    "sun_trop",
+    "stellar",
+    "gmst",
+    "lambda_trop",
+    "alpha_sun",
+    "eot",
+    "eot_dial",
+    "earth_true"
+   ],
+   "role": "différentiels du temps sidéral, joint de Hooke (ε = 23,44°), équation du temps ×10, couple 15:179 (m 0,4) qui ramène l'arbre de précession au rapport de l'anneau, copie de l'UAK Terre menée par Y (Soleil vrai λ)"
+  },
+  "terre_maitre": {
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 28.0,
+   "floor": "E3",
+   "subs": [
+    "uak"
+   ],
+   "contenu": [
+    "earth_true",
+    "sun_geo"
+   ],
+   "role": "UAK maîtresse de la Terre : Soleil vrai (aiguille, orrery, temps)"
+  },
+  "pile": {
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 9.2,
+   "floor": "E1",
+   "subs": [
+    "pile"
+   ],
+   "contenu": [],
+   "role": "pile centrale : arbre du Soleil et 9 tubes coaxiaux (Ø 18,4 mm)"
+  },
+  "laplace": {
+   "c": [
+    -143.4,
+    -88.4
+   ],
+   "r": 79.1,
+   "floor": "E1",
+   "subs": [
+    "pile"
+   ],
+   "contenu": [
+    "ganymede",
+    "nu",
+    "callisto",
+    "europa",
+    "io"
+   ],
+   "role": "boîte de Laplace : trains G, ν, C empilés (10 mm chacun), deux doubleurs, deux différentiels"
+  },
+  "horloge": {
+   "c": [
+    -188.0,
+    118.0
+   ],
+   "r": 20.0,
+   "floor": "E1",
+   "subs": [
+    "pile"
+   ],
+   "contenu": [],
+   "role": "renvoi des aiguilles 24 h : temps moyen (J) et temps sidéral"
+  },
+  "edt": {
+   "c": [
+    188.0,
+    -118.0
+   ],
+   "r": 14.0,
+   "floor": "E1",
+   "subs": [
+    "pile"
+   ],
+   "contenu": [],
+   "role": "renvoi de l'aiguille de l'équation du temps"
+  },
+  "prec_pignon": {
+   "c": [
+    0.0,
+    -65.6
+   ],
+   "r": 8.0,
+   "floor": "E1",
+   "subs": [
+    "pile"
+   ],
+   "contenu": [
+    "precession_ring"
+   ],
+   "role": "pignon de 15 dents (m 0,8) qui mène l'anneau tropique (179 dents intérieures)"
+  },
+  "uak_venus": {
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 28.0,
+   "floor": "E3",
+   "subs": [
+    "uak"
+   ],
+   "tower": "venus",
+   "contenu": [
+    "venus_true"
+   ],
+   "role": "équant bissecté, plus la copie de l'UAK Terre"
+  },
+  "mod_venus": {
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": null,
+   "floor": "E2",
+   "subs": [
+    "mod"
+   ],
+   "tower": "venus",
+   "contenu": [
+    "venus_geo"
+   ],
+   "role": "module vectoriel à deux bras (suiveur en O vers l'avant, en F vers l'arrière)"
+  },
+  "uak_mars": {
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 28.0,
+   "floor": "E3",
+   "subs": [
+    "uak"
+   ],
+   "tower": "mars",
+   "contenu": [
+    "mars_true",
+    "mars_epicyclet"
+   ],
+   "role": "équant et épicyclet, plus la copie de l'UAK Terre"
+  },
+  "mod_mars": {
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": null,
+   "floor": "E2",
+   "subs": [
+    "mod"
+   ],
+   "tower": "mars",
+   "contenu": [
+    "mars_geo"
+   ],
+   "role": "module vectoriel à deux bras (suiveur en O vers l'avant, en F vers l'arrière)"
+  },
+  "uak_mercury": {
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 42.0,
+   "floor": "E3",
+   "subs": [
+    "uak"
+   ],
+   "tower": "mercury",
+   "contenu": [
+    "mercury_true",
+    "mercury_E",
+    "mercury_counter_arm"
+   ],
+   "role": "résolveur de Kepler et ellipse à deux bras, plus la copie de l'UAK Terre"
+  },
+  "mod_mercury": {
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": null,
+   "floor": "E2",
+   "subs": [
+    "mod"
+   ],
+   "tower": "mercury",
+   "contenu": [
+    "mercury_geo"
+   ],
+   "role": "module vectoriel à deux bras (suiveur en O vers l'avant, en F vers l'arrière)"
+  },
+  "uak_jupiter": {
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 28.0,
+   "floor": "E3",
+   "subs": [
+    "uak"
+   ],
+   "tower": "jupiter",
+   "contenu": [
+    "jupiter_true"
+   ],
+   "role": "équant bissecté, plus la copie de l'UAK Terre"
+  },
+  "mod_jupiter": {
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": null,
+   "floor": "E2",
+   "subs": [
+    "mod"
+   ],
+   "tower": "jupiter",
+   "contenu": [
+    "jupiter_geo"
+   ],
+   "role": "module vectoriel à deux bras (suiveur en O vers l'avant, en F vers l'arrière)"
+  },
+  "uak_saturn": {
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 28.0,
+   "floor": "E3",
+   "subs": [
+    "uak"
+   ],
+   "tower": "saturn",
+   "contenu": [
+    "saturn_true"
+   ],
+   "role": "équant bissecté, plus la copie de l'UAK Terre"
+  },
+  "mod_saturn": {
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": null,
+   "floor": "E2",
+   "subs": [
+    "mod"
+   ],
+   "tower": "saturn",
+   "contenu": [
+    "saturn_geo"
+   ],
+   "role": "module vectoriel à deux bras (suiveur en O vers l'avant, en F vers l'arrière)"
+  },
+  "uak_neptune": {
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 28.0,
+   "floor": "E3",
+   "subs": [
+    "uak"
+   ],
+   "tower": "neptune",
+   "contenu": [
+    "neptune_true"
+   ],
+   "role": "équant bissecté, plus la copie de l'UAK Terre"
+  },
+  "mod_neptune": {
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": null,
+   "floor": "E2",
+   "subs": [
+    "mod"
+   ],
+   "tower": "neptune",
+   "contenu": [
+    "neptune_geo"
+   ],
+   "role": "module vectoriel à deux bras (suiveur en O vers l'avant, en F vers l'arrière)"
+  },
+  "uak_uranus": {
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 28.0,
+   "floor": "E3",
+   "subs": [
+    "uak"
+   ],
+   "tower": "uranus",
+   "contenu": [
+    "uranus_true"
+   ],
+   "role": "équant bissecté, plus la copie de l'UAK Terre"
+  },
+  "mod_uranus": {
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": null,
+   "floor": "E2",
+   "subs": [
+    "mod"
+   ],
+   "tower": "uranus",
+   "contenu": [
+    "uranus_geo"
+   ],
+   "role": "module vectoriel à deux bras (suiveur en O vers l'avant, en F vers l'arrière)"
+  }
+ },
+ "laplace_rayons_trains_mm": {
+  "ganymede": 75.1,
+  "nu": 60.0,
+  "callisto": 50.3
+ },
+ "moyeux": {
+  "Y4a": {
+   "c": [
+    0.0,
+    0.0
+   ],
+   "floor": "E4",
+   "layer": "T1",
+   "src": "Y"
+  },
+  "Y4b": {
+   "c": [
+    0.0,
+    0.0
+   ],
+   "floor": "E4",
+   "layer": "T2",
+   "src": "Y"
+  },
+  "Y5": {
+   "c": [
+    0.0,
+    0.0
+   ],
+   "floor": "E5",
+   "layer": "T1",
+   "src": "Y"
+  },
+  "J5": {
+   "c": [
+    -50.0,
+    -20.0
+   ],
+   "floor": "E5",
+   "layer": "T2",
+   "src": "J"
+  }
+ },
+ "carrousel_deg": {
+  "moon": 36.0,
+  "mercury": 76.0,
+  "mars": 116.0,
+  "venus": 156.0,
+  "jupiter": -164.0,
+  "saturn": -124.0,
+  "neptune": -84.0,
+  "uranus": -44.0,
+  "node": -4.0
+ },
+ "modules_changes": {
+  "neptune_L": [
+   "1/2",
+   "11/20"
+  ],
+  "jupiter_L": [
+   "7/10",
+   "1/2"
+  ]
+ },
+ "renvois": [
+  {
+   "id": "geo_mercury",
+   "shaft": "mercury_geo",
+   "kind": "geo",
+   "role": "longitude géocentrique de Mercure vers la pile avant",
+   "links": [
+    "mod_mercury",
+    "axe_mercury",
+    "car_mercury",
+    "car_mercury#mitre"
+   ],
+   "car": "mercury",
+   "chaine": [
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      157.0,
+      102.0
+     ],
+     [
+      "E2",
+      "mod"
+     ],
+     [
+      "E1",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      157.0,
+      102.0
+     ],
+     "carrousel",
+     [
+      "E1",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "orr_mercury",
+   "shaft": "orrery_mercury",
+   "kind": "orr",
+   "tower": "mercury",
+   "role": "longitude héliocentrique de Mercure vers l'orrery (suiveur F)",
+   "links": [
+    "uak_mercury",
+    "axe_mercury"
+   ],
+   "exit": "q",
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "rod",
+     "prise",
+     "haut",
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "geo_venus",
+   "shaft": "venus_geo",
+   "kind": "geo",
+   "role": "longitude géocentrique de Vénus vers la pile avant",
+   "links": [
+    "mod_venus",
+    "axe_venus",
+    "car_venus",
+    "car_venus#mitre"
+   ],
+   "car": "venus",
+   "chaine": [
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      -147.0,
+      92.0
+     ],
+     [
+      "E2",
+      "mod"
+     ],
+     [
+      "E1",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      -147.0,
+      92.0
+     ],
+     "carrousel",
+     [
+      "E1",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "orr_venus",
+   "shaft": "orrery_venus",
+   "kind": "orr",
+   "tower": "venus",
+   "role": "longitude héliocentrique de Vénus vers l'orrery (suiveur F)",
+   "links": [
+    "uak_venus",
+    "axe_venus"
+   ],
+   "exit": "q",
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "rod",
+     "prise",
+     "haut",
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "geo_mars",
+   "shaft": "mars_geo",
+   "kind": "geo",
+   "role": "longitude géocentrique de Mars vers la pile avant",
+   "links": [
+    "mod_mars",
+    "axe_mars",
+    "car_mars",
+    "car_mars#mitre"
+   ],
+   "car": "mars",
+   "chaine": [
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      5.0,
+      92.0
+     ],
+     [
+      "E2",
+      "mod"
+     ],
+     [
+      "E1",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      5.0,
+      92.0
+     ],
+     "carrousel",
+     [
+      "E1",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "orr_mars",
+   "shaft": "orrery_mars",
+   "kind": "orr",
+   "tower": "mars",
+   "role": "longitude héliocentrique de Mars vers l'orrery (suiveur F)",
+   "links": [
+    "uak_mars",
+    "axe_mars"
+   ],
+   "exit": "q",
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "rod",
+     "prise",
+     "haut",
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "geo_jupiter",
+   "shaft": "jupiter_geo",
+   "kind": "geo",
+   "role": "longitude géocentrique de Jupiter vers la pile avant",
+   "links": [
+    "mod_jupiter",
+    "axe_jupiter",
+    "car_jupiter",
+    "car_jupiter#mitre"
+   ],
+   "car": "jupiter",
+   "chaine": [
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      -168.0,
+      -112.0
+     ],
+     [
+      "E2",
+      "mod"
+     ],
+     [
+      "E1",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      -168.0,
+      -112.0
+     ],
+     "carrousel",
+     [
+      "E1",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "orr_jupiter",
+   "shaft": "orrery_jupiter",
+   "kind": "orr",
+   "tower": "jupiter",
+   "role": "longitude héliocentrique de Jupiter vers l'orrery (suiveur F)",
+   "links": [
+    "uak_jupiter",
+    "axe_jupiter"
+   ],
+   "exit": "q",
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "rod",
+     "prise",
+     "haut",
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "geo_saturn",
+   "shaft": "saturn_geo",
+   "kind": "geo",
+   "role": "longitude géocentrique de Saturne vers la pile avant",
+   "links": [
+    "mod_saturn",
+    "axe_saturn",
+    "car_saturn",
+    "car_saturn#mitre"
+   ],
+   "car": "saturn",
+   "chaine": [
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      -56.0,
+      -112.0
+     ],
+     [
+      "E2",
+      "mod"
+     ],
+     [
+      "E1",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      -56.0,
+      -112.0
+     ],
+     "carrousel",
+     [
+      "E1",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "orr_saturn",
+   "shaft": "orrery_saturn",
+   "kind": "orr",
+   "tower": "saturn",
+   "role": "longitude héliocentrique de Saturne vers l'orrery (suiveur F)",
+   "links": [
+    "uak_saturn",
+    "axe_saturn"
+   ],
+   "exit": "q",
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "rod",
+     "prise",
+     "haut",
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "geo_uranus",
+   "shaft": "uranus_geo",
+   "kind": "geo",
+   "role": "longitude géocentrique d'Uranus vers la pile avant",
+   "links": [
+    "mod_uranus",
+    "axe_uranus",
+    "car_uranus",
+    "car_uranus#mitre"
+   ],
+   "car": "uranus",
+   "chaine": [
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      168.0,
+      -112.0
+     ],
+     [
+      "E2",
+      "mod"
+     ],
+     [
+      "E1",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      168.0,
+      -112.0
+     ],
+     "carrousel",
+     [
+      "E1",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "orr_uranus",
+   "shaft": "orrery_uranus",
+   "kind": "orr",
+   "tower": "uranus",
+   "role": "longitude héliocentrique d'Uranus vers l'orrery (suiveur F)",
+   "links": [
+    "uak_uranus",
+    "axe_uranus"
+   ],
+   "exit": "q",
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "rod",
+     "prise",
+     "haut",
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "geo_neptune",
+   "shaft": "neptune_geo",
+   "kind": "geo",
+   "role": "longitude géocentrique de Neptune vers la pile avant",
+   "links": [
+    "mod_neptune",
+    "axe_neptune",
+    "car_neptune",
+    "car_neptune#mitre"
+   ],
+   "car": "neptune",
+   "chaine": [
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      56.0,
+      -112.0
+     ],
+     [
+      "E2",
+      "mod"
+     ],
+     [
+      "E1",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      56.0,
+      -112.0
+     ],
+     "carrousel",
+     [
+      "E1",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "orr_neptune",
+   "shaft": "orrery_neptune",
+   "kind": "orr",
+   "tower": "neptune",
+   "role": "longitude héliocentrique de Neptune vers l'orrery (suiveur F)",
+   "links": [
+    "uak_neptune",
+    "axe_neptune"
+   ],
+   "exit": "q",
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "rod",
+     "prise",
+     "haut",
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "orr_earth",
+   "shaft": "orrery_earth",
+   "kind": "orr",
+   "tower": "earth",
+   "role": "Soleil vrai (Terre) vers l'orrery",
+   "links": [
+    "terre_maitre",
+    "axe_soleil"
+   ],
+   "exit": "q",
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "rod",
+     "prise",
+     "haut",
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "moon_true",
+   "shaft": "moon_true",
+   "kind": "geo",
+   "car": "moon",
+   "role": "Lune vraie vers la pile avant",
+   "links": [
+    "lune",
+    "car_moon",
+    "car_moon#mitre"
+   ],
+   "interne": 2,
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      132.0,
+      15.0
+     ],
+     [
+      "E5",
+      "meca"
+     ],
+     [
+      "E1",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      132.0,
+      15.0
+     ],
+     "carrousel",
+     [
+      "E1",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "node",
+   "shaft": "moon_node",
+   "kind": "geo",
+   "car": "node",
+   "role": "nœud ascendant (aiguille du Dragon) vers la pile avant",
+   "links": [
+    "lune",
+    "car_node",
+    "car_node#mitre"
+   ],
+   "interne": 2,
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      150.0,
+      -5.0
+     ],
+     [
+      "E5",
+      "meca"
+     ],
+     [
+      "E1",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      150.0,
+      -5.0
+     ],
+     "carrousel",
+     [
+      "E1",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "gamma",
+   "shaft": null,
+   "kind": "orr",
+   "role": "course de la coulisse d'éclipse (γ) vers l'aiguille d'ombre du globe",
+   "links": [
+    "lune"
+   ],
+   "exit": "q",
+   "interne": 2,
+   "chaine": [
+    "crémaillère",
+    "con",
+    "con"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      118.0,
+      40.0
+     ],
+     [
+      "E5",
+      "meca"
+     ],
+     [
+      "E3",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      118.0,
+      40.0
+     ],
+     [
+      118.0,
+      168.0
+     ],
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "orr_moon",
+   "shaft": "moon_true",
+   "kind": "orr",
+   "role": "Lune vraie vers le bras de la Lune du tellurion",
+   "links": [
+    "lune"
+   ],
+   "exit": "q",
+   "interne": 2,
+   "chaine": [
+    "ext",
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      100.0,
+      30.0
+     ],
+     [
+      "E5",
+      "meca"
+     ],
+     [
+      "E3",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      100.0,
+      30.0
+     ],
+     [
+      100.0,
+      168.0
+     ],
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "lune_Y",
+   "shaft": "Y",
+   "kind": "in",
+   "role": "année Y vers le bloc de la Lune (évection, équation annuelle)",
+   "links": [
+    "lune",
+    "Y5"
+   ],
+   "hub": "Y5",
+   "interne": 2,
+   "chaine": [
+    "con",
+    "con",
+    "ext"
+   ],
+   "roues": 3,
+   "interface": "lune",
+   "segs": [
+    [
+     "rod",
+     "hub",
+     [
+      100.0,
+      62.0
+     ],
+     [
+      "E5",
+      "T1"
+     ]
+    ],
+    [
+     "z",
+     [
+      100.0,
+      62.0
+     ],
+     [
+      "E5",
+      "T1"
+     ],
+     [
+      "E5",
+      "meca"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "j_avant",
+   "shaft": "J",
+   "kind": "in",
+   "role": "arbre-jour vers la boîte de Laplace",
+   "links": [
+    "J5",
+    "laplace"
+   ],
+   "hub": "J5",
+   "chaine": [
+    "con",
+    "con"
+   ],
+   "roues": 3,
+   "segs": [
+    [
+     "rod",
+     "hub",
+     [
+      -95.0,
+      -45.0
+     ],
+     [
+      "E5",
+      "T2"
+     ]
+    ],
+    [
+     "z",
+     [
+      -95.0,
+      -45.0
+     ],
+     [
+      "E5",
+      "T2"
+     ],
+     [
+      "E1",
+      "pile"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "vers_horloge",
+   "shaft": "gmst",
+   "kind": "out",
+   "role": "temps moyen (J) et temps sidéral, coaxiaux, vers l'horloge 24 h",
+   "links": [
+    "temps",
+    "horloge"
+   ],
+   "coaxial": 2,
+   "chaine": [
+    "con",
+    "con"
+   ],
+   "roues": 8,
+   "segs": [
+    [
+     "z",
+     [
+      -21.0,
+      -58.0
+     ],
+     [
+      "E5",
+      "meca"
+     ],
+     [
+      "E1",
+      "T2"
+     ]
+    ],
+    [
+     "rod",
+     [
+      -21.0,
+      -58.0
+     ],
+     [
+      -188.0,
+      118.0
+     ],
+     [
+      "E1",
+      "T2"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "vers_edt",
+   "shaft": "eot_dial",
+   "kind": "out",
+   "role": "équation du temps (×10) vers son cadran",
+   "links": [
+    "temps",
+    "edt"
+   ],
+   "chaine": [
+    "con",
+    "con"
+   ],
+   "roues": 4,
+   "segs": [
+    [
+     "z",
+     [
+      15.0,
+      -58.0
+     ],
+     [
+      "E5",
+      "meca"
+     ],
+     [
+      "E1",
+      "T2"
+     ]
+    ],
+    [
+     "rod",
+     [
+      15.0,
+      -58.0
+     ],
+     [
+      188.0,
+      -118.0
+     ],
+     [
+      "E1",
+      "T2"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "prec_avant",
+   "shaft": "precession_ring",
+   "kind": "out",
+   "role": "arbre de la roue de 131 (précession × 179/15) : il monte droit jusqu'au pignon de l'anneau tropique",
+   "links": [
+    "temps",
+    "prec_pignon",
+    "prec_bas#m0q",
+    "prec_bas#r0"
+   ],
+   "chaine": [
+    "int"
+   ],
+   "roues": 0,
+   "segs": [
+    [
+     "z",
+     [
+      0.0,
+      -65.6
+     ],
+     [
+      "E5",
+      "meca"
+     ],
+     [
+      "E1",
+      "pile"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "tellurion",
+   "shaft": "tellurion",
+   "kind": "orr",
+   "role": "temps sidéral vers la rotation du globe de l'orrery",
+   "links": [
+    "temps"
+   ],
+   "exit": "q",
+   "chaine": [
+    "ext",
+    "con",
+    "con"
+   ],
+   "roues": 6,
+   "segs": [
+    [
+     "z",
+     [
+      -30.0,
+      -92.0
+     ],
+     [
+      "E5",
+      "meca"
+     ],
+     [
+      "E3",
+      "T1"
+     ]
+    ],
+    [
+     "rod",
+     [
+      -30.0,
+      -92.0
+     ],
+     [
+      -30.0,
+      168.0
+     ],
+     [
+      "E3",
+      "T1"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "lunette",
+   "shaft": "jupiter_geo",
+   "kind": "out",
+   "role": "longitude géocentrique de Jupiter vers la lunette",
+   "links": [
+    "geo_jupiter#z0",
+    "geo_jupiter#r1",
+    "geo_jupiter#m1p",
+    "laplace"
+   ],
+   "chaine": [
+    "con",
+    "con"
+   ],
+   "roues": 4,
+   "segs": [
+    [
+     "z",
+     [
+      -168.0,
+      -112.0
+     ],
+     [
+      "E1",
+      "T1"
+     ],
+     [
+      "E1",
+      "T2"
+     ]
+    ],
+    [
+     "rod",
+     [
+      -168.0,
+      -112.0
+     ],
+     [
+      -188.0,
+      -118.0
+     ],
+     [
+      "E1",
+      "T2"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "manivelle",
+   "shaft": "J",
+   "kind": "in",
+   "role": "manivelle (paroi gauche) vers l'arbre-jour",
+   "links": [
+    "J5"
+   ],
+   "hub": "J5",
+   "exit": "p",
+   "chaine": [
+    "con"
+   ],
+   "roues": 1,
+   "segs": [
+    [
+     "rod",
+     [
+      -225.0,
+      25.0
+     ],
+     "hub",
+     [
+      "E5",
+      "T2"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "temps_J",
+   "shaft": "J",
+   "kind": "in",
+   "role": "arbre-jour vers le bloc du temps (temps sidéral, horloge)",
+   "links": [
+    "temps",
+    "J5"
+   ],
+   "hub": "J5",
+   "chaine": [
+    "con",
+    "con"
+   ],
+   "roues": 3,
+   "segs": [
+    [
+     "rod",
+     "hub",
+     [
+      -42.0,
+      -70.0
+     ],
+     [
+      "E5",
+      "T2"
+     ]
+    ],
+    [
+     "z",
+     [
+      -42.0,
+      -70.0
+     ],
+     [
+      "E5",
+      "T2"
+     ],
+     [
+      "E5",
+      "meca"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "temps_Y",
+   "shaft": "Y",
+   "kind": "in",
+   "role": "année Y vers le bloc du temps (Soleil moyen, précession)",
+   "links": [
+    "temps",
+    "Y5"
+   ],
+   "hub": "Y5",
+   "chaine": [
+    "con",
+    "con"
+   ],
+   "roues": 3,
+   "segs": [
+    [
+     "rod",
+     "hub",
+     [
+      30.0,
+      -88.0
+     ],
+     [
+      "E5",
+      "T1"
+     ]
+    ],
+    [
+     "z",
+     [
+      30.0,
+      -88.0
+     ],
+     [
+      "E5",
+      "T1"
+     ],
+     [
+      "E5",
+      "meca"
+     ]
+    ]
+   ]
+  }
+ ],
+ "trains_places": {
+  "Y": {
+   "floor": "E4",
+   "sub": "A",
+   "arbors": [
+    [
+     -50.0,
+     -20.0
+    ],
+    [
+     -50.0,
+     3.25
+    ],
+    [
+     -33.69,
+     40.59
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ]
+  },
+  "venus_L": {
+   "floor": "E4",
+   "sub": "A",
+   "hub": "Y4a",
+   "mode": "tower",
+   "reprise": [
+    "fou",
+    96
+   ],
+   "idler_stage": null,
+   "ordre_couples": [
+    [
+     124,
+     67
+    ],
+    [
+     166,
+     189
+    ]
+   ],
+   "arbors": [
+    [
+     -96.18,
+     76.72
+    ],
+    [
+     -59.6,
+     107.41
+    ],
+    [
+     -147.0,
+     92.0
+    ],
+    [
+     -125.62,
+     70.96
+    ]
+   ]
+  },
+  "precession_ring": {
+   "floor": "E5",
+   "sub": "T2 (coq + plan + tringle)",
+   "idler": null,
+   "module": "1/2",
+   "arbors": [
+    [
+     56.0,
+     -112.0
+    ],
+    [
+     90.71,
+     -105.88
+    ]
+   ],
+   "note": "couple 10:131 (m 1/2) sous la platine P4, sur l'arbre L de Neptune prolongé, porté par un coq ; pignon fou : aucun ; 15:179 à l'avant et dans le bloc du temps"
+  },
+  "neptune_L": {
+   "floor": "E4",
+   "sub": "B",
+   "hub": "Y4a",
+   "mode": "tower",
+   "reprise": [
+    "fou",
+    96
+   ],
+   "idler_stage": null,
+   "ordre_couples": [
+    [
+     12,
+     148
+    ],
+    [
+     11,
+     147
+    ]
+   ],
+   "arbors": [
+    [
+     105.74,
+     -143.85
+    ],
+    [
+     98.79,
+     -104.45
+    ],
+    [
+     56.0,
+     -112.0
+    ],
+    [
+     78.01,
+     -132.38
+    ]
+   ]
+  },
+  "mercury_L": {
+   "floor": "E4",
+   "sub": "AB",
+   "hub": "Y4a",
+   "mode": "tower",
+   "reprise": [
+    "fou",
+    24
+   ],
+   "idler_stage": 0,
+   "ordre_couples": [
+    [
+     73,
+     79
+    ],
+    [
+     64,
+     31
+    ],
+    [
+     37,
+     17
+    ]
+   ],
+   "arbors": [
+    [
+     145.07,
+     82.15
+    ],
+    [
+     183.87,
+     97.08
+    ],
+    [
+     165.68,
+     112.34
+    ],
+    [
+     157.0,
+     102.0
+    ],
+    [
+     167.96,
+     78.12
+    ],
+    [
+     148.33,
+     93.7
+    ]
+   ]
+  },
+  "mars_L": {
+   "floor": "E4",
+   "sub": "A",
+   "hub": "Y4b",
+   "mode": "tower",
+   "reprise": [
+    "fou",
+    64
+   ],
+   "idler_stage": null,
+   "ordre_couples": [
+    [
+     97,
+     88
+    ],
+    [
+     41,
+     85
+    ]
+   ],
+   "arbors": [
+    [
+     37.16,
+     117.3
+    ],
+    [
+     29.13,
+     71.75
+    ],
+    [
+     5.0,
+     92.0
+    ],
+    [
+     26.08,
+     98.29
+    ]
+   ]
+  },
+  "uranus_L": {
+   "floor": "E4",
+   "sub": "A",
+   "hub": "Y4b",
+   "mode": "tower",
+   "reprise": [
+    "fou",
+    64
+   ],
+   "idler_stage": null,
+   "ordre_couples": [
+    [
+     10,
+     84
+    ],
+    [
+     10,
+     100
+    ]
+   ],
+   "arbors": [
+    [
+     134.12,
+     -124.68
+    ],
+    [
+     142.16,
+     -102.59
+    ],
+    [
+     168.0,
+     -112.0
+    ],
+    [
+     155.45,
+     -130.07
+    ]
+   ]
+  },
+  "saturn_L": {
+   "floor": "E4",
+   "sub": "A",
+   "hub": "Y4b",
+   "mode": "tower",
+   "reprise": [
+    "fou",
+    32
+   ],
+   "idler_stage": null,
+   "ordre_couples": [
+    [
+     10,
+     41
+    ],
+    [
+     11,
+     79
+    ]
+   ],
+   "arbors": [
+    [
+     -69.11,
+     -134.29
+    ],
+    [
+     -75.49,
+     -123.25
+    ],
+    [
+     -56.0,
+     -112.0
+    ],
+    [
+     -57.93,
+     -125.87
+    ]
+   ]
+  },
+  "jupiter_L": {
+   "floor": "E4",
+   "sub": "A",
+   "hub": "Y4a",
+   "mode": "tower",
+   "reprise": [
+    "fou",
+    32
+   ],
+   "idler_stage": null,
+   "ordre_couples": [
+    [
+     10,
+     26
+    ],
+    [
+     16,
+     73
+    ]
+   ],
+   "arbors": [
+    [
+     -193.57,
+     -111.79
+    ],
+    [
+     -187.27,
+     -100.88
+    ],
+    [
+     -168.0,
+     -112.0
+    ],
+    [
+     -180.83,
+     -117.6
+    ]
+   ]
+  },
+  "moon_perigee": {
+   "floor": "E4",
+   "sub": "A",
+   "hub": "Y4b",
+   "mode": "rod",
+   "reprise": null,
+   "idler_stage": null,
+   "ordre_couples": [
+    [
+     26,
+     103
+    ],
+    [
+     47,
+     105
+    ]
+   ],
+   "arbors": [
+    [
+     47.91,
+     10.25
+    ],
+    [
+     47.91,
+     -22.0
+    ],
+    [
+     80.82,
+     -3.0
+    ]
+   ]
+  },
+  "saros": {
+   "floor": "E5",
+   "sub": "m1",
+   "hub": "Y5",
+   "mode": "rod",
+   "reprise": null,
+   "idler_stage": null,
+   "ordre_couples": [
+    [
+     13,
+     46
+    ],
+    [
+     21,
+     107
+    ]
+   ],
+   "arbors": [
+    [
+     154.01,
+     -84.07
+    ],
+    [
+     159.06,
+     -97.93
+    ],
+    [
+     170.0,
+     -128.0
+    ]
+   ]
+  },
+  "moon_node": {
+   "floor": "E5",
+   "sub": "m1",
+   "hub": "Y5",
+   "mode": "rod",
+   "reprise": null,
+   "idler_stage": 0,
+   "ordre_couples": [
+    [
+     12,
+     43
+    ],
+    [
+     21,
+     109
+    ]
+   ],
+   "arbors": [
+    [
+     11.37,
+     45.62
+    ],
+    [
+     33.01,
+     37.74
+    ],
+    [
+     65.02,
+     32.1
+    ],
+    [
+     17.5,
+     40.48
+    ]
+   ]
+  },
+  "moon_L": {
+   "floor": "E5",
+   "sub": "m1",
+   "hub": "J5",
+   "mode": "rod",
+   "reprise": null,
+   "idler_stage": null,
+   "ordre_couples": [
+    [
+     11,
+     25
+    ],
+    [
+     19,
+     67
+    ],
+    [
+     22,
+     75
+    ]
+   ],
+   "arbors": [
+    [
+     13.57,
+     -20.83
+    ],
+    [
+     22.02,
+     -17.75
+    ],
+    [
+     42.23,
+     -10.39
+    ],
+    [
+     65.02,
+     -2.1
+    ]
+   ]
+  }
+ },
+ "verifications": {
+  "objets": 379,
+  "trains_places": 13,
+  "echecs_placement": [],
+  "collisions": [],
+  "hors_platine": [],
+  "interfaces": [
+   {
+    "piece": "croix",
+    "bloc": "jour",
+    "entre_de_mm": 11.0
+   },
+   {
+    "piece": "croix",
+    "bloc": "cal_meca",
+    "entre_de_mm": 4.9
+   },
+   {
+    "piece": "lune_Y#z1",
+    "bloc": "lune",
+    "entre_de_mm": 3.5
+   },
+   {
+    "piece": "moon_perigee#a2",
+    "bloc": "lune",
+    "entre_de_mm": 4.0
+   },
+   {
+    "piece": "moon_node#a2",
+    "bloc": "lune",
+    "entre_de_mm": 2.0
+   },
+   {
+    "piece": "moon_node#w4",
+    "bloc": "lune",
+    "entre_de_mm": 27.7
+   },
+   {
+    "piece": "moon_L#a3",
+    "bloc": "lune",
+    "entre_de_mm": 2.0
+   },
+   {
+    "piece": "moon_L#w5",
+    "bloc": "lune",
+    "entre_de_mm": 19.2
+   },
+   {
+    "piece": "lune_entree_moon_L#w1",
+    "bloc": "lune",
+    "entre_de_mm": 10.5
+   },
+   {
+    "piece": "lune_entree_moon_L#fou",
+    "bloc": "lune",
+    "entre_de_mm": 33.0
+   },
+   {
+    "piece": "lune_entree_moon_L#w2",
+    "bloc": "lune",
+    "entre_de_mm": 21.0
+   },
+   {
+    "piece": "lune_entree_moon_node#w1",
+    "bloc": "lune",
+    "entre_de_mm": 10.5
+   },
+   {
+    "piece": "lune_entree_moon_node#fou",
+    "bloc": "lune",
+    "entre_de_mm": 40.5
+   },
+   {
+    "piece": "lune_entree_moon_node#w2",
+    "bloc": "lune",
+    "entre_de_mm": 21.0
+   },
+   {
+    "piece": "lune_entree_moon_perigee#w1",
+    "bloc": "lune",
+    "entre_de_mm": 21.0
+   },
+   {
+    "piece": "lune_entree_moon_perigee#fou",
+    "bloc": "lune",
+    "entre_de_mm": 21.0
+   },
+   {
+    "piece": "lune_entree_moon_perigee#w2",
+    "bloc": "lune",
+    "entre_de_mm": 21.0
+   }
+  ],
+  "couverture": {
+   "n_shafts": 70,
+   "assigned": 70,
+   "missing": [],
+   "placed_wheel_level": 13,
+   "where": {
+    "J": [
+     "bloc jour",
+     "renvoi j_avant",
+     "renvoi manivelle",
+     "renvoi temps_J"
+    ],
+    "W": [
+     "bloc jour"
+    ],
+    "Y": [
+     "train placé roue par roue",
+     "renvoi lune_Y",
+     "renvoi temps_Y"
+    ],
+    "mercury_L": [
+     "train placé roue par roue"
+    ],
+    "venus_L": [
+     "train placé roue par roue"
+    ],
+    "mars_L": [
+     "train placé roue par roue"
+    ],
+    "jupiter_L": [
+     "train placé roue par roue"
+    ],
+    "saturn_L": [
+     "train placé roue par roue"
+    ],
+    "uranus_L": [
+     "train placé roue par roue"
+    ],
+    "neptune_L": [
+     "train placé roue par roue"
+    ],
+    "moon_L": [
+     "train placé roue par roue"
+    ],
+    "moon_perigee": [
+     "train placé roue par roue"
+    ],
+    "moon_node": [
+     "train placé roue par roue",
+     "renvoi node"
+    ],
+    "evection_carrier": [
+     "bloc lune"
+    ],
+    "precession_ring": [
+     "bloc prec_pignon",
+     "train placé roue par roue",
+     "renvoi prec_avant"
+    ],
+    "sun_trop": [
+     "bloc temps"
+    ],
+    "stellar": [
+     "bloc temps"
+    ],
+    "gmst": [
+     "bloc temps",
+     "renvoi vers_horloge"
+    ],
+    "earth_true": [
+     "bloc temps",
+     "bloc terre_maitre"
+    ],
+    "lambda_trop": [
+     "bloc temps"
+    ],
+    "alpha_sun": [
+     "bloc temps"
+    ],
+    "eot": [
+     "bloc temps"
+    ],
+    "eot_dial": [
+     "bloc temps",
+     "renvoi vers_edt"
+    ],
+    "tellurion": [
+     "renvoi tellurion",
+     "route tellurion"
+    ],
+    "cal_cross_main": [
+     "bloc cal_meca"
+    ],
+    "cal_cross_skip": [
+     "bloc cal_meca"
+    ],
+    "cal_sum": [
+     "bloc cal_anneau"
+    ],
+    "cal_prog4": [
+     "bloc cal_meca"
+    ],
+    "cal_prog100": [
+     "bloc cal_meca"
+    ],
+    "cal_prog400": [
+     "bloc cal_meca"
+    ],
+    "mercury_true": [
+     "bloc uak_mercury"
+    ],
+    "venus_true": [
+     "bloc uak_venus"
+    ],
+    "mars_true": [
+     "bloc uak_mars"
+    ],
+    "jupiter_true": [
+     "bloc uak_jupiter"
+    ],
+    "saturn_true": [
+     "bloc uak_saturn"
+    ],
+    "uranus_true": [
+     "bloc uak_uranus"
+    ],
+    "neptune_true": [
+     "bloc uak_neptune"
+    ],
+    "mercury_geo": [
+     "bloc mod_mercury",
+     "renvoi geo_mercury"
+    ],
+    "venus_geo": [
+     "bloc mod_venus",
+     "renvoi geo_venus"
+    ],
+    "mars_geo": [
+     "bloc mod_mars",
+     "renvoi geo_mars"
+    ],
+    "jupiter_geo": [
+     "bloc mod_jupiter",
+     "renvoi geo_jupiter",
+     "renvoi lunette"
+    ],
+    "saturn_geo": [
+     "bloc mod_saturn",
+     "renvoi geo_saturn"
+    ],
+    "uranus_geo": [
+     "bloc mod_uranus",
+     "renvoi geo_uranus"
+    ],
+    "neptune_geo": [
+     "bloc mod_neptune",
+     "renvoi geo_neptune"
+    ],
+    "sun_geo": [
+     "bloc terre_maitre"
+    ],
+    "orrery_earth": [
+     "renvoi orr_earth"
+    ],
+    "orrery_mercury": [
+     "renvoi orr_mercury"
+    ],
+    "orrery_venus": [
+     "renvoi orr_venus"
+    ],
+    "orrery_mars": [
+     "renvoi orr_mars"
+    ],
+    "orrery_jupiter": [
+     "renvoi orr_jupiter"
+    ],
+    "orrery_saturn": [
+     "renvoi orr_saturn"
+    ],
+    "orrery_uranus": [
+     "renvoi orr_uranus"
+    ],
+    "orrery_neptune": [
+     "renvoi orr_neptune"
+    ],
+    "mars_epicyclet": [
+     "bloc uak_mars"
+    ],
+    "mercury_E": [
+     "bloc uak_mercury"
+    ],
+    "mercury_counter_arm": [
+     "bloc uak_mercury"
+    ],
+    "annual_eq": [
+     "bloc lune"
+    ],
+    "moon_true": [
+     "bloc lune",
+     "renvoi moon_true",
+     "renvoi orr_moon"
+    ],
+    "moon_phase": [
+     "aiguille de la Lune (couronne 48:48 menée par le tube du Soleil)"
+    ],
+    "saros": [
+     "train placé roue par roue"
+    ],
+    "exeligmos": [
+     "cadran du Saros (face arrière)"
+    ],
+    "ganymede": [
+     "bloc laplace"
+    ],
+    "nu": [
+     "bloc laplace"
+    ],
+    "europa": [
+     "bloc laplace"
+    ],
+    "io": [
+     "bloc laplace"
+    ],
+    "callisto": [
+     "bloc laplace"
+    ],
+    "gmst_direct": [
+     "option : bloc temps"
+    ],
+    "synodic": [
+     "option : bloc lune"
+    ],
+    "saros_223": [
+     "option : roue de 223 dents du Saros (face arrière)"
+    ],
+    "mars_apsides": [
+     "option : tour de Mars"
+    ]
+   }
+  },
+  "faces": {
+   "front": [
+    {
+     "cadran": "principal",
+     "inside": true
+    },
+    {
+     "cadran": "horloge",
+     "inside": true
+    },
+    {
+     "cadran": "jupiter",
+     "inside": true
+    },
+    {
+     "cadran": "edt",
+     "inside": true
+    },
+    {
+     "cadran": "epoque",
+     "inside": true
+    }
+   ],
+   "back": [
+    {
+     "cadran": "calendrier",
+     "inside": true
+    },
+    {
+     "cadran": "eclipses",
+     "inside": true
+    },
+    {
+     "cadran": "saros",
+     "inside": true
+    },
+    {
+     "cadran": "mode_emploi",
+     "inside": true
+    }
+   ],
+   "ok": true
+  },
+  "couvercle": {
+   "emergences_x": [
+    [
+     -191.0,
+     "orr_jupiter"
+    ],
+    [
+     -124.0,
+     "orr_venus"
+    ],
+    [
+     -79.0,
+     "orr_saturn"
+    ],
+    [
+     -30.0,
+     "tellurion"
+    ],
+    [
+     -16.0,
+     "orr_earth"
+    ],
+    [
+     28.0,
+     "orr_mars"
+    ],
+    [
+     79.0,
+     "orr_neptune"
+    ],
+    [
+     100.0,
+     "orr_moon"
+    ],
+    [
+     118.0,
+     "gamma"
+    ],
+    [
+     134.0,
+     "orr_mercury"
+    ],
+    [
+     191.0,
+     "orr_uranus"
+    ]
+   ],
+   "min_gap_mm": 14.0,
+   "need_mm": 12.2,
+   "ok_spacing": true,
+   "orrery_centre_z": 169.5,
+   "half_depth_mm": 195.5,
+   "r_max_mm": 118.0,
+   "ok_fit": true
+  },
+  "budgets_blocs": [
+   {
+    "bloc": "lune",
+    "plans": 26,
+    "besoin_mm": 78.0,
+    "hauteur_mm": 78.0,
+    "ok": true,
+    "detail": "4 entrées sur l'axe M (L, ϖ, Ω, Y), copie de l'UAK Terre (4), cascade (13 : réduction 2, équation annuelle = différentiel plat 3 + couple 30:155, évection = différentiel plat 3, anomalie 2, variation 2), prises (3), coulisse d'éclipse et porte-nœuds (2)"
+   },
+   {
+    "bloc": "temps",
+    "plans": 20,
+    "besoin_mm": 60.0,
+    "hauteur_mm": 78.0,
+    "ok": true,
+    "detail": "5 différentiels plats (2 par plan de 3), joint de Hooke (5 plans), 120:12, 15:179 et son fou, copie de l'UAK Terre (4 plans), entrées et sorties"
+   },
+   {
+    "bloc": "laplace",
+    "plans": 18,
+    "besoin_mm": 54.0,
+    "hauteur_mm": 54.0,
+    "ok": true,
+    "detail": "3 trains de 3 couples (9), 2 doubleurs, 2 différentiels plats côte à côte (3), 4 couples vers le cadran jovien (4)"
+   },
+   {
+    "bloc": "cal_meca",
+    "plans": 8,
+    "besoin_mm": 24.0,
+    "hauteur_mm": 78.0,
+    "ok": true,
+    "detail": "2 croix de Malte, différentiel, 20:61, roues-programmes 4/100/400 et cames"
+   }
+  ],
+  "liens": "par identifiant exact : roue–arbre, roues qui engrènent, jonctions d'un renvoi ; blocs et parties d'axe d'une même tour",
+  "ok": true
+ },
+ "roues": {
+  "rows": [
+   [
+    "trains, différentiels et pas à pas de trains.json",
+    196
+   ],
+   [
+    "couronnes des 4 moyeux (96 dents)",
+    4
+   ],
+   [
+    "tringles de bus vers 11 trains (pignon 24, pignon 24, couronne 96)",
+    33
+   ],
+   [
+    "reprises 1:1 du tube Y dans les 7 tours (couple, ou couple et pignon fou)",
+    21
+   ],
+   [
+    "renvoi geo_mercury",
+    6
+   ],
+   [
+    "renvoi orr_mercury",
+    6
+   ],
+   [
+    "renvoi geo_venus",
+    6
+   ],
+   [
+    "renvoi orr_venus",
+    6
+   ],
+   [
+    "renvoi geo_mars",
+    6
+   ],
+   [
+    "renvoi orr_mars",
+    6
+   ],
+   [
+    "renvoi geo_jupiter",
+    6
+   ],
+   [
+    "renvoi orr_jupiter",
+    6
+   ],
+   [
+    "renvoi geo_saturn",
+    6
+   ],
+   [
+    "renvoi orr_saturn",
+    6
+   ],
+   [
+    "renvoi geo_uranus",
+    6
+   ],
+   [
+    "renvoi orr_uranus",
+    6
+   ],
+   [
+    "renvoi geo_neptune",
+    6
+   ],
+   [
+    "renvoi orr_neptune",
+    6
+   ],
+   [
+    "renvoi orr_earth",
+    6
+   ],
+   [
+    "renvoi moon_true",
+    8
+   ],
+   [
+    "renvoi node",
+    8
+   ],
+   [
+    "renvoi gamma",
+    8
+   ],
+   [
+    "renvoi orr_moon",
+    8
+   ],
+   [
+    "renvoi lune_Y",
+    5
+   ],
+   [
+    "renvoi j_avant",
+    3
+   ],
+   [
+    "renvoi vers_horloge",
+    8
+   ],
+   [
+    "renvoi vers_edt",
+    4
+   ],
+   [
+    "renvoi prec_avant",
+    0
+   ],
+   [
+    "renvoi tellurion",
+    6
+   ],
+   [
+    "renvoi lunette",
+    4
+   ],
+   [
+    "renvoi manivelle",
+    1
+   ],
+   [
+    "renvoi temps_J",
+    3
+   ],
+   [
+    "renvoi temps_Y",
+    3
+   ],
+   [
+    "renvoi prec_bas (2 couples coniques)",
+    4
+   ],
+   [
+    "entrées du bloc Lune : 3 couples 40 → fou → 40 (L, Ω, ϖ)",
+    9
+   ],
+   [
+    "modules vectoriels : 7 × (bras planète 2 + bras Terre 2 + chaîne 1:1 3)",
+    49
+   ],
+   [
+    "cascade lunaire : 6 couples relatifs",
+    12
+   ],
+   [
+    "couronne de phase de la Lune (48:48)",
+    2
+   ],
+   [
+    "cadran jovien : 4 couples",
+    8
+   ],
+   [
+    "demi-roues anti-jeu (ciseaux) des 9 couples 64:64 du carrousel",
+    9
+   ],
+   [
+    "bloc du temps : couple 15:179 de la précession + pignon fou",
+    3
+   ],
+   [
+    "bloc du temps : copie de l'UAK Terre (couple d'entrée)",
+    2
+   ]
+  ],
+  "total": 511
+ },
+ "masse": {
+  "parts_g": {
+   "roues des trains (trains.json, sans les options)": 1659,
+   "roues des différentiels": 458,
+   "roues de renvoi et roues internes (architecture)": 1498,
+   "platines intérieures (laiton, ajourées 50 %)": 5184,
+   "platines-cadrans avant et arrière (laiton 3 mm)": 6609,
+   "caisse en chêne 6 mm et porte arrière": 3437,
+   "verre avant 2 mm": 846,
+   "arbres, tubes, ponts, goupilles, ressorts": 1800,
+   "UAK, modules, cascade, coulisses": 1500,
+   "orrery et tellurion": 1200
+  },
+  "total_kg": 24.2,
+  "total_kg_alu_inner": 20.7,
+  "box_mm": [
+   470,
+   360,
+   391
+  ]
+ },
+ "jeu": {
+  "jn_mm": 0.03,
+  "aval_suiveur_deg": 0.82,
+  "sorties_non_monotones": [
+   "7 aiguilles planétaires (stations de rétrogradation)",
+   "équation du temps",
+   "lunette de Jupiter",
+   "coulisse d'éclipse γ",
+   "aiguille d'ombre"
+  ],
+  "remede": "coniques précontraintes par un ressort axial (le pignon est poussé dans la denture) et couples 64:64 à ciseaux (une demi-roue de plus par tube) ; jeu résiduel ≈ 0"
+ },
+ "sens": [
+  {
+   "renvoi": "geo_mercury",
+   "chaine": "con → con → ext",
+   "sens_fixe": "−",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "orr_mercury",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "geo_venus",
+   "chaine": "con → con → ext",
+   "sens_fixe": "−",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "orr_venus",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "geo_mars",
+   "chaine": "con → con → ext",
+   "sens_fixe": "−",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "orr_mars",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "geo_jupiter",
+   "chaine": "con → con → ext",
+   "sens_fixe": "−",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "orr_jupiter",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "geo_saturn",
+   "chaine": "con → con → ext",
+   "sens_fixe": "−",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "orr_saturn",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "geo_uranus",
+   "chaine": "con → con → ext",
+   "sens_fixe": "−",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "orr_uranus",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "geo_neptune",
+   "chaine": "con → con → ext",
+   "sens_fixe": "−",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "orr_neptune",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "orr_earth",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "moon_true",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "node",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "gamma",
+   "chaine": "crémaillère → con → con",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "orr_moon",
+   "chaine": "ext → con → con → ext",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "lune_Y",
+   "chaine": "con → con → ext",
+   "sens_fixe": "−",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "j_avant",
+   "chaine": "con → con",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "vers_horloge",
+   "chaine": "con → con",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "vers_edt",
+   "chaine": "con → con",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "prec_avant",
+   "chaine": "int",
+   "sens_fixe": "+",
+   "reglage": "aucun (même sens)"
+  },
+  {
+   "renvoi": "tellurion",
+   "chaine": "ext → con → con",
+   "sens_fixe": "−",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "lunette",
+   "chaine": "con → con",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "manivelle",
+   "chaine": "con",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "temps_J",
+   "chaine": "con → con",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "temps_Y",
+   "chaine": "con → con",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "prec_bas",
+   "chaine": "con → con",
+   "sens_fixe": "+",
+   "reglage": "côté d'engrènement d'une conique"
+  },
+  {
+   "renvoi": "reprises de Y dans les tours",
+   "chaine": "24 → fou → 24 (2 engrènements)",
+   "sens_fixe": "+",
+   "reglage": "aucun : la reprise par pignon fou garde le sens, la planète et la copie de la Terre tournent comme dans trains.json"
+  },
+  {
+   "renvoi": "entrées du bloc Lune (L, Ω, ϖ)",
+   "chaine": "40 → fou → 40 (2 engrènements)",
+   "sens_fixe": "+",
+   "reglage": "aucun : le sens est gardé"
+  }
+ ],
+ "budget_erreur": {
+  "planetes": [
+   {
+    "sortie": "Mercure",
+    "geometrie_deg": 0.26,
+    "physique_hors_kepler": "15″",
+    "tolerance_0_02mm_deg": 0.051,
+    "module_R_mm": 60
+   },
+   {
+    "sortie": "Vénus",
+    "geometrie_deg": 0.21,
+    "physique_hors_kepler": "20″",
+    "tolerance_0_02mm_deg": 0.108,
+    "module_R_mm": 70
+   },
+   {
+    "sortie": "Mars",
+    "geometrie_deg": 0.24,
+    "physique_hors_kepler": "40″",
+    "tolerance_0_02mm_deg": 0.118,
+    "module_R_mm": 70
+   },
+   {
+    "sortie": "Jupiter",
+    "geometrie_deg": 0.07,
+    "physique_hors_kepler": "0.11°",
+    "tolerance_0_02mm_deg": 0.037,
+    "module_R_mm": 50
+   },
+   {
+    "sortie": "Saturne",
+    "geometrie_deg": 0.08,
+    "physique_hors_kepler": "0.17°",
+    "tolerance_0_02mm_deg": 0.031,
+    "module_R_mm": 50
+   },
+   {
+    "sortie": "Uranus",
+    "geometrie_deg": 0.05,
+    "physique_hors_kepler": "50″",
+    "tolerance_0_02mm_deg": 0.028,
+    "module_R_mm": 50
+   },
+   {
+    "sortie": "Neptune",
+    "geometrie_deg": 0.02,
+    "physique_hors_kepler": "10″",
+    "tolerance_0_02mm_deg": 0.025,
+    "module_R_mm": 50
+   }
+  ],
+  "lune_deg": {
+   "max": 0.2609,
+   "rms": 0.1001
+  },
+  "calendrier": "exact de 1582 à 6000 (0 erreur)",
+  "sideral_s_par_siecle": -0.063,
+  "equation_du_temps_s": 3.1,
+  "copies_uak_terre_deg": 0.05,
+  "copies_uak_terre_edt_s": 12,
+  "eclipses": {
+   "detectees": 449,
+   "total": 452,
+   "gamma_err_max": 0.035
+  }
+ },
+ "items": [
+  {
+   "id": "cal_anneau",
+   "kind": "cyl",
+   "c": [
+    -112.0,
+    15.0
+   ],
+   "r": 96.0,
+   "z": [
+    3.0,
+    9.0
+   ],
+   "block": true,
+   "r_in": 84.0
+  },
+  {
+   "id": "cal_meca",
+   "kind": "cyl",
+   "c": [
+    -112.0,
+    15.0
+   ],
+   "r": 46.0,
+   "z": [
+    9.0,
+    87.0
+   ],
+   "block": true
+  },
+  {
+   "id": "semaine",
+   "kind": "cyl",
+   "c": [
+    -64.0,
+    -10.0
+   ],
+   "r": 20.0,
+   "z": [
+    3.0,
+    9.0
+   ],
+   "block": true
+  },
+  {
+   "id": "annees",
+   "kind": "cyl",
+   "c": [
+    -125.0,
+    -40.0
+   ],
+   "r": 24.0,
+   "z": [
+    3.0,
+    9.0
+   ],
+   "block": true
+  },
+  {
+   "id": "lune",
+   "kind": "cyl",
+   "c": [
+    112.0,
+    15.0
+   ],
+   "r": 50.0,
+   "z": [
+    9.0,
+    87.0
+   ],
+   "block": true
+  },
+  {
+   "id": "croix",
+   "kind": "cyl",
+   "c": [
+    -65.7,
+    -11.1
+   ],
+   "r": 12.0,
+   "z": [
+    9.0,
+    87.0
+   ],
+   "block": true,
+   "links": [
+    "jour",
+    "cal_meca"
+   ]
+  },
+  {
+   "id": "jour",
+   "kind": "cyl",
+   "c": [
+    -50.0,
+    -20.0
+   ],
+   "r": 17.0,
+   "z": [
+    9.0,
+    87.0
+   ],
+   "block": true
+  },
+  {
+   "id": "temps",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    -78.0
+   ],
+   "r": 46.0,
+   "z": [
+    9.0,
+    87.0
+   ],
+   "block": true
+  },
+  {
+   "id": "terre_maitre",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 28.0,
+   "z": [
+    187.0,
+    204.0
+   ],
+   "block": true
+  },
+  {
+   "id": "pile",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 9.2,
+   "z": [
+    281.0,
+    335.0
+   ],
+   "block": true
+  },
+  {
+   "id": "laplace",
+   "kind": "cyl",
+   "c": [
+    -143.4,
+    -88.4
+   ],
+   "r": 79.1,
+   "z": [
+    281.0,
+    335.0
+   ],
+   "block": true
+  },
+  {
+   "id": "horloge",
+   "kind": "cyl",
+   "c": [
+    -188.0,
+    118.0
+   ],
+   "r": 20.0,
+   "z": [
+    281.0,
+    335.0
+   ],
+   "block": true
+  },
+  {
+   "id": "edt",
+   "kind": "cyl",
+   "c": [
+    188.0,
+    -118.0
+   ],
+   "r": 14.0,
+   "z": [
+    281.0,
+    335.0
+   ],
+   "block": true
+  },
+  {
+   "id": "prec_pignon",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    -65.6
+   ],
+   "r": 8.0,
+   "z": [
+    281.0,
+    335.0
+   ],
+   "block": true
+  },
+  {
+   "id": "uak_venus",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 28.0,
+   "z": [
+    187.0,
+    204.0
+   ],
+   "block": true,
+   "group": "tour_venus"
+  },
+  {
+   "id": "mod_venus",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 75.0,
+   "z": [
+    221.0,
+    249.0
+   ],
+   "block": true,
+   "group": "tour_venus"
+  },
+  {
+   "id": "uak_mars",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 28.0,
+   "z": [
+    187.0,
+    204.0
+   ],
+   "block": true,
+   "group": "tour_mars"
+  },
+  {
+   "id": "mod_mars",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 75.0,
+   "z": [
+    221.0,
+    249.0
+   ],
+   "block": true,
+   "group": "tour_mars"
+  },
+  {
+   "id": "uak_mercury",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 42.0,
+   "z": [
+    187.0,
+    204.0
+   ],
+   "block": true,
+   "group": "tour_mercury"
+  },
+  {
+   "id": "mod_mercury",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 65.0,
+   "z": [
+    221.0,
+    249.0
+   ],
+   "block": true,
+   "group": "tour_mercury"
+  },
+  {
+   "id": "uak_jupiter",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 28.0,
+   "z": [
+    187.0,
+    204.0
+   ],
+   "block": true,
+   "group": "tour_jupiter"
+  },
+  {
+   "id": "mod_jupiter",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 55.0,
+   "z": [
+    221.0,
+    249.0
+   ],
+   "block": true,
+   "group": "tour_jupiter"
+  },
+  {
+   "id": "uak_saturn",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 28.0,
+   "z": [
+    187.0,
+    204.0
+   ],
+   "block": true,
+   "group": "tour_saturn"
+  },
+  {
+   "id": "mod_saturn",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 55.0,
+   "z": [
+    221.0,
+    249.0
+   ],
+   "block": true,
+   "group": "tour_saturn"
+  },
+  {
+   "id": "uak_neptune",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 28.0,
+   "z": [
+    187.0,
+    204.0
+   ],
+   "block": true,
+   "group": "tour_neptune"
+  },
+  {
+   "id": "mod_neptune",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 55.0,
+   "z": [
+    221.0,
+    249.0
+   ],
+   "block": true,
+   "group": "tour_neptune"
+  },
+  {
+   "id": "uak_uranus",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 28.0,
+   "z": [
+    187.0,
+    204.0
+   ],
+   "block": true,
+   "group": "tour_uranus"
+  },
+  {
+   "id": "mod_uranus",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 55.0,
+   "z": [
+    221.0,
+    249.0
+   ],
+   "block": true,
+   "group": "tour_uranus"
+  },
+  {
+   "id": "axe_venus",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "group": "tour_venus"
+  },
+  {
+   "id": "axe_venus#haut",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 4.0,
+   "z": [
+    155.0,
+    221.0
+   ],
+   "group": "tour_venus"
+  },
+  {
+   "id": "axe_mars",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "group": "tour_mars"
+  },
+  {
+   "id": "axe_mars#haut",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 4.0,
+   "z": [
+    155.0,
+    221.0
+   ],
+   "group": "tour_mars"
+  },
+  {
+   "id": "axe_mercury",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "group": "tour_mercury"
+  },
+  {
+   "id": "axe_mercury#haut",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 4.0,
+   "z": [
+    155.0,
+    221.0
+   ],
+   "group": "tour_mercury"
+  },
+  {
+   "id": "axe_jupiter",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "group": "tour_jupiter"
+  },
+  {
+   "id": "axe_jupiter#haut",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 4.0,
+   "z": [
+    155.0,
+    221.0
+   ],
+   "group": "tour_jupiter"
+  },
+  {
+   "id": "axe_saturn",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "group": "tour_saturn"
+  },
+  {
+   "id": "axe_saturn#haut",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 4.0,
+   "z": [
+    155.0,
+    221.0
+   ],
+   "group": "tour_saturn"
+  },
+  {
+   "id": "axe_neptune",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "group": "tour_neptune"
+  },
+  {
+   "id": "axe_neptune#haut",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 4.0,
+   "z": [
+    155.0,
+    221.0
+   ],
+   "group": "tour_neptune"
+  },
+  {
+   "id": "axe_uranus",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "group": "tour_uranus"
+  },
+  {
+   "id": "axe_uranus#haut",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 4.0,
+   "z": [
+    155.0,
+    221.0
+   ],
+   "group": "tour_uranus"
+  },
+  {
+   "id": "axe_soleil",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 2.0,
+   "z": [
+    195.5,
+    338.0
+   ],
+   "links": [
+    "terre_maitre",
+    "pile",
+    "axe_Y"
+   ]
+  },
+  {
+   "id": "axe_Y",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    195.5
+   ],
+   "links": [
+    "y_arbre",
+    "Y5",
+    "Y4a",
+    "Y4b",
+    "terre_maitre",
+    "axe_soleil"
+   ]
+  },
+  {
+   "id": "axe_J",
+   "kind": "cyl",
+   "c": [
+    -50.0,
+    -20.0
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    155.0
+   ],
+   "links": [
+    "jour",
+    "J5"
+   ]
+  },
+  {
+   "id": "Y4a",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 20.0,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "axe_Y"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "Y4b",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 20.0,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "axe_Y"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "Y5",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 20.0,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "axe_Y"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "J5",
+   "kind": "cyl",
+   "c": [
+    -50.0,
+    -20.0
+   ],
+   "r": 20.0,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "links": [
+    "axe_J"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "geo_mercury#z0",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 2.0,
+   "z": [
+    235.0,
+    258.5
+   ],
+   "links": [
+    "mod_mercury",
+    "axe_mercury",
+    "geo_mercury#r1",
+    "geo_mercury#m1p"
+   ]
+  },
+  {
+   "id": "orr_mercury#prise_axe",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_mercury",
+    "axe_mercury",
+    "orr_mercury#prise"
+   ]
+  },
+  {
+   "id": "orr_mercury#prise",
+   "kind": "cyl",
+   "c": [
+    134.0,
+    102.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "orr_mercury#prise_axe",
+    "orr_mercury#r0",
+    "orr_mercury#m0p"
+   ]
+  },
+  {
+   "id": "orr_mercury#r0",
+   "kind": "rod",
+   "p": [
+    134.0,
+    102.0
+   ],
+   "q": [
+    134.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "uak_mercury",
+    "axe_mercury",
+    "orr_mercury#prise",
+    "orr_mercury#m0p"
+   ]
+  },
+  {
+   "id": "orr_mercury#m0p",
+   "kind": "cyl",
+   "c": [
+    134.0,
+    102.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_mercury",
+    "axe_mercury",
+    "orr_mercury#prise",
+    "orr_mercury#r0"
+   ]
+  },
+  {
+   "id": "geo_venus#z0",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 2.0,
+   "z": [
+    235.0,
+    258.5
+   ],
+   "links": [
+    "mod_venus",
+    "axe_venus",
+    "geo_venus#r1",
+    "geo_venus#m1p"
+   ]
+  },
+  {
+   "id": "orr_venus#prise_axe",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_venus",
+    "axe_venus",
+    "orr_venus#prise"
+   ]
+  },
+  {
+   "id": "orr_venus#prise",
+   "kind": "cyl",
+   "c": [
+    -124.0,
+    92.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "orr_venus#prise_axe",
+    "orr_venus#r0",
+    "orr_venus#m0p"
+   ]
+  },
+  {
+   "id": "orr_venus#r0",
+   "kind": "rod",
+   "p": [
+    -124.0,
+    92.0
+   ],
+   "q": [
+    -124.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "uak_venus",
+    "axe_venus",
+    "orr_venus#prise",
+    "orr_venus#m0p"
+   ]
+  },
+  {
+   "id": "orr_venus#m0p",
+   "kind": "cyl",
+   "c": [
+    -124.0,
+    92.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_venus",
+    "axe_venus",
+    "orr_venus#prise",
+    "orr_venus#r0"
+   ]
+  },
+  {
+   "id": "geo_mars#z0",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 2.0,
+   "z": [
+    235.0,
+    258.5
+   ],
+   "links": [
+    "mod_mars",
+    "axe_mars",
+    "geo_mars#r1",
+    "geo_mars#m1p"
+   ]
+  },
+  {
+   "id": "orr_mars#prise_axe",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_mars",
+    "axe_mars",
+    "orr_mars#prise"
+   ]
+  },
+  {
+   "id": "orr_mars#prise",
+   "kind": "cyl",
+   "c": [
+    28.0,
+    92.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "orr_mars#prise_axe",
+    "orr_mars#r0",
+    "orr_mars#m0p"
+   ]
+  },
+  {
+   "id": "orr_mars#r0",
+   "kind": "rod",
+   "p": [
+    28.0,
+    92.0
+   ],
+   "q": [
+    28.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "uak_mars",
+    "axe_mars",
+    "orr_mars#prise",
+    "orr_mars#m0p"
+   ]
+  },
+  {
+   "id": "orr_mars#m0p",
+   "kind": "cyl",
+   "c": [
+    28.0,
+    92.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_mars",
+    "axe_mars",
+    "orr_mars#prise",
+    "orr_mars#r0"
+   ]
+  },
+  {
+   "id": "geo_jupiter#z0",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 2.0,
+   "z": [
+    235.0,
+    258.5
+   ],
+   "links": [
+    "mod_jupiter",
+    "axe_jupiter",
+    "geo_jupiter#r1",
+    "geo_jupiter#m1p"
+   ]
+  },
+  {
+   "id": "orr_jupiter#prise_axe",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_jupiter",
+    "axe_jupiter",
+    "orr_jupiter#prise"
+   ]
+  },
+  {
+   "id": "orr_jupiter#prise",
+   "kind": "cyl",
+   "c": [
+    -191.0,
+    -112.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "orr_jupiter#prise_axe",
+    "orr_jupiter#r0",
+    "orr_jupiter#m0p"
+   ]
+  },
+  {
+   "id": "orr_jupiter#r0",
+   "kind": "rod",
+   "p": [
+    -191.0,
+    -112.0
+   ],
+   "q": [
+    -191.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "uak_jupiter",
+    "axe_jupiter",
+    "orr_jupiter#prise",
+    "orr_jupiter#m0p"
+   ]
+  },
+  {
+   "id": "orr_jupiter#m0p",
+   "kind": "cyl",
+   "c": [
+    -191.0,
+    -112.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_jupiter",
+    "axe_jupiter",
+    "orr_jupiter#prise",
+    "orr_jupiter#r0"
+   ]
+  },
+  {
+   "id": "geo_saturn#z0",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 2.0,
+   "z": [
+    235.0,
+    258.5
+   ],
+   "links": [
+    "mod_saturn",
+    "axe_saturn",
+    "geo_saturn#r1",
+    "geo_saturn#m1p"
+   ]
+  },
+  {
+   "id": "orr_saturn#prise_axe",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_saturn",
+    "axe_saturn",
+    "orr_saturn#prise"
+   ]
+  },
+  {
+   "id": "orr_saturn#prise",
+   "kind": "cyl",
+   "c": [
+    -79.0,
+    -112.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "orr_saturn#prise_axe",
+    "orr_saturn#r0",
+    "orr_saturn#m0p"
+   ]
+  },
+  {
+   "id": "orr_saturn#r0",
+   "kind": "rod",
+   "p": [
+    -79.0,
+    -112.0
+   ],
+   "q": [
+    -79.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "uak_saturn",
+    "axe_saturn",
+    "orr_saturn#prise",
+    "orr_saturn#m0p"
+   ]
+  },
+  {
+   "id": "orr_saturn#m0p",
+   "kind": "cyl",
+   "c": [
+    -79.0,
+    -112.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_saturn",
+    "axe_saturn",
+    "orr_saturn#prise",
+    "orr_saturn#r0"
+   ]
+  },
+  {
+   "id": "geo_uranus#z0",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 2.0,
+   "z": [
+    235.0,
+    258.5
+   ],
+   "links": [
+    "mod_uranus",
+    "axe_uranus",
+    "geo_uranus#r1",
+    "geo_uranus#m1p"
+   ]
+  },
+  {
+   "id": "orr_uranus#prise_axe",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_uranus",
+    "axe_uranus",
+    "orr_uranus#prise"
+   ]
+  },
+  {
+   "id": "orr_uranus#prise",
+   "kind": "cyl",
+   "c": [
+    191.0,
+    -112.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "orr_uranus#prise_axe",
+    "orr_uranus#r0",
+    "orr_uranus#m0p"
+   ]
+  },
+  {
+   "id": "orr_uranus#r0",
+   "kind": "rod",
+   "p": [
+    191.0,
+    -112.0
+   ],
+   "q": [
+    191.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "uak_uranus",
+    "axe_uranus",
+    "orr_uranus#prise",
+    "orr_uranus#m0p"
+   ]
+  },
+  {
+   "id": "orr_uranus#m0p",
+   "kind": "cyl",
+   "c": [
+    191.0,
+    -112.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_uranus",
+    "axe_uranus",
+    "orr_uranus#prise",
+    "orr_uranus#r0"
+   ]
+  },
+  {
+   "id": "geo_neptune#z0",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 2.0,
+   "z": [
+    235.0,
+    258.5
+   ],
+   "links": [
+    "mod_neptune",
+    "axe_neptune",
+    "geo_neptune#r1",
+    "geo_neptune#m1p"
+   ]
+  },
+  {
+   "id": "orr_neptune#prise_axe",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_neptune",
+    "axe_neptune",
+    "orr_neptune#prise"
+   ]
+  },
+  {
+   "id": "orr_neptune#prise",
+   "kind": "cyl",
+   "c": [
+    79.0,
+    -112.0
+   ],
+   "r": 12.0,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "orr_neptune#prise_axe",
+    "orr_neptune#r0",
+    "orr_neptune#m0p"
+   ]
+  },
+  {
+   "id": "orr_neptune#r0",
+   "kind": "rod",
+   "p": [
+    79.0,
+    -112.0
+   ],
+   "q": [
+    79.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "uak_neptune",
+    "axe_neptune",
+    "orr_neptune#prise",
+    "orr_neptune#m0p"
+   ]
+  },
+  {
+   "id": "orr_neptune#m0p",
+   "kind": "cyl",
+   "c": [
+    79.0,
+    -112.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "uak_neptune",
+    "axe_neptune",
+    "orr_neptune#prise",
+    "orr_neptune#r0"
+   ]
+  },
+  {
+   "id": "orr_earth#prise_axe",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 8.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "terre_maitre",
+    "axe_soleil",
+    "orr_earth#prise"
+   ]
+  },
+  {
+   "id": "orr_earth#prise",
+   "kind": "cyl",
+   "c": [
+    -16.0,
+    0.0
+   ],
+   "r": 8.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "orr_earth#prise_axe",
+    "orr_earth#r0",
+    "orr_earth#m0p"
+   ]
+  },
+  {
+   "id": "orr_earth#r0",
+   "kind": "rod",
+   "p": [
+    -16.0,
+    0.0
+   ],
+   "q": [
+    -16.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "terre_maitre",
+    "axe_soleil",
+    "orr_earth#prise",
+    "orr_earth#m0p"
+   ]
+  },
+  {
+   "id": "orr_earth#m0p",
+   "kind": "cyl",
+   "c": [
+    -16.0,
+    0.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "terre_maitre",
+    "axe_soleil",
+    "orr_earth#prise",
+    "orr_earth#r0"
+   ]
+  },
+  {
+   "id": "moon_true#z0",
+   "kind": "cyl",
+   "c": [
+    132.0,
+    15.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    258.5
+   ],
+   "links": [
+    "lune",
+    "moon_true#r1",
+    "moon_true#m1p"
+   ]
+  },
+  {
+   "id": "node#z0",
+   "kind": "cyl",
+   "c": [
+    150.0,
+    -5.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    258.5
+   ],
+   "links": [
+    "lune",
+    "node#r1",
+    "node#m1p"
+   ]
+  },
+  {
+   "id": "gamma#z0",
+   "kind": "cyl",
+   "c": [
+    118.0,
+    40.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    211.5
+   ],
+   "links": [
+    "lune",
+    "gamma#r1",
+    "gamma#m1p"
+   ]
+  },
+  {
+   "id": "gamma#r1",
+   "kind": "rod",
+   "p": [
+    118.0,
+    40.0
+   ],
+   "q": [
+    118.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "lune",
+    "gamma#z0",
+    "gamma#m1p"
+   ]
+  },
+  {
+   "id": "gamma#m1p",
+   "kind": "cyl",
+   "c": [
+    118.0,
+    40.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "lune",
+    "gamma#z0",
+    "gamma#r1"
+   ]
+  },
+  {
+   "id": "orr_moon#z0",
+   "kind": "cyl",
+   "c": [
+    100.0,
+    30.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    211.5
+   ],
+   "links": [
+    "lune",
+    "orr_moon#r1",
+    "orr_moon#m1p"
+   ]
+  },
+  {
+   "id": "orr_moon#r1",
+   "kind": "rod",
+   "p": [
+    100.0,
+    30.0
+   ],
+   "q": [
+    100.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "lune",
+    "orr_moon#z0",
+    "orr_moon#m1p"
+   ]
+  },
+  {
+   "id": "orr_moon#m1p",
+   "kind": "cyl",
+   "c": [
+    100.0,
+    30.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "lune",
+    "orr_moon#z0",
+    "orr_moon#r1"
+   ]
+  },
+  {
+   "id": "lune_Y#r0",
+   "kind": "rod",
+   "p": [
+    14.618,
+    9.063
+   ],
+   "q": [
+    100.0,
+    62.0
+   ],
+   "r": 1.5,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "lune",
+    "Y5",
+    "Y5",
+    "lune_Y#m0p",
+    "lune_Y#m0q",
+    "lune_Y#z1"
+   ]
+  },
+  {
+   "id": "lune_Y#m0p",
+   "kind": "cyl",
+   "c": [
+    14.618,
+    9.063
+   ],
+   "r": 5.6,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "lune",
+    "Y5",
+    "Y5",
+    "lune_Y#r0"
+   ]
+  },
+  {
+   "id": "lune_Y#m0q",
+   "kind": "cyl",
+   "c": [
+    100.0,
+    62.0
+   ],
+   "r": 20.0,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "lune",
+    "Y5",
+    "lune_Y#r0",
+    "lune_Y#z1"
+   ]
+  },
+  {
+   "id": "lune_Y#z1",
+   "kind": "cyl",
+   "c": [
+    100.0,
+    62.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    97.5
+   ],
+   "links": [
+    "lune",
+    "Y5",
+    "lune_Y#r0",
+    "lune_Y#m0q"
+   ],
+   "interface": "lune"
+  },
+  {
+   "id": "j_avant#r0",
+   "kind": "rod",
+   "p": [
+    -65.036,
+    -28.353
+   ],
+   "q": [
+    -95.0,
+    -45.0
+   ],
+   "r": 1.5,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "links": [
+    "J5",
+    "laplace",
+    "J5",
+    "j_avant#m0p",
+    "j_avant#m0q",
+    "j_avant#z1"
+   ]
+  },
+  {
+   "id": "j_avant#m0p",
+   "kind": "cyl",
+   "c": [
+    -65.036,
+    -28.353
+   ],
+   "r": 5.6,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "J5",
+    "laplace",
+    "J5",
+    "j_avant#r0"
+   ]
+  },
+  {
+   "id": "j_avant#m0q",
+   "kind": "cyl",
+   "c": [
+    -95.0,
+    -45.0
+   ],
+   "r": 20.0,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "J5",
+    "laplace",
+    "j_avant#r0",
+    "j_avant#z1"
+   ]
+  },
+  {
+   "id": "j_avant#z1",
+   "kind": "cyl",
+   "c": [
+    -95.0,
+    -45.0
+   ],
+   "r": 2.0,
+   "z": [
+    114.0,
+    308.0
+   ],
+   "links": [
+    "J5",
+    "laplace",
+    "j_avant#r0",
+    "j_avant#m0q"
+   ]
+  },
+  {
+   "id": "vers_horloge#z0",
+   "kind": "cyl",
+   "c": [
+    -21.0,
+    -58.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    273.5
+   ],
+   "links": [
+    "temps",
+    "horloge",
+    "vers_horloge#r1",
+    "vers_horloge#m1p"
+   ]
+  },
+  {
+   "id": "vers_horloge#r1",
+   "kind": "rod",
+   "p": [
+    -21.0,
+    -58.0
+   ],
+   "q": [
+    -188.0,
+    118.0
+   ],
+   "r": 1.5,
+   "z": [
+    266.0,
+    281.0
+   ],
+   "links": [
+    "temps",
+    "horloge",
+    "vers_horloge#z0",
+    "vers_horloge#m1p",
+    "vers_horloge#m1q"
+   ]
+  },
+  {
+   "id": "vers_horloge#m1p",
+   "kind": "cyl",
+   "c": [
+    -21.0,
+    -58.0
+   ],
+   "r": 5.6,
+   "z": [
+    266.0,
+    281.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "temps",
+    "horloge",
+    "vers_horloge#z0",
+    "vers_horloge#r1"
+   ]
+  },
+  {
+   "id": "vers_horloge#m1q",
+   "kind": "cyl",
+   "c": [
+    -188.0,
+    118.0
+   ],
+   "r": 5.6,
+   "z": [
+    266.0,
+    281.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "temps",
+    "horloge",
+    "vers_horloge#r1"
+   ]
+  },
+  {
+   "id": "vers_edt#z0",
+   "kind": "cyl",
+   "c": [
+    15.0,
+    -58.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    273.5
+   ],
+   "links": [
+    "temps",
+    "edt",
+    "vers_edt#r1",
+    "vers_edt#m1p"
+   ]
+  },
+  {
+   "id": "vers_edt#r1",
+   "kind": "rod",
+   "p": [
+    15.0,
+    -58.0
+   ],
+   "q": [
+    188.0,
+    -118.0
+   ],
+   "r": 1.5,
+   "z": [
+    266.0,
+    281.0
+   ],
+   "links": [
+    "temps",
+    "edt",
+    "vers_edt#z0",
+    "vers_edt#m1p",
+    "vers_edt#m1q"
+   ]
+  },
+  {
+   "id": "vers_edt#m1p",
+   "kind": "cyl",
+   "c": [
+    15.0,
+    -58.0
+   ],
+   "r": 5.6,
+   "z": [
+    266.0,
+    281.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "temps",
+    "edt",
+    "vers_edt#z0",
+    "vers_edt#r1"
+   ]
+  },
+  {
+   "id": "vers_edt#m1q",
+   "kind": "cyl",
+   "c": [
+    188.0,
+    -118.0
+   ],
+   "r": 5.6,
+   "z": [
+    266.0,
+    281.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "temps",
+    "edt",
+    "vers_edt#r1"
+   ]
+  },
+  {
+   "id": "prec_avant#z0",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    -65.6
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    308.0
+   ],
+   "links": [
+    "temps",
+    "prec_pignon",
+    "prec_bas#m0q",
+    "prec_bas#r0"
+   ]
+  },
+  {
+   "id": "tellurion#z0",
+   "kind": "cyl",
+   "c": [
+    -30.0,
+    -92.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    211.5
+   ],
+   "links": [
+    "temps",
+    "tellurion#r1",
+    "tellurion#m1p"
+   ]
+  },
+  {
+   "id": "tellurion#r1",
+   "kind": "rod",
+   "p": [
+    -30.0,
+    -92.0
+   ],
+   "q": [
+    -30.0,
+    168.0
+   ],
+   "r": 1.5,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "links": [
+    "temps",
+    "tellurion#z0",
+    "tellurion#m1p"
+   ]
+  },
+  {
+   "id": "tellurion#m1p",
+   "kind": "cyl",
+   "c": [
+    -30.0,
+    -92.0
+   ],
+   "r": 5.6,
+   "z": [
+    204.0,
+    219.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "temps",
+    "tellurion#z0",
+    "tellurion#r1"
+   ]
+  },
+  {
+   "id": "lunette#z0",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 2.0,
+   "z": [
+    258.5,
+    273.5
+   ],
+   "links": [
+    "geo_jupiter#z0",
+    "geo_jupiter#r1",
+    "geo_jupiter#m1p",
+    "laplace",
+    "lunette#r1",
+    "lunette#m1p"
+   ]
+  },
+  {
+   "id": "lunette#r1",
+   "kind": "rod",
+   "p": [
+    -168.0,
+    -112.0
+   ],
+   "q": [
+    -188.0,
+    -118.0
+   ],
+   "r": 1.5,
+   "z": [
+    266.0,
+    281.0
+   ],
+   "links": [
+    "geo_jupiter#z0",
+    "geo_jupiter#r1",
+    "geo_jupiter#m1p",
+    "laplace",
+    "lunette#z0",
+    "lunette#m1p",
+    "lunette#m1q"
+   ]
+  },
+  {
+   "id": "lunette#m1p",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 5.6,
+   "z": [
+    266.0,
+    281.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "geo_jupiter#z0",
+    "geo_jupiter#r1",
+    "geo_jupiter#m1p",
+    "laplace",
+    "lunette#z0",
+    "lunette#r1"
+   ]
+  },
+  {
+   "id": "lunette#m1q",
+   "kind": "cyl",
+   "c": [
+    -188.0,
+    -118.0
+   ],
+   "r": 5.6,
+   "z": [
+    266.0,
+    281.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "geo_jupiter#z0",
+    "geo_jupiter#r1",
+    "geo_jupiter#m1p",
+    "laplace",
+    "lunette#r1"
+   ]
+  },
+  {
+   "id": "manivelle#r0",
+   "kind": "rod",
+   "p": [
+    -225.0,
+    25.0
+   ],
+   "q": [
+    -66.658,
+    -15.716
+   ],
+   "r": 1.5,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "links": [
+    "J5",
+    "J5",
+    "manivelle#m0q"
+   ]
+  },
+  {
+   "id": "manivelle#m0q",
+   "kind": "cyl",
+   "c": [
+    -66.658,
+    -15.716
+   ],
+   "r": 5.6,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "J5",
+    "J5",
+    "manivelle#r0"
+   ]
+  },
+  {
+   "id": "temps_J#r0",
+   "kind": "rod",
+   "p": [
+    -47.283,
+    -36.984
+   ],
+   "q": [
+    -42.0,
+    -70.0
+   ],
+   "r": 1.5,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "links": [
+    "temps",
+    "J5",
+    "J5",
+    "temps_J#m0p",
+    "temps_J#m0q",
+    "temps_J#z1"
+   ]
+  },
+  {
+   "id": "temps_J#m0p",
+   "kind": "cyl",
+   "c": [
+    -47.283,
+    -36.984
+   ],
+   "r": 5.6,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "temps",
+    "J5",
+    "J5",
+    "temps_J#r0"
+   ]
+  },
+  {
+   "id": "temps_J#m0q",
+   "kind": "cyl",
+   "c": [
+    -42.0,
+    -70.0
+   ],
+   "r": 20.0,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "temps",
+    "J5",
+    "temps_J#r0",
+    "temps_J#z1"
+   ]
+  },
+  {
+   "id": "temps_J#z1",
+   "kind": "cyl",
+   "c": [
+    -42.0,
+    -70.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    114.0
+   ],
+   "links": [
+    "temps",
+    "J5",
+    "temps_J#r0",
+    "temps_J#m0q"
+   ]
+  },
+  {
+   "id": "temps_Y#r0",
+   "kind": "rod",
+   "p": [
+    5.55,
+    -16.28
+   ],
+   "q": [
+    30.0,
+    -88.0
+   ],
+   "r": 1.5,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "temps",
+    "Y5",
+    "Y5",
+    "temps_Y#m0p",
+    "temps_Y#m0q",
+    "temps_Y#z1"
+   ]
+  },
+  {
+   "id": "temps_Y#m0p",
+   "kind": "cyl",
+   "c": [
+    5.55,
+    -16.28
+   ],
+   "r": 5.6,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "temps",
+    "Y5",
+    "Y5",
+    "temps_Y#r0"
+   ]
+  },
+  {
+   "id": "temps_Y#m0q",
+   "kind": "cyl",
+   "c": [
+    30.0,
+    -88.0
+   ],
+   "r": 20.0,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "temps",
+    "Y5",
+    "temps_Y#r0",
+    "temps_Y#z1"
+   ]
+  },
+  {
+   "id": "temps_Y#z1",
+   "kind": "cyl",
+   "c": [
+    30.0,
+    -88.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    97.5
+   ],
+   "links": [
+    "temps",
+    "Y5",
+    "temps_Y#r0",
+    "temps_Y#m0q"
+   ]
+  },
+  {
+   "id": "ytrain#a1",
+   "kind": "cyl",
+   "c": [
+    -50.0,
+    3.25
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "ytrain#w1",
+    "ytrain#w2"
+   ]
+  },
+  {
+   "id": "ytrain#a2",
+   "kind": "cyl",
+   "c": [
+    -33.687,
+    40.592
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "ytrain#w3",
+    "ytrain#w4"
+   ]
+  },
+  {
+   "id": "ytrain#w0",
+   "kind": "cyl",
+   "c": [
+    -50.0,
+    -20.0
+   ],
+   "r": 3.0,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "axe_J",
+    "ytrain#w1",
+    "ytrain#a1"
+   ],
+   "wheel": "train",
+   "teeth": 10
+  },
+  {
+   "id": "ytrain#w1",
+   "kind": "cyl",
+   "c": [
+    -50.0,
+    3.25
+   ],
+   "r": 21.25,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "ytrain#a1",
+    "ytrain#w0",
+    "axe_J"
+   ],
+   "wheel": "train",
+   "teeth": 83
+  },
+  {
+   "id": "ytrain#w2",
+   "kind": "cyl",
+   "c": [
+    -50.0,
+    3.25
+   ],
+   "r": 5.25,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "ytrain#a1",
+    "ytrain#w3",
+    "ytrain#a2"
+   ],
+   "wheel": "train",
+   "teeth": 19
+  },
+  {
+   "id": "ytrain#w3",
+   "kind": "cyl",
+   "c": [
+    -33.687,
+    40.592
+   ],
+   "r": 36.5,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "ytrain#a2",
+    "ytrain#w2",
+    "ytrain#a1"
+   ],
+   "wheel": "train",
+   "teeth": 144
+  },
+  {
+   "id": "ytrain#w4",
+   "kind": "cyl",
+   "c": [
+    -33.687,
+    40.592
+   ],
+   "r": 8.25,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "ytrain#a2",
+    "ytrain#w5",
+    "axe_Y"
+   ],
+   "wheel": "train",
+   "teeth": 31
+  },
+  {
+   "id": "ytrain#w5",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 45.5,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "axe_Y",
+    "ytrain#w4",
+    "ytrain#a2"
+   ],
+   "wheel": "train",
+   "teeth": 180
+  },
+  {
+   "id": "venus_L#a0",
+   "kind": "cyl",
+   "c": [
+    -96.177,
+    76.718
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "venus_L#w2",
+    "venus_L#w3"
+   ]
+  },
+  {
+   "id": "venus_L#a1",
+   "kind": "cyl",
+   "c": [
+    -59.598,
+    107.411
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "venus_L#w4",
+    "venus_L#w5"
+   ]
+  },
+  {
+   "id": "venus_L#T",
+   "kind": "cyl",
+   "c": [
+    -125.618,
+    70.956
+   ],
+   "r": 2.0,
+   "z": [
+    131.0,
+    155.0
+   ],
+   "links": [
+    "venus_L#w1"
+   ]
+  },
+  {
+   "id": "venus_L#w0",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 6.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "axe_venus",
+    "venus_L#w1",
+    "venus_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "venus_L#w1",
+   "kind": "cyl",
+   "c": [
+    -125.618,
+    70.956
+   ],
+   "r": 24.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "venus_L#T",
+    "venus_L#w0",
+    "venus_L#w2",
+    "axe_venus",
+    "venus_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 96
+  },
+  {
+   "id": "venus_L#w2",
+   "kind": "cyl",
+   "c": [
+    -96.177,
+    76.718
+   ],
+   "r": 6.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "venus_L#a0",
+    "venus_L#w1",
+    "venus_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "venus_L#w3",
+   "kind": "cyl",
+   "c": [
+    -96.177,
+    76.718
+   ],
+   "r": 31.5,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "venus_L#a0",
+    "venus_L#w4",
+    "venus_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 124
+  },
+  {
+   "id": "venus_L#w4",
+   "kind": "cyl",
+   "c": [
+    -59.598,
+    107.411
+   ],
+   "r": 17.25,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "venus_L#a1",
+    "venus_L#w3",
+    "venus_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 67
+  },
+  {
+   "id": "venus_L#w5",
+   "kind": "cyl",
+   "c": [
+    -59.598,
+    107.411
+   ],
+   "r": 42.0,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "venus_L#a1",
+    "venus_L#w6",
+    "axe_venus"
+   ],
+   "wheel": "train",
+   "teeth": 166
+  },
+  {
+   "id": "venus_L#w6",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 47.75,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "axe_venus",
+    "venus_L#w5",
+    "venus_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 189
+  },
+  {
+   "id": "axe_venus#tubeY",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 4.0,
+   "z": [
+    131.0,
+    155.0
+   ],
+   "group": "tour_venus"
+  },
+  {
+   "id": "venus_L#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    -14.58,
+    9.125
+   ],
+   "r": 5.6,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "Y4a",
+    "venus_L#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "venus_L#bus#rod",
+   "kind": "rod",
+   "p": [
+    -14.58,
+    9.125
+   ],
+   "q": [
+    -132.42,
+    82.875
+   ],
+   "r": 1.5,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "venus_L#bus#pin0",
+    "venus_L#bus#pin1",
+    "Y4a",
+    "venus_L#bus#cour"
+   ]
+  },
+  {
+   "id": "venus_L#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    -132.42,
+    82.875
+   ],
+   "r": 5.6,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "venus_L#bus#rod",
+    "venus_L#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "venus_L#bus#cour",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 20.0,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "venus_L#bus#pin1",
+    "axe_venus"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "neptune_L#a0",
+   "kind": "cyl",
+   "c": [
+    105.736,
+    -143.847
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "neptune_L#w2",
+    "neptune_L#w3"
+   ]
+  },
+  {
+   "id": "neptune_L#a1",
+   "kind": "cyl",
+   "c": [
+    98.79,
+    -104.455
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "neptune_L#w4",
+    "neptune_L#w5"
+   ]
+  },
+  {
+   "id": "neptune_L#T",
+   "kind": "cyl",
+   "c": [
+    78.013,
+    -132.382
+   ],
+   "r": 2.0,
+   "z": [
+    140.0,
+    155.0
+   ],
+   "links": [
+    "neptune_L#w1"
+   ]
+  },
+  {
+   "id": "neptune_L#w0",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 6.5,
+   "z": [
+    140.0,
+    143.0
+   ],
+   "links": [
+    "axe_neptune",
+    "neptune_L#w1",
+    "neptune_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "neptune_L#w1",
+   "kind": "cyl",
+   "c": [
+    78.013,
+    -132.382
+   ],
+   "r": 24.5,
+   "z": [
+    140.0,
+    143.0
+   ],
+   "links": [
+    "neptune_L#T",
+    "neptune_L#w0",
+    "neptune_L#w2",
+    "axe_neptune",
+    "neptune_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 96
+  },
+  {
+   "id": "neptune_L#w2",
+   "kind": "cyl",
+   "c": [
+    105.736,
+    -143.847
+   ],
+   "r": 6.5,
+   "z": [
+    140.0,
+    143.0
+   ],
+   "links": [
+    "neptune_L#a0",
+    "neptune_L#w1",
+    "neptune_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "neptune_L#w3",
+   "kind": "cyl",
+   "c": [
+    105.736,
+    -143.847
+   ],
+   "r": 3.5,
+   "z": [
+    137.0,
+    140.0
+   ],
+   "links": [
+    "neptune_L#a0",
+    "neptune_L#w4",
+    "neptune_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 12
+  },
+  {
+   "id": "neptune_L#w4",
+   "kind": "cyl",
+   "c": [
+    98.79,
+    -104.455
+   ],
+   "r": 37.5,
+   "z": [
+    137.0,
+    140.0
+   ],
+   "links": [
+    "neptune_L#a1",
+    "neptune_L#w3",
+    "neptune_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 148
+  },
+  {
+   "id": "neptune_L#w5",
+   "kind": "cyl",
+   "c": [
+    98.79,
+    -104.455
+   ],
+   "r": 3.575,
+   "z": [
+    134.0,
+    137.0
+   ],
+   "links": [
+    "neptune_L#a1",
+    "neptune_L#w6",
+    "axe_neptune"
+   ],
+   "wheel": "train",
+   "teeth": 11
+  },
+  {
+   "id": "neptune_L#w6",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 40.975,
+   "z": [
+    134.0,
+    137.0
+   ],
+   "links": [
+    "axe_neptune",
+    "neptune_L#w5",
+    "neptune_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 147
+  },
+  {
+   "id": "axe_neptune#tubeY",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 4.0,
+   "z": [
+    140.0,
+    155.0
+   ],
+   "group": "tour_neptune"
+  },
+  {
+   "id": "neptune_L#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    7.692,
+    -15.384
+   ],
+   "r": 5.6,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "Y4a",
+    "neptune_L#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "neptune_L#bus#rod",
+   "kind": "rod",
+   "p": [
+    7.692,
+    -15.384
+   ],
+   "q": [
+    48.308,
+    -96.616
+   ],
+   "r": 1.5,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "neptune_L#bus#pin0",
+    "neptune_L#bus#pin1",
+    "Y4a",
+    "neptune_L#bus#cour"
+   ]
+  },
+  {
+   "id": "neptune_L#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    48.308,
+    -96.616
+   ],
+   "r": 5.6,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "neptune_L#bus#rod",
+    "neptune_L#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "neptune_L#bus#cour",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 20.0,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "neptune_L#bus#pin1",
+    "axe_neptune"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "axe_neptune#bas",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 2.0,
+   "z": [
+    105.0,
+    125.0
+   ],
+   "group": "tour_neptune"
+  },
+  {
+   "id": "prec#a1",
+   "kind": "cyl",
+   "c": [
+    90.714,
+    -105.879
+   ],
+   "r": 2.0,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "links": [
+    "prec#w1"
+   ]
+  },
+  {
+   "id": "prec#w0",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 3.0,
+   "z": [
+    107.0,
+    110.0
+   ],
+   "links": [
+    "axe_neptune",
+    "prec#w1",
+    "prec#a1"
+   ],
+   "wheel": "train",
+   "teeth": 10
+  },
+  {
+   "id": "prec#w1",
+   "kind": "cyl",
+   "c": [
+    90.714,
+    -105.879
+   ],
+   "r": 33.25,
+   "z": [
+    107.0,
+    110.0
+   ],
+   "links": [
+    "prec#a1",
+    "prec#w0",
+    "axe_neptune"
+   ],
+   "wheel": "train",
+   "teeth": 131
+  },
+  {
+   "id": "prec_bas#r0",
+   "kind": "rod",
+   "p": [
+    90.714,
+    -105.879
+   ],
+   "q": [
+    0.0,
+    -65.6
+   ],
+   "r": 1.5,
+   "z": [
+    110.0,
+    123.0
+   ],
+   "links": [
+    "prec#a1",
+    "temps",
+    "prec_avant#z0",
+    "prec_bas#m0p",
+    "prec_bas#m0q"
+   ]
+  },
+  {
+   "id": "prec_bas#m0p",
+   "kind": "cyl",
+   "c": [
+    90.714,
+    -105.879
+   ],
+   "r": 5.6,
+   "z": [
+    110.0,
+    123.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "prec#a1",
+    "temps",
+    "prec_avant#z0",
+    "prec_bas#r0"
+   ]
+  },
+  {
+   "id": "prec_bas#m0q",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    -65.6
+   ],
+   "r": 5.6,
+   "z": [
+    110.0,
+    123.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "prec#a1",
+    "temps",
+    "prec_avant#z0",
+    "prec_bas#r0"
+   ]
+  },
+  {
+   "id": "mercury_L#a0",
+   "kind": "cyl",
+   "c": [
+    145.065,
+    82.153
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "mercury_L#w2",
+    "mercury_L#w3"
+   ]
+  },
+  {
+   "id": "mercury_L#a1",
+   "kind": "cyl",
+   "c": [
+    183.871,
+    97.075
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "mercury_L#w4",
+    "mercury_L#w6"
+   ]
+  },
+  {
+   "id": "mercury_L#a2",
+   "kind": "cyl",
+   "c": [
+    165.678,
+    112.342
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "mercury_L#w7",
+    "mercury_L#w8"
+   ]
+  },
+  {
+   "id": "mercury_L#I",
+   "kind": "cyl",
+   "c": [
+    167.962,
+    78.116
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "mercury_L#w5"
+   ]
+  },
+  {
+   "id": "mercury_L#T",
+   "kind": "cyl",
+   "c": [
+    148.334,
+    93.699
+   ],
+   "r": 2.0,
+   "z": [
+    140.0,
+    155.0
+   ],
+   "links": [
+    "mercury_L#w1"
+   ]
+  },
+  {
+   "id": "mercury_L#w0",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 6.5,
+   "z": [
+    140.0,
+    143.0
+   ],
+   "links": [
+    "axe_mercury",
+    "mercury_L#w1",
+    "mercury_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "mercury_L#w1",
+   "kind": "cyl",
+   "c": [
+    148.334,
+    93.699
+   ],
+   "r": 6.5,
+   "z": [
+    140.0,
+    143.0
+   ],
+   "links": [
+    "mercury_L#T",
+    "mercury_L#w0",
+    "mercury_L#w2",
+    "axe_mercury",
+    "mercury_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "mercury_L#w2",
+   "kind": "cyl",
+   "c": [
+    145.065,
+    82.153
+   ],
+   "r": 6.5,
+   "z": [
+    140.0,
+    143.0
+   ],
+   "links": [
+    "mercury_L#a0",
+    "mercury_L#w1",
+    "mercury_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "mercury_L#w3",
+   "kind": "cyl",
+   "c": [
+    145.065,
+    82.153
+   ],
+   "r": 18.75,
+   "z": [
+    137.0,
+    140.0
+   ],
+   "links": [
+    "mercury_L#a0",
+    "mercury_L#w5",
+    "mercury_L#I"
+   ],
+   "wheel": "train",
+   "teeth": 73
+  },
+  {
+   "id": "mercury_L#w4",
+   "kind": "cyl",
+   "c": [
+    183.871,
+    97.075
+   ],
+   "r": 20.25,
+   "z": [
+    137.0,
+    140.0
+   ],
+   "links": [
+    "mercury_L#a1",
+    "mercury_L#w5",
+    "mercury_L#I"
+   ],
+   "wheel": "train",
+   "teeth": 79
+  },
+  {
+   "id": "mercury_L#w5",
+   "kind": "cyl",
+   "c": [
+    167.962,
+    78.116
+   ],
+   "r": 5.5,
+   "z": [
+    137.0,
+    140.0
+   ],
+   "links": [
+    "mercury_L#I",
+    "mercury_L#w3",
+    "mercury_L#w4",
+    "mercury_L#a0",
+    "mercury_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 20
+  },
+  {
+   "id": "mercury_L#w6",
+   "kind": "cyl",
+   "c": [
+    183.871,
+    97.075
+   ],
+   "r": 16.5,
+   "z": [
+    134.0,
+    137.0
+   ],
+   "links": [
+    "mercury_L#a1",
+    "mercury_L#w7",
+    "mercury_L#a2"
+   ],
+   "wheel": "train",
+   "teeth": 64
+  },
+  {
+   "id": "mercury_L#w7",
+   "kind": "cyl",
+   "c": [
+    165.678,
+    112.342
+   ],
+   "r": 8.25,
+   "z": [
+    134.0,
+    137.0
+   ],
+   "links": [
+    "mercury_L#a2",
+    "mercury_L#w6",
+    "mercury_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 31
+  },
+  {
+   "id": "mercury_L#w8",
+   "kind": "cyl",
+   "c": [
+    165.678,
+    112.342
+   ],
+   "r": 9.75,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "mercury_L#a2",
+    "mercury_L#w9",
+    "axe_mercury"
+   ],
+   "wheel": "train",
+   "teeth": 37
+  },
+  {
+   "id": "mercury_L#w9",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 4.75,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "axe_mercury",
+    "mercury_L#w8",
+    "mercury_L#a2"
+   ],
+   "wheel": "train",
+   "teeth": 17
+  },
+  {
+   "id": "axe_mercury#tubeY",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 4.0,
+   "z": [
+    140.0,
+    155.0
+   ],
+   "group": "tour_mercury"
+  },
+  {
+   "id": "mercury_L#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    14.423,
+    9.371
+   ],
+   "r": 5.6,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "Y4a",
+    "mercury_L#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "mercury_L#bus#rod",
+   "kind": "rod",
+   "p": [
+    14.423,
+    9.371
+   ],
+   "q": [
+    142.577,
+    92.629
+   ],
+   "r": 1.5,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "mercury_L#bus#pin0",
+    "mercury_L#bus#pin1",
+    "Y4a",
+    "mercury_L#bus#cour"
+   ]
+  },
+  {
+   "id": "mercury_L#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    142.577,
+    92.629
+   ],
+   "r": 5.6,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "mercury_L#bus#rod",
+    "mercury_L#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "mercury_L#bus#cour",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 20.0,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "mercury_L#bus#pin1",
+    "axe_mercury"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "mars_L#a0",
+   "kind": "cyl",
+   "c": [
+    37.162,
+    117.3
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "mars_L#w2",
+    "mars_L#w3"
+   ]
+  },
+  {
+   "id": "mars_L#a1",
+   "kind": "cyl",
+   "c": [
+    29.13,
+    71.752
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "mars_L#w4",
+    "mars_L#w5"
+   ]
+  },
+  {
+   "id": "mars_L#T",
+   "kind": "cyl",
+   "c": [
+    26.08,
+    98.294
+   ],
+   "r": 2.0,
+   "z": [
+    131.0,
+    155.0
+   ],
+   "links": [
+    "mars_L#w1"
+   ]
+  },
+  {
+   "id": "mars_L#w0",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 6.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "axe_mars",
+    "mars_L#w1",
+    "mars_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "mars_L#w1",
+   "kind": "cyl",
+   "c": [
+    26.08,
+    98.294
+   ],
+   "r": 16.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "mars_L#T",
+    "mars_L#w0",
+    "mars_L#w2",
+    "axe_mars",
+    "mars_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 64
+  },
+  {
+   "id": "mars_L#w2",
+   "kind": "cyl",
+   "c": [
+    37.162,
+    117.3
+   ],
+   "r": 6.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "mars_L#a0",
+    "mars_L#w1",
+    "mars_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "mars_L#w3",
+   "kind": "cyl",
+   "c": [
+    37.162,
+    117.3
+   ],
+   "r": 24.75,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "mars_L#a0",
+    "mars_L#w4",
+    "mars_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 97
+  },
+  {
+   "id": "mars_L#w4",
+   "kind": "cyl",
+   "c": [
+    29.13,
+    71.752
+   ],
+   "r": 22.5,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "mars_L#a1",
+    "mars_L#w3",
+    "mars_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 88
+  },
+  {
+   "id": "mars_L#w5",
+   "kind": "cyl",
+   "c": [
+    29.13,
+    71.752
+   ],
+   "r": 10.75,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "mars_L#a1",
+    "mars_L#w6",
+    "axe_mars"
+   ],
+   "wheel": "train",
+   "teeth": 41
+  },
+  {
+   "id": "mars_L#w6",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 21.75,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "axe_mars",
+    "mars_L#w5",
+    "mars_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 85
+  },
+  {
+   "id": "axe_mars#tubeY",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 4.0,
+   "z": [
+    131.0,
+    155.0
+   ],
+   "group": "tour_mars"
+  },
+  {
+   "id": "mars_L#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    0.933,
+    17.175
+   ],
+   "r": 5.6,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "Y4b",
+    "mars_L#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "mars_L#bus#rod",
+   "kind": "rod",
+   "p": [
+    0.933,
+    17.175
+   ],
+   "q": [
+    4.067,
+    74.825
+   ],
+   "r": 1.5,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "mars_L#bus#pin0",
+    "mars_L#bus#pin1",
+    "Y4b",
+    "mars_L#bus#cour"
+   ]
+  },
+  {
+   "id": "mars_L#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    4.067,
+    74.825
+   ],
+   "r": 5.6,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "mars_L#bus#rod",
+    "mars_L#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "mars_L#bus#cour",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 20.0,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "mars_L#bus#pin1",
+    "axe_mars"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "uranus_L#a0",
+   "kind": "cyl",
+   "c": [
+    134.121,
+    -124.677
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "uranus_L#w2",
+    "uranus_L#w3"
+   ]
+  },
+  {
+   "id": "uranus_L#a1",
+   "kind": "cyl",
+   "c": [
+    142.158,
+    -102.594
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "uranus_L#w4",
+    "uranus_L#w5"
+   ]
+  },
+  {
+   "id": "uranus_L#T",
+   "kind": "cyl",
+   "c": [
+    155.45,
+    -130.069
+   ],
+   "r": 2.0,
+   "z": [
+    131.0,
+    155.0
+   ],
+   "links": [
+    "uranus_L#w1"
+   ]
+  },
+  {
+   "id": "uranus_L#w0",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 6.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "axe_uranus",
+    "uranus_L#w1",
+    "uranus_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "uranus_L#w1",
+   "kind": "cyl",
+   "c": [
+    155.45,
+    -130.069
+   ],
+   "r": 16.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "uranus_L#T",
+    "uranus_L#w0",
+    "uranus_L#w2",
+    "axe_uranus",
+    "uranus_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 64
+  },
+  {
+   "id": "uranus_L#w2",
+   "kind": "cyl",
+   "c": [
+    134.121,
+    -124.677
+   ],
+   "r": 6.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "uranus_L#a0",
+    "uranus_L#w1",
+    "uranus_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "uranus_L#w3",
+   "kind": "cyl",
+   "c": [
+    134.121,
+    -124.677
+   ],
+   "r": 3.0,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "uranus_L#a0",
+    "uranus_L#w4",
+    "uranus_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 10
+  },
+  {
+   "id": "uranus_L#w4",
+   "kind": "cyl",
+   "c": [
+    142.158,
+    -102.594
+   ],
+   "r": 21.5,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "uranus_L#a1",
+    "uranus_L#w3",
+    "uranus_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 84
+  },
+  {
+   "id": "uranus_L#w5",
+   "kind": "cyl",
+   "c": [
+    142.158,
+    -102.594
+   ],
+   "r": 3.0,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "uranus_L#a1",
+    "uranus_L#w6",
+    "axe_uranus"
+   ],
+   "wheel": "train",
+   "teeth": 10
+  },
+  {
+   "id": "uranus_L#w6",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 25.5,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "axe_uranus",
+    "uranus_L#w5",
+    "uranus_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 100
+  },
+  {
+   "id": "axe_uranus#tubeY",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 4.0,
+   "z": [
+    131.0,
+    155.0
+   ],
+   "group": "tour_uranus"
+  },
+  {
+   "id": "uranus_L#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    14.311,
+    -9.541
+   ],
+   "r": 5.6,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "Y4b",
+    "uranus_L#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "uranus_L#bus#rod",
+   "kind": "rod",
+   "p": [
+    14.311,
+    -9.541
+   ],
+   "q": [
+    153.689,
+    -102.459
+   ],
+   "r": 1.5,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "uranus_L#bus#pin0",
+    "uranus_L#bus#pin1",
+    "Y4b",
+    "uranus_L#bus#cour"
+   ]
+  },
+  {
+   "id": "uranus_L#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    153.689,
+    -102.459
+   ],
+   "r": 5.6,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "uranus_L#bus#rod",
+    "uranus_L#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "uranus_L#bus#cour",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 20.0,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "uranus_L#bus#pin1",
+    "axe_uranus"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "saturn_L#a0",
+   "kind": "cyl",
+   "c": [
+    -69.111,
+    -134.292
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "saturn_L#w2",
+    "saturn_L#w3"
+   ]
+  },
+  {
+   "id": "saturn_L#a1",
+   "kind": "cyl",
+   "c": [
+    -75.486,
+    -123.25
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "saturn_L#w4",
+    "saturn_L#w5"
+   ]
+  },
+  {
+   "id": "saturn_L#T",
+   "kind": "cyl",
+   "c": [
+    -57.93,
+    -125.866
+   ],
+   "r": 2.0,
+   "z": [
+    131.0,
+    155.0
+   ],
+   "links": [
+    "saturn_L#w1"
+   ]
+  },
+  {
+   "id": "saturn_L#w0",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 6.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "axe_saturn",
+    "saturn_L#w1",
+    "saturn_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "saturn_L#w1",
+   "kind": "cyl",
+   "c": [
+    -57.93,
+    -125.866
+   ],
+   "r": 8.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "saturn_L#T",
+    "saturn_L#w0",
+    "saturn_L#w2",
+    "axe_saturn",
+    "saturn_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 32
+  },
+  {
+   "id": "saturn_L#w2",
+   "kind": "cyl",
+   "c": [
+    -69.111,
+    -134.292
+   ],
+   "r": 6.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "saturn_L#a0",
+    "saturn_L#w1",
+    "saturn_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "saturn_L#w3",
+   "kind": "cyl",
+   "c": [
+    -69.111,
+    -134.292
+   ],
+   "r": 3.0,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "saturn_L#a0",
+    "saturn_L#w4",
+    "saturn_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 10
+  },
+  {
+   "id": "saturn_L#w4",
+   "kind": "cyl",
+   "c": [
+    -75.486,
+    -123.25
+   ],
+   "r": 10.75,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "saturn_L#a1",
+    "saturn_L#w3",
+    "saturn_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 41
+  },
+  {
+   "id": "saturn_L#w5",
+   "kind": "cyl",
+   "c": [
+    -75.486,
+    -123.25
+   ],
+   "r": 3.25,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "saturn_L#a1",
+    "saturn_L#w6",
+    "axe_saturn"
+   ],
+   "wheel": "train",
+   "teeth": 11
+  },
+  {
+   "id": "saturn_L#w6",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 20.25,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "axe_saturn",
+    "saturn_L#w5",
+    "saturn_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 79
+  },
+  {
+   "id": "axe_saturn#tubeY",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 4.0,
+   "z": [
+    131.0,
+    155.0
+   ],
+   "group": "tour_saturn"
+  },
+  {
+   "id": "saturn_L#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    -7.692,
+    -15.384
+   ],
+   "r": 5.6,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "Y4b",
+    "saturn_L#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "saturn_L#bus#rod",
+   "kind": "rod",
+   "p": [
+    -7.692,
+    -15.384
+   ],
+   "q": [
+    -48.308,
+    -96.616
+   ],
+   "r": 1.5,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "saturn_L#bus#pin0",
+    "saturn_L#bus#pin1",
+    "Y4b",
+    "saturn_L#bus#cour"
+   ]
+  },
+  {
+   "id": "saturn_L#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    -48.308,
+    -96.616
+   ],
+   "r": 5.6,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "saturn_L#bus#rod",
+    "saturn_L#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "saturn_L#bus#cour",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 20.0,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "saturn_L#bus#pin1",
+    "axe_saturn"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "jupiter_L#a0",
+   "kind": "cyl",
+   "c": [
+    -193.569,
+    -111.787
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "jupiter_L#w2",
+    "jupiter_L#w3"
+   ]
+  },
+  {
+   "id": "jupiter_L#a1",
+   "kind": "cyl",
+   "c": [
+    -187.269,
+    -100.875
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "jupiter_L#w4",
+    "jupiter_L#w5"
+   ]
+  },
+  {
+   "id": "jupiter_L#T",
+   "kind": "cyl",
+   "c": [
+    -180.832,
+    -117.598
+   ],
+   "r": 2.0,
+   "z": [
+    131.0,
+    155.0
+   ],
+   "links": [
+    "jupiter_L#w1"
+   ]
+  },
+  {
+   "id": "jupiter_L#w0",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 6.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "axe_jupiter",
+    "jupiter_L#w1",
+    "jupiter_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "jupiter_L#w1",
+   "kind": "cyl",
+   "c": [
+    -180.832,
+    -117.598
+   ],
+   "r": 8.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "jupiter_L#T",
+    "jupiter_L#w0",
+    "jupiter_L#w2",
+    "axe_jupiter",
+    "jupiter_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 32
+  },
+  {
+   "id": "jupiter_L#w2",
+   "kind": "cyl",
+   "c": [
+    -193.569,
+    -111.787
+   ],
+   "r": 6.5,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "jupiter_L#a0",
+    "jupiter_L#w1",
+    "jupiter_L#T"
+   ],
+   "wheel": "train",
+   "teeth": 24
+  },
+  {
+   "id": "jupiter_L#w3",
+   "kind": "cyl",
+   "c": [
+    -193.569,
+    -111.787
+   ],
+   "r": 4.2,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "jupiter_L#a0",
+    "jupiter_L#w4",
+    "jupiter_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 10
+  },
+  {
+   "id": "jupiter_L#w4",
+   "kind": "cyl",
+   "c": [
+    -187.269,
+    -100.875
+   ],
+   "r": 9.8,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "jupiter_L#a1",
+    "jupiter_L#w3",
+    "jupiter_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 26
+  },
+  {
+   "id": "jupiter_L#w5",
+   "kind": "cyl",
+   "c": [
+    -187.269,
+    -100.875
+   ],
+   "r": 4.5,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "jupiter_L#a1",
+    "jupiter_L#w6",
+    "axe_jupiter"
+   ],
+   "wheel": "train",
+   "teeth": 16
+  },
+  {
+   "id": "jupiter_L#w6",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 18.75,
+   "z": [
+    125.0,
+    128.0
+   ],
+   "links": [
+    "axe_jupiter",
+    "jupiter_L#w5",
+    "jupiter_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 73
+  },
+  {
+   "id": "axe_jupiter#tubeY",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 4.0,
+   "z": [
+    131.0,
+    155.0
+   ],
+   "group": "tour_jupiter"
+  },
+  {
+   "id": "jupiter_L#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    -14.311,
+    -9.541
+   ],
+   "r": 5.6,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "Y4a",
+    "jupiter_L#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "jupiter_L#bus#rod",
+   "kind": "rod",
+   "p": [
+    -14.311,
+    -9.541
+   ],
+   "q": [
+    -153.689,
+    -102.459
+   ],
+   "r": 1.5,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "jupiter_L#bus#pin0",
+    "jupiter_L#bus#pin1",
+    "Y4a",
+    "jupiter_L#bus#cour"
+   ]
+  },
+  {
+   "id": "jupiter_L#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    -153.689,
+    -102.459
+   ],
+   "r": 5.6,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "jupiter_L#bus#rod",
+    "jupiter_L#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "jupiter_L#bus#cour",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 20.0,
+   "z": [
+    155.0,
+    170.0
+   ],
+   "links": [
+    "jupiter_L#bus#pin1",
+    "axe_jupiter"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "moon_perigee#a0",
+   "kind": "cyl",
+   "c": [
+    47.914,
+    10.25
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    185.0
+   ],
+   "links": [
+    "moon_perigee#w0"
+   ]
+  },
+  {
+   "id": "moon_perigee#a1",
+   "kind": "cyl",
+   "c": [
+    47.914,
+    -22.0
+   ],
+   "r": 2.0,
+   "z": [
+    125.0,
+    155.0
+   ],
+   "links": [
+    "moon_perigee#w1",
+    "moon_perigee#w2"
+   ]
+  },
+  {
+   "id": "moon_perigee#a2",
+   "kind": "cyl",
+   "c": [
+    80.823,
+    -3.0
+   ],
+   "r": 2.0,
+   "z": [
+    48.0,
+    155.0
+   ],
+   "links": [
+    "moon_perigee#w3",
+    "lune"
+   ],
+   "interface": "lune"
+  },
+  {
+   "id": "moon_perigee#w0",
+   "kind": "cyl",
+   "c": [
+    47.914,
+    10.25
+   ],
+   "r": 7.0,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "moon_perigee#a0",
+    "moon_perigee#w1",
+    "moon_perigee#a1"
+   ],
+   "wheel": "train",
+   "teeth": 26
+  },
+  {
+   "id": "moon_perigee#w1",
+   "kind": "cyl",
+   "c": [
+    47.914,
+    -22.0
+   ],
+   "r": 26.25,
+   "z": [
+    131.0,
+    134.0
+   ],
+   "links": [
+    "moon_perigee#a1",
+    "moon_perigee#w0",
+    "moon_perigee#a0"
+   ],
+   "wheel": "train",
+   "teeth": 103
+  },
+  {
+   "id": "moon_perigee#w2",
+   "kind": "cyl",
+   "c": [
+    47.914,
+    -22.0
+   ],
+   "r": 12.25,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "moon_perigee#a1",
+    "moon_perigee#w3",
+    "moon_perigee#a2"
+   ],
+   "wheel": "train",
+   "teeth": 47
+  },
+  {
+   "id": "moon_perigee#w3",
+   "kind": "cyl",
+   "c": [
+    80.823,
+    -3.0
+   ],
+   "r": 26.75,
+   "z": [
+    128.0,
+    131.0
+   ],
+   "links": [
+    "moon_perigee#a2",
+    "moon_perigee#w2",
+    "moon_perigee#a1",
+    "lune"
+   ],
+   "wheel": "train",
+   "teeth": 105,
+   "interface": "lune"
+  },
+  {
+   "id": "moon_perigee#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    16.819,
+    3.598
+   ],
+   "r": 5.6,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "Y4b",
+    "moon_perigee#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "moon_perigee#bus#rod",
+   "kind": "rod",
+   "p": [
+    16.819,
+    3.598
+   ],
+   "q": [
+    31.095,
+    6.652
+   ],
+   "r": 1.5,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "moon_perigee#bus#pin0",
+    "moon_perigee#bus#pin1",
+    "Y4b",
+    "moon_perigee#bus#cour"
+   ]
+  },
+  {
+   "id": "moon_perigee#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    31.095,
+    6.652
+   ],
+   "r": 5.6,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "moon_perigee#bus#rod",
+    "moon_perigee#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "moon_perigee#bus#cour",
+   "kind": "cyl",
+   "c": [
+    47.914,
+    10.25
+   ],
+   "r": 20.0,
+   "z": [
+    170.0,
+    185.0
+   ],
+   "links": [
+    "moon_perigee#bus#pin1",
+    "moon_perigee#a0"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "saros#a0",
+   "kind": "cyl",
+   "c": [
+    154.011,
+    -84.069
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    105.0
+   ],
+   "links": [
+    "saros#w0"
+   ]
+  },
+  {
+   "id": "saros#a1",
+   "kind": "cyl",
+   "c": [
+    159.055,
+    -97.93
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    90.0
+   ],
+   "links": [
+    "saros#w1",
+    "saros#w2"
+   ]
+  },
+  {
+   "id": "saros#a2",
+   "kind": "cyl",
+   "c": [
+    170.0,
+    -128.0
+   ],
+   "r": 2.0,
+   "z": [
+    0.0,
+    90.0
+   ],
+   "links": [
+    "saros#w3"
+   ]
+  },
+  {
+   "id": "saros#w0",
+   "kind": "cyl",
+   "c": [
+    154.011,
+    -84.069
+   ],
+   "r": 3.75,
+   "z": [
+    45.0,
+    48.0
+   ],
+   "links": [
+    "saros#a0",
+    "saros#w1",
+    "saros#a1"
+   ],
+   "wheel": "train",
+   "teeth": 13
+  },
+  {
+   "id": "saros#w1",
+   "kind": "cyl",
+   "c": [
+    159.055,
+    -97.93
+   ],
+   "r": 12.0,
+   "z": [
+    45.0,
+    48.0
+   ],
+   "links": [
+    "saros#a1",
+    "saros#w0",
+    "saros#a0"
+   ],
+   "wheel": "train",
+   "teeth": 46
+  },
+  {
+   "id": "saros#w2",
+   "kind": "cyl",
+   "c": [
+    159.055,
+    -97.93
+   ],
+   "r": 5.75,
+   "z": [
+    42.0,
+    45.0
+   ],
+   "links": [
+    "saros#a1",
+    "saros#w3",
+    "saros#a2"
+   ],
+   "wheel": "train",
+   "teeth": 21
+  },
+  {
+   "id": "saros#w3",
+   "kind": "cyl",
+   "c": [
+    170.0,
+    -128.0
+   ],
+   "r": 27.25,
+   "z": [
+    42.0,
+    45.0
+   ],
+   "links": [
+    "saros#a2",
+    "saros#w2",
+    "saros#a1"
+   ],
+   "wheel": "train",
+   "teeth": 107
+  },
+  {
+   "id": "saros#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    15.097,
+    -8.241
+   ],
+   "r": 5.6,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "Y5",
+    "saros#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "saros#bus#rod",
+   "kind": "rod",
+   "p": [
+    15.097,
+    -8.241
+   ],
+   "q": [
+    138.913,
+    -75.828
+   ],
+   "r": 1.5,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "saros#bus#pin0",
+    "saros#bus#pin1",
+    "Y5",
+    "saros#bus#cour"
+   ]
+  },
+  {
+   "id": "saros#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    138.913,
+    -75.828
+   ],
+   "r": 5.6,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "saros#bus#rod",
+    "saros#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "saros#bus#cour",
+   "kind": "cyl",
+   "c": [
+    154.011,
+    -84.069
+   ],
+   "r": 20.0,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "saros#bus#pin1",
+    "saros#a0"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "moon_node#a0",
+   "kind": "cyl",
+   "c": [
+    11.37,
+    45.622
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    105.0
+   ],
+   "links": [
+    "moon_node#w0"
+   ]
+  },
+  {
+   "id": "moon_node#a1",
+   "kind": "cyl",
+   "c": [
+    33.009,
+    37.745
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    90.0
+   ],
+   "links": [
+    "moon_node#w1",
+    "moon_node#w3"
+   ]
+  },
+  {
+   "id": "moon_node#a2",
+   "kind": "cyl",
+   "c": [
+    65.015,
+    32.101
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    90.0
+   ],
+   "links": [
+    "moon_node#w4",
+    "lune"
+   ],
+   "interface": "lune"
+  },
+  {
+   "id": "moon_node#I",
+   "kind": "cyl",
+   "c": [
+    17.498,
+    40.48
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    90.0
+   ],
+   "links": [
+    "moon_node#w2"
+   ]
+  },
+  {
+   "id": "moon_node#w0",
+   "kind": "cyl",
+   "c": [
+    11.37,
+    45.622
+   ],
+   "r": 3.5,
+   "z": [
+    45.0,
+    48.0
+   ],
+   "links": [
+    "moon_node#a0",
+    "moon_node#w2",
+    "moon_node#I"
+   ],
+   "wheel": "train",
+   "teeth": 12
+  },
+  {
+   "id": "moon_node#w1",
+   "kind": "cyl",
+   "c": [
+    33.009,
+    37.745
+   ],
+   "r": 11.25,
+   "z": [
+    45.0,
+    48.0
+   ],
+   "links": [
+    "moon_node#a1",
+    "moon_node#w2",
+    "moon_node#I"
+   ],
+   "wheel": "train",
+   "teeth": 43
+  },
+  {
+   "id": "moon_node#w2",
+   "kind": "cyl",
+   "c": [
+    17.498,
+    40.48
+   ],
+   "r": 5.5,
+   "z": [
+    45.0,
+    48.0
+   ],
+   "links": [
+    "moon_node#I",
+    "moon_node#w0",
+    "moon_node#w1",
+    "moon_node#a0",
+    "moon_node#a1"
+   ],
+   "wheel": "train",
+   "teeth": 20
+  },
+  {
+   "id": "moon_node#w3",
+   "kind": "cyl",
+   "c": [
+    33.009,
+    37.745
+   ],
+   "r": 5.75,
+   "z": [
+    42.0,
+    45.0
+   ],
+   "links": [
+    "moon_node#a1",
+    "moon_node#w4",
+    "moon_node#a2"
+   ],
+   "wheel": "train",
+   "teeth": 21
+  },
+  {
+   "id": "moon_node#w4",
+   "kind": "cyl",
+   "c": [
+    65.015,
+    32.101
+   ],
+   "r": 27.75,
+   "z": [
+    42.0,
+    45.0
+   ],
+   "links": [
+    "moon_node#a2",
+    "moon_node#w3",
+    "moon_node#a1",
+    "lune"
+   ],
+   "wheel": "train",
+   "teeth": 109,
+   "interface": "lune"
+  },
+  {
+   "id": "moon_node#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    4.159,
+    16.689
+   ],
+   "r": 5.6,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "Y5",
+    "moon_node#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "moon_node#bus#rod",
+   "kind": "rod",
+   "p": [
+    4.159,
+    16.689
+   ],
+   "q": [
+    7.211,
+    28.932
+   ],
+   "r": 1.5,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "moon_node#bus#pin0",
+    "moon_node#bus#pin1",
+    "Y5",
+    "moon_node#bus#cour"
+   ]
+  },
+  {
+   "id": "moon_node#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    7.211,
+    28.932
+   ],
+   "r": 5.6,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "moon_node#bus#rod",
+    "moon_node#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "moon_node#bus#cour",
+   "kind": "cyl",
+   "c": [
+    11.37,
+    45.622
+   ],
+   "r": 20.0,
+   "z": [
+    90.0,
+    105.0
+   ],
+   "links": [
+    "moon_node#bus#pin1",
+    "moon_node#a0"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "moon_L#a0",
+   "kind": "cyl",
+   "c": [
+    13.567,
+    -20.827
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    123.0
+   ],
+   "links": [
+    "moon_L#w0"
+   ]
+  },
+  {
+   "id": "moon_L#a1",
+   "kind": "cyl",
+   "c": [
+    22.024,
+    -17.748
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    90.0
+   ],
+   "links": [
+    "moon_L#w1",
+    "moon_L#w2"
+   ]
+  },
+  {
+   "id": "moon_L#a2",
+   "kind": "cyl",
+   "c": [
+    42.228,
+    -10.395
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    90.0
+   ],
+   "links": [
+    "moon_L#w3",
+    "moon_L#w4"
+   ]
+  },
+  {
+   "id": "moon_L#a3",
+   "kind": "cyl",
+   "c": [
+    65.015,
+    -2.101
+   ],
+   "r": 2.0,
+   "z": [
+    9.0,
+    90.0
+   ],
+   "links": [
+    "moon_L#w5",
+    "lune"
+   ],
+   "interface": "lune"
+  },
+  {
+   "id": "moon_L#w0",
+   "kind": "cyl",
+   "c": [
+    13.567,
+    -20.827
+   ],
+   "r": 3.25,
+   "z": [
+    45.0,
+    48.0
+   ],
+   "links": [
+    "moon_L#a0",
+    "moon_L#w1",
+    "moon_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 11
+  },
+  {
+   "id": "moon_L#w1",
+   "kind": "cyl",
+   "c": [
+    22.024,
+    -17.748
+   ],
+   "r": 6.75,
+   "z": [
+    45.0,
+    48.0
+   ],
+   "links": [
+    "moon_L#a1",
+    "moon_L#w0",
+    "moon_L#a0"
+   ],
+   "wheel": "train",
+   "teeth": 25
+  },
+  {
+   "id": "moon_L#w2",
+   "kind": "cyl",
+   "c": [
+    22.024,
+    -17.748
+   ],
+   "r": 5.25,
+   "z": [
+    42.0,
+    45.0
+   ],
+   "links": [
+    "moon_L#a1",
+    "moon_L#w3",
+    "moon_L#a2"
+   ],
+   "wheel": "train",
+   "teeth": 19
+  },
+  {
+   "id": "moon_L#w3",
+   "kind": "cyl",
+   "c": [
+    42.228,
+    -10.395
+   ],
+   "r": 17.25,
+   "z": [
+    42.0,
+    45.0
+   ],
+   "links": [
+    "moon_L#a2",
+    "moon_L#w2",
+    "moon_L#a1"
+   ],
+   "wheel": "train",
+   "teeth": 67
+  },
+  {
+   "id": "moon_L#w4",
+   "kind": "cyl",
+   "c": [
+    42.228,
+    -10.395
+   ],
+   "r": 6.0,
+   "z": [
+    39.0,
+    42.0
+   ],
+   "links": [
+    "moon_L#a2",
+    "moon_L#w5",
+    "moon_L#a3"
+   ],
+   "wheel": "train",
+   "teeth": 22
+  },
+  {
+   "id": "moon_L#w5",
+   "kind": "cyl",
+   "c": [
+    65.015,
+    -2.101
+   ],
+   "r": 19.25,
+   "z": [
+    39.0,
+    42.0
+   ],
+   "links": [
+    "moon_L#a3",
+    "moon_L#w4",
+    "moon_L#a2",
+    "lune"
+   ],
+   "wheel": "train",
+   "teeth": 75,
+   "interface": "lune"
+  },
+  {
+   "id": "moon_L#bus#pin0",
+   "kind": "cyl",
+   "c": [
+    -32.801,
+    -20.224
+   ],
+   "r": 5.6,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "links": [
+    "J5",
+    "moon_L#bus#rod"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "moon_L#bus#rod",
+   "kind": "rod",
+   "p": [
+    -32.801,
+    -20.224
+   ],
+   "q": [
+    -3.631,
+    -20.603
+   ],
+   "r": 1.5,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "links": [
+    "moon_L#bus#pin0",
+    "moon_L#bus#pin1",
+    "J5",
+    "moon_L#bus#cour"
+   ]
+  },
+  {
+   "id": "moon_L#bus#pin1",
+   "kind": "cyl",
+   "c": [
+    -3.631,
+    -20.603
+   ],
+   "r": 5.6,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "links": [
+    "moon_L#bus#rod",
+    "moon_L#bus#cour"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "moon_L#bus#cour",
+   "kind": "cyl",
+   "c": [
+    13.567,
+    -20.827
+   ],
+   "r": 20.0,
+   "z": [
+    105.0,
+    123.0
+   ],
+   "links": [
+    "moon_L#bus#pin1",
+    "moon_L#a0"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "lune_entree_moon_L#w1",
+   "kind": "cyl",
+   "c": [
+    65.02,
+    -2.1
+   ],
+   "r": 10.5,
+   "z": [
+    45.0,
+    48.0
+   ],
+   "links": [
+    "moon_L#a3",
+    "lune_entree_moon_L#fou",
+    "lune"
+   ],
+   "wheel": "renvoi",
+   "interface": "lune"
+  },
+  {
+   "id": "lune_entree_moon_L#fou",
+   "kind": "cyl",
+   "c": [
+    90.955,
+    -0.268
+   ],
+   "r": 16.5,
+   "z": [
+    45.0,
+    48.0
+   ],
+   "links": [
+    "lune_entree_moon_L#w1",
+    "lune_entree_moon_L#w2",
+    "lune_entree_moon_L#tenon",
+    "lune"
+   ],
+   "wheel": "renvoi",
+   "interface": "lune"
+  },
+  {
+   "id": "lune_entree_moon_L#tenon",
+   "kind": "cyl",
+   "c": [
+    90.955,
+    -0.268
+   ],
+   "r": 2.0,
+   "z": [
+    45.0,
+    51.0
+   ],
+   "links": [
+    "lune_entree_moon_L#fou",
+    "lune"
+   ]
+  },
+  {
+   "id": "lune_entree_moon_L#w2",
+   "kind": "cyl",
+   "c": [
+    112.0,
+    15.0
+   ],
+   "r": 10.5,
+   "z": [
+    45.0,
+    48.0
+   ],
+   "links": [
+    "lune_entree_moon_L#fou",
+    "lune"
+   ],
+   "wheel": "renvoi",
+   "interface": "lune"
+  },
+  {
+   "id": "lune_entree_moon_node#w1",
+   "kind": "cyl",
+   "c": [
+    65.02,
+    32.1
+   ],
+   "r": 10.5,
+   "z": [
+    39.0,
+    42.0
+   ],
+   "links": [
+    "moon_node#a2",
+    "lune_entree_moon_node#fou",
+    "lune"
+   ],
+   "wheel": "renvoi",
+   "interface": "lune"
+  },
+  {
+   "id": "lune_entree_moon_node#fou",
+   "kind": "cyl",
+   "c": [
+    96.392,
+    45.206
+   ],
+   "r": 24.5,
+   "z": [
+    39.0,
+    42.0
+   ],
+   "links": [
+    "lune_entree_moon_node#w1",
+    "lune_entree_moon_node#w2",
+    "lune_entree_moon_node#tenon",
+    "lune"
+   ],
+   "wheel": "renvoi",
+   "interface": "lune"
+  },
+  {
+   "id": "lune_entree_moon_node#tenon",
+   "kind": "cyl",
+   "c": [
+    96.392,
+    45.206
+   ],
+   "r": 2.0,
+   "z": [
+    39.0,
+    45.0
+   ],
+   "links": [
+    "lune_entree_moon_node#fou",
+    "lune"
+   ]
+  },
+  {
+   "id": "lune_entree_moon_node#w2",
+   "kind": "cyl",
+   "c": [
+    112.0,
+    15.0
+   ],
+   "r": 10.5,
+   "z": [
+    39.0,
+    42.0
+   ],
+   "links": [
+    "lune_entree_moon_node#fou",
+    "lune"
+   ],
+   "wheel": "renvoi",
+   "interface": "lune"
+  },
+  {
+   "id": "lune_entree_moon_perigee#w1",
+   "kind": "cyl",
+   "c": [
+    80.82,
+    -3.0
+   ],
+   "r": 10.5,
+   "z": [
+    84.0,
+    87.0
+   ],
+   "links": [
+    "moon_perigee#a2",
+    "lune_entree_moon_perigee#fou",
+    "lune"
+   ],
+   "wheel": "renvoi",
+   "interface": "lune"
+  },
+  {
+   "id": "lune_entree_moon_perigee#fou",
+   "kind": "cyl",
+   "c": [
+    100.767,
+    -1.548
+   ],
+   "r": 10.5,
+   "z": [
+    84.0,
+    87.0
+   ],
+   "links": [
+    "lune_entree_moon_perigee#w1",
+    "lune_entree_moon_perigee#w2",
+    "lune_entree_moon_perigee#tenon",
+    "lune"
+   ],
+   "wheel": "renvoi",
+   "interface": "lune"
+  },
+  {
+   "id": "lune_entree_moon_perigee#tenon",
+   "kind": "cyl",
+   "c": [
+    100.767,
+    -1.548
+   ],
+   "r": 2.0,
+   "z": [
+    84.0,
+    87.0
+   ],
+   "links": [
+    "lune_entree_moon_perigee#fou",
+    "lune"
+   ]
+  },
+  {
+   "id": "lune_entree_moon_perigee#w2",
+   "kind": "cyl",
+   "c": [
+    112.0,
+    15.0
+   ],
+   "r": 10.5,
+   "z": [
+    84.0,
+    87.0
+   ],
+   "links": [
+    "lune_entree_moon_perigee#fou",
+    "lune"
+   ],
+   "wheel": "renvoi",
+   "interface": "lune"
+  },
+  {
+   "id": "car_moon",
+   "kind": "cyl",
+   "c": [
+    25.889,
+    18.809
+   ],
+   "r": 2.0,
+   "z": [
+    258.5,
+    335.0
+   ],
+   "links": [
+    "car_moon",
+    "car_moon#roue",
+    "car_moon#mitre",
+    "tube_moon"
+   ]
+  },
+  {
+   "id": "car_moon#mitre",
+   "kind": "cyl",
+   "c": [
+    25.889,
+    18.809
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "car_moon",
+    "car_moon#roue",
+    "car_moon#mitre",
+    "tube_moon"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_moon#roue",
+   "kind": "cyl",
+   "c": [
+    25.889,
+    18.809
+   ],
+   "r": 16.5,
+   "z": [
+    329.0,
+    335.0
+   ],
+   "links": [
+    "car_moon",
+    "car_moon#roue",
+    "car_moon#mitre",
+    "tube_moon"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "tube_moon",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 16.5,
+   "z": [
+    329.0,
+    335.0
+   ],
+   "links": [
+    "car_moon",
+    "car_moon#roue",
+    "car_moon#mitre",
+    "tube_moon",
+    "pile",
+    "axe_soleil"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_mercury",
+   "kind": "cyl",
+   "c": [
+    7.742,
+    31.049
+   ],
+   "r": 2.0,
+   "z": [
+    258.5,
+    329.0
+   ],
+   "links": [
+    "car_mercury",
+    "car_mercury#roue",
+    "car_mercury#mitre",
+    "tube_mercury"
+   ]
+  },
+  {
+   "id": "car_mercury#mitre",
+   "kind": "cyl",
+   "c": [
+    7.742,
+    31.049
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "car_mercury",
+    "car_mercury#roue",
+    "car_mercury#mitre",
+    "tube_mercury"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_mercury#roue",
+   "kind": "cyl",
+   "c": [
+    7.742,
+    31.049
+   ],
+   "r": 16.5,
+   "z": [
+    323.0,
+    329.0
+   ],
+   "links": [
+    "car_mercury",
+    "car_mercury#roue",
+    "car_mercury#mitre",
+    "tube_mercury"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "tube_mercury",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 16.5,
+   "z": [
+    323.0,
+    329.0
+   ],
+   "links": [
+    "car_mercury",
+    "car_mercury#roue",
+    "car_mercury#mitre",
+    "tube_mercury",
+    "pile",
+    "axe_soleil"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_mars",
+   "kind": "cyl",
+   "c": [
+    -14.028,
+    28.761
+   ],
+   "r": 2.0,
+   "z": [
+    258.5,
+    317.0
+   ],
+   "links": [
+    "car_mars",
+    "car_mars#roue",
+    "car_mars#mitre",
+    "tube_mars"
+   ]
+  },
+  {
+   "id": "car_mars#mitre",
+   "kind": "cyl",
+   "c": [
+    -14.028,
+    28.761
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "car_mars",
+    "car_mars#roue",
+    "car_mars#mitre",
+    "tube_mars"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_mars#roue",
+   "kind": "cyl",
+   "c": [
+    -14.028,
+    28.761
+   ],
+   "r": 16.5,
+   "z": [
+    311.0,
+    317.0
+   ],
+   "links": [
+    "car_mars",
+    "car_mars#roue",
+    "car_mars#mitre",
+    "tube_mars"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "tube_mars",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 16.5,
+   "z": [
+    311.0,
+    317.0
+   ],
+   "links": [
+    "car_mars",
+    "car_mars#roue",
+    "car_mars#mitre",
+    "tube_mars",
+    "pile",
+    "axe_soleil"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_venus",
+   "kind": "cyl",
+   "c": [
+    -29.233,
+    13.016
+   ],
+   "r": 2.0,
+   "z": [
+    258.5,
+    323.0
+   ],
+   "links": [
+    "car_venus",
+    "car_venus#roue",
+    "car_venus#mitre",
+    "tube_venus"
+   ]
+  },
+  {
+   "id": "car_venus#mitre",
+   "kind": "cyl",
+   "c": [
+    -29.233,
+    13.016
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "car_venus",
+    "car_venus#roue",
+    "car_venus#mitre",
+    "tube_venus"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_venus#roue",
+   "kind": "cyl",
+   "c": [
+    -29.233,
+    13.016
+   ],
+   "r": 16.5,
+   "z": [
+    317.0,
+    323.0
+   ],
+   "links": [
+    "car_venus",
+    "car_venus#roue",
+    "car_venus#mitre",
+    "tube_venus"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "tube_venus",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 16.5,
+   "z": [
+    317.0,
+    323.0
+   ],
+   "links": [
+    "car_venus",
+    "car_venus#roue",
+    "car_venus#mitre",
+    "tube_venus",
+    "pile",
+    "axe_soleil"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_jupiter",
+   "kind": "cyl",
+   "c": [
+    -30.76,
+    -8.82
+   ],
+   "r": 2.0,
+   "z": [
+    258.5,
+    311.0
+   ],
+   "links": [
+    "car_jupiter",
+    "car_jupiter#roue",
+    "car_jupiter#mitre",
+    "tube_jupiter"
+   ]
+  },
+  {
+   "id": "car_jupiter#mitre",
+   "kind": "cyl",
+   "c": [
+    -30.76,
+    -8.82
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "car_jupiter",
+    "car_jupiter#roue",
+    "car_jupiter#mitre",
+    "tube_jupiter"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_jupiter#roue",
+   "kind": "cyl",
+   "c": [
+    -30.76,
+    -8.82
+   ],
+   "r": 16.5,
+   "z": [
+    305.0,
+    311.0
+   ],
+   "links": [
+    "car_jupiter",
+    "car_jupiter#roue",
+    "car_jupiter#mitre",
+    "tube_jupiter"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "tube_jupiter",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 16.5,
+   "z": [
+    305.0,
+    311.0
+   ],
+   "links": [
+    "car_jupiter",
+    "car_jupiter#roue",
+    "car_jupiter#mitre",
+    "tube_jupiter",
+    "pile",
+    "axe_soleil"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_saturn",
+   "kind": "cyl",
+   "c": [
+    -17.894,
+    -26.529
+   ],
+   "r": 2.0,
+   "z": [
+    258.5,
+    305.0
+   ],
+   "links": [
+    "car_saturn",
+    "car_saturn#roue",
+    "car_saturn#mitre",
+    "tube_saturn"
+   ]
+  },
+  {
+   "id": "car_saturn#mitre",
+   "kind": "cyl",
+   "c": [
+    -17.894,
+    -26.529
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "car_saturn",
+    "car_saturn#roue",
+    "car_saturn#mitre",
+    "tube_saturn"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_saturn#roue",
+   "kind": "cyl",
+   "c": [
+    -17.894,
+    -26.529
+   ],
+   "r": 16.5,
+   "z": [
+    299.0,
+    305.0
+   ],
+   "links": [
+    "car_saturn",
+    "car_saturn#roue",
+    "car_saturn#mitre",
+    "tube_saturn"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "tube_saturn",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 16.5,
+   "z": [
+    299.0,
+    305.0
+   ],
+   "links": [
+    "car_saturn",
+    "car_saturn#roue",
+    "car_saturn#mitre",
+    "tube_saturn",
+    "pile",
+    "axe_soleil"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_neptune",
+   "kind": "cyl",
+   "c": [
+    3.345,
+    -31.825
+   ],
+   "r": 2.0,
+   "z": [
+    258.5,
+    293.0
+   ],
+   "links": [
+    "car_neptune",
+    "car_neptune#roue",
+    "car_neptune#mitre",
+    "tube_neptune"
+   ]
+  },
+  {
+   "id": "car_neptune#mitre",
+   "kind": "cyl",
+   "c": [
+    3.345,
+    -31.825
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "car_neptune",
+    "car_neptune#roue",
+    "car_neptune#mitre",
+    "tube_neptune"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_neptune#roue",
+   "kind": "cyl",
+   "c": [
+    3.345,
+    -31.825
+   ],
+   "r": 16.5,
+   "z": [
+    287.0,
+    293.0
+   ],
+   "links": [
+    "car_neptune",
+    "car_neptune#roue",
+    "car_neptune#mitre",
+    "tube_neptune"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "tube_neptune",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 16.5,
+   "z": [
+    287.0,
+    293.0
+   ],
+   "links": [
+    "car_neptune",
+    "car_neptune#roue",
+    "car_neptune#mitre",
+    "tube_neptune",
+    "pile",
+    "axe_soleil"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_uranus",
+   "kind": "cyl",
+   "c": [
+    23.019,
+    -22.229
+   ],
+   "r": 2.0,
+   "z": [
+    258.5,
+    299.0
+   ],
+   "links": [
+    "car_uranus",
+    "car_uranus#roue",
+    "car_uranus#mitre",
+    "tube_uranus"
+   ]
+  },
+  {
+   "id": "car_uranus#mitre",
+   "kind": "cyl",
+   "c": [
+    23.019,
+    -22.229
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "car_uranus",
+    "car_uranus#roue",
+    "car_uranus#mitre",
+    "tube_uranus"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_uranus#roue",
+   "kind": "cyl",
+   "c": [
+    23.019,
+    -22.229
+   ],
+   "r": 16.5,
+   "z": [
+    293.0,
+    299.0
+   ],
+   "links": [
+    "car_uranus",
+    "car_uranus#roue",
+    "car_uranus#mitre",
+    "tube_uranus"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "tube_uranus",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 16.5,
+   "z": [
+    293.0,
+    299.0
+   ],
+   "links": [
+    "car_uranus",
+    "car_uranus#roue",
+    "car_uranus#mitre",
+    "tube_uranus",
+    "pile",
+    "axe_soleil"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_node",
+   "kind": "cyl",
+   "c": [
+    31.922,
+    -2.232
+   ],
+   "r": 2.0,
+   "z": [
+    258.5,
+    287.0
+   ],
+   "links": [
+    "car_node",
+    "car_node#roue",
+    "car_node#mitre",
+    "tube_node"
+   ]
+  },
+  {
+   "id": "car_node#mitre",
+   "kind": "cyl",
+   "c": [
+    31.922,
+    -2.232
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "car_node",
+    "car_node#roue",
+    "car_node#mitre",
+    "tube_node"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "car_node#roue",
+   "kind": "cyl",
+   "c": [
+    31.922,
+    -2.232
+   ],
+   "r": 16.5,
+   "z": [
+    281.0,
+    287.0
+   ],
+   "links": [
+    "car_node",
+    "car_node#roue",
+    "car_node#mitre",
+    "tube_node"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "tube_node",
+   "kind": "cyl",
+   "c": [
+    0.0,
+    0.0
+   ],
+   "r": 16.5,
+   "z": [
+    281.0,
+    287.0
+   ],
+   "links": [
+    "car_node",
+    "car_node#roue",
+    "car_node#mitre",
+    "tube_node",
+    "pile",
+    "axe_soleil"
+   ],
+   "wheel": "renvoi"
+  },
+  {
+   "id": "geo_mercury#r1",
+   "kind": "rod",
+   "p": [
+    157.0,
+    102.0
+   ],
+   "q": [
+    7.742,
+    31.049
+   ],
+   "r": 1.5,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "mod_mercury",
+    "axe_mercury",
+    "car_mercury",
+    "car_mercury#mitre",
+    "geo_mercury#z0",
+    "geo_mercury#m1p",
+    "geo_mercury#m1q"
+   ]
+  },
+  {
+   "id": "geo_mercury#m1p",
+   "kind": "cyl",
+   "c": [
+    157.0,
+    102.0
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_mercury",
+    "axe_mercury",
+    "car_mercury",
+    "car_mercury#mitre",
+    "geo_mercury#z0",
+    "geo_mercury#r1"
+   ]
+  },
+  {
+   "id": "geo_mercury#m1q",
+   "kind": "cyl",
+   "c": [
+    7.742,
+    31.049
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_mercury",
+    "axe_mercury",
+    "car_mercury",
+    "car_mercury#mitre",
+    "geo_mercury#r1"
+   ]
+  },
+  {
+   "id": "geo_venus#r1",
+   "kind": "rod",
+   "p": [
+    -147.0,
+    92.0
+   ],
+   "q": [
+    -29.233,
+    13.016
+   ],
+   "r": 1.5,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "mod_venus",
+    "axe_venus",
+    "car_venus",
+    "car_venus#mitre",
+    "geo_venus#z0",
+    "geo_venus#m1p",
+    "geo_venus#m1q"
+   ]
+  },
+  {
+   "id": "geo_venus#m1p",
+   "kind": "cyl",
+   "c": [
+    -147.0,
+    92.0
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_venus",
+    "axe_venus",
+    "car_venus",
+    "car_venus#mitre",
+    "geo_venus#z0",
+    "geo_venus#r1"
+   ]
+  },
+  {
+   "id": "geo_venus#m1q",
+   "kind": "cyl",
+   "c": [
+    -29.233,
+    13.016
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_venus",
+    "axe_venus",
+    "car_venus",
+    "car_venus#mitre",
+    "geo_venus#r1"
+   ]
+  },
+  {
+   "id": "geo_mars#r1",
+   "kind": "rod",
+   "p": [
+    5.0,
+    92.0
+   ],
+   "q": [
+    -14.028,
+    28.761
+   ],
+   "r": 1.5,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "mod_mars",
+    "axe_mars",
+    "car_mars",
+    "car_mars#mitre",
+    "geo_mars#z0",
+    "geo_mars#m1p",
+    "geo_mars#m1q"
+   ]
+  },
+  {
+   "id": "geo_mars#m1p",
+   "kind": "cyl",
+   "c": [
+    5.0,
+    92.0
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_mars",
+    "axe_mars",
+    "car_mars",
+    "car_mars#mitre",
+    "geo_mars#z0",
+    "geo_mars#r1"
+   ]
+  },
+  {
+   "id": "geo_mars#m1q",
+   "kind": "cyl",
+   "c": [
+    -14.028,
+    28.761
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_mars",
+    "axe_mars",
+    "car_mars",
+    "car_mars#mitre",
+    "geo_mars#r1"
+   ]
+  },
+  {
+   "id": "geo_jupiter#r1",
+   "kind": "rod",
+   "p": [
+    -168.0,
+    -112.0
+   ],
+   "q": [
+    -30.76,
+    -8.82
+   ],
+   "r": 1.5,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "mod_jupiter",
+    "axe_jupiter",
+    "car_jupiter",
+    "car_jupiter#mitre",
+    "geo_jupiter#z0",
+    "geo_jupiter#m1p",
+    "geo_jupiter#m1q"
+   ]
+  },
+  {
+   "id": "geo_jupiter#m1p",
+   "kind": "cyl",
+   "c": [
+    -168.0,
+    -112.0
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_jupiter",
+    "axe_jupiter",
+    "car_jupiter",
+    "car_jupiter#mitre",
+    "geo_jupiter#z0",
+    "geo_jupiter#r1"
+   ]
+  },
+  {
+   "id": "geo_jupiter#m1q",
+   "kind": "cyl",
+   "c": [
+    -30.76,
+    -8.82
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_jupiter",
+    "axe_jupiter",
+    "car_jupiter",
+    "car_jupiter#mitre",
+    "geo_jupiter#r1"
+   ]
+  },
+  {
+   "id": "geo_saturn#r1",
+   "kind": "rod",
+   "p": [
+    -56.0,
+    -112.0
+   ],
+   "q": [
+    -17.894,
+    -26.529
+   ],
+   "r": 1.5,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "mod_saturn",
+    "axe_saturn",
+    "car_saturn",
+    "car_saturn#mitre",
+    "geo_saturn#z0",
+    "geo_saturn#m1p",
+    "geo_saturn#m1q"
+   ]
+  },
+  {
+   "id": "geo_saturn#m1p",
+   "kind": "cyl",
+   "c": [
+    -56.0,
+    -112.0
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_saturn",
+    "axe_saturn",
+    "car_saturn",
+    "car_saturn#mitre",
+    "geo_saturn#z0",
+    "geo_saturn#r1"
+   ]
+  },
+  {
+   "id": "geo_saturn#m1q",
+   "kind": "cyl",
+   "c": [
+    -17.894,
+    -26.529
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_saturn",
+    "axe_saturn",
+    "car_saturn",
+    "car_saturn#mitre",
+    "geo_saturn#r1"
+   ]
+  },
+  {
+   "id": "geo_uranus#r1",
+   "kind": "rod",
+   "p": [
+    168.0,
+    -112.0
+   ],
+   "q": [
+    23.019,
+    -22.229
+   ],
+   "r": 1.5,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "mod_uranus",
+    "axe_uranus",
+    "car_uranus",
+    "car_uranus#mitre",
+    "geo_uranus#z0",
+    "geo_uranus#m1p",
+    "geo_uranus#m1q"
+   ]
+  },
+  {
+   "id": "geo_uranus#m1p",
+   "kind": "cyl",
+   "c": [
+    168.0,
+    -112.0
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_uranus",
+    "axe_uranus",
+    "car_uranus",
+    "car_uranus#mitre",
+    "geo_uranus#z0",
+    "geo_uranus#r1"
+   ]
+  },
+  {
+   "id": "geo_uranus#m1q",
+   "kind": "cyl",
+   "c": [
+    23.019,
+    -22.229
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_uranus",
+    "axe_uranus",
+    "car_uranus",
+    "car_uranus#mitre",
+    "geo_uranus#r1"
+   ]
+  },
+  {
+   "id": "geo_neptune#r1",
+   "kind": "rod",
+   "p": [
+    56.0,
+    -112.0
+   ],
+   "q": [
+    3.345,
+    -31.825
+   ],
+   "r": 1.5,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "mod_neptune",
+    "axe_neptune",
+    "car_neptune",
+    "car_neptune#mitre",
+    "geo_neptune#z0",
+    "geo_neptune#m1p",
+    "geo_neptune#m1q"
+   ]
+  },
+  {
+   "id": "geo_neptune#m1p",
+   "kind": "cyl",
+   "c": [
+    56.0,
+    -112.0
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_neptune",
+    "axe_neptune",
+    "car_neptune",
+    "car_neptune#mitre",
+    "geo_neptune#z0",
+    "geo_neptune#r1"
+   ]
+  },
+  {
+   "id": "geo_neptune#m1q",
+   "kind": "cyl",
+   "c": [
+    3.345,
+    -31.825
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "mod_neptune",
+    "axe_neptune",
+    "car_neptune",
+    "car_neptune#mitre",
+    "geo_neptune#r1"
+   ]
+  },
+  {
+   "id": "moon_true#r1",
+   "kind": "rod",
+   "p": [
+    132.0,
+    15.0
+   ],
+   "q": [
+    25.889,
+    18.809
+   ],
+   "r": 1.5,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "lune",
+    "car_moon",
+    "car_moon#mitre",
+    "moon_true#z0",
+    "moon_true#m1p",
+    "moon_true#m1q"
+   ]
+  },
+  {
+   "id": "moon_true#m1p",
+   "kind": "cyl",
+   "c": [
+    132.0,
+    15.0
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "lune",
+    "car_moon",
+    "car_moon#mitre",
+    "moon_true#z0",
+    "moon_true#r1"
+   ]
+  },
+  {
+   "id": "moon_true#m1q",
+   "kind": "cyl",
+   "c": [
+    25.889,
+    18.809
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "lune",
+    "car_moon",
+    "car_moon#mitre",
+    "moon_true#r1"
+   ]
+  },
+  {
+   "id": "node#r1",
+   "kind": "rod",
+   "p": [
+    150.0,
+    -5.0
+   ],
+   "q": [
+    31.922,
+    -2.232
+   ],
+   "r": 1.5,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "links": [
+    "lune",
+    "car_node",
+    "car_node#mitre",
+    "node#z0",
+    "node#m1p",
+    "node#m1q"
+   ]
+  },
+  {
+   "id": "node#m1p",
+   "kind": "cyl",
+   "c": [
+    150.0,
+    -5.0
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "lune",
+    "car_node",
+    "car_node#mitre",
+    "node#z0",
+    "node#r1"
+   ]
+  },
+  {
+   "id": "node#m1q",
+   "kind": "cyl",
+   "c": [
+    31.922,
+    -2.232
+   ],
+   "r": 5.6,
+   "z": [
+    251.0,
+    266.0
+   ],
+   "wheel": "renvoi",
+   "links": [
+    "lune",
+    "car_node",
+    "car_node#mitre",
+    "node#r1"
+   ]
+  }
+ ]
+}

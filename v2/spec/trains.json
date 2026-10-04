@@ -1,0 +1,5839 @@
+{
+ "meta": {
+  "title": "Anticythère 2.0 — trains d’engrenages (fractions exactes)",
+  "generated_by": "v2/tools/trains.py",
+  "constants": "v2/research/constants.json",
+  "date": "2026-10-03",
+  "n_shafts": 70,
+  "all_budgets_ok": true
+ },
+ "conventions": {
+  "time_base": "J = arbre-jour, 1 tour par jour solaire moyen (entrée). Toutes les vitesses sont des fractions exactes de tours par jour ; « tr/an » = × année tropique moyenne (365.2421896698 j).",
+  "frame": "Repère fixe J2000 (étoiles, caisse) pour tous les trains ; le zodiaque tropique est un anneau qui tourne à −p_A. Lecture tropique = aiguille − anneau.",
+  "sign": "Signe des vitesses : + = sens direct (longitudes croissantes). phys = sens vu de face (+1 = horaire, le sens direct du cadran avant, comme la v1). Pignon fou (idler) ajouté quand un train sortirait dans le mauvais sens.",
+  "stages": "[menante, menée, engrènement] ; rapport = Π menantes / Π menées × signe",
+  "differential": "différentiel conique : porte-satellite = (s1 + s2)/2 ; chaque côté reçoit un gain exact (couple 40:20 = 2, 80:20 = 4, signe par pignon fou) ; post_pairs après le porte-satellite.",
+  "unit": "unité non linéaire (Kepler, module vectoriel, cascade lunaire, joint de Hooke) : un tour de sortie par tour d’entrée, donc vitesse moyenne = combinaison linéaire exacte des entrées.",
+  "error": "erreur relative = (machine − cible)/cible ; °/siècle = (machine − cible) × 360 × 36 525 ; période de l’approximation = 1/|vitesse machine| (jours).",
+  "teeth": "[10, 220] dents ; module ≥ 0.4 mm (0,5 mm par défaut ; anneaux à denture intérieure 0,8–0,9 mm).",
+  "selection": "pour chaque train conçu : le plus petit nombre de couples, puis la plus petite roue (échelle [60, 80, 100, 120, 150, 180, 220] dents), puis la plus petite erreur, avec erreur ≤ 0.5 × allocation."
+ },
+ "allocations_deg_per_century": {
+  "Y": 0.001,
+  "planet": 0.02,
+  "moon_L": 0.01,
+  "moon_perigee": 0.02,
+  "moon_node": 0.01,
+  "ganymede": 0.002,
+  "nu": 0.002,
+  "callisto": 0.01
+ },
+ "allocations_relative": {
+  "precession_ring": 0.0001,
+  "saros": 1e-06,
+  "gmst_direct": 1e-09
+ },
+ "targets": {
+  "Y": {
+   "turns_per_day": "8999843216329/3287250000000000",
+   "turns_per_day_float": 0.0027378030926546505,
+   "turns_per_tropical_year": 0.999961196445935,
+   "source": "DE441 (JPL Horizons) ajusté 2000–2100, repère J2000 (constants.json, planets.earth.mean_motion)",
+   "name_fr": "Terre (barycentre Terre-Lune)",
+   "deg_per_century": 35999.372865316,
+   "rate_uncertainty_deg_per_century": 0.005
+  },
+  "mercury_L": {
+   "turns_per_day": "3736816868147/328725000000000",
+   "turns_per_day_float": 0.011367607782027531,
+   "turns_per_tropical_year": 4.151929957615194,
+   "source": "DE441 (JPL Horizons) ajusté 2000–2100, repère J2000 (constants.json, planets.mercury.mean_motion)",
+   "name_fr": "Mercure",
+   "deg_per_century": 149472.67472588,
+   "rate_uncertainty_deg_per_century": 0.005
+  },
+  "venus_L": {
+   "turns_per_day": "9752969205169/2191500000000000",
+   "turns_per_day_float": 0.004450362402541182,
+   "turns_per_tropical_year": 1.6254601087282932,
+   "source": "DE441 (JPL Horizons) ajusté 2000–2100, repère J2000 (constants.json, planets.venus.mean_motion)",
+   "name_fr": "Vénus",
+   "deg_per_century": 58517.815231014,
+   "rate_uncertainty_deg_per_century": 0.005
+  },
+  "mars_L": {
+   "turns_per_day": "708900075697/487000000000000",
+   "turns_per_day_float": 0.0014556469726837783,
+   "turns_per_tropical_year": 0.5316636876892387,
+   "source": "DE441 (JPL Horizons) ajusté 2000–2100, repère J2000 (constants.json, planets.mars.mean_motion)",
+   "name_fr": "Mars",
+   "deg_per_century": 19140.302043819,
+   "rate_uncertainty_deg_per_century": 0.005
+  },
+  "jupiter_L": {
+   "turns_per_day": "758680690403/3287250000000000",
+   "turns_per_day_float": 0.0002307949472668644,
+   "turns_per_tropical_year": 0.08429605190447557,
+   "source": "DE441 (JPL Horizons) ajusté 2000–2100, repère J2000 (constants.json, planets.jupiter.mean_motion)",
+   "name_fr": "Jupiter",
+   "deg_per_century": 3034.722761612,
+   "rate_uncertainty_deg_per_century": 0.002859790571164922
+  },
+  "saturn_L": {
+   "turns_per_day": "1528217782691/16436250000000000",
+   "turns_per_day_float": 9.297849464999619e-05,
+   "turns_per_tropical_year": 0.033959668978166394,
+   "source": "DE441 (JPL Horizons) ajusté 2000–2100, repère J2000 (constants.json, planets.saturn.mean_motion)",
+   "name_fr": "Saturne",
+   "deg_per_century": 1222.5742261528,
+   "rate_uncertainty_deg_per_century": 0.04448454791781842
+  },
+  "uranus_L": {
+   "turns_per_day": "10713967712879/328725000000000000",
+   "turns_per_day_float": 3.259249437334854e-05,
+   "turns_per_tropical_year": 0.011904154011722458,
+   "source": "DE441 (JPL Horizons) ajusté 2000–2100, repère J2000 (constants.json, planets.uranus.mean_motion)",
+   "name_fr": "Uranus",
+   "deg_per_century": 428.55870851516,
+   "rate_uncertainty_deg_per_century": 0.03450263085244387
+  },
+  "neptune_L": {
+   "turns_per_day": "21842764007231/1314900000000000000",
+   "turns_per_day_float": 1.6611730175093922e-05,
+   "turns_per_tropical_year": 0.006067304703355195,
+   "source": "DE441 (JPL Horizons) ajusté 2000–2100, repère J2000 (constants.json, planets.neptune.mean_motion)",
+   "name_fr": "Neptune",
+   "deg_per_century": 218.42764007231,
+   "rate_uncertainty_deg_per_century": 0.04748555560158252
+  },
+  "moon_L": {
+   "turns_per_day": "50719519769515700168049329/1385741558474838000000000000",
+   "turns_per_day_float": 0.03660099493973331,
+   "turns_per_tropical_year": 13.368227535881465,
+   "source": "Meeus ch. 47 (ELP-2000/82), moyenne 2000–2100, moins p_A (IAU 2006) pour le repère J2000",
+   "name_fr": "Lune : longitude moyenne",
+   "deg_per_century": 481266.4824625533
+  },
+  "moon_perigee": {
+   "turns_per_day": "12373063762876851123233/39997336852206000000000000",
+   "turns_per_day_float": 0.00030934719000408724,
+   "turns_per_tropical_year": 0.1129866450452925,
+   "source": "Meeus ch. 47 (ELP-2000/82), moyenne 2000–2100, moins p_A (IAU 2006) pour le repère J2000",
+   "name_fr": "Lune : périgée moyen ϖ",
+   "deg_per_century": 4067.6062013637434
+  },
+  "moon_node": {
+   "turns_per_day": "-41131596119932372523431/279426805254558000000000000",
+   "turns_per_day_float": -0.0001471998940204089,
+   "turns_per_tropical_year": -0.05376361161117665,
+   "source": "Meeus ch. 47 (ELP-2000/82), moyenne 2000–2100, moins p_A (IAU 2006) pour le repère J2000",
+   "name_fr": "Lune : nœud ascendant moyen Ω",
+   "deg_per_century": -1935.5314064743566
+  },
+  "moon_D": {
+   "turns_per_day": "2748124722848952177853/81153741670758000000000",
+   "turns_per_day_float": 0.033863191841457384,
+   "turns_per_tropical_year": 12.368266337382401,
+   "source": "Meeus ch. 47, moyenne 2000–2100 (D ne dépend pas du repère)",
+   "name_fr": "Lune : élongation moyenne D",
+   "deg_per_century": 445267.1095233231
+  },
+  "moon_F": {
+   "turns_per_day": "367720484618036149891/10006491101985000000000",
+   "turns_per_day_float": 0.03674819483376056,
+   "turns_per_tropical_year": 13.421991147495138,
+   "source": "Meeus ch. 47, moyenne 2000–2100",
+   "name_fr": "Lune : argument de latitude F",
+   "deg_per_century": 483202.01386911754
+  },
+  "moon_Mp": {
+   "turns_per_day": "203885543841116306153/5617974285630000000000",
+   "turns_per_day_float": 0.036291647749728456,
+   "turns_per_tropical_year": 13.255240890835891,
+   "source": "Meeus ch. 47, moyenne 2000–2100",
+   "name_fr": "Lune : anomalie moyenne M′",
+   "deg_per_century": 477198.87626117945
+  },
+  "evection_carrier": {
+   "turns_per_day": "8265464052038478926311/1599893474088240000000000",
+   "turns_per_day_float": 0.005166258995305214,
+   "turns_per_tropical_year": 1.8869357478465774,
+   "source": "2·(Terre, DE441) − ϖ (Meeus), repère J2000",
+   "name_fr": "Porte-satellite de l’évection 2λ☉ − ϖ",
+   "deg_per_century": 67931.13952926826
+  },
+  "precession_ring": {
+   "turns_per_day": "-8383169383/78894000000000000",
+   "turns_per_day_float": -1.0625864302735316e-07,
+   "turns_per_tropical_year": -3.881013945065209e-05,
+   "source": "p_A IAU 2006 (Capitaine et al. 2003), moyenne 2000–2100",
+   "name_fr": "Anneau du zodiaque tropique (précession, sens rétrograde)",
+   "deg_per_century": -1.3971948971666666
+  },
+  "saros": {
+   "turns_per_day": "2748124722848952177853/18097284392579034000000000",
+   "turns_per_day_float": 0.00015185287821281338,
+   "turns_per_tropical_year": 0.05546307774610942,
+   "source": "223 lunaisons moyennes (D de Meeus, moyenne 2000–2100)",
+   "name_fr": "Saros",
+   "deg_per_century": 1996.7134956202829
+  },
+  "exeligmos": {
+   "turns_per_day": "2748124722848952177853/54291853177737102000000000",
+   "turns_per_day_float": 5.061762607093779e-05,
+   "turns_per_tropical_year": 0.018487692582036475,
+   "source": "669 lunaisons moyennes",
+   "name_fr": "Exeligmos (3 Saros)",
+   "deg_per_century": 665.571165206761
+  },
+  "io": {
+   "turns_per_day": "6782965193/12000000000",
+   "turns_per_day_float": 0.5652470994166666,
+   "turns_per_tropical_year": 206.45208829544646,
+   "source": "Lieske E5 (Meeus ch. 44), repère fixe",
+   "name_fr": "Io",
+   "deg_per_century": 7432434.11022975
+  },
+  "europa": {
+   "turns_per_day": "20274944947/72000000000",
+   "turns_per_day_float": 0.28159645759722224,
+   "turns_per_tropical_year": 102.85090677606843,
+   "source": "Lieske E5 (Meeus ch. 44), repère fixe",
+   "name_fr": "Europe",
+   "deg_per_century": 3702711.820945875
+  },
+  "ganymede": {
+   "turns_per_day": "50317609207/360000000000",
+   "turns_per_day_float": 0.1397711366861111,
+   "turns_per_tropical_year": 51.050316015872134,
+   "source": "Lieske E5 (Meeus ch. 44), repère fixe",
+   "name_fr": "Ganymède",
+   "deg_per_century": 1837850.676285675
+  },
+  "callisto": {
+   "turns_per_day": "7190357059/120000000000",
+   "turns_per_day_float": 0.059919642158333335,
+   "turns_per_tropical_year": 21.885181306140527,
+   "source": "Lieske E5 (Meeus ch. 44), repère fixe",
+   "name_fr": "Callisto",
+   "deg_per_century": 787883.374739925
+  },
+  "nu": {
+   "turns_per_day": "1479012641/720000000000",
+   "turns_per_day_float": 0.002054184223611111,
+   "turns_per_tropical_year": 0.7502747438168803,
+   "source": "Lieske E5 (Meeus ch. 44), repère fixe : ν = n_Io − 2n_Eu = n_Eu − 2n_Ga (moyenne des deux)",
+   "name_fr": "Arbre ν (la ligne des conjonctions tourne à −ν)",
+   "deg_per_century": 27010.4683562625
+  },
+  "gmst": {
+   "turns_per_day": "1002737909344969/1000000000000000",
+   "turns_per_day_float": 1.002737909344969,
+   "turns_per_tropical_year": 366.24218967407387,
+   "source": "IERS 2010 (rapport temps sidéral moyen / temps solaire moyen)",
+   "name_fr": "Temps sidéral (TSMG)"
+  },
+  "stellar": {
+   "turns_per_day": "5013689059556773/5000000000000000",
+   "turns_per_day_float": 1.0027378119113546,
+   "turns_per_tropical_year": 366.2421540872072,
+   "source": "IERS 2010 (angle de rotation de la Terre, ERA)",
+   "name_fr": "Rotation stellaire (ERA)"
+  },
+  "mars_apsides": {
+   "turns_per_day": "1479672137/43830000000000000",
+   "turns_per_day_float": 3.375934604152407e-08,
+   "turns_per_tropical_year": 1.2330337470026747e-05,
+   "source": "Simon et al. 1994, ϖ de Mars, repère J2000",
+   "name_fr": "Ligne des apsides de Mars (option)",
+   "deg_per_century": 0.4439016411
+  }
+ },
+ "shafts": [
+  {
+   "id": "J",
+   "kind": "input",
+   "subsystem": "time",
+   "name_fr": "Arbre-jour J (manivelle ; 1 tour par jour solaire moyen)",
+   "rate": "1",
+   "note": "Base de temps de toute la machine. Les jours sont des jours solaires moyens (UT1) ; les éphémérides sont en TT : ΔT (~69 s en 2026) n’est pas modélisé.",
+   "phys": -1,
+   "rate_turns_per_day": "1",
+   "rate_turns_per_tropical_year": 365.2421896698
+  },
+  {
+   "id": "W",
+   "kind": "train",
+   "subsystem": "time",
+   "name_fr": "Roue de la semaine (1 tour en 7 jours)",
+   "src": "J",
+   "stages": [
+    [
+     10,
+     70,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": 1,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      5.0,
+      35.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "1/7",
+   "rate_turns_per_tropical_year": 52.17745566711429,
+   "ratio": "1/7",
+   "n_reversals": 1
+  },
+  {
+   "id": "Y",
+   "kind": "train",
+   "subsystem": "sun",
+   "name_fr": "Roue de l’année Y : longitude moyenne de la Terre, repère J2000 (Soleil moyen = Y + 180°)",
+   "src": "J",
+   "stages": [
+    [
+     31,
+     180,
+     "external"
+    ],
+    [
+     19,
+     144,
+     "external"
+    ],
+    [
+     10,
+     83,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "Y",
+   "longitude": true,
+   "design": {
+    "cap": 180,
+    "pairs": 3,
+    "rel_err_train": 1.0426741655941773e-08,
+    "alloc_rel": 2.7778261686426798e-08,
+    "alloc_deg_cy": 0.001,
+    "r_needed": 0.0027378030926546505,
+    "sources_tried": [
+     "J"
+    ],
+    "alternatives": {
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        11,
+        205
+       ],
+       [
+        10,
+        196
+       ]
+      ],
+      "ratio": "11/4018",
+      "rel_err": 4.480038250724956e-05
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        61,
+        218
+       ],
+       [
+        14,
+        127
+       ],
+       [
+        15,
+        169
+       ]
+      ],
+      "ratio": "6405/2339467",
+      "rel_err": 1.9104609960501228e-09
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      15.5,
+      90.0
+     ],
+     "centre_distance_mm": 52.75
+    },
+    {
+     "pitch_d_mm": [
+      9.5,
+      72.0
+     ],
+     "centre_distance_mm": 40.75
+    },
+    {
+     "pitch_d_mm": [
+      5.0,
+      41.5
+     ],
+     "centre_distance_mm": 23.25
+    }
+   ],
+   "cf": {
+    "r": 0.0027378030926546505,
+    "terms": [
+     0,
+     365,
+     3,
+     1,
+     9,
+     13,
+     1,
+     3,
+     1,
+     1,
+     1,
+     7,
+     5,
+     1,
+     3,
+     1,
+     17,
+     2,
+     13,
+     32
+    ],
+    "first_ok_convergent": "511/186646",
+    "first_ok_factorable": "non (facteur premier > 220 ou trop grand)",
+    "chosen": "589/215136",
+    "best_same_den": "550/200891",
+    "quality": 5.278219025761428
+   },
+   "rate_turns_per_day": "589/215136",
+   "rate_turns_per_tropical_year": 0.9999611860195978,
+   "ratio": "589/215136",
+   "n_reversals": 3
+  },
+  {
+   "id": "mercury_L",
+   "kind": "train",
+   "subsystem": "planets",
+   "name_fr": "Mercure : longitude moyenne héliocentrique (repère J2000)",
+   "src": "Y",
+   "stages": [
+    [
+     37,
+     17,
+     "external"
+    ],
+    [
+     64,
+     31,
+     "external"
+    ],
+    [
+     73,
+     79,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "mercury_L",
+   "longitude": true,
+   "design": {
+    "cap": 80,
+    "pairs": 3,
+    "rel_err_train": 5.4757893410126394e-08,
+    "alloc_rel": 1.33803720557475e-07,
+    "alloc_deg_cy": 0.02,
+    "r_needed": 4.152091116798429,
+    "sources_tried": [
+     "Y"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        191,
+        46
+       ]
+      ],
+      "ratio": "191/46",
+      "rel_err": 1.9940854552550778e-05
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        167,
+        81
+       ],
+       [
+        145,
+        72
+       ]
+      ],
+      "ratio": "24215/5832",
+      "rel_err": 1.9024705501043744e-07
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        83,
+        47
+       ],
+       [
+        190,
+        109
+       ],
+       [
+        58,
+        43
+       ]
+      ],
+      "ratio": "914660/220289",
+      "rel_err": 3.10598255194783e-11
+     }
+    }
+   },
+   "idler": 20,
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      18.5,
+      8.5
+     ],
+     "centre_distance_mm": 13.5
+    },
+    {
+     "pitch_d_mm": [
+      32.0,
+      15.5
+     ],
+     "centre_distance_mm": 23.75
+    },
+    {
+     "pitch_d_mm": [
+      36.5,
+      39.5
+     ],
+     "centre_distance_mm": 38.0
+    }
+   ],
+   "cf": {
+    "r": 4.152091116798429,
+    "terms": [
+     4,
+     6,
+     1,
+     1,
+     2,
+     1,
+     4,
+     1,
+     103,
+     1,
+     35,
+     1,
+     6,
+     1,
+     1,
+     2,
+     1,
+     1,
+     1,
+     6
+    ],
+    "first_ok_convergent": "1092/263",
+    "first_ok_factorable": "non (facteur premier > 220 ou trop grand)",
+    "chosen": "172864/41633",
+    "best_same_den": "114469/27569",
+    "quality": 6369.327252552972
+   },
+   "rate_turns_per_day": "102638/9028989",
+   "rate_turns_per_tropical_year": 4.151929730264256,
+   "ratio": "172864/41633",
+   "n_reversals": 4
+  },
+  {
+   "id": "venus_L",
+   "kind": "train",
+   "subsystem": "planets",
+   "name_fr": "Vénus : longitude moyenne héliocentrique (repère J2000)",
+   "src": "Y",
+   "stages": [
+    [
+     124,
+     67,
+     "external"
+    ],
+    [
+     166,
+     189,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "venus_L",
+   "longitude": true,
+   "design": {
+    "cap": 220,
+    "pairs": 2,
+    "rel_err_train": 1.4759558977232682e-08,
+    "alloc_rel": 3.417762594356078e-07,
+    "alloc_deg_cy": 0.02,
+    "r_needed": 1.6255232017539893,
+    "sources_tried": [
+     "Y"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        213,
+        131
+       ]
+      ],
+      "ratio": "213/131",
+      "rel_err": 0.0002651433820372953
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        124,
+        67
+       ],
+       [
+        166,
+        189
+       ]
+      ],
+      "ratio": "20584/12663",
+      "rel_err": 1.4759558977232682e-08
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        179,
+        125
+       ],
+       [
+        187,
+        159
+       ],
+       [
+        194,
+        201
+       ]
+      ],
+      "ratio": "6493762/3994875",
+      "rel_err": 9.346939322985131e-11
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      62.0,
+      33.5
+     ],
+     "centre_distance_mm": 47.75
+    },
+    {
+     "pitch_d_mm": [
+      83.0,
+      94.5
+     ],
+     "centre_distance_mm": 88.75
+    }
+   ],
+   "cf": {
+    "r": 1.6255232017539893,
+    "terms": [
+     1,
+     1,
+     1,
+     1,
+     2,
+     29,
+     2,
+     22,
+     1,
+     1,
+     1,
+     3,
+     1,
+     1,
+     1,
+     1,
+     3,
+     4,
+     2,
+     2
+    ],
+    "first_ok_convergent": "777/478",
+    "first_ok_factorable": "non (facteur premier > 220 ou trop grand)",
+    "chosen": "20584/12663",
+    "best_same_den": "18253/11229",
+    "quality": 8.290558711961172
+   },
+   "rate_turns_per_day": "18259/4102812",
+   "rate_turns_per_tropical_year": 1.625460084737219,
+   "ratio": "20584/12663",
+   "n_reversals": 2
+  },
+  {
+   "id": "mars_L",
+   "kind": "train",
+   "subsystem": "planets",
+   "name_fr": "Mars : longitude moyenne héliocentrique (repère J2000)",
+   "src": "Y",
+   "stages": [
+    [
+     97,
+     88,
+     "external"
+    ],
+    [
+     41,
+     85,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "mars_L",
+   "longitude": true,
+   "design": {
+    "cap": 100,
+    "pairs": 2,
+    "rel_err_train": 3.1504487329567447e-07,
+    "alloc_rel": 1.0449155898487309e-06,
+    "alloc_deg_cy": 0.02,
+    "r_needed": 0.531684324474189,
+    "sources_tried": [
+     "Y"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        109,
+        205
+       ]
+      ],
+      "ratio": "109/205",
+      "rel_err": 4.324483142225778e-05
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        109,
+        143
+       ],
+       [
+        113,
+        162
+       ]
+      ],
+      "ratio": "12317/23166",
+      "rel_err": 7.625485179147609e-08
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        201,
+        218
+       ],
+       [
+        143,
+        178
+       ],
+       [
+        117,
+        163
+       ]
+      ],
+      "ratio": "3362931/6325052",
+      "rel_err": 3.4458628660012225e-11
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      48.5,
+      44.0
+     ],
+     "centre_distance_mm": 46.25
+    },
+    {
+     "pitch_d_mm": [
+      20.5,
+      42.5
+     ],
+     "centre_distance_mm": 31.5
+    }
+   ],
+   "cf": {
+    "r": 0.531684324474189,
+    "terms": [
+     0,
+     1,
+     1,
+     7,
+     2,
+     1,
+     1,
+     3,
+     1,
+     1,
+     5,
+     1,
+     4,
+     1,
+     2,
+     7,
+     4,
+     5,
+     1,
+     2
+    ],
+    "first_ok_convergent": "1913/3598",
+    "first_ok_factorable": "non (facteur premier > 220 ou trop grand)",
+    "chosen": "3977/7480",
+    "best_same_den": "2257/4245",
+    "quality": 16.688692821424823
+   },
+   "rate_turns_per_day": "2342453/1609217280",
+   "rate_turns_per_tropical_year": 0.5316638551871579,
+   "ratio": "3977/7480",
+   "n_reversals": 2
+  },
+  {
+   "id": "jupiter_L",
+   "kind": "train",
+   "subsystem": "planets",
+   "name_fr": "Jupiter : longitude moyenne héliocentrique (repère J2000)",
+   "src": "Y",
+   "stages": [
+    [
+     10,
+     26,
+     "external"
+    ],
+    [
+     16,
+     73,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "jupiter_L",
+   "longitude": true,
+   "design": {
+    "cap": 80,
+    "pairs": 2,
+    "rel_err_train": 7.2972503474439e-07,
+    "alloc_rel": 6.590387844646572e-06,
+    "alloc_deg_cy": 0.02,
+    "r_needed": 0.08429932389678123,
+    "sources_tried": [
+     "Y"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        15,
+        178
+       ]
+      ],
+      "ratio": "15/178",
+      "rel_err": 0.0003518530643166844
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        71,
+        185
+       ],
+       [
+        38,
+        173
+       ]
+      ],
+      "ratio": "2698/32005",
+      "rel_err": 5.1402344004996995e-08
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        185,
+        202
+       ],
+       [
+        77,
+        212
+       ],
+       [
+        37,
+        146
+       ]
+      ],
+      "ratio": "527065/6252304",
+      "rel_err": 5.424719757754895e-12
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      5.0,
+      13.0
+     ],
+     "centre_distance_mm": 9.0
+    },
+    {
+     "pitch_d_mm": [
+      8.0,
+      36.5
+     ],
+     "centre_distance_mm": 22.25
+    }
+   ],
+   "cf": {
+    "r": 0.08429932389678123,
+    "terms": [
+     0,
+     11,
+     1,
+     6,
+     3,
+     1,
+     2,
+     17,
+     1,
+     2,
+     4,
+     1,
+     11,
+     1,
+     43,
+     3,
+     1,
+     1,
+     4,
+     3
+    ],
+    "first_ok_convergent": "80/949",
+    "first_ok_factorable": "oui (2 couples, ×2)",
+    "chosen": "80/949",
+    "best_same_den": "80/949",
+    "quality": 1.0
+   },
+   "rate_turns_per_day": "2945/12760254",
+   "rate_turns_per_tropical_year": 0.08429599039153617,
+   "ratio": "80/949",
+   "n_reversals": 2
+  },
+  {
+   "id": "saturn_L",
+   "kind": "train",
+   "subsystem": "planets",
+   "name_fr": "Saturne : longitude moyenne héliocentrique (repère J2000)",
+   "src": "Y",
+   "stages": [
+    [
+     10,
+     41,
+     "external"
+    ],
+    [
+     11,
+     79,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "saturn_L",
+   "longitude": true,
+   "design": {
+    "cap": 80,
+    "pairs": 2,
+    "rel_err_train": 3.29688315055915e-06,
+    "alloc_rel": 1.6358924940644344e-05,
+    "alloc_deg_cy": 0.02,
+    "r_needed": 0.033960987139255654,
+    "sources_tried": [
+     "Y"
+    ],
+    "alternatives": {
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        31,
+        127
+       ],
+       [
+        16,
+        115
+       ]
+      ],
+      "ratio": "496/14605",
+      "rel_err": 4.378401890810126e-07
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        199,
+        163
+       ],
+       [
+        11,
+        57
+       ],
+       [
+        16,
+        111
+       ]
+      ],
+      "ratio": "35024/1031301",
+      "rel_err": 6.56264777112976e-11
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      5.0,
+      20.5
+     ],
+     "centre_distance_mm": 12.75
+    },
+    {
+     "pitch_d_mm": [
+      5.5,
+      39.5
+     ],
+     "centre_distance_mm": 22.5
+    }
+   ],
+   "cf": {
+    "r": 0.033960987139255654,
+    "terms": [
+     0,
+     29,
+     2,
+     4,
+     10,
+     1,
+     12,
+     1,
+     21,
+     1,
+     5,
+     13,
+     2,
+     1,
+     6,
+     1,
+     1,
+     26,
+     38,
+     10
+    ],
+    "first_ok_convergent": "92/2709",
+    "first_ok_factorable": "oui (2 couples, ×3)",
+    "chosen": "110/3239",
+    "best_same_den": "101/2974",
+    "quality": 13.732560527186807
+   },
+   "rate_turns_per_day": "32395/348412752",
+   "rate_turns_per_tropical_year": 0.03395978093922685,
+   "ratio": "110/3239",
+   "n_reversals": 2
+  },
+  {
+   "id": "uranus_L",
+   "kind": "train",
+   "subsystem": "planets",
+   "name_fr": "Uranus : longitude moyenne héliocentrique (repère J2000)",
+   "src": "Y",
+   "stages": [
+    [
+     10,
+     84,
+     "external"
+    ],
+    [
+     10,
+     100,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "uranus_L",
+   "longitude": true,
+   "design": {
+    "cap": 100,
+    "pairs": 2,
+    "rel_err_train": 1.224966041595604e-05,
+    "alloc_rel": 4.666805178057072e-05,
+    "alloc_deg_cy": 0.02,
+    "r_needed": 0.011904616077257577,
+    "sources_tried": [
+     "Y"
+    ],
+    "alternatives": {
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        53,
+        211
+       ],
+       [
+        10,
+        211
+       ]
+      ],
+      "ratio": "530/44521",
+      "rel_err": 1.021192512031709e-05
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        71,
+        202
+       ],
+       [
+        73,
+        212
+       ],
+       [
+        12,
+        122
+       ]
+      ],
+      "ratio": "15549/1306132",
+      "rel_err": 4.000638167975292e-10
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      5.0,
+      42.0
+     ],
+     "centre_distance_mm": 23.5
+    },
+    {
+     "pitch_d_mm": [
+      5.0,
+      50.0
+     ],
+     "centre_distance_mm": 27.5
+    }
+   ],
+   "cf": {
+    "r": 0.011904616077257577,
+    "terms": [
+     0,
+     84,
+     971,
+     1,
+     5,
+     2,
+     2,
+     1,
+     1,
+     1,
+     2,
+     3,
+     1,
+     58,
+     3,
+     2,
+     1,
+     1,
+     1,
+     128
+    ],
+    "first_ok_convergent": "1/84",
+    "first_ok_factorable": "oui (2 couples, ×100)",
+    "chosen": "1/84",
+    "best_same_den": "1/84",
+    "quality": 1.0
+   },
+   "rate_turns_per_day": "589/18071424",
+   "rate_turns_per_tropical_year": 0.011904299833566641,
+   "ratio": "1/84",
+   "n_reversals": 2
+  },
+  {
+   "id": "neptune_L",
+   "kind": "train",
+   "subsystem": "planets",
+   "name_fr": "Neptune : longitude moyenne héliocentrique (repère J2000)",
+   "src": "Y",
+   "stages": [
+    [
+     12,
+     148,
+     "external"
+    ],
+    [
+     11,
+     147,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "neptune_L",
+   "longitude": true,
+   "design": {
+    "cap": 150,
+    "pairs": 2,
+    "rel_err_train": 4.0943637108894834e-05,
+    "alloc_rel": 9.156350356291466e-05,
+    "alloc_deg_cy": 0.02,
+    "r_needed": 0.006067540208741946,
+    "sources_tried": [
+     "Y"
+    ],
+    "alternatives": {
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        15,
+        182
+       ],
+       [
+        12,
+        163
+       ]
+      ],
+      "ratio": "90/14833",
+      "rel_err": 1.956489724641189e-06
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        53,
+        190
+       ],
+       [
+        31,
+        208
+       ],
+       [
+        27,
+        185
+       ]
+      ],
+      "ratio": "44361/7311200",
+      "rel_err": 5.8262624379021e-10
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      6.0,
+      74.0
+     ],
+     "centre_distance_mm": 40.0
+    },
+    {
+     "pitch_d_mm": [
+      5.5,
+      73.5
+     ],
+     "centre_distance_mm": 39.5
+    }
+   ],
+   "cf": {
+    "r": 0.006067540208741946,
+    "terms": [
+     0,
+     164,
+     1,
+     4,
+     3,
+     3,
+     2,
+     1,
+     5,
+     1,
+     5,
+     2,
+     6,
+     1,
+     4,
+     3,
+     1,
+     1,
+     1,
+     2
+    ],
+    "first_ok_convergent": "16/2637",
+    "first_ok_factorable": "non (facteur premier > 220 ou trop grand)",
+    "chosen": "11/1813",
+    "best_same_den": "11/1813",
+    "quality": 1.0
+   },
+   "rate_turns_per_day": "6479/390041568",
+   "rate_turns_per_tropical_year": 0.006067056285833192,
+   "ratio": "11/1813",
+   "n_reversals": 2
+  },
+  {
+   "id": "moon_L",
+   "kind": "train",
+   "subsystem": "moon",
+   "name_fr": "Lune : longitude moyenne (repère J2000)",
+   "src": "J",
+   "stages": [
+    [
+     11,
+     25,
+     "external"
+    ],
+    [
+     22,
+     75,
+     "external"
+    ],
+    [
+     19,
+     67,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "moon_L",
+   "longitude": true,
+   "design": {
+    "cap": 80,
+    "pairs": 3,
+    "rel_err_train": 2.3262293625522833e-09,
+    "alloc_rel": 2.0778509130392403e-08,
+    "alloc_deg_cy": 0.01,
+    "r_needed": 0.03660099493973331,
+    "sources_tried": [
+     "J",
+     "Y"
+    ],
+    "alternatives": {
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        20,
+        97
+       ],
+       [
+        30,
+        169
+       ]
+      ],
+      "ratio": "600/16393",
+      "rel_err": 1.8341171335368006e-07
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        197,
+        198
+       ],
+       [
+        14,
+        72
+       ],
+       [
+        14,
+        74
+       ]
+      ],
+      "ratio": "9653/263736",
+      "rel_err": 1.476748134964903e-10
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      5.5,
+      12.5
+     ],
+     "centre_distance_mm": 9.0
+    },
+    {
+     "pitch_d_mm": [
+      11.0,
+      37.5
+     ],
+     "centre_distance_mm": 24.25
+    },
+    {
+     "pitch_d_mm": [
+      9.5,
+      33.5
+     ],
+     "centre_distance_mm": 21.5
+    }
+   ],
+   "cf": {
+    "r": 0.03660099493973331,
+    "terms": [
+     0,
+     27,
+     3,
+     9,
+     5,
+     2,
+     1,
+     2,
+     1,
+     4,
+     1,
+     1,
+     1,
+     5,
+     25,
+     37,
+     1,
+     9,
+     1,
+     2
+    ],
+    "first_ok_convergent": "1685/46037",
+    "first_ok_factorable": "non (facteur premier > 220 ou trop grand)",
+    "chosen": "4598/125625",
+    "best_same_den": "4598/125625",
+    "quality": 1.0
+   },
+   "rate_turns_per_day": "4598/125625",
+   "rate_turns_per_tropical_year": 13.368227566979028,
+   "ratio": "4598/125625",
+   "n_reversals": 3
+  },
+  {
+   "id": "moon_perigee",
+   "kind": "train",
+   "subsystem": "moon",
+   "name_fr": "Lune : porte-satellite du périgée ϖ (étage d’anomalie)",
+   "src": "Y",
+   "stages": [
+    [
+     47,
+     105,
+     "external"
+    ],
+    [
+     26,
+     103,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "moon_perigee",
+   "longitude": true,
+   "design": {
+    "cap": 120,
+    "pairs": 2,
+    "rel_err_train": 1.6393061762389921e-06,
+    "alloc_rel": 4.9168968208610295e-06,
+    "alloc_deg_cy": 0.02,
+    "r_needed": 0.11299103067694281,
+    "sources_tried": [
+     "Y"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        20,
+        177
+       ]
+      ],
+      "ratio": "20/177",
+      "rel_err": 2.9379372178241162e-05
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        53,
+        151
+       ],
+       [
+        47,
+        146
+       ]
+      ],
+      "ratio": "2491/22046",
+      "rel_err": 1.0530062371455997e-07
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        103,
+        147
+       ],
+       [
+        46,
+        109
+       ],
+       [
+        47,
+        123
+       ]
+      ],
+      "ratio": "222686/1970829",
+      "rel_err": 8.942948237434035e-12
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      23.5,
+      52.5
+     ],
+     "centre_distance_mm": 38.0
+    },
+    {
+     "pitch_d_mm": [
+      13.0,
+      51.5
+     ],
+     "centre_distance_mm": 32.25
+    }
+   ],
+   "cf": {
+    "r": 0.11299103067694281,
+    "terms": [
+     0,
+     8,
+     1,
+     5,
+     1,
+     2,
+     9,
+     3,
+     1,
+     3,
+     2,
+     1,
+     1,
+     2,
+     2,
+     1,
+     2,
+     1,
+     2,
+     3
+    ],
+    "first_ok_convergent": "187/1655",
+    "first_ok_factorable": "non (facteur premier > 220 ou trop grand)",
+    "chosen": "1222/10815",
+    "best_same_den": "768/6797",
+    "quality": 35.45326262071953
+   },
+   "rate_turns_per_day": "359879/1163347920",
+   "rate_turns_per_tropical_year": 0.11298683026499755,
+   "ratio": "1222/10815",
+   "n_reversals": 2
+  },
+  {
+   "id": "moon_node",
+   "kind": "train",
+   "subsystem": "moon",
+   "name_fr": "Lune : porte-nœuds Ω (aiguille du Dragon, étage de réduction, coulisse d’éclipse)",
+   "src": "Y",
+   "stages": [
+    [
+     12,
+     43,
+     "external"
+    ],
+    [
+     21,
+     109,
+     "external"
+    ]
+   ],
+   "sign": -1,
+   "target": "moon_node",
+   "longitude": true,
+   "design": {
+    "cap": 120,
+    "pairs": 2,
+    "rel_err_train": 6.796115772858184e-07,
+    "alloc_rel": 5.166539776389047e-06,
+    "alloc_deg_cy": 0.01,
+    "r_needed": -0.05376569847194344,
+    "sources_tried": [
+     "Y"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        10,
+        186
+       ]
+      ],
+      "ratio": "5/93",
+      "rel_err": 4.198981492943791e-05
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        32,
+        133
+       ],
+       [
+        40,
+        179
+       ]
+      ],
+      "ratio": "1280/23807",
+      "rel_err": 1.2873783338608487e-08
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        26,
+        49
+       ],
+       [
+        41,
+        127
+       ],
+       [
+        43,
+        137
+       ]
+      ],
+      "ratio": "45838/852551",
+      "rel_err": 4.463864133289174e-11
+     }
+    }
+   },
+   "idler": 20,
+   "phys": -1,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      6.0,
+      21.5
+     ],
+     "centre_distance_mm": 13.75
+    },
+    {
+     "pitch_d_mm": [
+      10.5,
+      54.5
+     ],
+     "centre_distance_mm": 32.5
+    }
+   ],
+   "cf": {
+    "r": 0.05376569847194344,
+    "terms": [
+     0,
+     18,
+     1,
+     1,
+     2,
+     50,
+     1,
+     4,
+     2,
+     2,
+     1,
+     6,
+     1,
+     3,
+     2,
+     1,
+     4,
+     3,
+     21,
+     1
+    ],
+    "first_ok_convergent": "252/4687",
+    "first_ok_factorable": "oui (2 couples, ×1)",
+    "chosen": "252/4687",
+    "best_same_den": "252/4687",
+    "quality": 1.0
+   },
+   "rate_turns_per_day": "-4123/28009512",
+   "rate_turns_per_tropical_year": -0.05376364814954953,
+   "ratio": "-252/4687",
+   "n_reversals": 3
+  },
+  {
+   "id": "evection_carrier",
+   "kind": "diff",
+   "subsystem": "moon",
+   "name_fr": "Lune : porte-satellite de l’évection 2λ☉ − ϖ (différentiel, sans nouveau rapport approché)",
+   "terms": [
+    {
+     "shaft": "Y",
+     "coeff": "2"
+    },
+    {
+     "shaft": "moon_perigee",
+     "coeff": "-1"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": [
+       80,
+       20
+      ]
+     },
+     {
+      "sign": -1,
+      "pair": [
+       40,
+       20
+      ]
+     }
+    ],
+    "post_pairs": []
+   },
+   "target": "evection_carrier",
+   "longitude": true,
+   "phys": 1,
+   "rate_turns_per_day": "1502539/290836980",
+   "rate_turns_per_tropical_year": 1.8869355417741982
+  },
+  {
+   "id": "precession_ring",
+   "kind": "train",
+   "subsystem": "time",
+   "name_fr": "Anneau du zodiaque tropique (précession ; 1 tour rétrograde en ~25 766 ans)",
+   "src": "neptune_L",
+   "stages": [
+    [
+     10,
+     131,
+     "external"
+    ],
+    [
+     15,
+     179,
+     "internal"
+    ]
+   ],
+   "sign": -1,
+   "target": "precession_ring",
+   "longitude": true,
+   "design": {
+    "cap": 180,
+    "pairs": 2,
+    "rel_err_train": 5.68208638064567e-07,
+    "alloc_rel": 0.0001,
+    "alloc_deg_cy": null,
+    "r_needed": -0.006396864908155748,
+    "sources_tried": [
+     "neptune_L",
+     "uranus_L",
+     "saturn_L",
+     "moon_node"
+    ],
+    "alternatives": {
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        10,
+        131
+       ],
+       [
+        15,
+        179
+       ]
+      ],
+      "ratio": "150/23449",
+      "rel_err": 5.68208638064567e-07
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        22,
+        153
+       ],
+       [
+        26,
+        193
+       ],
+       [
+        71,
+        215
+       ]
+      ],
+      "ratio": "40612/6348735",
+      "rel_err": 3.2670191921956236e-09
+     }
+    }
+   },
+   "phys": -1,
+   "modules_mm": [
+    "1/2",
+    "4/5"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      5.0,
+      65.5
+     ],
+     "centre_distance_mm": 35.25
+    },
+    {
+     "pitch_d_mm": [
+      12.0,
+      143.2
+     ],
+     "centre_distance_mm": 65.6
+    }
+   ],
+   "cf": {
+    "r": 0.006396864908155748,
+    "terms": [
+     0,
+     156,
+     3,
+     16,
+     8,
+     1,
+     3,
+     8,
+     12,
+     2,
+     2,
+     1,
+     1,
+     1,
+     6,
+     2,
+     2,
+     22,
+     5,
+     1
+    ],
+    "first_ok_convergent": "3/469",
+    "first_ok_factorable": "oui (2 couples, ×40)",
+    "chosen": "150/23449",
+    "best_same_den": "49/7660",
+    "quality": 1.880782526485935
+   },
+   "rate_turns_per_day": "-161975/1524347454672",
+   "rate_turns_per_tropical_year": -3.8810117398395614e-05,
+   "ratio": "-150/23449",
+   "n_reversals": 1
+  },
+  {
+   "id": "sun_trop",
+   "kind": "diff",
+   "subsystem": "time",
+   "name_fr": "Soleil moyen tropique X = Y + p (différentiel)",
+   "terms": [
+    {
+     "shaft": "Y",
+     "coeff": "1"
+    },
+    {
+     "shaft": "precession_ring",
+     "coeff": "-1"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": [
+       40,
+       20
+      ]
+     },
+     {
+      "sign": -1,
+      "pair": [
+       40,
+       20
+      ]
+     }
+    ],
+    "post_pairs": []
+   },
+   "phys": null,
+   "rate_turns_per_day": "25041150643/9146084728032",
+   "rate_turns_per_tropical_year": 0.9999999961369962
+  },
+  {
+   "id": "stellar",
+   "kind": "diff",
+   "subsystem": "time",
+   "name_fr": "Rotation stellaire S = J + Y (différentiel ; mène le globe-tellurion)",
+   "terms": [
+    {
+     "shaft": "J",
+     "coeff": "1"
+    },
+    {
+     "shaft": "Y",
+     "coeff": "1"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": [
+       40,
+       20
+      ]
+     },
+     {
+      "sign": 1,
+      "pair": [
+       40,
+       20
+      ]
+     }
+    ],
+    "post_pairs": []
+   },
+   "target": "stellar",
+   "phys": null,
+   "rate_turns_per_day": "215725/215136",
+   "rate_turns_per_tropical_year": 366.2421508558196
+  },
+  {
+   "id": "gmst",
+   "kind": "diff",
+   "subsystem": "time",
+   "name_fr": "Temps sidéral moyen (TSMG) = J + X (différentiel)",
+   "terms": [
+    {
+     "shaft": "J",
+     "coeff": "1"
+    },
+    {
+     "shaft": "sun_trop",
+     "coeff": "1"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": [
+       40,
+       20
+      ]
+     },
+     {
+      "sign": 1,
+      "pair": [
+       40,
+       20
+      ]
+     }
+    ],
+    "post_pairs": []
+   },
+   "target": "gmst",
+   "phys": null,
+   "rate_turns_per_day": "9171125878675/9146084728032",
+   "rate_turns_per_tropical_year": 366.242189665937
+  },
+  {
+   "id": "earth_true",
+   "kind": "unit",
+   "subsystem": "sun",
+   "name_fr": "Terre vraie λ (sortie de l’unité de Kepler de la Terre)",
+   "device": "unité de Kepler (équant bissecté) : un tour par tour",
+   "terms": [
+    {
+     "shaft": "Y",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "589/215136",
+   "rate_turns_per_tropical_year": 0.9999611860195978
+  },
+  {
+   "id": "lambda_trop",
+   "kind": "diff",
+   "subsystem": "time",
+   "name_fr": "Soleil vrai tropique λ + p (entrée du joint de Hooke)",
+   "terms": [
+    {
+     "shaft": "earth_true",
+     "coeff": "1"
+    },
+    {
+     "shaft": "precession_ring",
+     "coeff": "-1"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": [
+       40,
+       20
+      ]
+     },
+     {
+      "sign": -1,
+      "pair": [
+       40,
+       20
+      ]
+     }
+    ],
+    "post_pairs": []
+   },
+   "phys": null,
+   "rate_turns_per_day": "25041150643/9146084728032",
+   "rate_turns_per_tropical_year": 0.9999999961369962
+  },
+  {
+   "id": "alpha_sun",
+   "kind": "unit",
+   "subsystem": "time",
+   "name_fr": "Ascension droite vraie du Soleil α (sortie du joint de Hooke)",
+   "device": "joint de Hooke plié à ε = 23,44° : tan α = cos ε · tan λ, un tour par tour",
+   "terms": [
+    {
+     "shaft": "lambda_trop",
+     "coeff": "1"
+    }
+   ],
+   "phys": null,
+   "rate_turns_per_day": "25041150643/9146084728032",
+   "rate_turns_per_tropical_year": 0.9999999961369962
+  },
+  {
+   "id": "eot",
+   "kind": "diff",
+   "subsystem": "time",
+   "name_fr": "Équation du temps EdT = X − α (différentiel ; vitesse moyenne nulle)",
+   "terms": [
+    {
+     "shaft": "sun_trop",
+     "coeff": "1"
+    },
+    {
+     "shaft": "alpha_sun",
+     "coeff": "-1"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": [
+       40,
+       20
+      ]
+     },
+     {
+      "sign": -1,
+      "pair": [
+       40,
+       20
+      ]
+     }
+    ],
+    "post_pairs": []
+   },
+   "phys": null,
+   "rate_turns_per_day": "0",
+   "rate_turns_per_tropical_year": 0.0
+  },
+  {
+   "id": "eot_dial",
+   "kind": "train",
+   "subsystem": "time",
+   "name_fr": "Aiguille de l’équation du temps (agrandissement ×10)",
+   "src": "eot",
+   "stages": [
+    [
+     120,
+     12,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      60.0,
+      6.0
+     ],
+     "centre_distance_mm": 33.0
+    }
+   ],
+   "rate_turns_per_day": "0",
+   "rate_turns_per_tropical_year": 0.0,
+   "ratio": "10",
+   "n_reversals": 1
+  },
+  {
+   "id": "tellurion",
+   "kind": "train",
+   "subsystem": "time",
+   "name_fr": "Globe-tellurion de l’orrery (chaîne 1:1 le long du bras de la Terre : angle absolu = S)",
+   "src": "stellar",
+   "stages": [
+    [
+     40,
+     40,
+     "chain"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      20.0,
+      20.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "215725/215136",
+   "rate_turns_per_tropical_year": 366.2421508558196,
+   "ratio": "1",
+   "n_reversals": 0
+  },
+  {
+   "id": "cal_cross_main",
+   "kind": "stepper",
+   "subsystem": "calendar",
+   "name_fr": "Croix de Malte principale (6 fentes ; 1 pas par jour)",
+   "src": "J",
+   "steps_per_turn": 6,
+   "mean_steps_per_day": "1",
+   "note": "une goupille sur l’arbre-jour : 1/6 de tour par jour, verrouillage positif",
+   "phys": null,
+   "rate_turns_per_day": "1/6",
+   "rate_turns_per_tropical_year": 60.8736982783
+  },
+  {
+   "id": "cal_cross_skip",
+   "kind": "stepper",
+   "subsystem": "calendar",
+   "name_fr": "Croix de saut (6 fentes ; 1 pas la nuit du 28 février des années communes)",
+   "src": null,
+   "steps_per_turn": 6,
+   "mean_steps_per_day": "303/146097",
+   "note": "goupille escamotable, engagée par la logique C4 ∨ (C100 ∧ C400)",
+   "phys": null,
+   "rate_turns_per_day": "101/292194",
+   "rate_turns_per_tropical_year": 0.12624989273102732
+  },
+  {
+   "id": "cal_sum",
+   "kind": "diff",
+   "subsystem": "calendar",
+   "name_fr": "Anneau des dates (366 positions) = (croix principale + croix de saut)/61",
+   "terms": [
+    {
+     "shaft": "cal_cross_main",
+     "coeff": "1/61"
+    },
+    {
+     "shaft": "cal_cross_skip",
+     "coeff": "1/61"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": null
+     },
+     {
+      "sign": 1,
+      "pair": null
+     }
+    ],
+    "post_pairs": [
+     [
+      20,
+      61
+     ],
+     [
+      20,
+      200
+     ]
+    ],
+    "post_modules_mm": [
+     "1/2",
+     "9/10"
+    ]
+   },
+   "note": "différentiel puis 20:61 et 20:200 (l’anneau porte 200 dents intérieures)",
+   "phys": null,
+   "rate_turns_per_day": "400/146097",
+   "rate_turns_per_tropical_year": 0.9999991503447709
+  },
+  {
+   "id": "cal_prog4",
+   "kind": "train",
+   "subsystem": "calendar",
+   "name_fr": "Roue-programme de 4 ans (came C4)",
+   "src": "cal_sum",
+   "stages": [
+    [
+     15,
+     60,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      7.5,
+      30.0
+     ],
+     "centre_distance_mm": 18.75
+    }
+   ],
+   "rate_turns_per_day": "100/146097",
+   "rate_turns_per_tropical_year": 0.24999978758619273,
+   "ratio": "1/4",
+   "n_reversals": 1
+  },
+  {
+   "id": "cal_prog100",
+   "kind": "train",
+   "subsystem": "calendar",
+   "name_fr": "Roue-programme de 100 ans (came C100)",
+   "src": "cal_prog4",
+   "stages": [
+    [
+     12,
+     60,
+     "external"
+    ],
+    [
+     12,
+     60,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      6.0,
+      30.0
+     ],
+     "centre_distance_mm": 18.0
+    },
+    {
+     "pitch_d_mm": [
+      6.0,
+      30.0
+     ],
+     "centre_distance_mm": 18.0
+    }
+   ],
+   "rate_turns_per_day": "4/146097",
+   "rate_turns_per_tropical_year": 0.009999991503447709,
+   "ratio": "1/25",
+   "n_reversals": 2
+  },
+  {
+   "id": "cal_prog400",
+   "kind": "train",
+   "subsystem": "calendar",
+   "name_fr": "Roue-programme de 400 ans (came C400)",
+   "src": "cal_prog100",
+   "stages": [
+    [
+     15,
+     60,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      7.5,
+      30.0
+     ],
+     "centre_distance_mm": 18.75
+    }
+   ],
+   "rate_turns_per_day": "1/146097",
+   "rate_turns_per_tropical_year": 0.002499997875861927,
+   "ratio": "1/4",
+   "n_reversals": 1
+  },
+  {
+   "id": "mercury_true",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Mercure vraie (sortie de l’unité de Kepler)",
+   "device": "résolveur de Kepler (RK) + ellipse à deux bras : un tour par tour",
+   "terms": [
+    {
+     "shaft": "mercury_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "102638/9028989",
+   "rate_turns_per_tropical_year": 4.151929730264256
+  },
+  {
+   "id": "venus_true",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Vénus vraie (sortie de l’unité de Kepler)",
+   "device": "équant bissecté : un tour par tour",
+   "terms": [
+    {
+     "shaft": "venus_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "18259/4102812",
+   "rate_turns_per_tropical_year": 1.625460084737219
+  },
+  {
+   "id": "mars_true",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Mars vraie (sortie de l’unité de Kepler)",
+   "device": "équant + épicyclet (EQE) : un tour par tour",
+   "terms": [
+    {
+     "shaft": "mars_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "2342453/1609217280",
+   "rate_turns_per_tropical_year": 0.5316638551871579
+  },
+  {
+   "id": "jupiter_true",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Jupiter vraie (sortie de l’unité de Kepler)",
+   "device": "équant bissecté : un tour par tour",
+   "terms": [
+    {
+     "shaft": "jupiter_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "2945/12760254",
+   "rate_turns_per_tropical_year": 0.08429599039153617
+  },
+  {
+   "id": "saturn_true",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Saturne vraie (sortie de l’unité de Kepler)",
+   "device": "équant bissecté : un tour par tour",
+   "terms": [
+    {
+     "shaft": "saturn_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "32395/348412752",
+   "rate_turns_per_tropical_year": 0.03395978093922685
+  },
+  {
+   "id": "uranus_true",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Uranus vraie (sortie de l’unité de Kepler)",
+   "device": "équant bissecté : un tour par tour",
+   "terms": [
+    {
+     "shaft": "uranus_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "589/18071424",
+   "rate_turns_per_tropical_year": 0.011904299833566641
+  },
+  {
+   "id": "neptune_true",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Neptune vraie (sortie de l’unité de Kepler)",
+   "device": "équant bissecté : un tour par tour",
+   "terms": [
+    {
+     "shaft": "neptune_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "6479/390041568",
+   "rate_turns_per_tropical_year": 0.006067056285833192
+  },
+  {
+   "id": "mercury_geo",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Mercure : aiguille géocentrique (module vectoriel)",
+   "device": "module vectoriel (suiveur) : en moyenne le Soleil (planète intérieure)",
+   "terms": [
+    {
+     "shaft": "Y",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "589/215136",
+   "rate_turns_per_tropical_year": 0.9999611860195978
+  },
+  {
+   "id": "venus_geo",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Vénus : aiguille géocentrique (module vectoriel)",
+   "device": "module vectoriel (suiveur) : en moyenne le Soleil (planète intérieure)",
+   "terms": [
+    {
+     "shaft": "Y",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "589/215136",
+   "rate_turns_per_tropical_year": 0.9999611860195978
+  },
+  {
+   "id": "mars_geo",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Mars : aiguille géocentrique (module vectoriel)",
+   "device": "module vectoriel (suiveur) : en moyenne la planète (planète extérieure)",
+   "terms": [
+    {
+     "shaft": "mars_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "2342453/1609217280",
+   "rate_turns_per_tropical_year": 0.5316638551871579
+  },
+  {
+   "id": "jupiter_geo",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Jupiter : aiguille géocentrique (module vectoriel)",
+   "device": "module vectoriel (suiveur) : en moyenne la planète (planète extérieure)",
+   "terms": [
+    {
+     "shaft": "jupiter_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "2945/12760254",
+   "rate_turns_per_tropical_year": 0.08429599039153617
+  },
+  {
+   "id": "saturn_geo",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Saturne : aiguille géocentrique (module vectoriel)",
+   "device": "module vectoriel (suiveur) : en moyenne la planète (planète extérieure)",
+   "terms": [
+    {
+     "shaft": "saturn_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "32395/348412752",
+   "rate_turns_per_tropical_year": 0.03395978093922685
+  },
+  {
+   "id": "uranus_geo",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Uranus : aiguille géocentrique (module vectoriel)",
+   "device": "module vectoriel (suiveur) : en moyenne la planète (planète extérieure)",
+   "terms": [
+    {
+     "shaft": "uranus_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "589/18071424",
+   "rate_turns_per_tropical_year": 0.011904299833566641
+  },
+  {
+   "id": "neptune_geo",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Neptune : aiguille géocentrique (module vectoriel)",
+   "device": "module vectoriel (suiveur) : en moyenne la planète (planète extérieure)",
+   "terms": [
+    {
+     "shaft": "neptune_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "6479/390041568",
+   "rate_turns_per_tropical_year": 0.006067056285833192
+  },
+  {
+   "id": "sun_geo",
+   "kind": "unit",
+   "subsystem": "sun",
+   "name_fr": "Soleil vrai : aiguille géocentrique (= Terre vraie + 180°)",
+   "device": "renvoi 1:1",
+   "terms": [
+    {
+     "shaft": "earth_true",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "589/215136",
+   "rate_turns_per_tropical_year": 0.9999611860195978
+  },
+  {
+   "id": "orrery_earth",
+   "kind": "train",
+   "subsystem": "orrery",
+   "name_fr": "Orrery : tube de Terre (renvoi d’angle 1:1 vers le couvercle)",
+   "src": "earth_true",
+   "stages": [
+    [
+     40,
+     40,
+     "bevel"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      20.0,
+      20.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "589/215136",
+   "rate_turns_per_tropical_year": 0.9999611860195978,
+   "ratio": "1",
+   "n_reversals": 0
+  },
+  {
+   "id": "orrery_mercury",
+   "kind": "train",
+   "subsystem": "orrery",
+   "name_fr": "Orrery : tube de Mercure (renvoi d’angle 1:1 vers le couvercle)",
+   "src": "mercury_true",
+   "stages": [
+    [
+     40,
+     40,
+     "bevel"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      20.0,
+      20.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "102638/9028989",
+   "rate_turns_per_tropical_year": 4.151929730264256,
+   "ratio": "1",
+   "n_reversals": 0
+  },
+  {
+   "id": "orrery_venus",
+   "kind": "train",
+   "subsystem": "orrery",
+   "name_fr": "Orrery : tube de Vénus (renvoi d’angle 1:1 vers le couvercle)",
+   "src": "venus_true",
+   "stages": [
+    [
+     40,
+     40,
+     "bevel"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      20.0,
+      20.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "18259/4102812",
+   "rate_turns_per_tropical_year": 1.625460084737219,
+   "ratio": "1",
+   "n_reversals": 0
+  },
+  {
+   "id": "orrery_mars",
+   "kind": "train",
+   "subsystem": "orrery",
+   "name_fr": "Orrery : tube de Mars (renvoi d’angle 1:1 vers le couvercle)",
+   "src": "mars_true",
+   "stages": [
+    [
+     40,
+     40,
+     "bevel"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      20.0,
+      20.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "2342453/1609217280",
+   "rate_turns_per_tropical_year": 0.5316638551871579,
+   "ratio": "1",
+   "n_reversals": 0
+  },
+  {
+   "id": "orrery_jupiter",
+   "kind": "train",
+   "subsystem": "orrery",
+   "name_fr": "Orrery : tube de Jupiter (renvoi d’angle 1:1 vers le couvercle)",
+   "src": "jupiter_true",
+   "stages": [
+    [
+     40,
+     40,
+     "bevel"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      20.0,
+      20.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "2945/12760254",
+   "rate_turns_per_tropical_year": 0.08429599039153617,
+   "ratio": "1",
+   "n_reversals": 0
+  },
+  {
+   "id": "orrery_saturn",
+   "kind": "train",
+   "subsystem": "orrery",
+   "name_fr": "Orrery : tube de Saturne (renvoi d’angle 1:1 vers le couvercle)",
+   "src": "saturn_true",
+   "stages": [
+    [
+     40,
+     40,
+     "bevel"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      20.0,
+      20.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "32395/348412752",
+   "rate_turns_per_tropical_year": 0.03395978093922685,
+   "ratio": "1",
+   "n_reversals": 0
+  },
+  {
+   "id": "orrery_uranus",
+   "kind": "train",
+   "subsystem": "orrery",
+   "name_fr": "Orrery : tube de Uranus (renvoi d’angle 1:1 vers le couvercle)",
+   "src": "uranus_true",
+   "stages": [
+    [
+     40,
+     40,
+     "bevel"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      20.0,
+      20.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "589/18071424",
+   "rate_turns_per_tropical_year": 0.011904299833566641,
+   "ratio": "1",
+   "n_reversals": 0
+  },
+  {
+   "id": "orrery_neptune",
+   "kind": "train",
+   "subsystem": "orrery",
+   "name_fr": "Orrery : tube de Neptune (renvoi d’angle 1:1 vers le couvercle)",
+   "src": "neptune_true",
+   "stages": [
+    [
+     40,
+     40,
+     "bevel"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      20.0,
+      20.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "6479/390041568",
+   "rate_turns_per_tropical_year": 0.006067056285833192,
+   "ratio": "1",
+   "n_reversals": 0
+  },
+  {
+   "id": "mars_epicyclet",
+   "kind": "train",
+   "subsystem": "planets",
+   "name_fr": "Mars : épicyclet correcteur (angle absolu 3L − 2ϖ, ϖ figé : couple 3:1)",
+   "src": "mars_L",
+   "stages": [
+    [
+     60,
+     20,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "phys": -1,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      30.0,
+      10.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "2342453/536405760",
+   "rate_turns_per_tropical_year": 1.5949915655614735,
+   "ratio": "3",
+   "n_reversals": 1
+  },
+  {
+   "id": "mercury_E",
+   "kind": "unit",
+   "subsystem": "planets",
+   "name_fr": "Mercure : arbre de l’anomalie excentrique E (résolveur)",
+   "device": "boucle M = E − e sin E : un tour par tour",
+   "terms": [
+    {
+     "shaft": "mercury_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "102638/9028989",
+   "rate_turns_per_tropical_year": 4.151929730264256
+  },
+  {
+   "id": "mercury_counter_arm",
+   "kind": "train",
+   "subsystem": "planets",
+   "name_fr": "Mercure : bras (a − b)/2 à l’angle ϖ − E (inverseur conique coaxial 1:1)",
+   "src": "mercury_E",
+   "stages": [
+    [
+     40,
+     40,
+     "bevel"
+    ]
+   ],
+   "sign": -1,
+   "exact": true,
+   "note": "inverseur conique coaxial = différentiel à porte-satellite fixe : sortie = −E (+ 2ϖ, ϖ figé)",
+   "phys": null,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      20.0,
+      20.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "-102638/9028989",
+   "rate_turns_per_tropical_year": -4.151929730264256,
+   "ratio": "-1",
+   "n_reversals": 0
+  },
+  {
+   "id": "annual_eq",
+   "kind": "diff",
+   "subsystem": "moon",
+   "name_fr": "Lune : moteur de l’équation annuelle (3/31)(λ☉ vrai − λ☉ moyen) (vitesse moyenne nulle)",
+   "terms": [
+    {
+     "shaft": "earth_true",
+     "coeff": "3/31"
+    },
+    {
+     "shaft": "Y",
+     "coeff": "-3/31"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": null
+     },
+     {
+      "sign": -1,
+      "pair": null
+     }
+    ],
+    "post_pairs": [
+     [
+      30,
+      155
+     ]
+    ]
+   },
+   "note": "amplitude visée 0,185116/1,914602 = 0,096686 ; 3/31 = 0,096774 (écart 0,09 % de 0,185° = 0,0002°)",
+   "phys": null,
+   "rate_turns_per_day": "0",
+   "rate_turns_per_tropical_year": 0.0
+  },
+  {
+   "id": "moon_true",
+   "kind": "unit",
+   "subsystem": "moon",
+   "name_fr": "Lune vraie : aiguille (sortie de la cascade à 5 étages)",
+   "device": "cascade réduction → équation annuelle → évection → anomalie (équant) → variation : un tour par tour",
+   "terms": [
+    {
+     "shaft": "moon_L",
+     "coeff": "1"
+    }
+   ],
+   "phys": 1,
+   "rate_turns_per_day": "4598/125625",
+   "rate_turns_per_tropical_year": 13.368227566979028
+  },
+  {
+   "id": "moon_phase",
+   "kind": "unit",
+   "subsystem": "moon",
+   "name_fr": "Boule de phase (rotation relative à l’aiguille de la Lune = Lune vraie − Soleil vrai)",
+   "device": "couronne 1:1 (48:48) menée par le tube du Soleil vrai",
+   "terms": [
+    {
+     "shaft": "moon_true",
+     "coeff": "1"
+    },
+    {
+     "shaft": "sun_geo",
+     "coeff": "-1"
+    }
+   ],
+   "phys": null,
+   "rate_turns_per_day": "305067401/9008820000",
+   "rate_turns_per_tropical_year": 12.36826638095943
+  },
+  {
+   "id": "saros",
+   "kind": "train",
+   "subsystem": "eclipses",
+   "name_fr": "Aiguille du Saros (1 tour = 223 lunaisons)",
+   "src": "Y",
+   "stages": [
+    [
+     13,
+     46,
+     "external"
+    ],
+    [
+     21,
+     107,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "saros",
+   "longitude": false,
+   "design": {
+    "cap": 120,
+    "pairs": 2,
+    "rel_err_train": 4.949535207192669e-07,
+    "alloc_rel": 1e-06,
+    "alloc_deg_cy": null,
+    "r_needed": 0.055465230572481865,
+    "sources_tried": [
+     "J",
+     "Y",
+     "moon_L"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        10,
+        180
+       ]
+      ],
+      "ratio": "1/18",
+      "rel_err": 0.0016284973873074847
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        199,
+        209
+       ],
+       [
+        12,
+        206
+       ]
+      ],
+      "ratio": "1194/21527",
+      "rel_err": 1.552245958735583e-08
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        181,
+        167
+       ],
+       [
+        22,
+        91
+       ],
+       [
+        29,
+        137
+       ]
+      ],
+      "ratio": "115478/2081989",
+      "rel_err": 5.683252347170182e-10
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      6.5,
+      23.0
+     ],
+     "centre_distance_mm": 14.75
+    },
+    {
+     "pitch_d_mm": [
+      10.5,
+      53.5
+     ],
+     "centre_distance_mm": 32.0
+    }
+   ],
+   "cf": {
+    "r": 0.055465230572481865,
+    "terms": [
+     0,
+     18,
+     34,
+     8,
+     1,
+     2,
+     1,
+     1,
+     1,
+     3,
+     4,
+     2,
+     1,
+     2,
+     3,
+     3,
+     1,
+     10,
+     3,
+     2
+    ],
+    "first_ok_convergent": "273/4922",
+    "first_ok_factorable": "oui (2 couples, ×1)",
+    "chosen": "273/4922",
+    "best_same_den": "273/4922",
+    "quality": 1.0
+   },
+   "rate_turns_per_day": "53599/352966464",
+   "rate_turns_per_tropical_year": 0.05546310519775502,
+   "ratio": "273/4922",
+   "n_reversals": 2
+  },
+  {
+   "id": "exeligmos",
+   "kind": "train",
+   "subsystem": "eclipses",
+   "name_fr": "Aiguille de l’Exeligmos (1 tour = 3 Saros)",
+   "src": "saros",
+   "stages": [
+    [
+     20,
+     60,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "target": "exeligmos",
+   "phys": -1,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      10.0,
+      30.0
+     ],
+     "centre_distance_mm": 20.0
+    }
+   ],
+   "rate_turns_per_day": "53599/1058899392",
+   "rate_turns_per_tropical_year": 0.018487701732585005,
+   "ratio": "1/3",
+   "n_reversals": 1
+  },
+  {
+   "id": "ganymede",
+   "kind": "train",
+   "subsystem": "galilean",
+   "name_fr": "Ganymède (train direct)",
+   "src": "J",
+   "stages": [
+    [
+     167,
+     131,
+     "external"
+    ],
+    [
+     10,
+     23,
+     "external"
+    ],
+    [
+     29,
+     115,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "ganymede",
+   "longitude": true,
+   "design": {
+    "cap": 180,
+    "pairs": 3,
+    "rel_err_train": 1.2500659598776886e-10,
+    "alloc_rel": 1.0882276921659552e-09,
+    "alloc_deg_cy": 0.002,
+    "r_needed": 0.1397711366861111,
+    "sources_tried": [
+     "J"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        13,
+        93
+       ]
+      ],
+      "ratio": "13/93",
+      "rel_err": 9.880116006383536e-05
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        157,
+        211
+       ],
+       [
+        34,
+        181
+       ]
+      ],
+      "ratio": "5338/38191",
+      "rel_err": 9.719385181373937e-08
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        167,
+        131
+       ],
+       [
+        10,
+        23
+       ],
+       [
+        29,
+        115
+       ]
+      ],
+      "ratio": "9686/69299",
+      "rel_err": 1.2500659598776886e-10
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      83.5,
+      65.5
+     ],
+     "centre_distance_mm": 74.5
+    },
+    {
+     "pitch_d_mm": [
+      5.0,
+      11.5
+     ],
+     "centre_distance_mm": 8.25
+    },
+    {
+     "pitch_d_mm": [
+      14.5,
+      57.5
+     ],
+     "centre_distance_mm": 36.0
+    }
+   ],
+   "cf": {
+    "r": 0.1397711366861111,
+    "terms": [
+     0,
+     7,
+     6,
+     2,
+     7,
+     1,
+     10,
+     7,
+     1,
+     11,
+     24,
+     5,
+     1,
+     3,
+     2,
+     1,
+     5,
+     5,
+     1,
+     6
+    ],
+    "first_ok_convergent": "9686/69299",
+    "first_ok_factorable": "oui (3 couples, ×5)",
+    "chosen": "9686/69299",
+    "best_same_den": "9686/69299",
+    "quality": 1.0
+   },
+   "rate_turns_per_day": "9686/69299",
+   "rate_turns_per_tropical_year": 51.05031600949051,
+   "ratio": "9686/69299",
+   "n_reversals": 3
+  },
+  {
+   "id": "nu",
+   "kind": "train",
+   "subsystem": "galilean",
+   "name_fr": "Arbre ν = n_Io − 2n_Eu (ligne des conjonctions à −ν)",
+   "src": "J",
+   "stages": [
+    [
+     16,
+     115,
+     "external"
+    ],
+    [
+     19,
+     145,
+     "external"
+    ],
+    [
+     16,
+     142,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "nu",
+   "longitude": false,
+   "design": {
+    "cap": 150,
+    "pairs": 3,
+    "rel_err_train": 2.3412328696197648e-08,
+    "alloc_rel": 7.404536543463123e-08,
+    "alloc_deg_cy": 0.002,
+    "r_needed": 0.002054184223611111,
+    "sources_tried": [
+     "J"
+    ],
+    "alternatives": {
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        10,
+        220
+       ],
+       [
+        10,
+        220
+       ]
+      ],
+      "ratio": "1/484",
+      "rel_err": 0.005808378202444293
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        27,
+        185
+       ],
+       [
+        11,
+        91
+       ],
+       [
+        17,
+        146
+       ]
+      ],
+      "ratio": "5049/2457910",
+      "rel_err": 1.0882157751395982e-08
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      8.0,
+      57.5
+     ],
+     "centre_distance_mm": 32.75
+    },
+    {
+     "pitch_d_mm": [
+      9.5,
+      72.5
+     ],
+     "centre_distance_mm": 41.0
+    },
+    {
+     "pitch_d_mm": [
+      8.0,
+      71.0
+     ],
+     "centre_distance_mm": 39.5
+    }
+   ],
+   "cf": {
+    "r": 0.002054184223611111,
+    "terms": [
+     0,
+     486,
+     1,
+     4,
+     3,
+     2,
+     1,
+     4,
+     1,
+     2,
+     1,
+     1,
+     2,
+     1,
+     35,
+     1,
+     1,
+     1,
+     170,
+     1
+    ],
+    "first_ok_convergent": "249/121216",
+    "first_ok_factorable": "non (facteur premier > 220 ou trop grand)",
+    "chosen": "2432/1183925",
+    "best_same_den": "2008/977517",
+    "quality": 163.0448901555095
+   },
+   "rate_turns_per_day": "2432/1183925",
+   "rate_turns_per_tropical_year": 0.7502747262512014,
+   "ratio": "2432/1183925",
+   "n_reversals": 3
+  },
+  {
+   "id": "europa",
+   "kind": "diff",
+   "subsystem": "galilean",
+   "name_fr": "Europe = 2·Ganymède + ν (différentiel)",
+   "terms": [
+    {
+     "shaft": "ganymede",
+     "coeff": "2"
+    },
+    {
+     "shaft": "nu",
+     "coeff": "1"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": [
+       80,
+       20
+      ]
+     },
+     {
+      "sign": 1,
+      "pair": [
+       40,
+       20
+      ]
+     }
+    ],
+    "post_pairs": []
+   },
+   "target": "europa",
+   "longitude": true,
+   "phys": 1,
+   "rate_turns_per_day": "1004501316/3567166025",
+   "rate_turns_per_tropical_year": 102.85090674523222
+  },
+  {
+   "id": "io",
+   "kind": "diff",
+   "subsystem": "galilean",
+   "name_fr": "Io = 2·Europe + ν (différentiel)",
+   "terms": [
+    {
+     "shaft": "europa",
+     "coeff": "2"
+    },
+    {
+     "shaft": "nu",
+     "coeff": "1"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": [
+       80,
+       20
+      ]
+     },
+     {
+      "sign": 1,
+      "pair": [
+       40,
+       20
+      ]
+     }
+    ],
+    "post_pairs": []
+   },
+   "target": "io",
+   "longitude": true,
+   "phys": 1,
+   "rate_turns_per_day": "2016330248/3567166025",
+   "rate_turns_per_tropical_year": 206.45208821671565
+  },
+  {
+   "id": "callisto",
+   "kind": "train",
+   "subsystem": "galilean",
+   "name_fr": "Callisto (train direct, hors résonance)",
+   "src": "J",
+   "stages": [
+    [
+     51,
+     122,
+     "external"
+    ],
+    [
+     35,
+     89,
+     "external"
+    ],
+    [
+     39,
+     107,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "callisto",
+   "longitude": true,
+   "design": {
+    "cap": 150,
+    "pairs": 3,
+    "rel_err_train": 3.197520420097488e-09,
+    "alloc_rel": 1.269223380084766e-08,
+    "alloc_deg_cy": 0.01,
+    "r_needed": 0.059919642158333335,
+    "sources_tried": [
+     "J"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        13,
+        217
+       ]
+      ],
+      "ratio": "13/217",
+      "rel_err": 0.00019706487765135371
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        39,
+        152
+       ],
+       [
+        39,
+        167
+       ]
+      ],
+      "ratio": "1521/25384",
+      "rel_err": 1.2922229318544513e-07
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        137,
+        167
+       ],
+       [
+        30,
+        91
+       ],
+       [
+        37,
+        167
+       ]
+      ],
+      "ratio": "152070/2537899",
+      "rel_err": 5.655815855547525e-10
+     }
+    }
+   },
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      25.5,
+      61.0
+     ],
+     "centre_distance_mm": 43.25
+    },
+    {
+     "pitch_d_mm": [
+      17.5,
+      44.5
+     ],
+     "centre_distance_mm": 31.0
+    },
+    {
+     "pitch_d_mm": [
+      19.5,
+      53.5
+     ],
+     "centre_distance_mm": 36.5
+    }
+   ],
+   "cf": {
+    "r": 0.059919642158333335,
+    "terms": [
+     0,
+     16,
+     1,
+     2,
+     4,
+     1,
+     1,
+     1,
+     3,
+     5,
+     1,
+     3,
+     10,
+     4,
+     1,
+     1,
+     1,
+     1,
+     2,
+     1
+    ],
+    "first_ok_convergent": "3952/65955",
+    "first_ok_factorable": "non (facteur premier > 220 ou trop grand)",
+    "chosen": "69615/1161806",
+    "best_same_den": "40549/676723",
+    "quality": 413.17021169674626
+   },
+   "rate_turns_per_day": "69615/1161806",
+   "rate_turns_per_tropical_year": 21.88518137611884,
+   "ratio": "69615/1161806",
+   "n_reversals": 3
+  },
+  {
+   "id": "gmst_direct",
+   "kind": "train",
+   "subsystem": "options",
+   "name_fr": "Variante : temps sidéral par un train direct depuis J (au lieu du différentiel)",
+   "src": "J",
+   "stages": [
+    [
+     197,
+     164,
+     "external"
+    ],
+    [
+     151,
+     148,
+     "external"
+    ],
+    [
+     18,
+     22,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "target": "gmst",
+   "longitude": false,
+   "design": {
+    "cap": 220,
+    "pairs": 3,
+    "rel_err_train": 4.0402967543208126e-10,
+    "alloc_rel": 1e-09,
+    "alloc_deg_cy": null,
+    "r_needed": 1.002737909344969,
+    "sources_tried": [
+     "J"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        220,
+        219
+       ]
+      ],
+      "ratio": "220/219",
+      "rel_err": 0.001823308646909963
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        178,
+        155
+       ],
+       [
+        179,
+        205
+       ]
+      ],
+      "ratio": "31862/31775",
+      "rel_err": 9.197677106172802e-08
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        197,
+        164
+       ],
+       [
+        151,
+        148
+       ],
+       [
+        18,
+        22
+       ]
+      ],
+      "ratio": "267723/266992",
+      "rel_err": 4.0402967543208126e-10
+     }
+    }
+   },
+   "optional": true,
+   "phys": 1,
+   "modules_mm": [
+    "1/2",
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      98.5,
+      82.0
+     ],
+     "centre_distance_mm": 90.25
+    },
+    {
+     "pitch_d_mm": [
+      75.5,
+      74.0
+     ],
+     "centre_distance_mm": 74.75
+    },
+    {
+     "pitch_d_mm": [
+      9.0,
+      11.0
+     ],
+     "centre_distance_mm": 10.0
+    }
+   ],
+   "cf": {
+    "r": 1.002737909344969,
+    "terms": [
+     1,
+     365,
+     4,
+     7,
+     1,
+     3,
+     99,
+     1,
+     411,
+     1,
+     7,
+     1,
+     1,
+     7,
+     1,
+     3,
+     2,
+     5,
+     2,
+     4
+    ],
+    "first_ok_convergent": "46879/46751",
+    "first_ok_factorable": "non (facteur premier > 220 ou trop grand)",
+    "chosen": "267723/266992",
+    "best_same_den": "46879/46751",
+    "quality": 88.77491028405629
+   },
+   "rate_turns_per_day": "267723/266992",
+   "rate_turns_per_tropical_year": 366.2421898220466,
+   "ratio": "267723/266992",
+   "n_reversals": 3
+  },
+  {
+   "id": "synodic",
+   "kind": "diff",
+   "subsystem": "options",
+   "name_fr": "Variante : arbre synodique moyen D = L − Y (différentiel)",
+   "terms": [
+    {
+     "shaft": "moon_L",
+     "coeff": "1"
+    },
+    {
+     "shaft": "Y",
+     "coeff": "-1"
+    }
+   ],
+   "realisation": {
+    "type": "bevel",
+    "sides": [
+     {
+      "sign": 1,
+      "pair": [
+       40,
+       20
+      ]
+     },
+     {
+      "sign": -1,
+      "pair": [
+       40,
+       20
+      ]
+     }
+    ],
+    "post_pairs": []
+   },
+   "target": "moon_D",
+   "optional": true,
+   "phys": null,
+   "rate_turns_per_day": "305067401/9008820000",
+   "rate_turns_per_tropical_year": 12.36826638095943
+  },
+  {
+   "id": "saros_223",
+   "kind": "train",
+   "subsystem": "options",
+   "name_fr": "Variante : Saros exact avec une roue de 223 dents (hommage à b1)",
+   "src": "synodic",
+   "stages": [
+    [
+     20,
+     223,
+     "external"
+    ],
+    [
+     10,
+     200,
+     "external"
+    ]
+   ],
+   "sign": 1,
+   "exact": true,
+   "optional": true,
+   "target": "saros",
+   "exception": "223 dents > 220 : nombre premier, exigé par le Saros exact (comme b1 de 223 dents dans la machine antique)",
+   "phys": null,
+   "modules_mm": [
+    "1/2",
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      10.0,
+      111.5
+     ],
+     "centre_distance_mm": 60.75
+    },
+    {
+     "pitch_d_mm": [
+      5.0,
+      100.0
+     ],
+     "centre_distance_mm": 52.5
+    }
+   ],
+   "rate_turns_per_day": "305067401/2008966860000",
+   "rate_turns_per_tropical_year": 0.05546307794152211,
+   "ratio": "1/223",
+   "n_reversals": 2
+  },
+  {
+   "id": "mars_apsides",
+   "kind": "train",
+   "subsystem": "options",
+   "name_fr": "Option : plateau d’apsides de Mars (1 tour en ~81 000 ans)",
+   "src": "precession_ring",
+   "stages": [
+    [
+     14,
+     44,
+     "external"
+    ]
+   ],
+   "sign": -1,
+   "target": "mars_apsides",
+   "longitude": true,
+   "design": {
+    "cap": 60,
+    "pairs": 1,
+    "rel_err_train": 0.0014870840063508238,
+    "alloc_rel": 0.01,
+    "alloc_deg_cy": null,
+    "r_needed": -0.3177093576773482,
+    "sources_tried": [
+     "precession_ring"
+    ],
+    "alternatives": {
+     "1": {
+      "cap": 220,
+      "stages": [
+       [
+        61,
+        192
+       ]
+      ],
+      "ratio": "61/192",
+      "rel_err": 3.2241543729124765e-06
+     },
+     "2": {
+      "cap": 220,
+      "stages": [
+       [
+        41,
+        37
+       ],
+       [
+        41,
+        143
+       ]
+      ],
+      "ratio": "1681/5291",
+      "rel_err": 1.2580060841406426e-07
+     },
+     "3": {
+      "cap": 220,
+      "stages": [
+       [
+        199,
+        157
+       ],
+       [
+        40,
+        67
+       ],
+       [
+        55,
+        131
+       ]
+      ],
+      "ratio": "437800/1377989",
+      "rel_err": 1.746262545148799e-10
+     }
+    }
+   },
+   "optional": true,
+   "phys": 1,
+   "modules_mm": [
+    "1/2"
+   ],
+   "geometry": [
+    {
+     "pitch_d_mm": [
+      7.0,
+      22.0
+     ],
+     "centre_distance_mm": 14.5
+    }
+   ],
+   "cf": {
+    "r": 0.3177093576773482,
+    "terms": [
+     0,
+     3,
+     6,
+     1,
+     3,
+     1,
+     1,
+     25,
+     1,
+     12,
+     3,
+     2,
+     3,
+     411,
+     6,
+     3,
+     1,
+     1,
+     6,
+     1
+    ],
+    "first_ok_convergent": "7/22",
+    "first_ok_factorable": "oui (1 couple, ×2)",
+    "chosen": "7/22",
+    "best_same_den": "7/22",
+    "quality": 1.0
+   },
+   "rate_turns_per_day": "14725/435527844192",
+   "rate_turns_per_tropical_year": 1.2348673717671332e-05,
+   "ratio": "-7/22",
+   "n_reversals": 1
+  }
+ ],
+ "evaluation": {
+  "Y": {
+   "target": "Y",
+   "machine_turns_per_day": "589/215136",
+   "target_turns_per_day": "8999843216329/3287250000000000",
+   "rel_err": -1.0426741655941773e-08,
+   "ppm": -0.010426741655941773,
+   "machine_turns_per_tropical_year": 0.9999611860195978,
+   "target_turns_per_tropical_year": 0.999961196445935,
+   "machine_period_days": 365.25636672325976,
+   "target_period_days": 365.256362914826,
+   "period_diff_s": 0.32904867807458127,
+   "deg_per_century": -0.0003753561606425703,
+   "years_to_1deg": 266413.6371940999
+  },
+  "mercury_L": {
+   "target": "mercury_L",
+   "machine_turns_per_day": "102638/9028989",
+   "target_turns_per_day": "3736816868147/328725000000000",
+   "rel_err": -5.4757893410126394e-08,
+   "ppm": -0.05475789341012639,
+   "machine_turns_per_tropical_year": 4.151929730264256,
+   "target_turns_per_tropical_year": 4.151929957615194,
+   "machine_period_days": 87.96926089752334,
+   "target_period_days": 87.96925608051193,
+   "period_diff_s": 0.41618978596173734,
+   "deg_per_century": -0.00818480879036623,
+   "years_to_1deg": 12217.756402287987
+  },
+  "venus_L": {
+   "target": "venus_L",
+   "machine_turns_per_day": "18259/4102812",
+   "target_turns_per_day": "9752969205169/2191500000000000",
+   "rel_err": -1.4759558977232682e-08,
+   "ppm": -0.014759558977232683,
+   "machine_turns_per_tropical_year": 1.625460084737219,
+   "target_turns_per_tropical_year": 1.6254601087282932,
+   "machine_period_days": 224.7008050824251,
+   "target_period_days": 224.70080176594033,
+   "period_diff_s": 0.28654428541067006,
+   "deg_per_century": -0.000863697145120956,
+   "years_to_1deg": 115781.32516114262
+  },
+  "mars_L": {
+   "target": "mars_L",
+   "machine_turns_per_day": "2342453/1609217280",
+   "target_turns_per_day": "708900075697/487000000000000",
+   "rel_err": 3.1504487329567447e-07,
+   "ppm": 0.31504487329567443,
+   "machine_turns_per_tropical_year": 0.5316638551871579,
+   "target_turns_per_tropical_year": 0.5316636876892387,
+   "machine_period_days": 686.9795381166666,
+   "target_period_days": 686.9797545460482,
+   "period_diff_s": -18.699498565288085,
+   "deg_per_century": 0.006030054032235895,
+   "years_to_1deg": 16583.599328532186
+  },
+  "jupiter_L": {
+   "target": "jupiter_L",
+   "machine_turns_per_day": "2945/12760254",
+   "target_turns_per_day": "758680690403/3287250000000000",
+   "rel_err": -7.2972503474439e-07,
+   "ppm": -0.72972503474439,
+   "machine_turns_per_tropical_year": 0.08429599039153617,
+   "target_turns_per_tropical_year": 0.08429605190447557,
+   "machine_period_days": 4332.8536502546685,
+   "target_period_days": 4332.850488462888,
+   "period_diff_s": 273.1788098329921,
+   "deg_per_century": -0.002214513172656908,
+   "years_to_1deg": 45156.65168973591
+  },
+  "saturn_L": {
+   "target": "saturn_L",
+   "machine_turns_per_day": "32395/348412752",
+   "target_turns_per_day": "1528217782691/16436250000000000",
+   "rel_err": 3.29688315055915e-06,
+   "ppm": 3.2968831505591503,
+   "machine_turns_per_tropical_year": 0.03395978093922685,
+   "target_turns_per_tropical_year": 0.033959668978166394,
+   "machine_period_days": 10755.139743787622,
+   "target_period_days": 10755.175202226625,
+   "period_diff_s": -3063.609129876693,
+   "deg_per_century": 0.004030684366511058,
+   "years_to_1deg": 24809.68265112744
+  },
+  "uranus_L": {
+   "target": "uranus_L",
+   "machine_turns_per_day": "589/18071424",
+   "target_turns_per_day": "10713967712879/328725000000000000",
+   "rel_err": 1.224966041595604e-05,
+   "ppm": 12.24966041595604,
+   "machine_turns_per_tropical_year": 0.011904299833566641,
+   "target_turns_per_tropical_year": 0.011904154011722458,
+   "machine_period_days": 30681.53480475382,
+   "target_period_days": 30681.91064313622,
+   "period_diff_s": -32472.436239236482,
+   "deg_per_century": 0.005249698647611398,
+   "years_to_1deg": 19048.71245238044
+  },
+  "neptune_L": {
+   "target": "neptune_L",
+   "machine_turns_per_day": "6479/390041568",
+   "target_turns_per_day": "21842764007231/1314900000000000000",
+   "rel_err": -4.0943637108894834e-05,
+   "ppm": -40.94363710889483,
+   "machine_turns_per_tropical_year": 0.006067056285833192,
+   "target_turns_per_tropical_year": 0.006067304703355195,
+   "machine_period_days": 60200.89026084272,
+   "target_period_days": 60198.42541743825,
+   "period_diff_s": 212962.47014641066,
+   "deg_per_century": -0.008943222029672956,
+   "years_to_1deg": 11181.652391968726
+  },
+  "moon_L": {
+   "target": "moon_L",
+   "machine_turns_per_day": "4598/125625",
+   "target_turns_per_day": "50719519769515700168049329/1385741558474838000000000000",
+   "rel_err": 2.3262293625522833e-09,
+   "ppm": 0.0023262293625522833,
+   "machine_turns_per_tropical_year": 13.368227566979028,
+   "target_turns_per_tropical_year": 13.368227535881465,
+   "machine_period_days": 27.32166159199652,
+   "target_period_days": 27.321661655552973,
+   "period_diff_s": -0.005491277403467264,
+   "deg_per_century": 0.001119536222716645,
+   "years_to_1deg": 89322.70164277662
+  },
+  "moon_perigee": {
+   "target": "moon_perigee",
+   "machine_turns_per_day": "359879/1163347920",
+   "target_turns_per_day": "12373063762876851123233/39997336852206000000000000",
+   "rel_err": 1.6393061762389921e-06,
+   "ppm": 1.6393061762389922,
+   "machine_turns_per_tropical_year": 0.11298683026499755,
+   "target_turns_per_tropical_year": 0.1129866450452925,
+   "machine_period_days": 3232.608515639979,
+   "target_period_days": 3232.6138148750842,
+   "period_diff_s": -457.8539130764391,
+   "deg_per_century": 0.00666805196840361,
+   "years_to_1deg": 14996.883718640374
+  },
+  "moon_node": {
+   "target": "moon_node",
+   "machine_turns_per_day": "-4123/28009512",
+   "target_turns_per_day": "-41131596119932372523431/279426805254558000000000000",
+   "rel_err": 6.796115772858184e-07,
+   "ppm": 0.6796115772858184,
+   "machine_turns_per_tropical_year": -0.05376364814954953,
+   "target_turns_per_tropical_year": -0.05376361161117665,
+   "machine_period_days": 6793.478535047296,
+   "target_period_days": 6793.483151973958,
+   "period_diff_s": -398.9024636366169,
+   "deg_per_century": -0.001315409552040276,
+   "years_to_1deg": 76021.95061218328
+  },
+  "evection_carrier": {
+   "target": "evection_carrier",
+   "machine_turns_per_day": "1502539/290836980",
+   "target_turns_per_day": "8265464052038478926311/1599893474088240000000000",
+   "rel_err": -1.092100668573705e-07,
+   "ppm": -0.1092100668573705,
+   "machine_turns_per_tropical_year": 1.8869355417741982,
+   "target_turns_per_tropical_year": 1.8869357478465774,
+   "machine_period_days": 193.56368120894032,
+   "target_period_days": 193.56366006983777,
+   "period_diff_s": 1.8264184617012875,
+   "deg_per_century": -0.007418764289688751,
+   "years_to_1deg": 13479.333767078808
+  },
+  "precession_ring": {
+   "target": "precession_ring",
+   "machine_turns_per_day": "-161975/1524347454672",
+   "target_turns_per_day": "-8383169383/78894000000000000",
+   "rel_err": -5.68208638064567e-07,
+   "ppm": -0.568208638064567,
+   "machine_turns_per_tropical_year": -3.8810117398395614e-05,
+   "target_turns_per_tropical_year": -3.881013945065209e-05,
+   "machine_period_days": 9411004.50484334,
+   "target_period_days": 9410999.157429287,
+   "period_diff_s": 462016.574137429,
+   "deg_per_century": 7.938982096298344e-07,
+   "years_to_1deg": 125960732.4805863
+  },
+  "stellar": {
+   "target": "stellar",
+   "machine_turns_per_day": "215725/215136",
+   "target_turns_per_day": "5013689059556773/5000000000000000",
+   "rel_err": -8.823090353144384e-09,
+   "ppm": -0.008823090353144384,
+   "machine_turns_per_tropical_year": 366.2421508558196,
+   "target_turns_per_tropical_year": 366.2421540872072,
+   "machine_period_days": 0.9972696720361571,
+   "target_period_days": 0.9972696632371567,
+   "period_diff_s": 0.000760233636532139,
+   "err_s_per_century": -27.91978603105022
+  },
+  "gmst": {
+   "target": "gmst",
+   "machine_turns_per_day": "9171125878675/9146084728032",
+   "target_turns_per_day": "1002737909344969/1000000000000000",
+   "rel_err": -2.2217235955917544e-11,
+   "ppm": -2.2217235955917546e-05,
+   "machine_turns_per_tropical_year": 366.242189665937,
+   "target_turns_per_tropical_year": 366.24218967407387,
+   "machine_period_days": 0.9972695663570351,
+   "target_period_days": 0.9972695663348785,
+   "period_diff_s": 1.9143279303042084e-06,
+   "err_s_per_century": -0.07030422556452803
+  },
+  "saros": {
+   "target": "saros",
+   "machine_turns_per_day": "53599/352966464",
+   "target_turns_per_day": "2748124722848952177853/18097284392579034000000000",
+   "rel_err": 4.949535207192669e-07,
+   "ppm": 0.4949535207192669,
+   "machine_turns_per_tropical_year": 0.05546310519775502,
+   "target_turns_per_tropical_year": 0.05546307774610942,
+   "machine_period_days": 6585.318084292618,
+   "target_period_days": 6585.321343718988,
+   "period_diff_s": -281.6144384437632,
+   "deg_per_century": 0.0009882803745249334,
+   "years_to_1deg": 101185.86038710928
+  },
+  "exeligmos": {
+   "target": "exeligmos",
+   "machine_turns_per_day": "53599/1058899392",
+   "target_turns_per_day": "2748124722848952177853/54291853177737102000000000",
+   "rel_err": 4.949535207192669e-07,
+   "ppm": 0.4949535207192669,
+   "machine_turns_per_tropical_year": 0.018487701732585005,
+   "target_turns_per_tropical_year": 0.018487692582036475,
+   "machine_period_days": 19755.95425287785,
+   "target_period_days": 19755.964031156964,
+   "period_diff_s": -844.8433153312897,
+   "deg_per_century": 0.00032942679150831116,
+   "years_to_1deg": 303557.58116132783
+  },
+  "ganymede": {
+   "target": "ganymede",
+   "machine_turns_per_day": "9686/69299",
+   "target_turns_per_day": "50317609207/360000000000",
+   "rel_err": -1.2500659598776886e-10,
+   "ppm": -0.00012500659598776886,
+   "machine_turns_per_tropical_year": 51.05031600949051,
+   "target_turns_per_tropical_year": 51.050316015872134,
+   "machine_period_days": 7.154552963039438,
+   "target_period_days": 7.154552962145072,
+   "period_diff_s": 7.727324933293336e-05,
+   "deg_per_century": -0.00022974345697629114,
+   "years_to_1deg": 435268.10868141375
+  },
+  "nu": {
+   "target": "nu",
+   "machine_turns_per_day": "2432/1183925",
+   "target_turns_per_day": "1479012641/720000000000",
+   "rel_err": -2.3412328696197648e-08,
+   "ppm": -0.023412328696197648,
+   "machine_turns_per_tropical_year": 0.7502747262512014,
+   "target_turns_per_tropical_year": 0.7502747438168803,
+   "machine_period_days": 486.81126644736844,
+   "target_period_days": 486.81125504998306,
+   "period_diff_s": 0.9847340970979429,
+   "deg_per_century": -0.000632377963395063,
+   "years_to_1deg": 158133.27754674997
+  },
+  "europa": {
+   "target": "europa",
+   "machine_turns_per_day": "1004501316/3567166025",
+   "target_turns_per_day": "20274944947/72000000000",
+   "rel_err": -2.9981468475828025e-10,
+   "ppm": -0.00029981468475828027,
+   "machine_turns_per_tropical_year": 102.85090674523222,
+   "target_turns_per_tropical_year": 102.85090677606843,
+   "machine_period_days": 3.551181036979348,
+   "target_period_days": 3.551181035914652,
+   "period_diff_s": 9.198975367770158e-05,
+   "deg_per_century": -0.0011101273773476454,
+   "years_to_1deg": 90079.75304502755
+  },
+  "io": {
+   "target": "io",
+   "machine_turns_per_day": "2016330248/3567166025",
+   "target_turns_per_day": "6782965193/12000000000",
+   "rel_err": -3.8135154325676736e-10,
+   "ppm": -0.00038135154325676736,
+   "machine_turns_per_tropical_year": 206.45208821671565,
+   "target_turns_per_tropical_year": 206.45208829544646,
+   "machine_period_days": 1.7691377831276773,
+   "target_period_days": 1.769137782453014,
+   "period_diff_s": 5.829091981887709e-05,
+   "deg_per_century": -0.0028343702180903536,
+   "years_to_1deg": 35281.20616063156
+  },
+  "callisto": {
+   "target": "callisto",
+   "machine_turns_per_day": "69615/1161806",
+   "target_turns_per_day": "7190357059/120000000000",
+   "rel_err": 3.197520420097488e-09,
+   "ppm": 0.0031975204200974877,
+   "machine_turns_per_tropical_year": 21.88518137611884,
+   "target_turns_per_tropical_year": 21.885181306140527,
+   "machine_period_days": 16.689018171371114,
+   "target_period_days": 16.68901822473459,
+   "period_diff_s": -0.004610604360470731,
+   "deg_per_century": 0.0025192731793862314,
+   "years_to_1deg": 39693.98825750327
+  },
+  "gmst_direct": {
+   "target": "gmst",
+   "machine_turns_per_day": "267723/266992",
+   "target_turns_per_day": "1002737909344969/1000000000000000",
+   "rel_err": 4.0402967543208126e-10,
+   "ppm": 0.0004040296754320813,
+   "machine_turns_per_tropical_year": 366.2421898220466,
+   "target_turns_per_tropical_year": 366.24218967407387,
+   "machine_period_days": 0.997269565931952,
+   "target_period_days": 0.9972695663348785,
+   "period_diff_s": -3.481284951720972e-05,
+   "err_s_per_century": 1.2785115795997315
+  },
+  "synodic": {
+   "target": "moon_D",
+   "machine_turns_per_day": "305067401/9008820000",
+   "target_turns_per_day": "2748124722848952177853/81153741670758000000000",
+   "rel_err": 3.523293275157035e-09,
+   "ppm": 0.003523293275157035,
+   "machine_turns_per_tropical_year": 12.36826638095943,
+   "target_turns_per_tropical_year": 12.368266337382401,
+   "machine_period_days": 29.530588881242018,
+   "target_period_days": 29.530588985286943,
+   "period_diff_s": -0.008989481538723493,
+   "deg_per_century": 0.0015688066126321352,
+   "years_to_1deg": 63742.71959003318
+  },
+  "saros_223": {
+   "target": "saros",
+   "machine_turns_per_day": "305067401/2008966860000",
+   "target_turns_per_day": "2748124722848952177853/18097284392579034000000000",
+   "rel_err": 3.523293275157035e-09,
+   "ppm": 0.003523293275157035,
+   "machine_turns_per_tropical_year": 0.05546307794152211,
+   "target_turns_per_tropical_year": 0.05546307774610942,
+   "machine_period_days": 6585.3213205169695,
+   "target_period_days": 6585.321343718988,
+   "period_diff_s": -2.0046543831353394,
+   "deg_per_century": 7.035007231534239e-06,
+   "years_to_1deg": 14214626.4685774
+  },
+  "mars_apsides": {
+   "target": "mars_apsides",
+   "machine_turns_per_day": "14725/435527844192",
+   "target_turns_per_day": "1479672137/43830000000000000",
+   "rel_err": 0.0014870840063508238,
+   "ppm": 1487.0840063508238,
+   "machine_turns_per_tropical_year": 1.2348673717671332e-05,
+   "target_turns_per_tropical_year": 1.2330337470026747e-05,
+   "machine_period_days": 29577442.72950764,
+   "target_period_days": 29621426.871539447,
+   "period_diff_s": -3800229871.5482345,
+   "deg_per_century": 0.0006601190308726935,
+   "years_to_1deg": 151487.83071410249
+  },
+  "moon_D": {
+   "target": "moon_D",
+   "machine_turns_per_day": "305067401/9008820000",
+   "target_turns_per_day": "2748124722848952177853/81153741670758000000000",
+   "rel_err": 3.523293275157035e-09,
+   "ppm": 0.003523293275157035,
+   "deg_per_century": 0.0015688066126321352,
+   "machine_period_days": 29.530588881242018,
+   "target_period_days": 29.530588985286943,
+   "period_diff_s": -0.008989481538723493,
+   "machine_turns_per_tropical_year": 12.36826638095943,
+   "target_turns_per_tropical_year": 12.368266337382401,
+   "years_to_1deg": 63742.71959003318,
+   "expr": "ω moon_L − ω Y"
+  },
+  "moon_F": {
+   "target": "moon_F",
+   "machine_turns_per_day": "43101896017/1172898315000",
+   "target_turns_per_day": "367720484618036149891/10006491101985000000000",
+   "rel_err": 5.039001991067584e-09,
+   "ppm": 0.005039001991067584,
+   "deg_per_century": 0.00243485590997435,
+   "machine_period_days": 27.212220885535807,
+   "target_period_days": 27.21222102265824,
+   "period_diff_s": -0.011847378403317815,
+   "machine_turns_per_tropical_year": 13.421991215128578,
+   "target_turns_per_tropical_year": 13.421991147495138,
+   "years_to_1deg": 41070.19211705774,
+   "expr": "ω moon_L − ω moon_node"
+  },
+  "moon_Mp": {
+   "target": "moon_Mp",
+   "machine_turns_per_day": "353590929119/9743038830000",
+   "target_turns_per_day": "203885543841116306153/5617974285630000000000",
+   "rel_err": -1.162723944260669e-08,
+   "ppm": -0.011627239442606688,
+   "deg_per_century": -0.005548505596031574,
+   "machine_period_days": 27.554549700343156,
+   "target_period_days": 27.55454937995981,
+   "period_diff_s": 0.027681121189361918,
+   "machine_turns_per_tropical_year": 13.25524073671403,
+   "target_turns_per_tropical_year": 13.255240890835891,
+   "years_to_1deg": 18022.870891852832,
+   "expr": "ω moon_L − ω moon_perigee"
+  },
+  "_zodiac_note": "Lecture tropique = aiguille (repère J2000) − anneau ; l’erreur tropique vaut l’erreur de l’aiguille + l’erreur de l’anneau (7.94e-07 °/siècle)."
+ },
+ "geocentric_bounds": {
+  "mercury": {
+   "delta_min_au": 0.5165905479949185,
+   "amp_planet": 0.9034249468950054,
+   "amp_earth": 1.9034249468950055,
+   "bound_deg_per_century": 0.008108822726920184
+  },
+  "venus": {
+   "delta_min_au": 0.2550538331498544,
+   "amp_planet": 2.8552305771698254,
+   "amp_earth": 3.8552305771698254,
+   "bound_deg_per_century": 0.003913139046001943
+  },
+  "mars": {
+   "delta_min_au": 0.36469090051869557,
+   "amp_planet": 3.7878783983100486,
+   "amp_earth": 2.7878783983100486,
+   "bound_deg_per_century": 0.023887558741276772
+  },
+  "jupiter": {
+   "delta_min_au": 3.93442497730881,
+   "amp_planet": 1.2584148609974903,
+   "amp_earth": 0.2584148609974904,
+   "bound_deg_per_century": 0.002883773896423156
+  },
+  "saturn": {
+   "delta_min_au": 8.006299619605358,
+   "amp_planet": 1.1269892374657877,
+   "amp_earth": 0.1269892374657877,
+   "bound_deg_per_century": 0.004590204093297655
+  },
+  "uranus": {
+   "delta_min_au": 17.26561995975877,
+   "amp_planet": 1.058886613164542,
+   "amp_earth": 0.05888661316454202,
+   "bound_deg_per_century": 0.005580939074134397
+  },
+  "neptune": {
+   "delta_min_au": 28.794893806312366,
+   "amp_planet": 1.0353088256013443,
+   "amp_earth": 0.035308825601344226,
+   "bound_deg_per_century": 0.009272250081847296
+  }
+ },
+ "gregorian_simulation": {
+  "years": [
+   1582,
+   6000
+  ],
+  "errors": [],
+  "min_margin_deg": {
+   "C4": 45.0,
+   "C100": 1.8,
+   "C400": 45.0
+  },
+  "arcs_turns": {
+   "C4": [
+    "241/1464",
+    "1339/1464"
+   ],
+   "C100": [
+    "1459/1464",
+    "241/36600"
+   ],
+   "C400": [
+    "9179/73200",
+    "64079/73200"
+   ]
+  },
+  "reading_position": 58,
+  "positions": 366,
+  "daywise": {
+   "years": [
+    1600,
+    2400
+   ],
+   "days": 292194,
+   "wrong_dates": 0,
+   "wrong_weekdays": 0
+  }
+ },
+ "budgets": [
+  {
+   "name": "tâche : roue de l’année Y < 1°/siècle",
+   "value": -0.0003753561606425703,
+   "limit": 1.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Mercure < 1°/siècle",
+   "value": -0.00818480879036623,
+   "limit": 1.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Vénus < 1°/siècle",
+   "value": -0.000863697145120956,
+   "limit": 1.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Mars < 1°/siècle",
+   "value": 0.006030054032235895,
+   "limit": 1.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Jupiter < 1°/siècle",
+   "value": -0.002214513172656908,
+   "limit": 1.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Saturne < 1°/siècle",
+   "value": 0.004030684366511058,
+   "limit": 1.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Uranus < 1°/siècle",
+   "value": 0.005249698647611398,
+   "limit": 1.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Neptune < 1°/siècle",
+   "value": -0.008943222029672956,
+   "limit": 1.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Lune L < 2°/siècle",
+   "value": 0.001119536222716645,
+   "limit": 2.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Lune D < 2°/siècle",
+   "value": 0.0015688066126321352,
+   "limit": 2.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Lune F < 2°/siècle",
+   "value": 0.00243485590997435,
+   "limit": 2.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : Lune M′ < 2°/siècle",
+   "value": -0.005548505596031574,
+   "limit": 2.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : nœuds Ω < 2°/siècle",
+   "value": -0.001315409552040276,
+   "limit": 2.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : périgée ϖ < 2°/siècle",
+   "value": 0.00666805196840361,
+   "limit": 2.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "tâche : période de précession à 0,5 % près",
+   "value": -5.68208638064567e-07,
+   "limit": 0.005,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "étude des mécanismes : roue de l’année Y ≤ 0,1°/siècle",
+   "value": -0.0003753561606425703,
+   "limit": 0.1,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "étude des mécanismes : Mars ≤ 0,1°/siècle",
+   "value": 0.006030054032235895,
+   "limit": 0.1,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "étude des mécanismes : Vénus ≤ 0,1°/siècle",
+   "value": -0.000863697145120956,
+   "limit": 0.1,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : roue de l’année Y ≤ 0,001°/siècle",
+   "value": -0.0003753561606425703,
+   "limit": 0.001,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : Mercure ≤ 0,02°/siècle",
+   "value": -0.00818480879036623,
+   "limit": 0.02,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : Vénus ≤ 0,02°/siècle",
+   "value": -0.000863697145120956,
+   "limit": 0.02,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : Mars ≤ 0,02°/siècle",
+   "value": 0.006030054032235895,
+   "limit": 0.02,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : Jupiter ≤ 0,02°/siècle",
+   "value": -0.002214513172656908,
+   "limit": 0.02,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : Saturne ≤ 0,02°/siècle",
+   "value": 0.004030684366511058,
+   "limit": 0.02,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : Uranus ≤ 0,02°/siècle",
+   "value": 0.005249698647611398,
+   "limit": 0.02,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : Neptune ≤ 0,02°/siècle",
+   "value": -0.008943222029672956,
+   "limit": 0.02,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : Lune L ≤ 0,01°/siècle",
+   "value": 0.001119536222716645,
+   "limit": 0.01,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : périgée ϖ ≤ 0,02°/siècle",
+   "value": 0.00666805196840361,
+   "limit": 0.02,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : nœuds Ω ≤ 0,01°/siècle",
+   "value": -0.001315409552040276,
+   "limit": 0.01,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : Ganymède ≤ 0,002°/siècle",
+   "value": -0.00022974345697629114,
+   "limit": 0.002,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : ν ≤ 0,002°/siècle",
+   "value": -0.000632377963395063,
+   "limit": 0.002,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "allocation : Callisto ≤ 0,01°/siècle",
+   "value": 0.0025192731793862314,
+   "limit": 0.01,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "géocentrique (engrenages seuls) : Mercure ≤ 0,1°/siècle",
+   "value": 0.008108822726920184,
+   "limit": 0.1,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "géocentrique (engrenages seuls) : Vénus ≤ 0,1°/siècle",
+   "value": 0.003913139046001943,
+   "limit": 0.1,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "géocentrique (engrenages seuls) : Mars ≤ 0,1°/siècle",
+   "value": 0.023887558741276772,
+   "limit": 0.1,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "géocentrique (engrenages seuls) : Jupiter ≤ 0,1°/siècle",
+   "value": 0.002883773896423156,
+   "limit": 0.1,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "géocentrique (engrenages seuls) : Saturne ≤ 0,1°/siècle",
+   "value": 0.004590204093297655,
+   "limit": 0.1,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "géocentrique (engrenages seuls) : Uranus ≤ 0,1°/siècle",
+   "value": 0.005580939074134397,
+   "limit": 0.1,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "géocentrique (engrenages seuls) : Neptune ≤ 0,1°/siècle",
+   "value": 0.009272250081847296,
+   "limit": 0.1,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "lunes galiléennes : Io ≤ 0,02°/siècle",
+   "value": -0.0028343702180903536,
+   "limit": 0.02,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "lunes galiléennes : Europe ≤ 0,02°/siècle",
+   "value": -0.0011101273773476454,
+   "limit": 0.02,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "temps sidéral ≤ 1 s/siècle",
+   "value": -0.07030422556452803,
+   "limit": 1.0,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "Saros ≤ 10⁻⁶ relatif",
+   "value": 4.949535207192669e-07,
+   "limit": 1e-06,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "Mercure ≤ 0,05°/siècle",
+   "value": -0.00818480879036623,
+   "limit": 0.05,
+   "kind": "<=",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "identité : Io − 3·Europe + 2·Ganymède = 0",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "identité : évection = 2Y − ϖ",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "identité : TSMG = J + Y + p",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "identité : vitesse moyenne de l’EdT = 0",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "identité : vitesse moyenne de l’équation annuelle = 0",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : semaine = 1/7 tour par jour",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : 146 097 jours = 20 871 semaines",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : anneau des dates = 400/146 097 tour par jour (1 tour par année civile)",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : roues-programmes 1/4, 1/100, 1/400 de l’anneau",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : vitesse moyenne de l’aiguille géocentrique (Mercure)",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : vitesse moyenne de l’aiguille géocentrique (Vénus)",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : vitesse moyenne de l’aiguille géocentrique (Mars)",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : vitesse moyenne de l’aiguille géocentrique (Jupiter)",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : vitesse moyenne de l’aiguille géocentrique (Saturne)",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : vitesse moyenne de l’aiguille géocentrique (Uranus)",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : vitesse moyenne de l’aiguille géocentrique (Neptune)",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "exact : Exeligmos = Saros/3",
+   "value": 0.0,
+   "limit": 0.0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "grégorien : années fausses 1582–6000",
+   "value": 0,
+   "limit": 0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "grégorien jour par jour 1600–2400 (292 194 jours) : dates fausses",
+   "value": 0,
+   "limit": 0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "semaine jour par jour 1600–2400 : jours faux",
+   "value": 0,
+   "limit": 0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  },
+  {
+   "name": "dentures hors [10, 220] sans exception déclarée",
+   "value": 0,
+   "limit": 0,
+   "kind": "==",
+   "ok": true,
+   "note": ""
+  }
+ ],
+ "lean_candidates": [
+  {
+   "kind": "ratio",
+   "shaft": "W",
+   "statement": "ω W = (10 / 70) · ω J",
+   "rate_vs_J": "1/7"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "Y",
+   "statement": "ω Y = (31·19·10 / 180·144·83) · ω J",
+   "rate_vs_J": "589/215136"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "mercury_L",
+   "statement": "ω mercury_L = (37·64·73 / 17·31·79) · ω Y",
+   "rate_vs_J": "102638/9028989"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "venus_L",
+   "statement": "ω venus_L = (124·166 / 67·189) · ω Y",
+   "rate_vs_J": "18259/4102812"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "mars_L",
+   "statement": "ω mars_L = (97·41 / 88·85) · ω Y",
+   "rate_vs_J": "2342453/1609217280"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "jupiter_L",
+   "statement": "ω jupiter_L = (10·16 / 26·73) · ω Y",
+   "rate_vs_J": "2945/12760254"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "saturn_L",
+   "statement": "ω saturn_L = (10·11 / 41·79) · ω Y",
+   "rate_vs_J": "32395/348412752"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "uranus_L",
+   "statement": "ω uranus_L = (10·10 / 84·100) · ω Y",
+   "rate_vs_J": "589/18071424"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "neptune_L",
+   "statement": "ω neptune_L = (12·11 / 148·147) · ω Y",
+   "rate_vs_J": "6479/390041568"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "moon_L",
+   "statement": "ω moon_L = (11·22·19 / 25·75·67) · ω J",
+   "rate_vs_J": "4598/125625"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "moon_perigee",
+   "statement": "ω moon_perigee = (47·26 / 105·103) · ω Y",
+   "rate_vs_J": "359879/1163347920"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "moon_node",
+   "statement": "ω moon_node = (-12·21 / 43·109) · ω Y",
+   "rate_vs_J": "-4123/28009512"
+  },
+  {
+   "kind": "identity",
+   "shaft": "evection_carrier",
+   "statement": "ω evection_carrier = (2)·ω Y + (-1)·ω moon_perigee",
+   "rate_vs_J": "1502539/290836980"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "precession_ring",
+   "statement": "ω precession_ring = (-10·15 / 131·179) · ω neptune_L",
+   "rate_vs_J": "-161975/1524347454672"
+  },
+  {
+   "kind": "identity",
+   "shaft": "sun_trop",
+   "statement": "ω sun_trop = (1)·ω Y + (-1)·ω precession_ring",
+   "rate_vs_J": "25041150643/9146084728032"
+  },
+  {
+   "kind": "identity",
+   "shaft": "stellar",
+   "statement": "ω stellar = (1)·ω J + (1)·ω Y",
+   "rate_vs_J": "215725/215136"
+  },
+  {
+   "kind": "identity",
+   "shaft": "gmst",
+   "statement": "ω gmst = (1)·ω J + (1)·ω sun_trop",
+   "rate_vs_J": "9171125878675/9146084728032"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "earth_true",
+   "statement": "ω earth_true = (1)·ω Y",
+   "rate_vs_J": "589/215136"
+  },
+  {
+   "kind": "identity",
+   "shaft": "lambda_trop",
+   "statement": "ω lambda_trop = (1)·ω earth_true + (-1)·ω precession_ring",
+   "rate_vs_J": "25041150643/9146084728032"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "alpha_sun",
+   "statement": "ω alpha_sun = (1)·ω lambda_trop",
+   "rate_vs_J": "25041150643/9146084728032"
+  },
+  {
+   "kind": "identity",
+   "shaft": "eot",
+   "statement": "ω eot = (1)·ω sun_trop + (-1)·ω alpha_sun",
+   "rate_vs_J": "0"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "eot_dial",
+   "statement": "ω eot_dial = (120 / 12) · ω eot",
+   "rate_vs_J": "0"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "tellurion",
+   "statement": "ω tellurion = (40 / 40) · ω stellar",
+   "rate_vs_J": "215725/215136"
+  },
+  {
+   "kind": "identity",
+   "shaft": "cal_sum",
+   "statement": "ω cal_sum = (1/61)·ω cal_cross_main + (1/61)·ω cal_cross_skip",
+   "rate_vs_J": "400/146097"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "cal_prog4",
+   "statement": "ω cal_prog4 = (15 / 60) · ω cal_sum",
+   "rate_vs_J": "100/146097"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "cal_prog100",
+   "statement": "ω cal_prog100 = (12·12 / 60·60) · ω cal_prog4",
+   "rate_vs_J": "4/146097"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "cal_prog400",
+   "statement": "ω cal_prog400 = (15 / 60) · ω cal_prog100",
+   "rate_vs_J": "1/146097"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "mercury_true",
+   "statement": "ω mercury_true = (1)·ω mercury_L",
+   "rate_vs_J": "102638/9028989"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "venus_true",
+   "statement": "ω venus_true = (1)·ω venus_L",
+   "rate_vs_J": "18259/4102812"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "mars_true",
+   "statement": "ω mars_true = (1)·ω mars_L",
+   "rate_vs_J": "2342453/1609217280"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "jupiter_true",
+   "statement": "ω jupiter_true = (1)·ω jupiter_L",
+   "rate_vs_J": "2945/12760254"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "saturn_true",
+   "statement": "ω saturn_true = (1)·ω saturn_L",
+   "rate_vs_J": "32395/348412752"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "uranus_true",
+   "statement": "ω uranus_true = (1)·ω uranus_L",
+   "rate_vs_J": "589/18071424"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "neptune_true",
+   "statement": "ω neptune_true = (1)·ω neptune_L",
+   "rate_vs_J": "6479/390041568"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "mercury_geo",
+   "statement": "ω mercury_geo = (1)·ω Y",
+   "rate_vs_J": "589/215136"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "venus_geo",
+   "statement": "ω venus_geo = (1)·ω Y",
+   "rate_vs_J": "589/215136"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "mars_geo",
+   "statement": "ω mars_geo = (1)·ω mars_L",
+   "rate_vs_J": "2342453/1609217280"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "jupiter_geo",
+   "statement": "ω jupiter_geo = (1)·ω jupiter_L",
+   "rate_vs_J": "2945/12760254"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "saturn_geo",
+   "statement": "ω saturn_geo = (1)·ω saturn_L",
+   "rate_vs_J": "32395/348412752"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "uranus_geo",
+   "statement": "ω uranus_geo = (1)·ω uranus_L",
+   "rate_vs_J": "589/18071424"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "neptune_geo",
+   "statement": "ω neptune_geo = (1)·ω neptune_L",
+   "rate_vs_J": "6479/390041568"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "sun_geo",
+   "statement": "ω sun_geo = (1)·ω earth_true",
+   "rate_vs_J": "589/215136"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "orrery_earth",
+   "statement": "ω orrery_earth = (40 / 40) · ω earth_true",
+   "rate_vs_J": "589/215136"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "orrery_mercury",
+   "statement": "ω orrery_mercury = (40 / 40) · ω mercury_true",
+   "rate_vs_J": "102638/9028989"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "orrery_venus",
+   "statement": "ω orrery_venus = (40 / 40) · ω venus_true",
+   "rate_vs_J": "18259/4102812"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "orrery_mars",
+   "statement": "ω orrery_mars = (40 / 40) · ω mars_true",
+   "rate_vs_J": "2342453/1609217280"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "orrery_jupiter",
+   "statement": "ω orrery_jupiter = (40 / 40) · ω jupiter_true",
+   "rate_vs_J": "2945/12760254"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "orrery_saturn",
+   "statement": "ω orrery_saturn = (40 / 40) · ω saturn_true",
+   "rate_vs_J": "32395/348412752"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "orrery_uranus",
+   "statement": "ω orrery_uranus = (40 / 40) · ω uranus_true",
+   "rate_vs_J": "589/18071424"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "orrery_neptune",
+   "statement": "ω orrery_neptune = (40 / 40) · ω neptune_true",
+   "rate_vs_J": "6479/390041568"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "mars_epicyclet",
+   "statement": "ω mars_epicyclet = (60 / 20) · ω mars_L",
+   "rate_vs_J": "2342453/536405760"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "mercury_E",
+   "statement": "ω mercury_E = (1)·ω mercury_L",
+   "rate_vs_J": "102638/9028989"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "mercury_counter_arm",
+   "statement": "ω mercury_counter_arm = (-40 / 40) · ω mercury_E",
+   "rate_vs_J": "-102638/9028989"
+  },
+  {
+   "kind": "identity",
+   "shaft": "annual_eq",
+   "statement": "ω annual_eq = (3/31)·ω earth_true + (-3/31)·ω Y",
+   "rate_vs_J": "0"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "moon_true",
+   "statement": "ω moon_true = (1)·ω moon_L",
+   "rate_vs_J": "4598/125625"
+  },
+  {
+   "kind": "mean_rate",
+   "shaft": "moon_phase",
+   "statement": "ω moon_phase = (1)·ω moon_true + (-1)·ω sun_geo",
+   "rate_vs_J": "305067401/9008820000"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "saros",
+   "statement": "ω saros = (13·21 / 46·107) · ω Y",
+   "rate_vs_J": "53599/352966464"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "exeligmos",
+   "statement": "ω exeligmos = (20 / 60) · ω saros",
+   "rate_vs_J": "53599/1058899392"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "ganymede",
+   "statement": "ω ganymede = (167·10·29 / 131·23·115) · ω J",
+   "rate_vs_J": "9686/69299"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "nu",
+   "statement": "ω nu = (16·19·16 / 115·145·142) · ω J",
+   "rate_vs_J": "2432/1183925"
+  },
+  {
+   "kind": "identity",
+   "shaft": "europa",
+   "statement": "ω europa = (2)·ω ganymede + (1)·ω nu",
+   "rate_vs_J": "1004501316/3567166025"
+  },
+  {
+   "kind": "identity",
+   "shaft": "io",
+   "statement": "ω io = (2)·ω europa + (1)·ω nu",
+   "rate_vs_J": "2016330248/3567166025"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "callisto",
+   "statement": "ω callisto = (51·35·39 / 122·89·107) · ω J",
+   "rate_vs_J": "69615/1161806"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "gmst_direct",
+   "statement": "ω gmst_direct = (197·151·18 / 164·148·22) · ω J",
+   "rate_vs_J": "267723/266992"
+  },
+  {
+   "kind": "identity",
+   "shaft": "synodic",
+   "statement": "ω synodic = (1)·ω moon_L + (-1)·ω Y",
+   "rate_vs_J": "305067401/9008820000"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "saros_223",
+   "statement": "ω saros_223 = (20·10 / 223·200) · ω synodic",
+   "rate_vs_J": "305067401/2008966860000"
+  },
+  {
+   "kind": "ratio",
+   "shaft": "mars_apsides",
+   "statement": "ω mars_apsides = (-14 / 44) · ω precession_ring",
+   "rate_vs_J": "14725/435527844192"
+  },
+  {
+   "kind": "bound",
+   "shaft": "Y",
+   "statement": "|ω Y − cible| · 360 · 36525 < 0.001  (cible = 8999843216329/3287250000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "mercury_L",
+   "statement": "|ω mercury_L − cible| · 360 · 36525 < 0.01  (cible = 3736816868147/328725000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "venus_L",
+   "statement": "|ω venus_L − cible| · 360 · 36525 < 0.001  (cible = 9752969205169/2191500000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "mars_L",
+   "statement": "|ω mars_L − cible| · 360 · 36525 < 0.01  (cible = 708900075697/487000000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "jupiter_L",
+   "statement": "|ω jupiter_L − cible| · 360 · 36525 < 0.01  (cible = 758680690403/3287250000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "saturn_L",
+   "statement": "|ω saturn_L − cible| · 360 · 36525 < 0.01  (cible = 1528217782691/16436250000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "uranus_L",
+   "statement": "|ω uranus_L − cible| · 360 · 36525 < 0.01  (cible = 10713967712879/328725000000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "neptune_L",
+   "statement": "|ω neptune_L − cible| · 360 · 36525 < 0.01  (cible = 21842764007231/1314900000000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "moon_L",
+   "statement": "|ω moon_L − cible| · 360 · 36525 < 0.01  (cible = 50719519769515700168049329/1385741558474838000000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "moon_perigee",
+   "statement": "|ω moon_perigee − cible| · 360 · 36525 < 0.01  (cible = 12373063762876851123233/39997336852206000000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "moon_node",
+   "statement": "|ω moon_node − cible| · 360 · 36525 < 0.01  (cible = -41131596119932372523431/279426805254558000000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "evection_carrier",
+   "statement": "|ω evection_carrier − cible| · 360 · 36525 < 0.01  (cible = 8265464052038478926311/1599893474088240000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "precession_ring",
+   "statement": "|ω precession_ring − cible| · 360 · 36525 < 1e-06  (cible = -8383169383/78894000000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "saros",
+   "statement": "|ω saros − cible| · 360 · 36525 < 0.001  (cible = 2748124722848952177853/18097284392579034000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "exeligmos",
+   "statement": "|ω exeligmos − cible| · 360 · 36525 < 0.001  (cible = 2748124722848952177853/54291853177737102000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "ganymede",
+   "statement": "|ω ganymede − cible| · 360 · 36525 < 0.001  (cible = 50317609207/360000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "nu",
+   "statement": "|ω nu − cible| · 360 · 36525 < 0.001  (cible = 1479012641/720000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "europa",
+   "statement": "|ω europa − cible| · 360 · 36525 < 0.01  (cible = 20274944947/72000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "io",
+   "statement": "|ω io − cible| · 360 · 36525 < 0.01  (cible = 6782965193/12000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "callisto",
+   "statement": "|ω callisto − cible| · 360 · 36525 < 0.01  (cible = 7190357059/120000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "synodic",
+   "statement": "|ω synodic − cible| · 360 · 36525 < 0.01  (cible = 2748124722848952177853/81153741670758000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "saros_223",
+   "statement": "|ω saros_223 − cible| · 360 · 36525 < 1e-05  (cible = 2748124722848952177853/18097284392579034000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "mars_apsides",
+   "statement": "|ω mars_apsides − cible| · 360 · 36525 < 0.001  (cible = 1479672137/43830000000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "moon_D",
+   "statement": "|(ω moon_L − ω Y) − cible| · 360 · 36525 < 0.01  (cible = 2748124722848952177853/81153741670758000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "moon_F",
+   "statement": "|(ω moon_L − ω moon_node) − cible| · 360 · 36525 < 0.01  (cible = 367720484618036149891/10006491101985000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "bound",
+   "shaft": "moon_Mp",
+   "statement": "|(ω moon_L − ω moon_perigee) − cible| · 360 · 36525 < 0.01  (cible = 203885543841116306153/5617974285630000000000 tr/j, décimale exacte de constants.json)"
+  },
+  {
+   "kind": "identity",
+   "shaft": "io",
+   "statement": "ω io − 3 ω europa + 2 ω ganymede = 0 (Laplace, exact par construction)"
+  },
+  {
+   "kind": "identity",
+   "shaft": "eot",
+   "statement": "vitesse moyenne de l’équation du temps = 0"
+  },
+  {
+   "kind": "identity",
+   "shaft": "gmst",
+   "statement": "ω gmst = ω J + ω Y − ω precession_ring"
+  },
+  {
+   "kind": "decide",
+   "shaft": "calendar",
+   "statement": "pour tout n : saute(n) ↔ ¬ bissextile(2000 + n) (400 cas par decide + périodicité de 400 ans des trois cames)"
+  },
+  {
+   "kind": "decide",
+   "shaft": "W",
+   "statement": "146097 = 7 · 20871"
+  }
+ ],
+ "shared_arbors": {
+  "J": [
+   {
+    "train": "W",
+    "first_driver_teeth": 10
+   },
+   {
+    "train": "Y",
+    "first_driver_teeth": 31
+   },
+   {
+    "train": "moon_L",
+    "first_driver_teeth": 11
+   },
+   {
+    "train": "ganymede",
+    "first_driver_teeth": 167
+   },
+   {
+    "train": "nu",
+    "first_driver_teeth": 16
+   },
+   {
+    "train": "callisto",
+    "first_driver_teeth": 51
+   }
+  ],
+  "Y": [
+   {
+    "train": "mercury_L",
+    "first_driver_teeth": 37
+   },
+   {
+    "train": "venus_L",
+    "first_driver_teeth": 124
+   },
+   {
+    "train": "mars_L",
+    "first_driver_teeth": 97
+   },
+   {
+    "train": "jupiter_L",
+    "first_driver_teeth": 10
+   },
+   {
+    "train": "saturn_L",
+    "first_driver_teeth": 10
+   },
+   {
+    "train": "uranus_L",
+    "first_driver_teeth": 10
+   },
+   {
+    "train": "neptune_L",
+    "first_driver_teeth": 12
+   },
+   {
+    "train": "moon_perigee",
+    "first_driver_teeth": 47
+   },
+   {
+    "train": "moon_node",
+    "first_driver_teeth": 12
+   },
+   {
+    "train": "saros",
+    "first_driver_teeth": 13
+   }
+  ]
+ },
+ "inventory": {
+  "designed_pairs": 38,
+  "designed_wheels": 76,
+  "exact_pairs": 18,
+  "exact_wheels": 36,
+  "idlers": 2,
+  "differentials": 10,
+  "diff_wheels": 78,
+  "steppers": 2,
+  "transfer_wheels_estimate": 87,
+  "total_estimate": 283,
+  "largest_wheels": [
+   {
+    "pitch_d_mm": 180.0,
+    "shaft": "cal_sum",
+    "teeth": 200,
+    "module_mm": "9/10",
+    "mesh": "internal"
+   },
+   {
+    "pitch_d_mm": 143.2,
+    "shaft": "precession_ring",
+    "teeth": 179,
+    "module_mm": "4/5",
+    "mesh": "internal"
+   },
+   {
+    "pitch_d_mm": 94.5,
+    "shaft": "venus_L",
+    "teeth": 189,
+    "module_mm": "1/2",
+    "mesh": "external"
+   },
+   {
+    "pitch_d_mm": 90.0,
+    "shaft": "Y",
+    "teeth": 180,
+    "module_mm": "1/2",
+    "mesh": "external"
+   },
+   {
+    "pitch_d_mm": 83.5,
+    "shaft": "ganymede",
+    "teeth": 167,
+    "module_mm": "1/2",
+    "mesh": "external"
+   },
+   {
+    "pitch_d_mm": 83.0,
+    "shaft": "venus_L",
+    "teeth": 166,
+    "module_mm": "1/2",
+    "mesh": "external"
+   },
+   {
+    "pitch_d_mm": 77.5,
+    "shaft": "annual_eq",
+    "teeth": 155,
+    "module_mm": "1/2",
+    "mesh": "external"
+   },
+   {
+    "pitch_d_mm": 74.0,
+    "shaft": "neptune_L",
+    "teeth": 148,
+    "module_mm": "1/2",
+    "mesh": "external"
+   }
+  ]
+ }
+}
