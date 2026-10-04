@@ -82,8 +82,10 @@ recouvrement ; 183 paires de pièces voisines, sans collision. Chaque pièce tou
 étages</b> (E5 à E1), vus de face, puis l'intérieur sans la caisse ni les cadrans avant. Les blocs translucides sont
 les mécanismes encore à dessiner.</figcaption></figure>
 {video}
-<p><b>Preuves Lean 4</b> : 201 théorèmes générés depuis <code>trains.json</code> et <code>architecture.json</code>
-(rapports, vitesses, identités, architecture), compilés sans avertissement et audités : ils ne reposent que sur les
+<p><b>Preuves Lean 4</b> : 249 théorèmes. 201 sont générés depuis <code>trains.json</code> et
+<code>architecture.json</code> (rapports, vitesses, identités, architecture) ; 48 sont écrits à la main pour les
+mécanismes non linéaires (identité du module vectoriel, ellipse à deux bras, équation de Kepler et son résolveur,
+équant, accouplement d'Oldham, joint de Hooke). Ils sont compilés sans avertissement et audités : ils ne reposent que sur les
 trois axiomes standard. Voir <a href="{repo}/blob/main/v2/blender/README.md">la maquette et les preuves</a>.</p>""".replace("{video}", video))
     files = [("research/mechanisms.md", "la meilleure réalisation de chaque sous-système, chiffrée"),
              ("research/precedents.md", "les machines qui l'ont déjà fait : Strasbourg, Olsen, Hahn…"),
@@ -93,7 +95,7 @@ trois axiomes standard. Voir <a href="{repo}/blob/main/v2/blender/README.md">la 
              ("spec/architecture.json", "l'architecture vérifiée (positions, étages, renvois)"),
              ("study/architecture.md", "l'architecture expliquée"),
              ("blender/README.md", "la maquette 3D, ses contrôles et les preuves Lean"),
-             ("lean/", "les 201 théorèmes Lean 4 de la v2"),
+             ("lean/", "les 249 théorèmes Lean 4 de la v2"),
              ("tools/", "les scripts qui produisent et vérifient tout")]
     lis = "".join(f'<li><a href="{repo}/blob/main/v2/{p}"><code>v2/{p}</code></a> : {d}</li>' for p, d in files)
     P.append(f"""<h2><span class="n">10</span>Les fichiers</h2><ul class="tight">{lis}</ul>

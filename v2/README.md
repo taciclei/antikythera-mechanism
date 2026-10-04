@@ -10,8 +10,8 @@
 **État : étude de conception terminée.** [Lire l'étude](https://taciclei.github.io/antikythera-mechanism/v2/) (page
 illustrée), ou le dossier [`study/`](study/). L'architecture (version 4) est vérifiée pièce par pièce, sans collision, et
 a été relue par trois revues adversariales. **La maquette 3D** (Blender, 415 pièces, contrôle d'interférence sans
-recouvrement) et **201 preuves Lean 4** sont faites : voir [`blender/README.md`](blender/README.md). Prochaine étape :
-dessiner l'intérieur des blocs pièce par pièce.
+recouvrement) et **249 preuves Lean 4** sont faites : voir [`blender/README.md`](blender/README.md). En cours : l'intérieur
+des blocs pièce par pièce, en commençant par les tours de Kepler ([`tools/kepler/`](tools/kepler/CONTRACT.md)).
 
 ## Ce qui change par rapport à l'original
 
@@ -62,5 +62,5 @@ Les principes de la v1 restent valables :
 **Status:** the design study is complete. [Read it](https://taciclei.github.io/antikythera-mechanism/v2/) (illustrated
 page, in French) or browse [`study/`](study/). The architecture (version 4) is checked part by part with no collision
 and was reviewed by three adversarial reviews. **The 3D model** (Blender, 415 parts, interference check with no
-overlap) and **201 Lean 4 proofs** are done: see [`blender/README.md`](blender/README.md). Next: design the inside of
-the blocks part by part.
+overlap) and **249 Lean 4 proofs** are done: see [`blender/README.md`](blender/README.md). In progress: the inside of the
+blocks part by part, starting with the Kepler towers ([`tools/kepler/`](tools/kepler/CONTRACT.md)).

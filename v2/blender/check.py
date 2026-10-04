@@ -20,6 +20,9 @@ Contrôles (rapport JSON dans v2/out/check.json, code de sortie 1 en cas d'éche
       sans contrôleur alors que des pièces bougent est un échec.
 Les noms de `links`/`meshes_with` sont cherchés par nom d'objet, par ce nom avec « # » → « . » (parts.obj_name),
 par `part_id`/`id`, puis par `source` unique ; un nom introuvable est un échec.
+(5) tours de Kepler (kepler_check.py, CONTRACT.md § 8) : seulement si la scène contient des pièces Kepler
+  (`kepler` = 1) ; maillages, relecture des images clés contre motion_api, recouvrements BVH sur une grille de
+  l'espace d'état (L, LT) ; section « kepler » du rapport et verdict global. Sans pièce Kepler : rien de plus.
 L'option --quick réduit le nombre d'instants et ne teste qu'un sous-ensemble aléatoire (graine fixe) des couples
 statiques. L'option --selftest construit une petite scène synthétique (lib/check_selftest.py) et vérifie que les
 contrôles attrapent les défauts volontaires et acceptent la scène corrigée. Le fichier .blend n'est jamais enregistré.
@@ -62,6 +65,12 @@ def parse_args(argv):
     p.add_argument('--seed', type=int, default=20261004)
     p.add_argument('--selftest', action='store_true', help='scène synthétique et vérification des détections')
     p.add_argument('--out', default=None, help='chemin du rapport JSON')
+    p.add_argument('--kepler-spec', default=None, help='spec Kepler (sinon V2_KEPLER_SPEC, la scène, le défaut)')
+    p.add_argument('--kepler-tools', default=None, help='dossier de motion.py et frame.py')
+    p.add_argument('--kepler-states', type=int, default=48, help='états (L, LT) de la grille, au moins')
+    p.add_argument('--kepler-traj', type=int, default=12, help='instants de la trajectoire 2026 en plus')
+    p.add_argument('--kepler-tol-mm', type=float, default=1e-4, help='relecture des positions Kepler (mm)')
+    p.add_argument('--kepler-tol-rad', type=float, default=1e-5, help='relecture des angles Kepler (rad)')
     return p.parse_args(argv)
 
 
@@ -311,7 +320,7 @@ def pair_period(oa, ob, span):
     rates, ephem = [], False
     for o in (oa, ob):
         motion = str(o.get('motion', 'fixed'))
-        ephem |= motion.startswith('ephem:')
+        ephem |= motion.startswith('ephem:') or motion == 'kepler'     # clés cuites sur l'animation seulement
         r = abs(float(o.get('rate', 0.0) or 0.0)) if motion != 'fixed' else 0.0
         if r > 0:
             rates.append(r)
@@ -506,6 +515,11 @@ def run_checks(opts):
         rep['meshes'] = check_meshes(parts)
         rep['pairs'] = check_pairs(parts, clock, n, opts.readback_tol)
         rep['static'] = check_static(parts, clock, opts.quick, opts.quick_pairs, opts.seed)
+        if any(int(o.get('kepler', 0) or 0) for o in parts.obs):      # tours de Kepler : section (5)
+            if HERE not in sys.path:
+                sys.path.insert(0, HERE)
+            import kepler_check
+            rep['kepler'] = kepler_check.check_kepler(parts, clock, opts)
         rep['meta']['revealed'] = len(hidden)
     finally:
         clock.restore()
@@ -533,6 +547,8 @@ def run_checks(opts):
     if s['collisions_count']:
         fails.append('recouvrements statiques : %d (%s)' % (
             s['collisions_count'], ', '.join('%s/%s' % (c['a'], c['b']) for c in s['worst'][:5])))
+    if 'kepler' in rep:
+        fails += rep['kepler']['failures']
     rep['summary'] = {'ok': not fails, 'failures': fails,
                       'counts': {'meshes_checked': m['checked'], 'meshes_failed': len(m['failed']),
                                  'mesh_pairs': p['pairs'], 'pair_samples': p['pairs'] * n,
@@ -541,6 +557,12 @@ def run_checks(opts):
                                  'block_contacts': s['block_contacts_count']},
                       'seconds': {'meshes': m['seconds'], 'pairs': p['seconds'], 'static': s['seconds'],
                                   'total': round(time.time() - t0, 3)}}
+    if 'kepler' in rep:
+        k = rep['kepler']
+        rep['summary']['counts'].update(kepler_parts=k['parts'], kepler_states=k['states']['total'],
+                                        kepler_pairs=k['pairs']['kepler_kepler'] + k['pairs']['kepler_scene'],
+                                        kepler_bvh_tests=k['bvh_tests'], kepler_collisions=k['collisions_count'])
+        rep['summary']['seconds']['kepler'] = k['seconds']
     return rep
 
 

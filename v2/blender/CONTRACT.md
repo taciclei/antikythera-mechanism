@@ -50,7 +50,7 @@
   champ), `bevel` (conique m 0,4, dessinée comme un tronc de cône denté simple), `arbor`, `tube`, `rod`, `block`
   (enveloppe translucide « à dessiner »), `plate`, `axis` (axe de tour), `misc`.
 - `motion` : `linear` (taux constant, pilote Blender), `ephem:<clé>` (angle calculé par `ephem.py` et cuit en
-  images clés), `fixed`.
+  images clés), `fixed` ; `kepler` : pièces des tours de Kepler (§ 8).
 - **Taux des arbres de train** : partir du taux de la sortie dans `trains.json` (`rate_turns_per_day`, `phys`) et
   remonter la chaîne `ordre_couples` (chaque couple extérieur inverse le sens, chaque pignon fou aussi) jusqu'à
   l'entrée. Contrôle obligatoire : le taux recalculé de l'entrée vaut celui de Y (ou J) à 1e-12 près.
@@ -107,6 +107,9 @@ Sorties lourdes dans `v2/out/` (ignoré par git). Longues commandes sous `caffei
     entrées Lune 40 → fou → 40 = 1 ; train J → Y réordonné = même produit ; précession 10/131 · 15/179 = 150/23449 ;
     entraxes des modules changés (0,55 · 158 / 2 = 43,45 ; 0,7 · 36 / 2 = 12,6) ;
   - `Audit.lean` : axiomes ⊆ {propext, Classical.choice, Quot.sound}, nombre de théorèmes ≥ seuil (comme `lean/`).
+- `Mechanisms.lean`, **écrit à la main** (48 théorèmes) : identité du module vectoriel, ellipse à deux bras, équation
+  de Kepler et boucle du résolveur, équant, Oldham, joint de Hooke. Le générateur le lit sans le réécrire
+  (`tools/lean_v2/hand.py` refuse `sorry`, `axiom`, `set_option`…) ; `Audit.lean` vérifie chacun par son nom.
 - `v2/tools/lean_v2_mutation_test.py` : mutants (un nombre de dents changé) qui doivent échouer.
 - `.github/workflows/lean-v2.yml` : régénère, vérifie que le dépôt est à jour, compile (après `lake exe cache get`
   dans `lean/` pour fournir Mathlib au chemin).
@@ -116,3 +119,50 @@ Sorties lourdes dans `v2/out/` (ignoré par git). Longues commandes sous `caffei
 - Petits pas ; fichiers produits par des scripts ; jamais plus de ~250 lignes par écriture.
 - Tester chaque module seul avant de le livrer. Ne pas lancer de rendu lourd (Cycles) : EEVEE ou Workbench, aperçus.
 - Ne pas modifier les fichiers des autres modules ; signaler une incohérence du contrat plutôt que la contourner.
+
+## 8. Tours de Kepler (phase K2)
+
+> Inactif tant que `v2/spec/kepler.json` n'existe pas : la chaîne des § 3 à 5 est alors inchangée (mêmes objets, mêmes
+> rapports hors durées, aucune clé `kepler`).
+
+- **Sources** : `v2/spec/kepler.json` (schéma : `v2/tools/kepler/CONTRACT.md` § 5) et l'API `v2/tools/kepler/`, importée
+  par `sys.path` : `motion.pose(part, state) → (x, y, θ)` (repère machine, mm, θ trigonométrique autour de +z, pièce
+  posée à son pivot) et `state_from_jours(tour, jours) → {"L", "LT"}` (de `motion.py`, sinon de `frame.py`).
+- **Chemins** : `--kepler-spec F --kepler-tools D` après `--` (build_v2, animate, check), sinon `V2_KEPLER_SPEC` et
+  `V2_KEPLER_TOOLS`, sinon (animate, check) les chemins enregistrés par build_v2 dans `scene["v2_kepler_spec"]` et
+  `scene["v2_kepler_tools"]`, sinon les défauts. Une spec donnée explicitement mais absente est une erreur.
+  `build_v2.py -- --out DIR` (ou `V2_OUT`) change le dossier de sortie (défaut `v2/out`).
+- **Scène** (`kepler_build.prepare_scene`) : les blocs remplacés ne sont plus construits (`uak_<p>`, `mod_<p>` ;
+  `terre_maitre` pour la tour `earth`/`terre` ; ou la liste `towers.<p>.replaces`), ni les pièces d'override
+  `{"remove": true}` ou `{"replaced_by": …}` ; leurs noms sont ôtés des `links`, `meshes_with`, `engages`. Overrides
+  (`towers.<p>.overrides` : liste de `{"id": …, champs}` ou dictionnaire id → champs) : les champs `c z p q r r_in
+  width axis phase` remplacent ceux de `scene.json` ; une pièce `synth` coaxiale à sa `source` déplacée suit son centre.
+- **Objets** (`kepler_build.build_kepler`, `kepler_geom.py`) : un objet par pièce, nom = id (`#` → `.`), collection
+  `V2_Kepler/V2_Kepler_<tour>`, parent Empty fixe `V2_K_<tour>` posé à l'origine de la tour (`towers.<p>.origin`,
+  `center` ou `c`, sinon le centre de `axe_<p>`, sinon 0), qui porte `kepler_origin`. Maillage : formes 2D du repère
+  local, îlots triangulés par CDT avec leurs trous et extrudés de z0 à z1 (variété fermée, normales sortantes) ; îlots
+  qui se recouvrent : union booléenne exacte. `gear` : roue à développante de `parts.gear_loops` (`teeth`, `m`, dent 0
+  sur +x local, jeu 0,03 mm), alésage `gear.bore`, sinon trou rond centré des formes, sinon support coaxial lié
+  + 0,05. Origine au pivot, z au milieu de la couche, pose de repos = pose au 2026-01-01. Propriétés : `part_id kind
+  tower kepler=1 law pivot z motion links meshes_with axis source label role` (+ `teeth m r_pitch ra bore` des roues,
+  `union`). Matériaux par `kind` (ou `material`) : laiton (roue, bras, manivelle, crémaillère, tube), acier (goupille,
+  arbre, coulisseau, suiveur), bronze (disque d'Oldham, bagues).
+- **`motion = "kepler"`** (animate.py) : images clés LINEAR, une par `step_days`, de `location` x, y (repère de
+  `V2_K_<tour>`) et `rotation_euler[2]` = θ, avec (x, y, θ) = `pose(pièce, state_from_jours(tour, jours))` ; θ déroulé
+  (`np.unwrap`, pas de saut de 2π) puis recentré d'un multiple de 2π ; `kepler_max_step_rad` (plus grand pas de θ entre
+  deux clés, doit rester ≪ π) est rendu dans les statistiques. Une roue de `scene.json` engrenée par une roue Kepler
+  à pivot fixe (`gear.mesh_with`) devient menée : `motion = "kepler"`, `kepler_follow` = id de la menante,
+  θ = `follow_ratio` · θ_menante + `follow_offset` (−z₁/z₂ ; une dent de la menée dans un creux de la menante sur la
+  ligne des centres, règle de `scene_model`), rotation seule. Loi `fixed` : `motion = "fixed"`.
+- **Contrôle** (`check.py`, section `kepler` de `out/check.json` et verdict global ; `kepler_check.py`) : maillages
+  Kepler stricts ; relecture des images clés aux jours 0, 1, 57, 183, 300, 365 contre `pose` (`--kepler-tol-mm` 1e-4,
+  `--kepler-tol-rad` 1e-5 : float32) ; interférences sur au moins `--kepler-states` (48 → grille 7 × 7) états (L, LT)
+  de [0, 2π)² construits à la main (L décalé d'une fraction de tour propre à chaque tour ; L = LT gardé pour une
+  tour où L vaut LT) plus `--kepler-traj` (12) instants de 2026 : pièces posées directement (T(x, y, z milieu)·Rz(θ)
+  en double, sans les images clés), BVH entre pièces Kepler non liées dont les z se recouvrent et entre pièces Kepler
+  et autres pièces de la scène non liées dont les z se recouvrent (à leur pose de la première image). Échec :
+  recouvrement de surface ou pièce noyée dans un solide fermé ; contact avec un bloc : signalé. Les couples engrenés
+  Kepler passent aussi par le contrôle des couples (sur 2026) et les pièces Kepler par le contrôle statique.
+- **Test** : `$BL -b --factory-startup --python-exit-code 1 -P blender/test_kepler_build.py [-- --full] [--keep]`
+  (fausse tour de `kepler_fake.py` et faux `motion.py`/`frame.py` dans un dossier temporaire ; cas d'interférence
+  volontaire qui doit être détecté ; `--full` : build_v2.py et check.py en sous-processus).

@@ -6,6 +6,10 @@ Contrat (v2/blender/CONTRACT.md § 2-3) :
 - motion == 'linear'      → pilote Blender : angle = −2π · phys · |rate| · jours + phase, autour de « axis » ;
 - motion == 'ephem:<clé>' → images clés cuites (une par step_days) : angle = scale · ephem.value(clé, jours) + phase,
   déroulé (pas de saut de 2π), interpolation LINEAR ;
+- motion == 'kepler'      → pièce des tours de Kepler (kepler_build.py ; seulement si spec/kepler.json existe) : images
+  clés cuites (une par step_days) de location x, y (repère du parent « V2_K_<tour> ») et rotation_euler[2] = θ, avec
+  (x, y, θ) = motion_api.pose(pièce, motion_api.state_from_jours(tour, jours)), θ déroulé puis centré, LINEAR ;
+  roue de la scène menée par une roue Kepler (« kepler_follow ») : rotation seule, follow_ratio · θ + follow_offset ;
 - motion == 'fixed'       → rien.
 Canal piloté (drive_channel), dans cet ordre :
 1. convention de parts.py : objet en mode 'XYZ' portant « spin_index » (0 ou 2) dont la composante pilotée tourne
@@ -356,13 +360,66 @@ def bake_ephem(obj, j0, days, step_days=1, frame0=1, cache=None):
     return tgt
 
 
+# ------------------------------------------------------------------ tours de Kepler (motion « kepler »)
+
+KEPLER = "kepler"
+
+
+def kepler_track(api, part, jours, cache=None):
+    """(x, y, θ déroulé) de api.pose(part, api.state_from_jours(tour, j)) aux instants `jours` (tableaux numpy).
+    `cache` : dictionnaire tour → états, partagé entre les pièces d'une même grille d'instants."""
+    import numpy as np
+    tower = str(part.get("tower"))
+    states = cache.get(tower) if cache is not None else None
+    if states is None:
+        states = [api.state_from_jours(tower, float(j)) for j in jours]
+        if cache is not None:
+            cache[tower] = states
+    P = np.array([api.pose(part, s)[:3] for s in states], dtype=float).reshape(-1, 3)
+    return P[:, 0], P[:, 1], np.unwrap(P[:, 2])
+
+
+def kepler_context(scene_bpy=None):
+    """Contexte Kepler (API, pièces) d'après les chemins enregistrés dans la scène par build_v2 (kepler_build)."""
+    here = str(Path(__file__).resolve().parent)
+    if here not in sys.path:
+        sys.path.insert(0, here)
+    import kepler_build
+    return kepler_build.context_from_scene(scene_bpy)
+
+
+def bake_kepler(obj, ctx, j0, days, step_days=1, frame0=1, cache=None):
+    """Images clés LINEAR d'une pièce « kepler » (voir le docstring du module). Renvoie le plus grand pas de θ entre
+    deux clés (rad) : au-delà de π, le déroulage serait faux (pas de temps trop grand)."""
+    import numpy as np
+    lead = obj.get("kepler_follow")
+    part = ctx["parts"][str(lead if lead is not None else obj["part_id"])]
+    jours = sample_jours(j0, days, step_days)
+    frames = frame0 + (jours - j0)
+    x, y, th = kepler_track(ctx["api"], part, jours, cache)
+    obj.rotation_mode = "XYZ"
+    for path, idx in (("location", 0), ("location", 1), ("rotation_euler", 2)):
+        obj.driver_remove(path, idx)
+    if lead is not None:
+        th = float(obj["follow_ratio"]) * th + float(obj["follow_offset"])
+    else:
+        par = obj.parent
+        ox, oy = (float(v) for v in par["kepler_origin"]) if par is not None and "kepler_origin" in par else (0, 0)
+        _set_keys(_fcurve(obj, "location", 0), frames, x - ox)
+        _set_keys(_fcurve(obj, "location", 1), frames, y - oy)
+    _set_keys(_fcurve(obj, "rotation_euler", 2), frames, center_turns(th))
+    return float(np.abs(np.diff(th)).max()) if len(th) > 1 else 0.0
+
+
 # ------------------------------------------------------------------ mise en place
 
-def setup_animation(scene_bpy, start=(2026, 1, 1), days=366, fps=24, step_days=1, strict=True):
-    """Contrôleur + pilotes « linear » + images clés « ephem: » pour tous les objets de la scène portant « motion ».
+def setup_animation(scene_bpy, start=(2026, 1, 1), days=366, fps=24, step_days=1, strict=True, kepler=None):
+    """Contrôleur + pilotes « linear » + images clés « ephem: » et « kepler » pour tous les objets portant « motion ».
 
     Plage : images 1 … days (366 images = 2026-01-01 → 2027-01-01, CONTRACT § 2) ; « jours » et les images clés
     couvrent [j0, j0 + days]. Idempotent (pivots réutilisés, pilotes et clés remplacés). Renvoie des statistiques.
+    `kepler` : contexte de kepler_build (API et pièces) ; s'il manque et qu'un objet est « kepler », il est relu
+    d'après les chemins enregistrés dans la scène. Les clés « kepler* » des statistiques n'existent que dans ce cas.
     """
     import time
     t0 = time.perf_counter()
@@ -374,17 +431,28 @@ def setup_animation(scene_bpy, start=(2026, 1, 1), days=366, fps=24, step_days=1
     ctrl = ensure_controller(scene_bpy, j0, days, frame0=1)
     objs = [o for o in scene_bpy.objects if "motion" in o and o.name != CONTROLLER]
     stats = {"j0": j0, "linear": 0, "ephem": 0, "fixed": 0, "pivots": 0, "ignored": []}
-    cache, known = {}, None
+    cache, known, kcache = {}, None, {}
     for o in objs:
         m = str(o["motion"])
         if m.startswith("ephem:") and known is None:
             known = set(ephem_module().KEYS)
+        if m == KEPLER and kepler is None:
+            try:
+                kepler = kepler_context(scene_bpy)
+            except Exception:  # noqa: BLE001
+                if strict:
+                    raise
         if m == "linear":
             tgt = add_linear_driver(o, ctrl)
             stats["linear"] += 1
         elif m.startswith("ephem:") and ephem_key(m) in known:
             tgt = bake_ephem(o, j0, days, step_days, frame0=1, cache=cache)
             stats["ephem"] += 1
+        elif m == KEPLER and kepler is not None:
+            step = bake_kepler(o, kepler, j0, days, step_days, frame0=1, cache=kcache)
+            stats["kepler"] = stats.get("kepler", 0) + 1
+            stats["kepler_max_step_rad"] = max(stats.get("kepler_max_step_rad", 0.0), step)
+            continue
         elif m == "fixed":
             stats["fixed"] += 1
             continue
@@ -465,7 +533,7 @@ def angle_errors(objs, frame, scene=None):
 
 def main():
     """blender -b <fichier> --python-exit-code 1 -P blender/animate.py -- [--start 2026-01-01] [--days 366]
-    [--fps 24] [--step 1] [--save out/x.blend]"""
+    [--fps 24] [--step 1] [--save out/x.blend] [--kepler-spec F --kepler-tools D] (lus par kepler_build.paths)"""
     import argparse
     import bpy
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
@@ -475,6 +543,8 @@ def main():
     ap.add_argument("--fps", type=int, default=24)
     ap.add_argument("--step", type=float, default=1.0)
     ap.add_argument("--save", default=None)
+    ap.add_argument("--kepler-spec", default=None)
+    ap.add_argument("--kepler-tools", default=None)
     a = ap.parse_args(argv)
     y, m, d = (int(s) for s in a.start.split("-"))
     stats = setup_animation(bpy.context.scene, (y, m, d), a.days, a.fps, a.step)

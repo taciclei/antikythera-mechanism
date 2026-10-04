@@ -17,7 +17,7 @@ BL=/Applications/Blender.app/Contents/MacOS/Blender
 cd ~/antikythera/v2
 $PY tools/architecture.py                    # → spec/architecture.json (placement déterministe, ~1 min)
 $PY tools/scene_model.py                     # architecture.json → spec/scene.json (taux, sens, phases)
-python3 tools/make_lean_v2.py && (cd lean && lake build)   # 201 théorèmes, dont les entraxes réellement placés
+python3 tools/make_lean_v2.py && (cd lean && lake build)   # 249 théorèmes, dont les entraxes réellement placés
 $PY -m unittest discover -s tests            # 55 tests (scène, éphémérides)
 $BL -b --factory-startup --python-exit-code 1 -P blender/build_v2.py          # → out/v2.blend
 $BL -b out/v2.blend --python-exit-code 1 -P blender/check.py -- --samples 24   # → out/check.json
@@ -81,6 +81,7 @@ $BL -b out/v2.blend --python-exit-code 1 -P blender/render_v2.py [-- --quick]  #
 ## Preuves Lean 4 (`v2/lean/`)
 
 `python3 tools/make_lean_v2.py` génère **201 théorèmes** depuis `trains.json` et `architecture.json`.
+`Mechanisms.lean`, écrit à la main, en ajoute **48** : **249 théorèmes** en tout.
 
 | Fichier | Théorèmes |
 |---|---|
@@ -89,15 +90,32 @@ $BL -b out/v2.blend --python-exit-code 1 -P blender/render_v2.py [-- --quick]  #
 | Rates | 46 |
 | Identities | 23 |
 | Architecture | 71 |
+| Mechanisms (écrit à la main) | 48 |
+| **Total** | **249** |
 
 `Architecture` couvre les bus 1:1, les reprises par pignon fou, les entrées du bloc Lune, la précession et les
-entraxes des modules changés.
+entraxes des modules changés. `Mechanisms` prouve les identités exactes des mécanismes non linéaires : module
+vectoriel (G − O = s·(planète − Terre)), ellipse à deux bras, équation de Kepler (solution unique et continue, sans
+point mort), équant bissecté, accouplement d'Oldham et joint de Hooke (= réduction à l'équateur).
 
 `lake build` compile sans avertissement. Mathlib vient par chemin de `lean/`, sans téléchargement. L'audit vérifie que
-les 201 théorèmes ne dépendent que des axiomes `propext`, `Classical.choice` et `Quot.sound`.
+les 249 théorèmes ne dépendent que des axiomes `propext`, `Classical.choice` et `Quot.sound`.
 
 `tools/lean_v2_mutation_test.py` change un nombre de dents ; la compilation doit alors échouer. L'intégration
 continue est dans `.github/workflows/lean-v2.yml`.
+
+## Tours de Kepler (phase K2, en attente de `spec/kepler.json`)
+
+Le côté Blender est prêt mais **inactif** tant que `v2/spec/kepler.json` n'existe pas : la chaîne ci-dessus ne change
+pas. Dès que la spec existe, `build_v2.py` remplace les blocs `uak_<p>`, `mod_<p>` et `terre_maitre` par les pièces
+dessinées (`kepler_build.py`), les anime avec leur vraie loi (motion « kepler », clés tirées de
+`tools/kepler/motion.py`), et `check.py` cherche leurs interférences sur une grille de l'espace d'état (L, LT)
+(section `kepler` de `out/check.json`). Détails : [`CONTRACT.md`](CONTRACT.md) § 8.
+
+```
+$BL -b --factory-startup --python-exit-code 1 -P blender/test_kepler_build.py [-- --full]   # fausse tour, 9 tests
+V2_KEPLER_SPEC=f.json V2_KEPLER_TOOLS=dossier V2_OUT=sortie $BL -b --factory-startup -P blender/build_v2.py
+```
 
 ## Limites connues
 
